@@ -5,54 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyectos de Ciencia de Datos</title>
     <style>
-        /* Estilos generales para la página */
+        /* Estilos generales */
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #000; /* Fondo negro */
             color: #fff; /* Texto blanco */
+            text-align: center;
         }
-        
+
         /* Estilos para la barra de navegación */
         nav {
-            background-color: #333; /* Fondo oscuro */
+            background: linear-gradient(90deg, #ff5733, #c70039); /* Fondo con gradiente */
             padding: 15px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Sombra */
+            border-radius: 10px; /* Bordes redondeados */
+            margin: 10px auto; /* Espaciado superior e inferior */
+            max-width: 90%; /* Ancho máximo */
+            text-align: center;
         }
+
+        /* Lista de navegación */
         nav ul {
             list-style: none;
             padding: 0;
             margin: 0;
             display: flex;
             justify-content: center;
+            gap: 30px; /* Espaciado entre elementos */
         }
-        nav ul li {
-            margin: 0 20px;
-        }
+
+        /* Estilos de los enlaces */
         nav ul li a {
             color: white;
             text-decoration: none;
             font-size: 18px;
             font-weight: bold;
-            transition: color 0.3s;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+            position: relative;
         }
+
+        /* Subrayado animado */
+        nav ul li a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -5px;
+            width: 0%;
+            height: 3px;
+            background-color: yellow;
+            transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+        }
+
+        /* Efecto hover */
         nav ul li a:hover {
-            color: #ffdd57; /* Color amarillo al pasar el cursor */
+            color: #ffdd57;
+            transform: scale(1.1);
         }
-        
-        /* Estilos para la sección de introducción */
+
+        nav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        /* Sección de introducción */
         .intro {
-            text-align: center;
-            max-width: 1000px;
+            max-width: 800px;
             margin: 40px auto;
             padding: 20px;
             background: #222; /* Fondo gris oscuro */
             box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
             border-radius: 10px;
         }
-        
-        /* Estilos para los botones */
+
+        /* Botón de GitHub */
         .button {
             display: inline-block;
             margin-top: 20px;
@@ -65,59 +94,18 @@
             font-weight: bold;
             transition: background 0.3s;
         }
+
         .button:hover {
-            background-color: #218838; /* Verde oscuro al pasar el cursor */
+            background-color: #218838; /* Verde oscuro */
         }
-        
-        /* Estilos para la lista de tecnologías utilizadas */
-        .intro ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .intro ul li {
-            background: #444; /* Fondo gris oscuro para los elementos de la lista */
-            margin: 5px 0;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        
-        /* Estilos para la sección de proyectos */
-        .projects {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .project {
-            background: #222;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
-            text-align: center;
-        }
-        .project h3 {
-            margin-bottom: 10px;
-        }
-        .project p {
-            font-size: 14px;
-        }
-        .project a {
-            display: inline-block;
-            margin-top: 10px;
-            color: #ffdd57;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        
-        /* Estilos para el pie de página */
+
+        /* Pie de página */
         footer {
             text-align: center;
             padding: 8px;
             background-color: #333;
             color: white;
-            font-size: 12px; /* Tamaño más pequeño */
+            font-size: 12px;
             position: fixed;
             bottom: 0;
             width: 100%;
@@ -125,41 +113,39 @@
     </style>
 </head>
 <body>
+
     <!-- Barra de navegación -->
     <nav>
         <ul>
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="pagina1.html">Página 1</a></li>
-            <li><a href="pagina2.html">Página 2</a></li>
-            <li><a href="contacto.html">Página 2</a></li>
+            <li><a href="proyectos.html">Proyectos</a></li>
+            <li><a href="acerca.html">Acerca de</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
         </ul>
     </nav>
-    
+
     <!-- Sección de introducción -->
     <div class="intro">
         <h1>Bienvenido a Proyectos de Ciencia de Datos</h1>
-        <p>Este repositorio contiene diversos proyectos de ciencia de datos, incluyendo análisis exploratorio, machine learning, visualización de datos y más.</p>
-        
+        <p>Explora nuestros proyectos de análisis de datos, machine learning y visualización.</p>
+
         <h2>Tecnologías utilizadas</h2>
         <ul>
-            <li>Python y librerías como Pandas, NumPy, Scikit-Learn</li>
-            <li>Visualización con Matplotlib, Seaborn y Power BI</li>
-            <li>Algoritmos de Machine Learning y Deep Learning</li>
+            <li>Python con Pandas, NumPy y Scikit-Learn</li>
+            <li>Visualización con Matplotlib y Seaborn</li>
+            <li>Machine Learning y Deep Learning</li>
             <li>Procesamiento de datos y análisis de tendencias</li>
         </ul>
-        
-        <h2>Objetivos</h2>
-        <p>El propósito de este repositorio es compartir conocimientos, explorar datos, y construir modelos predictivos que ayuden en la toma de decisiones basada en datos.</p>
-        
-        <!-- Botón que redirige al repositorio de GitHub -->
+
+        <!-- Botón de GitHub -->
         <a href="https://github.com/TU_REPOSITORIO" class="button">Ver en GitHub</a>
     </div>
-    
 
     <!-- Pie de página -->
     <footer>
         <p>Desarrollado por Christian Vera, 2025</p>
     </footer>
+
 </body>
 </html>
 
