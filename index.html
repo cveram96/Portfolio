@@ -81,10 +81,40 @@
             border-radius: 5px;
         }
         
+        /* Estilos para la sección de proyectos */
+        .projects {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .project {
+            background: #222;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        .project h3 {
+            margin-bottom: 10px;
+        }
+        .project p {
+            font-size: 14px;
+        }
+        .project a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #ffdd57;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
         /* Estilos para el pie de página */
         footer {
             text-align: center;
-            padding: 10px;
+            padding: 8px;
             background-color: #333;
             color: white;
             font-size: 12px; /* Tamaño más pequeño */
@@ -121,30 +151,27 @@
         <p>El propósito de este repositorio es compartir conocimientos, explorar datos, y construir modelos predictivos que ayuden en la toma de decisiones basada en datos.</p>
         
         <!-- Botón que redirige al repositorio de GitHub -->
-        <a href="https://github.com/cveram96/Portfolio" class="button">Ver en GitHub</a>
+        <a href="https://github.com/TU_REPOSITORIO" class="button">Ver en GitHub</a>
     </div>
-
     
-    <!-- Sección de proyectos -->
+    <!-- Sección de Proyectos -->
     <div class="projects">
-        <h2>Proyectos Destacados</h2>
-
         <div class="project">
-            <h3>Análisis de Datos de Ventas</h3>
-            <p>Exploración de datos de ventas de una empresa con visualizaciones en Power BI y modelos de predicción de ingresos.</p>
+            <h3>Análisis Exploratorio de Datos</h3>
+            <p>Un análisis profundo de tendencias y correlaciones en datasets del mundo real.</p>
+            <a href="#">Ver más</a>
         </div>
-
+        <div class="project">
+            <h3>Clasificación con Machine Learning</h3>
+            <p>Implementación de modelos de clasificación para predicciones precisas.</p>
+            <a href="#">Ver más</a>
+        </div>
         <div class="project">
             <h3>Segmentación de Clientes</h3>
-            <p>Uso de clustering con K-Means y DBSCAN para identificar grupos de clientes y mejorar estrategias de marketing.</p>
-        </div>
-
-        <div class="project">
-            <h3>Detección de Fraude</h3>
-            <p>Implementación de un modelo de Machine Learning para identificar patrones sospechosos en transacciones bancarias.</p>
+            <p>Uso de clustering para identificar segmentos clave en bases de datos comerciales.</p>
+            <a href="#">Ver más</a>
         </div>
     </div>
-
     
     <!-- Pie de página -->
     <footer>
