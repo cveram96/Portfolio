@@ -6,14 +6,16 @@
     <title>Github Pages Test</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
+            font-family: 'Arial', sans-serif;
             margin: 0;
-            background-color: #f0f0f0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
         }
         nav {
-            background-color: #007BFF;
+            background-color: #0056b3;
             padding: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         nav ul {
             list-style: none;
@@ -28,33 +30,42 @@
         nav ul li a {
             color: white;
             text-decoration: none;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #ffdd57;
+        }
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            text-align: center;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
         h1 {
-            color: #333;
-            margin-top: 50px;
+            color: #0056b3;
             font-size: 36px;
         }
         p {
-            font-size: 20px;
+            font-size: 18px;
             color: #555;
-            max-width: 600px;
-            margin: 20px auto;
-            line-height: 1.5;
-        }
-        .container {
-            padding: 20px;
+            line-height: 1.6;
         }
         .button {
             display: inline-block;
             margin-top: 20px;
-            padding: 10px 20px;
+            padding: 12px 24px;
             background-color: #28a745;
             color: white;
             text-decoration: none;
             font-size: 18px;
-            border-radius: 5px;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: background-color 0.3s;
         }
         .button:hover {
             background-color: #218838;
@@ -69,7 +80,13 @@
             <li><a href="pagina2.html">Página 2</a></li>
         </ul>
     </nav>
-
+    <div class="container">
+        <h1>Github Pages Test</h1>
+        <p>Bienvenido a esta página de prueba para GitHub Pages.</p>
+        <p>Explora las secciones y experimenta con el diseño.</p>
+        <a href="pagina1.html" class="button">Ir a Página 1</a>
+        <a href="pagina2.html" class="button">Ir a Página 2</a>
+    </div>
 </body>
 </html>
 
