@@ -10,19 +10,19 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #000; /* Fondo negro */
-            color: #fff; /* Texto blanco */
+            background-color: #f5f5f5; /* Fondo gris claro */
+            color: #333; /* Texto oscuro */
             text-align: center;
         }
 
-        /* Estilos para la barra de navegación */
+        /* Barra de navegación */
         nav {
-            background: linear-gradient(90deg, #ff5733, #c70039); /* Fondo con gradiente */
+            background-color: #3a3a3a; /* Gris oscuro */
             padding: 15px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Sombra */
             border-radius: 10px; /* Bordes redondeados */
-            margin: 10px auto; /* Espaciado superior e inferior */
-            max-width: 90%; /* Ancho máximo */
+            margin: 20px auto; /* Espaciado */
+            max-width: 80%; /* Ancho de la barra */
             text-align: center;
         }
 
@@ -33,7 +33,16 @@
             margin: 0;
             display: flex;
             justify-content: center;
-            gap: 30px; /* Espaciado entre elementos */
+            gap: 20px;
+        }
+
+        /* Opciones de la barra */
+        nav ul li {
+            background-color: #555; /* Gris medio */
+            border-radius: 8px;
+            padding: 10px 20px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
 
         /* Estilos de los enlaces */
@@ -42,33 +51,13 @@
             text-decoration: none;
             font-size: 18px;
             font-weight: bold;
-            padding: 10px 15px;
-            border-radius: 5px;
-            transition: all 0.3s ease-in-out;
-            position: relative;
-        }
-
-        /* Subrayado animado */
-        nav ul li a::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            bottom: -5px;
-            width: 0%;
-            height: 3px;
-            background-color: yellow;
-            transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+            display: block;
         }
 
         /* Efecto hover */
-        nav ul li a:hover {
-            color: #ffdd57;
-            transform: scale(1.1);
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-            left: 0;
+        nav ul li:hover {
+            background-color: #777; /* Gris más claro */
+            transform: scale(1.05);
         }
 
         /* Sección de introducción */
@@ -76,8 +65,8 @@
             max-width: 800px;
             margin: 40px auto;
             padding: 20px;
-            background: #222; /* Fondo gris oscuro */
-            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+            background: #fff; /* Fondo blanco */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
         }
 
@@ -86,7 +75,7 @@
             display: inline-block;
             margin-top: 20px;
             padding: 10px 20px;
-            background-color: #28a745; /* Verde */
+            background-color: #007bff; /* Azul */
             color: white;
             text-decoration: none;
             font-size: 18px;
@@ -96,14 +85,14 @@
         }
 
         .button:hover {
-            background-color: #218838; /* Verde oscuro */
+            background-color: #0056b3; /* Azul más oscuro */
         }
 
         /* Pie de página */
         footer {
             text-align: center;
             padding: 8px;
-            background-color: #333;
+            background-color: #3a3a3a;
             color: white;
             font-size: 12px;
             position: fixed;
@@ -148,7 +137,6 @@
 
 </body>
 </html>
-
 
 
 
