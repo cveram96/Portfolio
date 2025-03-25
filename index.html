@@ -8,12 +8,12 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 50px;
-            background-color: #f4f4f4;
+            margin: 0;
+            background-color: #f0f0f0;
         }
         nav {
-            background-color: #333;
-            padding: 10px;
+            background-color: #007BFF;
+            padding: 15px;
         }
         nav ul {
             list-style: none;
@@ -23,19 +23,41 @@
             justify-content: center;
         }
         nav ul li {
-            margin: 0 15px;
+            margin: 0 20px;
         }
         nav ul li a {
             color: white;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 20px;
+            font-weight: bold;
         }
         h1 {
             color: #333;
+            margin-top: 50px;
+            font-size: 36px;
         }
         p {
+            font-size: 20px;
+            color: #555;
+            max-width: 600px;
+            margin: 20px auto;
+            line-height: 1.5;
+        }
+        .container {
+            padding: 20px;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
             font-size: 18px;
-            color: #666;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #218838;
         }
     </style>
 </head>
@@ -43,12 +65,17 @@
     <nav>
         <ul>
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="Pagina1.html">Acerca</a></li>
-            <li><a href="Pagina2.html">Contacto</a></li>
+            <li><a href="pagina1.html">Página 1</a></li>
+            <li><a href="pagina2.html">Página 2</a></li>
         </ul>
     </nav>
-    <h1>Github Pages Test</h1>
-    <p>¡Hola! Esta es una página de prueba para GitHub Pages.</p>
-    <p>Para ver esta página en línea, sube este archivo a un repositorio de GitHub y habilita GitHub Pages.</p>
+    <div class="container">
+        <h1>Github Pages Test</h1>
+        <p>¡Hola! Esta es una página de prueba para GitHub Pages.</p>
+        <p>Para ver esta página en línea, sube este archivo a un repositorio de GitHub y habilita GitHub Pages.</p>
+        <a href="pagina1.html" class="button">Ir a Página 1</a>
+        <a href="pagina2.html" class="button">Ir a Página 2</a>
+    </div>
 </body>
 </html>
+
