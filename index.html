@@ -6,19 +6,35 @@
     <title>Proyectos de Ciencia de Datos</title>
     <style>
         /* Estilos generales */
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
             background-color: #000; /* Fondo negro */
             color: #fff; /* Texto blanco */
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Altura mínima de la pantalla */
         }
-        
+
+        /* Contenedor principal para que el contenido empuje el footer hacia abajo */
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         /* Barra de navegación */
         nav {
             background-color: #555; /* Fondo gris */
             padding: 15px 0;
+            width: 100%;
             box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
         }
         nav ul {
@@ -60,13 +76,8 @@
         .intro h1, .intro h2 {
             margin-bottom: 15px;
         }
-        .intro p {
-            font-size: 16px;
-        }
-
-        /* Lista de tecnologías con viñetas en números romanos */
         .intro ul {
-            list-style-type: upper-roman; /* Números romanos */
+            list-style-type: upper-roman; /* Viñetas en números romanos */
             padding-left: 40px;
             text-align: left;
             display: inline-block;
@@ -74,24 +85,6 @@
         .intro ul li {
             margin: 8px 0;
             font-size: 16px;
-        }
-
-        /* Estilos para los botones */
-        .button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 25px;
-            background-color: #28a745; /* Verde */
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s, transform 0.2s;
-        }
-        .button:hover {
-            background-color: #218838; /* Verde oscuro */
-            transform: scale(1.05);
         }
 
         /* Sección de proyectos */
@@ -113,9 +106,6 @@
         .project h3 {
             margin-bottom: 10px;
         }
-        .project p {
-            font-size: 14px;
-        }
         .project a {
             display: inline-block;
             margin-top: 10px;
@@ -124,14 +114,15 @@
             font-weight: bold;
         }
 
-        /* Pie de página */
+        /* Pie de página fijo en la parte inferior */
         footer {
-            text-align: center;
-            padding: 10px;
             background-color: #555;
             color: white;
+            padding: 10px;
+            text-align: center;
             font-size: 14px;
-            margin-top: 20px;
+            margin-top: auto; /* Empuja el footer hacia abajo */
+            width: 100%;
         }
     </style>
 </head>
@@ -144,34 +135,50 @@
             <li><a href="contacto.html">Contacto</a></li>
         </ul>
     </nav>
-    
-    <!-- Sección de introducción -->
-    <div class="intro">
-        <h1>Bienvenido a Proyectos de Ciencia de Datos</h1>
-        <p>Explora nuestros proyectos de análisis de datos, machine learning y visualización.</p>
-        
-        <h2>Tecnologías utilizadas</h2>
-        <ul>
-            <li>Python con Pandas, NumPy y Scikit-Learn</li>
-            <li>Visualización con Matplotlib y Seaborn</li>
-            <li>Machine Learning y Deep Learning</li>
-            <li>Procesamiento de datos y análisis de tendencias</li>
-        </ul>
-        
-        <h2>Objetivos</h2>
-        <p>Compartir conocimientos, explorar datos y construir modelos predictivos para la toma de decisiones.</p>
-        
-        <!-- Botón que redirige al repositorio de GitHub -->
-        <a href="https://github.com/TU_REPOSITORIO" class="button">Ver en GitHub</a>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Sección de introducción -->
+        <div class="intro">
+            <h1>Bienvenido a Proyectos de Ciencia de Datos</h1>
+            <p>Explora nuestros proyectos de análisis de datos, machine learning y visualización.</p>
+
+            <h2>Tecnologías utilizadas</h2>
+            <ul>
+                <li>Python con Pandas, NumPy y Scikit-Learn</li>
+                <li>Visualización con Matplotlib y Seaborn</li>
+                <li>Machine Learning y Deep Learning</li>
+                <li>Procesamiento de datos y análisis de tendencias</li>
+            </ul>
+        </div>
+
+        <!-- Sección de proyectos -->
+        <div class="projects">
+            <div class="project">
+                <h3>Análisis de Ventas</h3>
+                <p>Exploración de datos de ventas y tendencias del mercado.</p>
+                <a href="#">Ver más</a>
+            </div>
+            <div class="project">
+                <h3>Predicción de Churn</h3>
+                <p>Modelo de Machine Learning para predecir la pérdida de clientes.</p>
+                <a href="#">Ver más</a>
+            </div>
+            <div class="project">
+                <h3>Segmentación de Clientes</h3>
+                <p>Agrupación de clientes basada en comportamiento de compra.</p>
+                <a href="#">Ver más</a>
+            </div>
+        </div>
     </div>
 
-    
     <!-- Pie de página -->
     <footer>
         <p>Desarrollado por Christian Vera, 2025</p>
     </footer>
 </body>
 </html>
+
 
 
 
