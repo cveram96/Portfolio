@@ -1,186 +1,130 @@
-/* ===== PALETA DE COLORES ===== */
-:root {
-  --primary: #3b82f6;
-  --secondary: #10b981;
-  --dark: #1f2937;
-  --darker: #111827;
-  --light: #f3f4f6;
-  --gray: #6b7280;
-  --accent: #f59e0b;
-}
-
-/* ===== RESETEO Y AJUSTES GENERALES ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* ===== ESTILOS GENERALES PARA CENTRADO PERFECTO ===== */
 body {
-  font-family: 'Segoe UI', 'Roboto', sans-serif;
-  background-color: var(--darker);
-  color: var(--light);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* ===== NAVEGACIÓN ===== */
-nav {
-  background-color: var(--dark);
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-nav ul {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  list-style: none;
-  flex-wrap: wrap; /* Evita solapamiento en pantallas pequeñas */
-  gap: 1.5rem;
-}
-
-nav a {
-  color: var(--light);
-  text-decoration: none;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
-  font-size: 1.1rem;
-  border: 1px solid transparent;
-}
-
-nav a:hover {
-  color: var(--accent);
-  border-color: var(--accent);
+  text-align: center; /* Centrado general para todo el cuerpo */
 }
 
 /* ===== CONTENEDOR PRINCIPAL ===== */
 .container {
   max-width: 1200px;
-  margin: 3rem auto;
+  margin: 2rem auto;
   padding: 0 1.5rem;
   flex: 1;
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  min-height: calc(100vh - 150px); /* Ajuste para evitar solapamiento con footer */
+  align-items: center; /* Centrado horizontal */
 }
 
 /* ===== SECCIÓN INTRODUCCIÓN ===== */
 .intro {
   background-color: var(--dark);
-  padding: 2.5rem;
+  padding: 2rem;
   border-radius: 0.5rem;
   margin-bottom: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-left: 4px solid var(--primary);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 900px; /* Limita el ancho para evitar textos muy extendidos */
   width: 100%;
+  max-width: 900px;
+  text-align: center; /* Texto centrado */
 }
 
 .intro h1, 
-.intro h2 {
-  color: var(--primary);
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
-  max-width: 90%;
-  word-wrap: break-word; /* Evita que los títulos se corten */
-}
-
+.intro h2,
 .intro p {
-  font-size: 1.2rem;
-  color: var(--light);
-  max-width: 85%;
-  margin-bottom: 1.5rem;
+  text-align: center; /* Centrado explícito */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .intro ul {
-  list-style: none;
-  max-width: 700px;
-  margin: 0 auto;
-  padding-left: 0;
-  text-align: left;
+  display: inline-block; /* Para centrar la lista */
+  text-align: left; /* Alineación izquierda del texto dentro de la lista */
+  padding-left: 1.5rem;
 }
 
-.intro li {
-  margin-bottom: 0.8rem;
-  color: var(--light);
-  font-size: 1.1rem;
-  padding: 0.5rem 1rem;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 0.3rem;
-  position: relative;
-  padding-left: 2rem;
+/* ===== SECCIÓN PROYECTOS - CENTRADO PERFECTO ===== */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+  width: 100%;
 }
 
-.intro li::before {
-  content: "▹";
-  color: var(--accent);
-  position: absolute;
-  left: 1rem;
+.project {
+  background-color: var(--dark);
+  padding: 1.8rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrado horizontal */
+  text-align: center; /* Texto centrado */
+  height: 100%;
+}
+
+.project h3 {
+  color: var(--primary);
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+  width: 100%;
+  text-align: center; /* Doble seguridad para centrado */
+}
+
+.project p {
+  color: var(--medium-gray);
+  margin-bottom: 1.8rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-align: center; /* Párrafos centrados */
+  width: 100%;
+  padding: 0 0.5rem;
 }
 
 /* ===== PIE DE PÁGINA ===== */
 footer {
   background-color: var(--dark);
+  color: var(--gray);
+  text-align: center; /* Texto centrado */
   padding: 1.5rem;
-  text-align: center;
-  font-size: 0.9rem;
   margin-top: 3rem;
+  font-size: 0.9rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+}
+
+/* ===== AJUSTES PARA ELEMENTOS INTERNOS ===== */
+.project a,
+nav a {
+  text-align: center; /* Botones centrados */
 }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  nav ul {
-    gap: 1rem;
-  }
-  
-  .intro {
-    padding: 2rem;
-  }
-  
-  .intro h1 {
-    font-size: 1.8rem;
-  }
-  
-  .intro h2 {
-    font-size: 1.6rem;
-  }
-
-  .intro p {
-    font-size: 1.1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  nav {
-    padding: 0.8rem;
-  }
-  
-  nav a {
-    font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
+  .container {
+    padding: 0 1rem;
   }
   
   .intro {
     padding: 1.5rem;
   }
   
-  .intro li {
-    font-size: 1rem;
-    padding: 0.4rem 0.8rem 0.4rem 1.8rem;
+  .projects {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro h1 {
+    font-size: 1.8rem;
+  }
+  
+  .intro h2 {
+    font-size: 1.4rem;
+  }
+  
+  .intro ul {
+    padding-left: 1rem;
   }
 }
 
