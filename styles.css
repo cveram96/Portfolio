@@ -1,130 +1,132 @@
-/* ===== ESTILOS GENERALES PARA CENTRADO PERFECTO ===== */
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  text-align: center; /* Centrado general para todo el cuerpo */
+    font-family: 'Arial', sans-serif;
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Texto blanco */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Altura mínima de la pantalla */
 }
 
-/* ===== CONTENEDOR PRINCIPAL ===== */
+/* Contenedor principal */
 .container {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1.5rem;
-  flex: 1;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centrado horizontal */
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* ===== SECCIÓN INTRODUCCIÓN ===== */
+/* Barra de navegación */
+nav {
+    background-color: #555; /* Fondo gris */
+    padding: 15px 0;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    display: block;
+    padding: 12px 20px;
+    background: #777; /* Fondo gris más claro */
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+nav ul li a:hover {
+    background: #ffdd57; /* Amarillo */
+    color: black;
+    transform: scale(1.1);
+}
+
+/* Sección de introducción */
 .intro {
-  background-color: var(--dark);
-  padding: 2rem;
-  border-radius: 0.5rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-left: 4px solid var(--primary);
-  width: 100%;
-  max-width: 900px;
-  text-align: center; /* Texto centrado */
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #222; /* Fondo gris oscuro */
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    text-align: center;
 }
 
-.intro h1, 
-.intro h2,
-.intro p {
-  text-align: center; /* Centrado explícito */
-  margin-left: auto;
-  margin-right: auto;
+.intro h1, .intro h2 {
+    margin-bottom: 15px;
 }
 
 .intro ul {
-  display: inline-block; /* Para centrar la lista */
-  text-align: left; /* Alineación izquierda del texto dentro de la lista */
-  padding-left: 1.5rem;
+    list-style-type: upper-roman; /* Viñetas en números romanos */
+    padding-left: 40px;
+    text-align: left;
+    display: inline-block;
 }
 
-/* ===== SECCIÓN PROYECTOS - CENTRADO PERFECTO ===== */
+.intro ul li {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+/* Sección de proyectos */
 .projects {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  margin: 3rem 0;
-  width: 100%;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    text-align: center;
 }
 
 .project {
-  background-color: var(--dark);
-  padding: 1.8rem;
-  border-radius: 0.8rem;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centrado horizontal */
-  text-align: center; /* Texto centrado */
-  height: 100%;
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
 }
 
 .project h3 {
-  color: var(--primary);
-  font-size: 1.4rem;
-  margin-bottom: 1.2rem;
-  width: 100%;
-  text-align: center; /* Doble seguridad para centrado */
+    margin-bottom: 10px;
 }
 
-.project p {
-  color: var(--medium-gray);
-  margin-bottom: 1.8rem;
-  font-size: 1.05rem;
-  line-height: 1.7;
-  text-align: center; /* Párrafos centrados */
-  width: 100%;
-  padding: 0 0.5rem;
+.project a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #ffdd57;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-/* ===== PIE DE PÁGINA ===== */
+/* Pie de página */
 footer {
-  background-color: var(--dark);
-  color: var(--gray);
-  text-align: center; /* Texto centrado */
-  padding: 1.5rem;
-  margin-top: 3rem;
-  font-size: 0.9rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  width: 100%;
+    background-color: #555;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: auto; /* Empuja el footer hacia abajo */
+    width: 100%;
 }
 
-/* ===== AJUSTES PARA ELEMENTOS INTERNOS ===== */
-.project a,
-nav a {
-  text-align: center; /* Botones centrados */
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .container {
-    padding: 0 1rem;
-  }
-  
-  .intro {
-    padding: 1.5rem;
-  }
-  
-  .projects {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-  .intro h1 {
-    font-size: 1.8rem;
-  }
-  
-  .intro h2 {
-    font-size: 1.4rem;
-  }
-  
-  .intro ul {
-    padding-left: 1rem;
-  }
-}
 
