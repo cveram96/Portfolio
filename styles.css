@@ -1,159 +1,201 @@
-/* ===== RESET & BASE STYLES ===== */
+/* ===== VARIABLES Y RESET ===== */
+:root {
+  --primary: #2563eb;       /* Azul científico */
+  --secondary: #059669;     /* Verde para datos */
+  --dark: #1e293b;         /* Fondo oscuro */
+  --darker: #0f172a;       /* Fondo más oscuro */
+  --light: #f8fafc;        /* Texto claro */
+  --accent: #f59e0b;       /* Amarillo para destacar */
+  --gray: #94a3b8;         /* Texto secundario */
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: #0a0a0a;
-  color: #f5f5f5;
-  line-height: 1.5;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  background-color: var(--darker);
+  color: var(--light);
+  line-height: 1.6;
 }
 
-/* ===== COMPACT LAYOUT STRUCTURE ===== */
-.main-wrapper {
-  flex: 1;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0;
-}
-
-.container {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-.container + .container {
-  margin-top: 1px; /* Mínimo espacio entre contenedores */
-}
-
-/* ===== NAVIGATION ===== */
-.nav-compact {
-  background-color: #111;
-  padding: 8px 0;
+/* ===== NAVEGACIÓN ===== */
+nav {
+  background-color: var(--dark);
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1px solid #222;
 }
 
-.nav-menu {
+nav ul {
   display: flex;
   justify-content: center;
-  gap: 6px;
   list-style: none;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
-.nav-link {
-  display: block;
-  padding: 6px 14px;
-  background: #222;
-  color: #ffd700;
+nav a {
+  color: var(--light);
   text-decoration: none;
-  border-radius: 16px;
-  font-size: 0.9rem;
   font-weight: 500;
-  transition: all 0.2s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
 }
 
-.nav-link:hover {
-  background: #ffd700;
-  color: #000;
-  transform: scale(1.05);
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--accent);
 }
 
-/* ===== SECTIONS ===== */
-.section-tight {
-  padding: 20px;
-  margin: 10px 0;
-  background: #111;
-  border-radius: 8px;
-  border-left: 3px solid #ffd700;
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
 }
 
-.section-title {
-  color: #ffd700;
-  font-size: 1.5rem;
-  margin-bottom: 12px;
+/* ===== SECCIÓN INTRODUCCIÓN ===== */
+.intro {
+  background-color: var(--dark);
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid var(--primary);
 }
 
-/* ===== PROJECTS GRID ===== */
-.projects-grid {
+.intro h1 {
+  color: var(--primary);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.intro p {
+  font-size: 1.1rem;
+  color: var(--gray);
+  margin-bottom: 1.5rem;
+}
+
+.intro h2 {
+  color: var(--secondary);
+  font-size: 1.8rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.intro ul {
+  list-style-position: inside;
+  padding-left: 1rem;
+}
+
+.intro li {
+  margin-bottom: 0.8rem;
+  color: var(--light);
+  font-size: 1.1rem;
+}
+
+.intro li::marker {
+  color: var(--accent);
+}
+
+/* ===== SECCIÓN PROYECTOS ===== */
+.projects {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 12px;
-  margin-top: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
 }
 
-.project-card {
-  background: #1a1a1a;
-  padding: 16px;
-  border-radius: 8px;
-  transition: transform 0.2s;
-  border-top: 2px solid #333;
+.project {
+  background-color: var(--dark);
+  padding: 1.5rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-top: 3px solid transparent;
 }
 
-.project-card:hover {
-  transform: translateY(-3px);
-  border-top-color: #ffd700;
+.project:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+  border-top-color: var(--primary);
 }
 
-.project-link {
+.project h3 {
+  color: var(--primary);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.project p {
+  color: var(--gray);
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.project a {
   display: inline-block;
-  margin-top: 10px;
-  padding: 6px 12px;
-  background: #252525;
-  color: #ffd700;
+  background-color: var(--primary);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
   text-decoration: none;
-  border-radius: 4px;
-  font-size: 0.85rem;
   font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.project a:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
 }
 
 /* ===== FOOTER ===== */
-.footer-compact {
-  background: #111;
-  color: #999;
-  padding: 12px 0;
+footer {
+  background-color: var(--dark);
+  color: var(--gray);
   text-align: center;
-  font-size: 0.8rem;
-  margin-top: 20px;
-  border-top: 1px solid #222;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  font-size: 1rem;
 }
 
-/* ===== UTILITY CLASSES ===== */
-.no-spacing {
-  margin: 0;
-  padding: 0;
-}
-
-.mt-0 { margin-top: 0 !important; }
-.mb-0 { margin-bottom: 0 !important; }
-.py-0 { padding-top: 0 !important; padding-bottom: 0 !important; }
-
-/* ===== MEDIA QUERIES ===== */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-  .projects-grid {
+  nav ul {
+    gap: 1rem;
+  }
+  
+  .intro {
+    padding: 1.5rem;
+  }
+  
+  .projects {
     grid-template-columns: 1fr;
   }
   
-  .nav-menu {
-    flex-wrap: wrap;
-    padding: 0 10px;
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    padding: 1rem;
   }
   
-  .section-tight {
-    padding: 15px;
+  nav a {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+  
+  .intro h1 {
+    font-size: 2rem;
   }
 }
