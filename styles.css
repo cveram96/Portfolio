@@ -4,31 +4,14 @@
   --secondary: #10b981;     /* Verde para datos */
   --dark: #1f2937;         /* Fondo oscuro */
   --darker: #111827;       /* Fondo más oscuro */
-  --light: #f3f4f6;        /* Texto claro (antes #f9fafb) */
+  --light: #f3f4f6;        /* Texto claro */
   --light-gray: #e5e7eb;   /* Texto gris claro */
   --medium-gray: #d1d5db;  /* Texto gris medio */
   --accent: #f59e0b;       /* Amarillo para destacar */
-  --gray: #6b7280;         /* Texto secundario (antes #9ca3af) */
+  --gray: #6b7280;         /* Texto secundario */
 }
 
-/* ===== AJUSTES DE COLOR DE TEXTO ===== */
-body {
-  color: var(--light-gray); /* Texto principal más suave */
-}
-
-.intro p {
-  color: var(--medium-gray); /* Párrafos más legibles */
-}
-
-.project p {
-  color: var(--gray); /* Texto de proyectos más claro */
-}
-
-footer {
-  color: var(--gray); /* Texto de pie de página más suave */
-}
-
-/* ===== RESTOS DE ESTILOS (igual que antes) ===== */
+/* ===== RESET Y ESTILOS GENERALES ===== */
 * {
   margin: 0;
   padding: 0;
@@ -38,12 +21,14 @@ footer {
 body {
   font-family: 'Segoe UI', 'Roboto', -apple-system, sans-serif;
   background-color: var(--darker);
+  color: var(--light-gray);
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+/* ===== NAVEGACIÓN ===== */
 nav {
   background-color: var(--dark);
   padding: 1rem 2rem;
@@ -67,9 +52,9 @@ nav a {
   font-weight: 500;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
-  transition: all 0.3s ease;
   font-size: 1.1rem;
   border: 1px solid transparent;
+  transition: all 0.3s ease;
 }
 
 nav a:hover {
@@ -77,6 +62,7 @@ nav a:hover {
   border-color: var(--accent);
 }
 
+/* ===== CONTENEDORES ===== */
 .container {
   max-width: 1200px;
   margin: 2rem auto;
@@ -92,12 +78,6 @@ nav a:hover {
   margin-bottom: 2rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-left: 4px solid var(--primary);
-}
-
-.intro h1 {
-  color: var(--primary);
-  font-size: 2.2rem;
-  margin-bottom: 1rem;
 }
 
 .intro h2 {
@@ -117,11 +97,10 @@ nav a:hover {
   margin-bottom: 0.8rem;
   color: var(--light);
   font-size: 1.1rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem 0.5rem 2rem;
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 0.3rem;
   position: relative;
-  padding-left: 2rem;
 }
 
 .intro li::before {
@@ -131,6 +110,7 @@ nav a:hover {
   left: 1rem;
 }
 
+/* ===== SECCIÓN PROYECTOS ===== */
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -180,6 +160,7 @@ nav a:hover {
   box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
 }
 
+/* ===== PIE DE PÁGINA ===== */
 footer {
   background-color: var(--dark);
   padding: 1.5rem;
@@ -187,29 +168,27 @@ footer {
   font-size: 0.9rem;
   margin-top: 3rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--gray);
 }
 
+/* ===== MEDIA QUERIES ===== */
 @media (max-width: 768px) {
   nav ul {
     gap: 1rem;
   }
-  
+
   .intro {
     padding: 1.5rem;
   }
-  
+
   .projects {
     grid-template-columns: 1fr;
   }
-  
+
   .container {
     padding: 0 1rem;
   }
-  
-  .intro h1 {
-    font-size: 1.8rem;
-  }
-  
+
   .intro h2 {
     font-size: 1.4rem;
   }
@@ -219,17 +198,17 @@ footer {
   nav {
     padding: 0.8rem;
   }
-  
+
   nav a {
     font-size: 0.9rem;
     padding: 0.4rem 0.8rem;
   }
-  
+
   .intro li {
     font-size: 1rem;
-    padding: 0.4rem 0.8rem 0.4rem 1.8rem;
+    padding: 0.4rem 1.8rem;
   }
-  
+
   .project {
     padding: 1.2rem;
   }
