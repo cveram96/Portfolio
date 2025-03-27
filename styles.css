@@ -1,14 +1,34 @@
-/* ===== ESTILOS GENERALES ===== */
+/* ===== PALETA DE COLORES ACTUALIZADA ===== */
 :root {
   --primary: #3b82f6;       /* Azul profesional */
   --secondary: #10b981;     /* Verde para datos */
   --dark: #1f2937;         /* Fondo oscuro */
   --darker: #111827;       /* Fondo más oscuro */
-  --light: #f9fafb;        /* Texto claro */
+  --light: #f3f4f6;        /* Texto claro (antes #f9fafb) */
+  --light-gray: #e5e7eb;   /* Texto gris claro */
+  --medium-gray: #d1d5db;  /* Texto gris medio */
   --accent: #f59e0b;       /* Amarillo para destacar */
-  --gray: #9ca3af;         /* Texto secundario */
+  --gray: #6b7280;         /* Texto secundario (antes #9ca3af) */
 }
 
+/* ===== AJUSTES DE COLOR DE TEXTO ===== */
+body {
+  color: var(--light-gray); /* Texto principal más suave */
+}
+
+.intro p {
+  color: var(--medium-gray); /* Párrafos más legibles */
+}
+
+.project p {
+  color: var(--gray); /* Texto de proyectos más claro */
+}
+
+footer {
+  color: var(--gray); /* Texto de pie de página más suave */
+}
+
+/* ===== RESTOS DE ESTILOS (igual que antes) ===== */
 * {
   margin: 0;
   padding: 0;
@@ -18,14 +38,12 @@
 body {
   font-family: 'Segoe UI', 'Roboto', -apple-system, sans-serif;
   background-color: var(--darker);
-  color: var(--light);
   line-height: 1.6;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* ===== BARRA DE NAVEGACIÓN ===== */
 nav {
   background-color: var(--dark);
   padding: 1rem 2rem;
@@ -59,7 +77,6 @@ nav a:hover {
   border-color: var(--accent);
 }
 
-/* ===== CONTENEDOR PRINCIPAL ===== */
 .container {
   max-width: 1200px;
   margin: 2rem auto;
@@ -68,7 +85,6 @@ nav a:hover {
   width: 100%;
 }
 
-/* ===== SECCIÓN INTRODUCCIÓN ===== */
 .intro {
   background-color: var(--dark);
   padding: 2rem;
@@ -82,15 +98,6 @@ nav a:hover {
   color: var(--primary);
   font-size: 2.2rem;
   margin-bottom: 1rem;
-}
-
-.intro p {
-  font-size: 1.1rem;
-  color: var(--gray);
-  margin-bottom: 1.5rem;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .intro h2 {
@@ -124,7 +131,6 @@ nav a:hover {
   left: 1rem;
 }
 
-/* ===== SECCIÓN PROYECTOS ===== */
 .projects {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -155,13 +161,6 @@ nav a:hover {
   margin-bottom: 1rem;
 }
 
-.project p {
-  color: var(--gray);
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-  flex-grow: 1;
-}
-
 .project a {
   display: inline-block;
   background-color: var(--primary);
@@ -181,18 +180,15 @@ nav a:hover {
   box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
 }
 
-/* ===== PIE DE PÁGINA ===== */
 footer {
   background-color: var(--dark);
-  color: var(--gray);
-  text-align: center;
   padding: 1.5rem;
-  margin-top: 3rem;
+  text-align: center;
   font-size: 0.9rem;
+  margin-top: 3rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* ===== DISEÑO RESPONSIVE ===== */
 @media (max-width: 768px) {
   nav ul {
     gap: 1rem;
