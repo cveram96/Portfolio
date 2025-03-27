@@ -1,255 +1,159 @@
-/* Estilos generales mejorados */
+/* ===== RESET & BASE STYLES ===== */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Inter', 'Arial', sans-serif; /* Fuente más moderna */
-    background-color: #121212; /* Negro más suave */
-    color: #f0f0f0; /* Blanco más suave */
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    line-height: 1.6;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #0a0a0a;
+  color: #f5f5f5;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-/* Contenedor principal mejorado */
+/* ===== COMPACT LAYOUT STRUCTURE ===== */
+.main-wrapper {
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
 .container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    margin: 0 auto;
-    max-width: 1200px;
-    width: 90%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
-/* Barra de navegación mejorada */
-nav {
-    background-color: #1e1e1e; /* Gris oscuro más elegante */
-    padding: 12px 0;
-    width: 100%;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+.container + .container {
+  margin-top: 1px; /* Mínimo espacio entre contenedores */
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+/* ===== NAVIGATION ===== */
+.nav-compact {
+  background-color: #111;
+  padding: 8px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #222;
 }
 
-nav ul li {
-    margin: 0 10px;
+.nav-menu {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  list-style: none;
 }
 
-nav ul li a {
-    display: block;
-    padding: 10px 20px;
-    background: #333;
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 30px; /* Bordes más redondeados */
-    transition: all 0.3s ease;
-    border: 1px solid #444;
+.nav-link {
+  display: block;
+  padding: 6px 14px;
+  background: #222;
+  color: #ffd700;
+  text-decoration: none;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
-nav ul li a:hover {
-    background: #ffd700; /* Amarillo dorado */
-    color: #121212;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(255, 215, 0, 0.2);
+.nav-link:hover {
+  background: #ffd700;
+  color: #000;
+  transform: scale(1.05);
 }
 
-/* Sección de introducción mejorada */
-.intro {
-    width: 90%;
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 25px;
-    background: #1e1e1e;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    border-left: 4px solid #ffd700;
+/* ===== SECTIONS ===== */
+.section-tight {
+  padding: 20px;
+  margin: 10px 0;
+  background: #111;
+  border-radius: 8px;
+  border-left: 3px solid #ffd700;
 }
 
-.intro h1 {
-    font-size: 2.2rem;
-    margin-bottom: 15px;
-    color: #ffd700;
+.section-title {
+  color: #ffd700;
+  font-size: 1.5rem;
+  margin-bottom: 12px;
 }
 
-.intro h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    font-weight: 500;
+/* ===== PROJECTS GRID ===== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
 }
 
-.intro p {
-    margin-bottom: 20px;
-    font-size: 1.1rem;
+.project-card {
+  background: #1a1a1a;
+  padding: 16px;
+  border-radius: 8px;
+  transition: transform 0.2s;
+  border-top: 2px solid #333;
 }
 
-.intro ul {
-    list-style-type: none;
-    padding-left: 0;
-    text-align: center;
-    display: inline-block;
-    width: 100%;
+.project-card:hover {
+  transform: translateY(-3px);
+  border-top-color: #ffd700;
 }
 
-.intro ul li {
-    margin: 12px 0;
-    font-size: 1rem;
-    position: relative;
-    padding-left: 25px;
-    text-align: left;
+.project-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: #252525;
+  color: #ffd700;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
 }
 
-.intro ul li:before {
-    content: "•";
-    color: #ffd700;
-    font-size: 1.5rem;
-    position: absolute;
-    left: 0;
-    top: -3px;
+/* ===== FOOTER ===== */
+.footer-compact {
+  background: #111;
+  color: #999;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 0.8rem;
+  margin-top: 20px;
+  border-top: 1px solid #222;
 }
 
-/* Sección de proyectos mejorada */
-.projects {
-    max-width: 1200px;
-    margin: 30px auto;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
+/* ===== UTILITY CLASSES ===== */
+.no-spacing {
+  margin: 0;
+  padding: 0;
 }
 
-.project {
-    background: #1e1e1e;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-top: 3px solid #ffd700;
-}
+.mt-0 { margin-top: 0 !important; }
+.mb-0 { margin-bottom: 0 !important; }
+.py-0 { padding-top: 0 !important; padding-bottom: 0 !important; }
 
-.project:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
-}
-
-.project h3 {
-    margin-bottom: 15px;
-    font-size: 1.4rem;
-    color: #ffd700;
-}
-
-.project p {
-    margin-bottom: 15px;
-    font-size: 1rem;
-    color: #ccc;
-}
-
-.project a {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 8px 20px;
-    background: #333;
-    color: #ffd700;
-    text-decoration: none;
-    font-weight: 600;
-    border-radius: 30px;
-    transition: all 0.3s ease;
-    border: 1px solid #444;
-}
-
-.project a:hover {
-    background: #ffd700;
-    color: #121212;
-    box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
-}
-
-/* Pie de página mejorado */
-footer {
-    background-color: #1e1e1e;
-    color: #aaa;
-    padding: 20px;
-    text-align: center;
-    font-size: 14px;
-    margin-top: 50px;
-    width: 100%;
-    border-top: 1px solid #333;
-}
-
-footer p {
-    margin: 5px 0;
-}
-
-/* Efectos de animación suaves */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.intro, .projects {
-    animation: fadeIn 0.6s ease-out forwards;
-}
-
-/* Responsive design mejorado */
+/* ===== MEDIA QUERIES ===== */
 @media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    nav ul li {
-        margin: 5px 0;
-    }
-    
-    .intro {
-        width: 95%;
-        padding: 20px 15px;
-    }
-    
-    .projects {
-        grid-template-columns: 1fr;
-    }
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .nav-menu {
+    flex-wrap: wrap;
+    padding: 0 10px;
+  }
+  
+  .section-tight {
+    padding: 15px;
+  }
 }
-
-/* Efecto de brillo para elementos interactivos */
-.project, nav ul li a {
-    position: relative;
-    overflow: hidden;
-}
-
-.project:after, nav ul li a:after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.1);
-    transform: rotate(30deg);
-    transition: all 0.3s;
-    opacity: 0;
-}
-
-.project:hover:after, nav ul li a:hover:after {
-    opacity: 1;
-    top: -20%;
-    left: -20%;
-}
-
