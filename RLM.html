@@ -90,26 +90,65 @@
         <div class="project-single">
             <h3>Resultados y Hallazgos</h3>
             
-            <div class="results-grid">
+            <div class="results-container">
+                <!-- Tarjeta de Métricas -->
                 <div class="metric-card">
-                    <h4>Métricas del Modelo</h4>
+                    <div class="metric-card-header">
+                        <h4>Métricas del Modelo</h4>
+                        <div class="metric-icon">📊</div>
+                    </div>
                     <div class="metric-card-content">
-                        <p><strong>R²:</strong> <span class="metric-value">0.6364</span></p>
-                        <p>Explica el 63.64% de la varianza</p>
-                        <p><strong>RMSE:</strong> <span class="metric-value">0.6574</span></p>
-                        <p>Error cuadrático medio</p>
+                        <div class="metric-item">
+                            <div class="metric-title">Coeficiente R²</div>
+                            <div class="metric-value">0.6364</div>
+                            <div class="metric-description">Explica el <strong>63.64%</strong> de la varianza</div>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 63.64%"></div>
+                            </div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-title">RMSE</div>
+                            <div class="metric-value">0.6574</div>
+                            <div class="metric-description">Error cuadrático medio</div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="metric-card">
-                    <h4>Variables Más Influyentes</h4>
-                    <div class="metric-card-content">
-                        <ol>
-                            <li><strong>MedInc:</strong> +0.956</li>
-                            <li><strong>Bedroom_Ratio:</strong> +0.354</li>
-                            <li><strong>AveOccup:</strong> -0.286</li>
-                            <li><strong>HouseAge:</strong> +0.208</li>
-                        </ol>
+                <!-- Tarjeta de Variables -->
+                <div class="influence-card">
+                    <div class="metric-card-header">
+                        <h4>Variables Más Influyentes</h4>
+                        <div class="metric-icon">📈</div>
+                    </div>
+                    <div class="influence-list">
+                        <div class="influence-item">
+                            <div class="var-name">MedInc</div>
+                            <div class="var-coef positive">+0.956</div>
+                            <div class="var-bar-container">
+                                <div class="var-bar" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="influence-item">
+                            <div class="var-name">Bedroom_Ratio</div>
+                            <div class="var-coef positive">+0.354</div>
+                            <div class="var-bar-container">
+                                <div class="var-bar" style="width: 37%"></div>
+                            </div>
+                        </div>
+                        <div class="influence-item">
+                            <div class="var-name">AveOccup</div>
+                            <div class="var-coef negative">-0.286</div>
+                            <div class="var-bar-container">
+                                <div class="var-bar negative" style="width: 30%"></div>
+                            </div>
+                        </div>
+                        <div class="influence-item">
+                            <div class="var-name">HouseAge</div>
+                            <div class="var-coef positive">+0.208</div>
+                            <div class="var-bar-container">
+                                <div class="var-bar" style="width: 22%"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -150,8 +189,6 @@
         </div>
     </div>
 
-
-
     <!-- Sección de archivos del proyecto -->
     <div class="container">
         <div class="project-single">
@@ -174,7 +211,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- Pie de página -->
     <footer>
