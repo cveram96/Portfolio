@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyectos de Ciencia de Datos</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Enlace al archivo CSS externo -->
+    <title>Predicción de Viviendas en California</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Barra de navegación -->
@@ -17,26 +18,143 @@
     </nav>
 
     <!-- Contenedor principal -->
-<div class="container">
-    <!-- Sección de introducción -->
-    <div class="intro">
-        <h2>Predicción del valor mediano de viviendas en California</h2>
-
-        <ul>
-            <li>Este modelo analiza diversos factores socioeconómicos.</li>
-            <li>Se utilizan datos del censo de California.</li>
-            <li>Se implementan técnicas de Machine Learning para la predicción.</li>
-        </ul>
+    <div class="container">
+        <div class="intro">
+            <h1>Predicción del Valor Mediano de Viviendas en California</h1>
+            <h2>Análisis con Regresión Lineal Múltiple</h2>
+            <ul>
+                <li>Dataset: fetch_california_housing (20,640 registros)</li>
+                <li>Variables clave: Ingreso medio, edad de viviendas, ubicación</li>
+                <li>R²: 0.6364 | RMSE: 0.6574</li>
+                <li>Tecnologías: Python, scikit-learn, pandas, matplotlib</li>
+            </ul>
+        </div>
     </div>
-</div>
 
+    <!-- Sección de contenido principal -->
+    <div class="container">
+        <div class="project-single">
+            <h3>Contexto del Proyecto</h3>
+            <p>Análisis del mercado inmobiliario de California usando datos del censo de 1990 para predecir el valor mediano de viviendas en distintos distritos.</p>
+            
+            <h4>Variables Principales:</h4>
+            <ul class="two-columns">
+                <li><strong>MedInc:</strong> Ingreso mediano del hogar</li>
+                <li><strong>HouseAge:</strong> Edad mediana de viviendas</li>
+                <li><strong>AveRooms:</strong> Habitaciones promedio</li>
+                <li><strong>AveBedrms:</strong> Dormitorios promedio</li>
+                <li><strong>Population:</strong> Población en el bloque</li>
+                <li><strong>AveOccup:</strong> Ocupación promedio</li>
+                <li><strong>Latitude:</strong> Latitud geográfica</li>
+                <li><strong>Longitude:</strong> Longitud geográfica</li>
+            </ul>
+        </div>
 
+        <div class="project-single">
+            <h3>Metodología Detallada</h3>
+            
+            <h4>1. Análisis Exploratorio (EDA)</h4>
+            <ul>
+                <li>Distribución de variables y detección de outliers</li>
+                <li>Matriz de correlación entre características</li>
+                <li>Visualización de patrones geográficos</li>
+            </ul>
+            
+            <h4>2. Preprocesamiento</h4>
+            <ul>
+                <li>Ingeniería de características:
+                    <ul>
+                        <li><code>Rooms_per_Population</code>: Habitaciones por persona</li>
+                        <li><code>Bedroom_Ratio</code>: Proporción de dormitorios</li>
+                        <li><code>People_per_House</code>: Ocupantes por vivienda</li>
+                    </ul>
+                </li>
+                <li>Eliminación de outliers con método IQR</li>
+                <li>Estandarización de variables numéricas</li>
+            </ul>
+            
+            <h4>3. Modelado</h4>
+            <ul>
+                <li>Pipeline con:
+                    <ul>
+                        <li><code>StandardScaler</code> para normalización</li>
+                        <li><code>PolynomialFeatures</code> para relaciones no lineales</li>
+                        <li><code>SelectKBest</code> para selección de características</li>
+                        <li><code>LinearRegression</code> como modelo final</li>
+                    </ul>
+                </li>
+                <li>Optimización con <code>RandomizedSearchCV</code></li>
+            </ul>
+        </div>
 
+        <div class="project-single">
+            <h3>Resultados y Hallazgos</h3>
+            
+            <div class="results-grid">
+                <div class="metric-card">
+                    <h4>Métricas del Modelo</h4>
+                    <div class="metric-card-content">
+                        <p><strong>R²:</strong> <span class="metric-value">0.6364</span></p>
+                        <p>Explica el 63.64% de la varianza</p>
+                        <p><strong>RMSE:</strong> <span class="metric-value">0.6574</span></p>
+                        <p>Error cuadrático medio</p>
+                    </div>
+                </div>
+                
+                <div class="metric-card">
+                    <h4>Variables Más Influyentes</h4>
+                    <div class="metric-card-content">
+                        <ol>
+                            <li><strong>MedInc:</strong> +0.956</li>
+                            <li><strong>Bedroom_Ratio:</strong> +0.354</li>
+                            <li><strong>AveOccup:</strong> -0.286</li>
+                            <li><strong>HouseAge:</strong> +0.208</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <h4>Validación de Supuestos</h4>
+            <ul>
+                <li><strong>Normalidad de residuos:</strong> No cumplido (p < 0.05)</li>
+                <li><strong>Homocedasticidad:</strong> No cumplido (p < 0.05)</li>
+                <li><strong>Independencia:</strong> Cumplido (Durbin-Watson ≈ 2)</li>
+            </ul>
+        </div>
 
-    
+        <div class="project-single">
+            <h3>Conclusiones y Recomendaciones</h3>
+            
+            <h4>Hallazgos Clave</h4>
+            <ul>
+                <li>El ingreso medio es el predictor más fuerte del valor de viviendas</li>
+                <li>La ubicación geográfica muestra patrones espaciales claros</li>
+                <li>Las viviendas más ocupadas tienden a valer menos</li>
+                <li>Las características creadas mejoraron el poder predictivo</li>
+            </ul>
+            
+            <h4>Limitaciones</h4>
+            <ul>
+                <li>El modelo no cumple con normalidad de residuos</li>
+                <li>Presencia de heterocedasticidad</li>
+                <li>Relaciones complejas no capturadas por regresión lineal</li>
+            </ul>
+            
+            <h4>Recomendaciones</h4>
+            <ul>
+                <li>Probar modelos no lineales (Random Forest, XGBoost)</li>
+                <li>Implementar transformaciones para normalidad</li>
+                <li>Considerar modelos espaciales para la ubicación</li>
+                <li>Explorar técnicas para manejar heterocedasticidad</li>
+            </ul>
+        </div>
+    </div>
+
     <!-- Pie de página -->
     <footer>
-        <p>Desarrollado por Christian Vera, 2025</p>
+        <div class="footer-content">
+            <p>Desarrollado por Christian Vera, 2025</p>
+        </div>
     </footer>
 </body>
 </html>
