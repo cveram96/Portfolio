@@ -1,1 +1,246 @@
-<h1>Hola Mundo.</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segmentación de Clientes con K-Means</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="fundamentos.html">Fundamentos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <div class="intro">
+            <h1>Segmentación de Clientes con K-Means</h1>
+            <h2>Análisis RFM para estrategias de marketing</h2>
+            <ul>
+                <li>Dataset: Online Retail (541,909 transacciones iniciales)</li>
+                <li>Variables clave: Recency, Frequency, Monetary</li>
+                <li>3 clusters identificados | Silhouette Score: 0.6458</li>
+                <li>Tecnologías: Python, scikit-learn, pandas, matplotlib</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Sección de contenido principal -->
+    <div class="container">
+        <div class="project-single">
+            <h3>Contexto del Proyecto</h3>
+            <p>Análisis de transacciones de ventas para segmentar clientes mediante técnicas no supervisadas (K-Means) basado en métricas RFM (Recencia, Frecuencia, Valor Monetario).</p>
+            
+            <h4>Variables Principales:</h4>
+            <ul class="two-columns">
+                <li><strong>InvoiceNo:</strong> Número de transacción (cancelaciones filtradas)</li>
+                <li><strong>StockCode:</strong> Identificador de producto</li>
+                <li><strong>Quantity:</strong> Cantidad vendida por transacción</li>
+                <li><strong>InvoiceDate:</strong> Fecha y hora de la transacción</li>
+                <li><strong>UnitPrice:</strong> Precio unitario del producto</li>
+                <li><strong>CustomerID:</strong> Identificador del cliente (25% faltante)</li>
+                <li><strong>Country:</strong> País de origen de la transacción</li>
+            </ul>
+        </div>
+
+        <div class="project-single">
+            <h3>Metodología Detallada</h3>
+            
+            <h4>1. Análisis Exploratorio (EDA)</h4>
+            <ul>
+                <li>Filtrado de transacciones canceladas y valores no válidos</li>
+                <li>Identificación de valores atípicos en cantidades y precios</li>
+                <li>Distribución geográfica de ventas (73% Reino Unido)</li>
+                <li>Análisis de Pareto: 25.6% clientes concentran 80% de compras</li>
+            </ul>
+            
+            <h4>2. Preprocesamiento</h4>
+            <ul>
+                <li>Cálculo de métricas RFM:
+                    <ul>
+                        <li><strong>Recency:</strong> Días desde última compra</li>
+                        <li><strong>Frequency:</strong> Número de compras únicas</li>
+                        <li><strong>Monetary:</strong> Gasto total por cliente</li>
+                    </ul>
+                </li>
+                <li>Normalización de características con MinMaxScaler</li>
+                <li>Filtrado de 25% transacciones sin CustomerID</li>
+            </ul>
+            
+            <h4>3. Modelado con K-Means</h4>
+            <ul>
+                <li>Determinación óptima de clusters con método del codo (K=3)</li>
+                <li>Configuración:
+                    <ul>
+                        <li>Inicialización k-means++</li>
+                        <li>300 iteraciones máximas</li>
+                        <li>Tolerancia de convergencia 1e-4</li>
+                    </ul>
+                </li>
+                <li>Evaluación con múltiples métricas de validación</li>
+            </ul>
+        </div>
+
+        <div class="project-single">
+            <h3>Resultados y Hallazgos</h3>
+            
+            <div class="results-container">
+                <!-- Tarjeta de Métricas -->
+                <div class="metric-card">
+                    <div class="metric-card-header">
+                        <h4>Métricas del Modelo</h4>
+                        <div class="metric-icon">📊</div>
+                    </div>
+                    <div class="metric-card-content">
+                        <div class="metric-item">
+                            <div class="metric-title">Silhouette Score</div>
+                            <div class="metric-value">0.6458</div>
+                            <div class="metric-description">Indica clusters bien definidos y separados</div>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 64.58%"></div>
+                            </div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-title">Davies-Bouldin</div>
+                            <div class="metric-value">0.5043</div>
+                            <div class="metric-description">Baja similitud entre clusters (mejor &lt;1)</div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-title">Calinski-Harabasz</div>
+                            <div class="metric-value">15465.7</div>
+                            <div class="metric-description">Excelente separación entre clusters</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tarjeta de Clusters -->
+                <div class="cluster-card">
+                    <div class="metric-card-header">
+                        <h4>Segmentos de Clientes</h4>
+                        <div class="metric-icon">👥</div>
+                    </div>
+                    <div class="cluster-list">
+                        <div class="cluster-item cluster-1">
+                            <div class="cluster-name">Cluster 0: Valiosos</div>
+                            <div class="cluster-size">67% de clientes</div>
+                            <div class="cluster-stats">
+                                <span>Recency: 31 días</span>
+                                <span>Frequency: 5.5 compras</span>
+                                <span>Monetary: £370</span>
+                            </div>
+                        </div>
+                        <div class="cluster-item cluster-2">
+                            <div class="cluster-name">Cluster 1: Inactivos</div>
+                            <div class="cluster-size">14.4% de clientes</div>
+                            <div class="cluster-stats">
+                                <span>Recency: 293 días</span>
+                                <span>Frequency: 1.4 compras</span>
+                                <span>Monetary: £83</span>
+                            </div>
+                        </div>
+                        <div class="cluster-item cluster-3">
+                            <div class="cluster-name">Cluster 2: Ocasionales</div>
+                            <div class="cluster-size">18.6% de clientes</div>
+                            <div class="cluster-stats">
+                                <span>Recency: 152 días</span>
+                                <span>Frequency: 2.2 compras</span>
+                                <span>Monetary: £139</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h4>Visualización de Clusters</h4>
+            <div class="image-container">
+                <img src="clusters_rfm.png" alt="Visualización de clusters RFM">
+                <p>Distribución de clientes en el espacio RFM normalizado, mostrando los 3 clusters identificados</p>
+            </div>
+        </div>
+
+        <div class="project-single">
+            <h3>Conclusiones y Recomendaciones</h3>
+            
+            <h4>Hallazgos Clave</h4>
+            <ul>
+                <li>El 67% de los clientes son valiosos (compra reciente, alta frecuencia y gasto)</li>
+                <li>Existe un 14.4% de clientes inactivos que requieren estrategias de reactivación</li>
+                <li>Los clientes ocasionales (18.6%) representan oportunidad para aumentar frecuencia</li>
+                <li>El modelo muestra excelente calidad según métricas de validación</li>
+            </ul>
+            
+            <h4>Recomendaciones por Segmento</h4>
+            <div class="recommendations">
+                <div class="recommendation-card">
+                    <h5>Cluster 0: Clientes Valiosos</h5>
+                    <ul>
+                        <li>Programas de beneficios exclusivos (envíos gratis)</li>
+                        <li>Upselling de productos premium</li>
+                        <li>Paquetes de productos complementarios</li>
+                    </ul>
+                </div>
+                <div class="recommendation-card">
+                    <h5>Cluster 1: Clientes Inactivos</h5>
+                    <ul>
+                        <li>Campañas de reactivación con descuentos</li>
+                        <li>Encuestas de satisfacción</li>
+                        <li>Evaluación costo-beneficio de retención</li>
+                    </ul>
+                </div>
+                <div class="recommendation-card">
+                    <h5>Cluster 2: Clientes Ocasionales</h5>
+                    <ul>
+                        <li>Programas de fidelización por frecuencia</li>
+                        <li>Cross-selling con productos relacionados</li>
+                        <li>Ofertas personalizadas basadas en historial</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h4>Mejoras Futuras</h4>
+            <ul>
+                <li>Categorizar productos en grupos más amplios para mejor análisis</li>
+                <li>Incorporar datos de precios y descuentos para análisis de sensibilidad</li>
+                <li>Integrar variables demográficas para segmentación más precisa</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Sección de archivos del proyecto -->
+    <div class="container">
+        <div class="project-single">
+            <h3>Archivos del Proyecto</h3>
+            <p>Puedes explorar todos los archivos, datasets y código fuente de este proyecto:</p>
+            
+            <div class="files-link-container">
+                <a href="https://colab.research.google.com/drive/1QLXNUQdqNo8H7rpF0ysvc..." 
+                   class="project-files-link" 
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="link-icon">📁</span>
+                    Ver archivos completos del proyecto
+                    <span class="link-arrow">→</span>
+                </a>
+                
+                <div class="file-types">
+                    <span class="file-badge">Jupyter Notebook</span>
+                    <span class="file-badge">PDF</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="footer-content">
+            <p>Desarrollado por Christian Vera, Julian Castiblanco, Sofy Certuche - 2025</p>
+        </div>
+    </footer>
+</body>
+</html>
