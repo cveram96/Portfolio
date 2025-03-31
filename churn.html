@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Predicción de Viviendas en California</title>
+    <title>Predicción de Cancelación de Servicio (Churn)</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -20,13 +20,13 @@
     <!-- Contenedor principal -->
     <div class="container">
         <div class="intro">
-            <h1>Predicción del Valor Mediano de Viviendas en California</h1>
-            <h2>Análisis con Regresión Lineal Múltiple</h2>
+            <h1>Predicción de Cancelación de Servicio (Churn)</h1>
+            <h2>Comparación entre Random Forest y Perceptrón Multicapa</h2>
             <ul>
-                <li>Dataset: fetch_california_housing (20,640 registros)</li>
-                <li>Variables clave: Ingreso medio, edad de viviendas, ubicación</li>
-                <li>R²: 0.6364 | RMSE: 0.6574</li>
-                <li>Tecnologías: Python, scikit-learn, pandas, matplotlib</li>
+                <li>Dataset: WA_Fn-UseC_-Telco-Customer-Churn (7,043 registros)</li>
+                <li>Variables clave: Tenure, Contract, MonthlyCharges, InternetService</li>
+                <li>Mejor F1-Score: 0.634 (Random Forest con RandomUnderSampler)</li>
+                <li>Tecnologías: Python, scikit-learn, pandas, matplotlib, imblearn</li>
             </ul>
         </div>
     </div>
@@ -35,18 +35,18 @@
     <div class="container">
         <div class="project-single">
             <h3>Contexto del Proyecto</h3>
-            <p>Análisis del mercado inmobiliario de California usando datos del censo de 1990 para predecir el valor mediano de viviendas en distintos distritos.</p>
+            <p>Análisis del problema de cancelación de servicio en telecomunicaciones para identificar clientes con alta probabilidad de abandonar la compañía y permitir la implementación de estrategias preventivas.</p>
             
             <h4>Variables Principales:</h4>
             <ul class="two-columns">
-                <li><strong>MedInc:</strong> Ingreso mediano del hogar</li>
-                <li><strong>HouseAge:</strong> Edad mediana de viviendas</li>
-                <li><strong>AveRooms:</strong> Habitaciones promedio</li>
-                <li><strong>AveBedrms:</strong> Dormitorios promedio</li>
-                <li><strong>Population:</strong> Población en el bloque</li>
-                <li><strong>AveOccup:</strong> Ocupación promedio</li>
-                <li><strong>Latitude:</strong> Latitud geográfica</li>
-                <li><strong>Longitude:</strong> Longitud geográfica</li>
+                <li><strong>tenure:</strong> Número de meses como cliente</li>
+                <li><strong>Contract:</strong> Tipo de contrato (Mensual, 1 año, 2 años)</li>
+                <li><strong>MonthlyCharges:</strong> Cargos mensuales</li>
+                <li><strong>TotalCharges:</strong> Cargos totales acumulados</li>
+                <li><strong>InternetService:</strong> Tipo de servicio de internet</li>
+                <li><strong>OnlineSecurity:</strong> Tiene seguridad en línea</li>
+                <li><strong>TechSupport:</strong> Tiene soporte técnico</li>
+                <li><strong>PaymentMethod:</strong> Método de pago</li>
             </ul>
         </div>
 
@@ -55,35 +55,52 @@
             
             <h4>1. Análisis Exploratorio (EDA)</h4>
             <ul>
-                <li>Distribución de variables y detección de outliers</li>
-                <li>Matriz de correlación entre características</li>
-                <li>Visualización de patrones geográficos</li>
+                <li>Distribución de clases desbalanceadas (73.5% No Churn vs 26.5% Churn)</li>
+                <li>Análisis de asociación con Coeficiente V de Cramer para variables categóricas</li>
+                <li>Test de Levene y Welch's t-test para variables numéricas</li>
+                <li>Visualización de relaciones entre variables y Churn</li>
             </ul>
             
             <h4>2. Preprocesamiento</h4>
             <ul>
-                <li>Ingeniería de características:
+                <li>Limpieza de datos:
                     <ul>
-                        <li><code>Rooms_per_Population</code>: Habitaciones por persona</li>
-                        <li><code>Bedroom_Ratio</code>: Proporción de dormitorios</li>
-                        <li><code>People_per_House</code>: Ocupantes por vivienda</li>
+                        <li>Conversión de tipos de datos</li>
+                        <li>Imputación de valores faltantes con mediana</li>
+                        <li>Eliminación de ID único (customerID)</li>
                     </ul>
                 </li>
-                <li>Eliminación de outliers con método IQR</li>
-                <li>Estandarización de variables numéricas</li>
+                <li>Transformación de variables:
+                    <ul>
+                        <li>Estandarización con StandardScaler para numéricas</li>
+                        <li>Codificación con OneHotEncoder para categóricas</li>
+                    </ul>
+                </li>
+                <li>Técnicas de balanceo:
+                    <ul>
+                        <li>SMOTE</li>
+                        <li>RandomUnderSampler</li>
+                        <li>ADASYN</li>
+                        <li>SMOTEENN</li>
+                    </ul>
+                </li>
             </ul>
             
             <h4>3. Modelado</h4>
             <ul>
-                <li>Pipeline con:
+                <li>Random Forest:
                     <ul>
-                        <li><code>StandardScaler</code> para normalización</li>
-                        <li><code>PolynomialFeatures</code> para relaciones no lineales</li>
-                        <li><code>SelectKBest</code> para selección de características</li>
-                        <li><code>LinearRegression</code> como modelo final</li>
+                        <li>Optimización con RandomizedSearchCV</li>
+                        <li>Validación cruzada estratificada</li>
+                        <li>Hiperparámetros: n_estimators, max_depth, min_samples_split</li>
                     </ul>
                 </li>
-                <li>Optimización con <code>RandomizedSearchCV</code></li>
+                <li>Perceptrón Multicapa (MLP):
+                    <ul>
+                        <li>Optimización con RandomizedSearchCV</li>
+                        <li>Hiperparámetros: hidden_layer_sizes, activation, solver</li>
+                    </ul>
+                </li>
             </ul>
         </div>
 
@@ -94,22 +111,25 @@
                 <!-- Tarjeta de Métricas -->
                 <div class="metric-card">
                     <div class="metric-card-header">
-                        <h4>Métricas del Modelo</h4>
+                        <h4>Mejores Métricas por Modelo</h4>
                         <div class="metric-icon">📊</div>
                     </div>
                     <div class="metric-card-content">
                         <div class="metric-item">
-                            <div class="metric-title">Coeficiente R²</div>
-                            <div class="metric-value">0.6364</div>
-                            <div class="metric-description">Explica el <strong>63.64%</strong> de la varianza</div>
+                            <div class="metric-title">Random Forest (SMOTEENN)</div>
+                            <div class="metric-value">F1-Score: 0.633</div>
+                            <div class="metric-description">Recall: 0.777 | Precisión: 0.534</div>
                             <div class="progress-container">
-                                <div class="progress-bar" style="width: 63.64%"></div>
+                                <div class="progress-bar" style="width: 63.3%"></div>
                             </div>
                         </div>
                         <div class="metric-item">
-                            <div class="metric-title">RMSE</div>
-                            <div class="metric-value">0.6574</div>
-                            <div class="metric-description">Error cuadrático medio</div>
+                            <div class="metric-title">MLP (RandomUnderSampler)</div>
+                            <div class="metric-value">F1-Score: 0.634</div>
+                            <div class="metric-description">Recall: 0.763 | Precisión: 0.542</div>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 63.4%"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -122,69 +142,71 @@
                     </div>
                     <div class="influence-list">
                         <div class="influence-item">
-                            <div class="var-name">MedInc</div>
-                            <div class="var-coef positive">+0.956</div>
+                            <div class="var-name">tenure</div>
+                            <div class="var-coef positive">+0.156</div>
                             <div class="var-bar-container">
                                 <div class="var-bar" style="width: 100%"></div>
                             </div>
                         </div>
                         <div class="influence-item">
-                            <div class="var-name">Bedroom_Ratio</div>
-                            <div class="var-coef positive">+0.354</div>
+                            <div class="var-name">TotalCharges</div>
+                            <div class="var-coef positive">+0.147</div>
                             <div class="var-bar-container">
-                                <div class="var-bar" style="width: 37%"></div>
+                                <div class="var-bar" style="width: 94%"></div>
                             </div>
                         </div>
                         <div class="influence-item">
-                            <div class="var-name">AveOccup</div>
-                            <div class="var-coef negative">-0.286</div>
+                            <div class="var-name">MonthlyCharges</div>
+                            <div class="var-coef positive">+0.133</div>
                             <div class="var-bar-container">
-                                <div class="var-bar negative" style="width: 30%"></div>
+                                <div class="var-bar" style="width: 85%"></div>
                             </div>
                         </div>
                         <div class="influence-item">
-                            <div class="var-name">HouseAge</div>
-                            <div class="var-coef positive">+0.208</div>
+                            <div class="var-name">Contract_Two year</div>
+                            <div class="var-coef positive">+0.053</div>
                             <div class="var-bar-container">
-                                <div class="var-bar" style="width: 22%"></div>
+                                <div class="var-bar" style="width: 34%"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <h4>Validación de Supuestos</h4>
+            <h4>Hallazgos Clave</h4>
             <ul>
-                <li><strong>Normalidad de residuos:</strong> No cumplido (p < 0.05)</li>
-                <li><strong>Homocedasticidad:</strong> No cumplido (p < 0.05)</li>
-                <li><strong>Independencia:</strong> Cumplido (Durbin-Watson ≈ 2)</li>
+                <li>La permanencia del cliente (tenure) es el factor más influyente</li>
+                <li>Los contratos a largo plazo reducen significativamente el Churn</li>
+                <li>El servicio de fibra óptica aumenta la probabilidad de Churn</li>
+                <li>El pago con cheque electrónico está asociado con mayor Churn</li>
+                <li>La falta de servicios adicionales (seguridad, soporte técnico) aumenta el Churn</li>
             </ul>
         </div>
 
         <div class="project-single">
             <h3>Conclusiones y Recomendaciones</h3>
             
-            <h4>Hallazgos Clave</h4>
+            <h4>Comparación de Modelos</h4>
             <ul>
-                <li>El ingreso medio es el predictor más fuerte del valor de viviendas</li>
-                <li>La ubicación geográfica muestra patrones espaciales claros</li>
-                <li>Las viviendas más ocupadas tienden a valer menos</li>
-                <li>Las características creadas mejoraron el poder predictivo</li>
+                <li><strong>Random Forest</strong> ofrece mejor equilibrio general entre precisión y recall</li>
+                <li><strong>MLP</strong> logra mayor recall pero con más falsos positivos</li>
+                <li>SMOTEENN y RandomUnderSampler son las mejores técnicas de balanceo</li>
             </ul>
             
             <h4>Limitaciones</h4>
             <ul>
-                <li>El modelo no cumple con normalidad de residuos</li>
-                <li>Presencia de heterocedasticidad</li>
-                <li>Relaciones complejas no capturadas por regresión lineal</li>
+                <li>Dataset desbalanceado (26.5% de casos positivos)</li>
+                <li>Variables no cumplen supuestos de normalidad</li>
+                <li>Posible sobreajuste con técnicas de sobremuestreo</li>
             </ul>
             
             <h4>Recomendaciones</h4>
             <ul>
-                <li>Probar modelos no lineales (Random Forest, XGBoost)</li>
-                <li>Implementar transformaciones para normalidad</li>
-                <li>Considerar modelos espaciales para la ubicación</li>
-                <li>Explorar técnicas para manejar heterocedasticidad</li>
+                <li>Implementar Random Forest con SMOTEENN para estrategias de retención</li>
+                <li>Priorizar clientes con contratos mensuales y servicio de fibra óptica</li>
+                <li>Ofrecer incentivos para migrar a contratos a largo plazo</li>
+                <li>Mejorar servicios adicionales (seguridad, soporte técnico)</li>
+                <li>Explorar modelos alternativos como XGBoost o redes neuronales más profundas</li>
             </ul>
         </div>
     </div>
@@ -196,7 +218,7 @@
             <p>Puedes explorar todos los archivos, datasets y código fuente de este proyecto:</p>
             
             <div class="files-link-container">
-                <a href="https://github.com/tuusuario/repositorio-proyecto" 
+                <a href="https://colab.research.google.com/drive/1zoK5wpbUjK03R3Pw1Jms0..." 
                    class="project-files-link" 
                    target="_blank"
                    rel="noopener noreferrer">
@@ -207,6 +229,7 @@
                 
                 <div class="file-types">
                     <span class="file-badge">Jupyter Notebook</span>
+                    <span class="file-badge">PDF</span>
                 </div>
             </div>
         </div>
@@ -215,7 +238,7 @@
     <!-- Pie de página -->
     <footer>
         <div class="footer-content">
-            <p>Desarrollado por Christian Vera, 2025</p>
+            <p>Desarrollado por Christian Vera, Julian Castiblanco, Sofy Certuche - 2025</p>
         </div>
     </footer>
 </body>
