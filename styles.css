@@ -568,3 +568,87 @@ footer {
         padding: 0.7rem 0.6rem;
     }
 }
+
+
+
+
+/* Estilos para la sección de archivos */
+.files-link-container {
+    background: rgba(58, 134, 255, 0.1);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    border: 1px dashed rgba(58, 134, 255, 0.3);
+    transition: var(--transition);
+}
+
+.files-link-container:hover {
+    background: rgba(58, 134, 255, 0.15);
+    border-color: var(--primary);
+}
+
+.project-files-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem;
+    transition: var(--transition);
+}
+
+.project-files-link:hover {
+    color: var(--accent);
+    transform: translateX(5px);
+}
+
+.link-icon {
+    margin-right: 0.8rem;
+    font-size: 1.3rem;
+}
+
+.link-arrow {
+    margin-left: 0.8rem;
+    transition: var(--transition);
+}
+
+.project-files-link:hover .link-arrow {
+    transform: translateX(3px);
+}
+
+.file-types {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-top: 1.2rem;
+}
+
+.file-badge {
+    background: rgba(76, 201, 240, 0.1);
+    color: var(--secondary);
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    border: 1px solid rgba(76, 201, 240, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .files-link-container {
+        padding: 1.2rem;
+    }
+    
+    .project-files-link {
+        font-size: 1rem;
+        padding: 0.7rem 1rem;
+    }
+    
+    .file-types {
+        gap: 0.5rem;
+    }
+    
+    .file-badge {
+        font-size: 0.75rem;
+    }
+}
