@@ -104,84 +104,103 @@
             </ul>
         </div>
 
-        <div class="project-single">
-            <h3>Resultados y Hallazgos</h3>
-            
-            <div class="results-container">
-                <!-- Tarjeta de Métricas -->
-                <div class="metric-card">
-                    <div class="metric-card-header">
-                        <h4>Mejores Métricas por Modelo</h4>
-                        <div class="metric-icon">📊</div>
-                    </div>
-                    <div class="metric-card-content">
-                        <div class="metric-item">
-                            <div class="metric-title">Random Forest (SMOTEENN)</div>
-                            <div class="metric-value">F1-Score: 0.633</div>
-                            <div class="metric-description">Recall: 0.777 | Precisión: 0.534</div>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 63.3%"></div>
-                            </div>
-                        </div>
-                        <div class="metric-item">
-                            <div class="metric-title">MLP (RandomUnderSampler)</div>
-                            <div class="metric-value">F1-Score: 0.634</div>
-                            <div class="metric-description">Recall: 0.763 | Precisión: 0.542</div>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 63.4%"></div>
-                            </div>
-                        </div>
+ <div class="project-single">
+    <h3>Resultados y Hallazgos</h3>
+    
+    <div class="results-container">
+        <!-- Tarjeta de Métricas -->
+        <div class="metric-card">
+            <div class="metric-card-header">
+                <h4>Mejores Métricas por Modelo</h4>
+                <div class="metric-icon">📊</div>
+            </div>
+            <div class="metric-card-content">
+                <div class="metric-item">
+                    <div class="metric-title">Random Forest (SMOTEENN)</div>
+                    <div class="metric-value">F1-Score: 0.633</div>
+                    <div class="metric-description">Recall: 0.777 | Precisión: 0.534</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 63.3%"></div>
                     </div>
                 </div>
-                
-                <!-- Tarjeta de Variables -->
-                <div class="influence-card">
-                    <div class="metric-card-header">
-                        <h4>Variables Más Influyentes (Random Forest)</h4>
-                        <div class="metric-icon">📈</div>
-                    </div>
-                    <div class="influence-list">
-                        <div class="influence-item">
-                            <div class="var-name">tenure</div>
-                            <div class="var-coef positive">+0.13</div>
-                            <div class="var-bar-container">
-                                <div class="var-bar" style="width: 100%"></div>
-                            </div>
-                        </div>
-                        <div class="influence-item">
-                            <div class="var-name">Internet_Fibra</div>
-                            <div class="var-coef positive">+0.12</div>
-                            <div class="var-bar-container">
-                                <div class="var-bar" style="width: 94%"></div>
-                            </div>
-                        </div>
-                        <div class="influence-item">
-                            <div class="var-name">Contrato_2_Años</div>
-                            <div class="var-coef positive">+0.10</div>
-                            <div class="var-bar-container">
-                                <div class="var-bar" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="influence-item">
-                            <div class="var-name">MonthlyCharges </div>
-                            <div class="var-coef positive">+0.09</div>
-                            <div class="var-bar-container">
-                                <div class="var-bar" style="width: 34%"></div>
-                            </div>
-                        </div>
+                <div class="metric-item">
+                    <div class="metric-title">MLP (RandomUnderSampler)</div>
+                    <div class="metric-value">F1-Score: 0.634</div>
+                    <div class="metric-description">Recall: 0.763 | Precisión: 0.542</div>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: 63.4%"></div>
                     </div>
                 </div>
             </div>
-            
-            <h4>Hallazgos Clave</h4>
-            <ul>
-                <li>La permanencia del cliente (tenure) es el factor más influyente</li>
-                <li>Los contratos a largo plazo reducen significativamente el Churn</li>
-                <li>El servicio de fibra óptica aumenta la probabilidad de Churn</li>
-                <li>El pago con cheque electrónico está asociado con mayor Churn</li>
-                <li>La falta de servicios adicionales (seguridad, soporte técnico) aumenta el Churn</li>
-            </ul>
         </div>
+        
+        <!-- Tarjeta de Variables -->
+        <div class="influence-card">
+            <div class="metric-card-header">
+                <h4>Variables Más Influyentes (Random Forest)</h4>
+                <div class="metric-icon">📈</div>
+            </div>
+            <div class="influence-list">
+                <div class="influence-item">
+                    <div class="var-name">tenure</div>
+                    <div class="var-coef positive">+0.13</div>
+                    <div class="var-bar-container">
+                        <div class="var-bar" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="influence-item">
+                    <div class="var-name">Internet_Fibra</div>
+                    <div class="var-coef positive">+0.12</div>
+                    <div class="var-bar-container">
+                        <div class="var-bar" style="width: 94%"></div>
+                    </div>
+                </div>
+                <div class="influence-item">
+                    <div class="var-name">Contrato_2_Años</div>
+                    <div class="var-coef positive">+0.10</div>
+                    <div class="var-bar-container">
+                        <div class="var-bar" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="influence-item">
+                    <div class="var-name">MonthlyCharges </div>
+                    <div class="var-coef positive">+0.09</div>
+                    <div class="var-bar-container">
+                        <div class="var-bar" style="width: 34%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Imágenes añadidas aquí -->
+    <h4>Gráficos de Resultados</h4>
+    <div>
+        <p>Curva ROC - Perceptrón Multicapa con SMOTEENN:</p>
+        <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Perceptron_ROC%20Smoteeenn.png?raw=true" 
+             alt="Curva ROC del Perceptrón Multicapa"
+             style="max-width: 100%; height: auto; margin: 10px 0;">
+        
+        <p>Matriz de Confusión - Random Forest con SMOTEENN:</p>
+        <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/RF_Smoteen.png?raw=true" 
+             alt="Matriz de Confusión del Random Forest"
+             style="max-width: 100%; height: auto; margin: 10px 0;">
+        
+        <p>Curva ROC - Random Forest con SMOTEENN:</p>
+        <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Roc_Smoteen_RF.png?raw=true" 
+             alt="Curva ROC del Random Forest"
+             style="max-width: 100%; height: auto; margin: 10px 0;">
+    </div>
+    
+    <h4>Hallazgos Clave</h4>
+    <ul>
+        <li>La permanencia del cliente (tenure) es el factor más influyente</li>
+        <li>Los contratos a largo plazo reducen significativamente el Churn</li>
+        <li>El servicio de fibra óptica aumenta la probabilidad de Churn</li>
+        <li>El pago con cheque electrónico está asociado con mayor Churn</li>
+        <li>La falta de servicios adicionales (seguridad, soporte técnico) aumenta el Churn</li>
+    </ul>
+</div>
 
         <div class="project-single">
             <h3>Conclusiones y Recomendaciones</h3>
@@ -211,6 +230,11 @@
         </div>
     </div>
 
+
+
+
+
+    
     <!-- Sección de archivos del proyecto -->
     <div class="container">
         <div class="project-single">
@@ -233,6 +257,8 @@
             </div>
         </div>
     </div>
+
+
 
     <!-- Pie de página -->
     <footer>
