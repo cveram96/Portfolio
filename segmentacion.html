@@ -91,7 +91,6 @@
             <h3>Resultados y Hallazgos</h3>
             
             <div class="results-container">
-                <!-- Tarjeta de Métricas -->
                 <div class="metric-card">
                     <div class="metric-card-header">
                         <h4>Métricas del Modelo</h4>
@@ -118,100 +117,95 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Tarjeta de Clusters -->
-                <div class="cluster-card">
+
+                <div class="metric-card">
                     <div class="metric-card-header">
                         <h4>Segmentos de Clientes</h4>
                         <div class="metric-icon">👥</div>
                     </div>
-                    <div class="cluster-list">
-                        <div class="cluster-item cluster-1">
-                            <div class="cluster-name">Cluster 0: Valiosos</div>
-                            <div class="cluster-size">67% de clientes</div>
-                            <div class="cluster-stats">
-                                <span>Recency: 31 días</span>
-                                <span>Frequency: 5.5 compras</span>
-                                <span>Monetary: £370</span>
-                            </div>
+                    <div class="metric-card-content">
+                        <div class="metric-item">
+                            <div class="metric-title">Cluster 0: Valiosos</div>
+                            <ul>
+                                <li>67% de clientes</li>
+                                <li>Recency: 31 días</li>
+                                <li>Frequency: 5.5 compras</li>
+                                <li>Monetary: £370</li>
+                            </ul>
                         </div>
-                        <div class="cluster-item cluster-2">
-                            <div class="cluster-name">Cluster 1: Inactivos</div>
-                            <div class="cluster-size">14.4% de clientes</div>
-                            <div class="cluster-stats">
-                                <span>Recency: 293 días</span>
-                                <span>Frequency: 1.4 compras</span>
-                                <span>Monetary: £83</span>
-                            </div>
+                        <div class="metric-item">
+                            <div class="metric-title">Cluster 1: Inactivos</div>
+                            <ul>
+                                <li>Recency: 293 días</li>
+                                <li>Frequency: 1.4 compras</li>
+                                <li>Monetary: £83</li>
+                            </ul>
                         </div>
-                        <div class="cluster-item cluster-3">
-                            <div class="cluster-name">Cluster 2: Ocasionales</div>
-                            <div class="cluster-size">18.6% de clientes</div>
-                            <div class="cluster-stats">
-                                <span>Recency: 152 días</span>
-                                <span>Frequency: 2.2 compras</span>
-                                <span>Monetary: £139</span>
-                            </div>
+                        <div class="metric-item">
+                            <div class="metric-title">Cluster 2: Ocasionales</div>
+                            <ul>
+                                <li>18.6% de clientes</li>
+                                <li>Recency: 152 días</li>
+                                <li>Frequency: 2.2 compras</li>
+                                <li>Monetary: £139</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-    <!-- Imágenes añadidas aquí -->
-    <h3>Método del codo y Clústers.</h3>
-    <div>
-        <h3>Segmentos identificados:</h3>
-        <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Kmeans/Clusters_Kmeans.png?raw=true" 
-             alt="Clústers Idenficiafos RFM"
-             style="max-width: 100%; height: auto; margin: 10px 0;">
-        
-        <h3>Método del codo:</h4>
-        <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Kmeans/Codo_Kmeans.png?raw=true" 
-             alt="Cantidad óptima de K."
-             style="max-width: 100%; height: auto; margin: 10px 0;">
-        
+            <h3>Método del codo y Clústers.</h3>
+            <div>
+                <h4>Segmentos identificados:</h4>
+                <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Kmeans/Clusters_Kmeans.png?raw=true" 
+                     alt="Clústers Identificados RFM"
+                     style="max-width: 100%; height: auto; margin: 10px 0;">
+                
+                <h4>Método del codo:</h4>
+                <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Kmeans/Codo_Kmeans.png?raw=true" 
+                     alt="Cantidad óptima de K."
+                     style="max-width: 100%; height: auto; margin: 10px 0;">
+            </div>
+        </div>
     </div>
-            
+
 
         <div class="project-single">
+
             <h3>Conclusiones y Recomendaciones</h3>
             
-            <h4>Hallazgos Clave</h4>
+            <h3>Hallazgos Clave</h3>
             <ul>
                 <li>El 67% de los clientes son valiosos (compra reciente, alta frecuencia y gasto)</li>
                 <li>Existe un 14.4% de clientes inactivos que requieren estrategias de reactivación</li>
                 <li>Los clientes ocasionales (18.6%) representan oportunidad para aumentar frecuencia</li>
                 <li>El modelo muestra excelente calidad según métricas de validación</li>
             </ul>
-            
-            <h4>Recomendaciones por Segmento</h4>
-            <div class="recommendations">
-                <div class="recommendation-card">
-                    <h5>Cluster 0: Clientes Valiosos</h5>
-                    <ul>
-                        <li>Programas de beneficios exclusivos (envíos gratis)</li>
-                        <li>Upselling de productos premium</li>
-                        <li>Paquetes de productos complementarios</li>
-                    </ul>
-                </div>
-                <div class="recommendation-card">
-                    <h5>Cluster 1: Clientes Inactivos</h5>
-                    <ul>
-                        <li>Campañas de reactivación con descuentos</li>
-                        <li>Encuestas de satisfacción</li>
-                        <li>Evaluación costo-beneficio de retención</li>
-                    </ul>
-                </div>
-                <div class="recommendation-card">
-                    <h5>Cluster 2: Clientes Ocasionales</h5>
-                    <ul>
-                        <li>Programas de fidelización por frecuencia</li>
-                        <li>Cross-selling con productos relacionados</li>
-                        <li>Ofertas personalizadas basadas en historial</li>
-                    </ul>
-                </div>
-            </div>
-            
+           
+           <br>
+            <h3>Recomendaciones por Segmento</h3>
+
+            <h4>Cluster 0: Clientes Valiosos</h4>
+            <ul>
+                <li>Programas de beneficios exclusivos (envíos gratis)</li>
+                <li>Upselling de productos premium</li>
+                <li>Paquetes de productos complementarios</li>
+            </ul>
+
+            <h4>Cluster 1: Clientes Inactivos</h4>
+            <ul>
+                <li>Campañas de reactivación con descuentos</li>
+                <li>Encuestas de satisfacción</li>
+                <li>Evaluación costo-beneficio de retención</li>
+            </ul>
+
+            <h4>Cluster 2: Clientes Ocasionales</h4>
+            <ul>
+                <li>Programas de fidelización por frecuencia</li>
+                <li>Cross-selling con productos relacionados</li>
+                <li>Ofertas personalizadas basadas en historial</li>
+            </ul>
+
             <h4>Mejoras Futuras</h4>
             <ul>
                 <li>Categorizar productos en grupos más amplios para mejor análisis</li>
@@ -219,7 +213,10 @@
                 <li>Integrar variables demográficas para segmentación más precisa</li>
             </ul>
         </div>
-    </div>
+
+
+
+
 
     <!-- Sección de archivos del proyecto -->
     <div class="container">
@@ -228,7 +225,7 @@
             <p>Puedes explorar todos los archivos, datasets y código fuente de este proyecto:</p>
             
             <div class="files-link-container">
-                <a href="https://colab.research.google.com/drive/1QLXNUQdqNo8H7rpF0ysvc..." 
+                <a href="https://github.com/cveram96/Portfolio/blob/main/Files/kmeans.ipynb" 
                    class="project-files-link" 
                    target="_blank"
                    rel="noopener noreferrer">
@@ -245,10 +242,11 @@
         </div>
     </div>
 
-    <!-- Pie de página -->
+
+
     <footer>
         <div class="footer-content">
-            <p>Desarrollado por Christian Vera, Julian Castiblanco, Sofy Certuche - 2025</p>
+            <p>Desarrollado por Christian Vera, 2025</p>
         </div>
     </footer>
 </body>
