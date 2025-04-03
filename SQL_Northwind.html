@@ -1,1 +1,255 @@
-<p1> Hola </p1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultas SQL - Base de Datos Northwind</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="fundamentos.html">Fundamentos</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <div class="intro">
+            <h1>Consultas SQL - Base de Datos Northwind</h1>
+            <h2>Análisis de datos y visualizaciones para toma de decisiones</h2>
+            <ul>
+                <li>Dataset: Northwind (empresa simulada de ventas)</li>
+                <li>Tablas principales: Productos, Pedidos, Clientes, Empleados</li>
+                <li>Tecnologías: SQLite, Python, pandas, matplotlib, plotly</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Sección de contenido principal -->
+    <div class="container">
+        <div class="project-single">
+            <h3>Contexto del Proyecto</h3>
+            <p>Análisis de la base de datos Northwind, un conjunto de datos clásico que simula una empresa de ventas (productos, pedidos, clientes y empleados). Mediante consultas SQL y visualizaciones en Python, exploramos patrones de ventas, desempeño de empleados, relaciones entre tablas y métricas clave para la toma de decisiones empresariales.</p>
+            
+            <h4>Estructura de la Base de Datos:</h4>
+            <ul class="two-columns">
+                <li><strong>EMPLOYEE:</strong> Información de empleados</li>
+                <li><strong>CATEGORY:</strong> Categorías de productos</li>
+                <li><strong>CUSTOMER:</strong> Datos de clientes</li>
+                <li><strong>SHIPPER:</strong> Empresas de transporte</li>
+                <li><strong>SUPPLIER:</strong> Proveedores de productos</li>
+                <li><strong>ORDER:</strong> Pedidos realizados</li>
+                <li><strong>PRODUCT:</strong> Productos disponibles</li>
+                <li><strong>ORDERDETAIL:</strong> Detalle de cada pedido</li>
+                <li><strong>REGION/TERRITORY:</strong> Regiones geográficas</li>
+            </ul>
+        </div>
+
+        <div class="project-single">
+            <h3>Consultas Principales Realizadas</h3>
+            
+<h4>1. Productos más vendidos (por cantidad)</h4>
+<pre><code>SELECT p.ProductName, SUM(od.Quantity) AS TotalVendido
+FROM OrderDetail od
+JOIN Product p ON od.ProductId = p.Id
+GROUP BY p.ProductName
+ORDER BY TotalVendido DESC
+LIMIT 10;</code></pre>
+<br>
+<p>Esta consulta une los detalles de pedidos con los productos para sumar cuántas unidades se han vendido por producto. Se agrupa por nombre del producto y se ordena para mostrar los más vendidos.</p>
+
+<h4>2. Clientes que más gastaron (por monto total)</h4>
+<pre><code>SELECT c.CompanyName, SUM(od.UnitPrice * od.Quantity) AS TotalGastado
+FROM 'Order' o
+JOIN Customer c ON o.CustomerId = c.Id
+JOIN OrderDetail od ON o.Id = od.OrderId
+GROUP BY c.CompanyName
+ORDER BY TotalGastado DESC
+LIMIT 10;</code></pre>
+<br>
+<p>Une pedidos, clientes y detalles de pedidos para calcular cuánto ha gastado cada cliente (precio × cantidad). Se agrupa por empresa y muestra los que más han comprado.</p>
+
+<h4>3. Ventas mensuales (agrupadas por año-mes)</h4>
+<pre><code>SELECT strftime('%Y-%m', o.OrderDate) AS Mes,
+    SUM(od.UnitPrice * od.Quantity) AS VentasTotales
+FROM 'Order' o
+JOIN OrderDetail od ON o.Id = od.OrderId
+GROUP BY Mes
+ORDER BY Mes;</code></pre>
+<br>
+<p>Calcula las ventas mensuales uniendo pedidos y sus detalles, agrupando por año-mes. Útil para analizar tendencias de ventas.</p>
+
+<h4>4. Empleado con más ventas generadas</h4>
+<pre><code>SELECT e.FirstName || ' ' || e.LastName AS Empleado,
+    SUM(od.UnitPrice * od.Quantity) AS VentasGeneradas
+FROM 'Order' o
+JOIN Employee e ON o.EmployeeId = e.Id
+JOIN OrderDetail od ON o.Id = od.OrderId
+GROUP BY Empleado
+ORDER BY VentasGeneradas DESC
+LIMIT 1;</code></pre>
+<br>
+<p>Relaciona empleados con los pedidos que gestionaron y suma el valor vendido. Devuelve el empleado con más ventas generadas.</p>
+
+<h4>5. Productos con stock bajo (alerta de reorden)</h4>
+<pre><code>SELECT ProductName, UnitsInStock, ReorderLevel
+FROM Product
+WHERE UnitsInStock < ReorderLevel
+ORDER BY UnitsInStock ASC;</code></pre>
+<br>
+<p>Muestra los productos cuyo stock actual es menor al nivel de reorden. Sirve para identificar qué productos necesitan ser reabastecidos.</p>
+
+<h4>6. Categoría más vendida (por ingresos)</h4>
+<pre><code>SELECT c.CategoryName, SUM(od.UnitPrice * od.Quantity) AS VentasPorCategoria
+FROM OrderDetail od
+JOIN Product p ON od.ProductId = p.Id
+JOIN Category c ON p.CategoryId = c.Id
+GROUP BY c.CategoryName
+ORDER BY VentasPorCategoria DESC
+LIMIT 5;</code></pre>
+<br>
+<p>Une detalles de pedidos, productos y categorías para sumar ingresos por categoría. Muestra las más vendidas.</p>
+
+<h4>7. Proveedores más lentos (tiempo promedio de entrega)</h4>
+<pre><code>SELECT s.CompanyName AS Proveedor,
+    ROUND(AVG(julianday(o.ShippedDate) - julianday(o.OrderDate)), 2) AS DiasPromedio
+FROM 'Order' o
+JOIN OrderDetail od ON o.Id = od.OrderId
+JOIN Product p ON od.ProductId = p.Id
+JOIN Supplier s ON p.SupplierId = s.Id
+WHERE o.ShippedDate IS NOT NULL
+GROUP BY Proveedor
+ORDER BY DiasPromedio DESC;</code></pre>
+<br>
+<p>Calcula el tiempo promedio entre fecha de pedido y envío por proveedor. Útil para detectar retrasos en entregas.</p>
+
+<h4>8. Clientes inactivos (sin pedidos en más de 1 año)</h4>
+<pre><code>SELECT c.CompanyName AS Cliente,
+    MAX(o.OrderDate) AS UltimoPedido
+FROM Customer c
+LEFT JOIN 'Order' o ON c.Id = o.CustomerId
+GROUP BY c.Id
+HAVING UltimoPedido < date('now', '-1 year') OR UltimoPedido IS NULL
+ORDER BY UltimoPedido;</code></pre>
+<br>
+<p>Usa LEFT JOIN para incluir incluso clientes sin pedidos. Filtra los que no compran hace más de un año o nunca lo han hecho.</p>
+
+<h4>9. Relación entre ventas y stock (análisis de inventario)</h4>
+<pre><code>SELECT p.ProductName,
+       SUM(od.Quantity) AS UnidadesVendidas,
+       p.UnitsInStock AS StockActual,
+       (p.UnitsInStock - SUM(od.Quantity)) AS Diferencia
+FROM OrderDetail od
+JOIN Product p ON od.ProductId = p.Id
+GROUP BY p.Id
+ORDER BY UnidadesVendidas DESC;</code></pre>
+<br>
+<p>Compara el stock disponible con las unidades vendidas por producto. Sirve para detectar posibles faltantes o exceso de inventario.</p>
+
+<h4>10. Clientes y su frecuencia de compra</h4>
+
+<pre><code>SELECT c.CompanyName AS Cliente,
+       COUNT(o.Id) AS TotalPedidos,
+       SUM(od.UnitPrice * od.Quantity) AS MontoTotal
+FROM Customer c
+LEFT JOIN 'Order' o ON c.Id = o.CustomerId
+LEFT JOIN OrderDetail od ON o.Id = od.OrderId
+GROUP BY c.Id
+ORDER BY TotalPedidos DESC;</code></pre>
+<br>
+<p>Lista los clientes con la cantidad de pedidos realizados y el monto total gastado. Se usa <code>LEFT JOIN</code> para incluir clientes sin compras.</p>
+
+ </div>
+
+
+
+
+
+
+        <div class="project-single">
+            <h3>Visualizaciones de Datos</h3>
+            
+            <h4>Ventas Totales por Categoría</h4>
+            <img src="https://github.com/cveram96/Portfolio/raw/main/Files/images/northwind/ventas_por_categoria.png" 
+                 alt="Gráfico de barras mostrando ventas por categoría"
+                 style="max-width: 100%; height: auto; margin: 10px 0;">
+            
+            <h4>Tendencia de Ventas Mensuales</h4>
+            <img src="https://github.com/cveram96/Portfolio/raw/main/Files/images/northwind/tendencia_ventas.png" 
+                 alt="Gráfico de línea mostrando tendencia de ventas mensuales"
+                 style="max-width: 100%; height: auto; margin: 10px 0;">
+            
+            <h4>Clientes y Ventas por País</h4>
+            <iframe src="clientes_ventas_paises.html" style="width:100%; height:500px; border:none;"></iframe>
+            
+            <h4>Relación entre Ventas y Stock</h4>
+            <img src="https://github.com/cveram96/Portfolio/raw/main/Files/images/northwind/ventas_vs_stock.png" 
+                 alt="Gráfico de dispersión mostrando relación entre ventas y stock"
+                 style="max-width: 100%; height: auto; margin: 10px 0;">
+        </div>
+
+        <div class="project-single">
+            <h3>Hallazgos Clave</h3>
+            <ul>
+                <li>Identificación de los productos más vendidos y categorías con mayor rentabilidad</li>
+                <li>Segmentación de clientes por volumen de compras y frecuencia</li>
+                <li>Análisis del desempeño de empleados en generación de ventas</li>
+                <li>Detección de problemas en la cadena de suministro (proveedores más lentos)</li>
+                <li>Identificación de productos con bajo stock que requieren reorden</li>
+                <li>Clasificación de clientes inactivos para campañas de reactivación</li>
+                <li>Análisis geográfico de ventas y distribución de clientes</li>
+            </ul>
+        </div>
+
+        <div class="project-single">
+            <h3>Conclusiones </h3>
+            
+            <h4>Beneficios del Análisis</h4>
+            <ul>
+                <li>Optimización del inventario basada en patrones de venta</li>
+                <li>Mejora en la gestión de relaciones con clientes clave</li>
+                <li>Identificación de oportunidades para aumentar ventas</li>
+                <li>Evaluación del desempeño de proveedores y empleados</li>
+                <li>Detección temprana de problemas operacionales</li>
+            </ul>
+            
+        
+        </div>
+    </div>
+
+    <!-- Sección de archivos del proyecto -->
+    <div class="container">
+        <div class="project-single">
+            <h3>Archivos del Proyecto</h3>
+            <p>Puedes explorar el código fuente de este proyecto:</p>
+            
+            <div class="files-link-container">
+                <a href="https://colab.research.google.com/drive/1fwyuUtDXtjS41sLgVXmzizyh..." 
+                   class="project-files-link" 
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <span class="link-icon">📁</span>
+                    Ver Notebook completo en Colab
+                    <span class="link-arrow">→</span>
+                </a>
+                
+                <div class="file-types">
+                    <span class="file-badge">Jupyter Notebook</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer>
+        <div class="footer-content">
+            <p>Desarrollado por Christian Vera - 2025</p>
+        </div>
+    </footer>
+</body>
+</html>
