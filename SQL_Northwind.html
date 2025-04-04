@@ -63,6 +63,11 @@ LIMIT 10;</code></pre>
 <br>
 <p>Esta consulta une los detalles de pedidos con los productos para sumar cuántas unidades se han vendido por producto. Se agrupa por nombre del producto y se ordena para mostrar los más vendidos.</p>
 
+<br>
+<div style="text-align: center;">
+    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL1.PNG?raw=true" alt="Consulta SQL 1">
+</div>
+
 <h4>2. Clientes que más gastaron (por monto total)</h4>
 <pre><code>SELECT c.CompanyName, SUM(od.UnitPrice * od.Quantity) AS TotalGastado
 FROM 'Order' o
@@ -74,6 +79,11 @@ LIMIT 10;</code></pre>
 <br>
 <p>Une pedidos, clientes y detalles de pedidos para calcular cuánto ha gastado cada cliente (precio × cantidad). Se agrupa por empresa y muestra los que más han comprado.</p>
 
+<br>
+<div style="text-align: center;">
+    <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/SQL_Northwind/SQL2.PNG?raw=true" alt="Consulta SQL 2">
+</div>
+
 <h4>3. Ventas mensuales (agrupadas por año-mes)</h4>
 <pre><code>SELECT strftime('%Y-%m', o.OrderDate) AS Mes,
     SUM(od.UnitPrice * od.Quantity) AS VentasTotales
@@ -83,6 +93,12 @@ GROUP BY Mes
 ORDER BY Mes;</code></pre>
 <br>
 <p>Calcula las ventas mensuales uniendo pedidos y sus detalles, agrupando por año-mes. Útil para analizar tendencias de ventas.</p>
+
+<br>
+<div style="text-align: center;">
+    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL3.PNG?raw=true" alt="Consulta SQL 3">
+</div>
+
 
 <h4>4. Empleado con más ventas generadas</h4>
 <pre><code>SELECT e.FirstName || ' ' || e.LastName AS Empleado,
@@ -96,6 +112,11 @@ LIMIT 1;</code></pre>
 <br>
 <p>Relaciona empleados con los pedidos que gestionaron y suma el valor vendido. Devuelve el empleado con más ventas generadas.</p>
 
+<br>
+<div style="text-align: center;">
+    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL4.PNG?raw=true" alt="Consulta SQL 4">
+</div>
+
 <h4>5. Productos con stock bajo (alerta de reorden)</h4>
 <pre><code>SELECT ProductName, UnitsInStock, ReorderLevel
 FROM Product
@@ -103,6 +124,11 @@ WHERE UnitsInStock < ReorderLevel
 ORDER BY UnitsInStock ASC;</code></pre>
 <br>
 <p>Muestra los productos cuyo stock actual es menor al nivel de reorden. Sirve para identificar qué productos necesitan ser reabastecidos.</p>
+
+<br>
+<div style="text-align: center;">
+    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL5.PNG?raw=true" alt="Consulta SQL 5">
+</div>
 
 <h4>6. Categoría más vendida (por ingresos)</h4>
 <pre><code>SELECT c.CategoryName, SUM(od.UnitPrice * od.Quantity) AS VentasPorCategoria
@@ -114,6 +140,11 @@ ORDER BY VentasPorCategoria DESC
 LIMIT 5;</code></pre>
 <br>
 <p>Une detalles de pedidos, productos y categorías para sumar ingresos por categoría. Muestra las más vendidas.</p>
+
+<br>
+<div style="text-align: center;">
+    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL6.PNG?raw=true" alt="Consulta SQL 6">
+</div>
 
 <h4>7. Proveedores más lentos (tiempo promedio de entrega)</h4>
 <pre><code>SELECT s.CompanyName AS Proveedor,
@@ -128,6 +159,11 @@ ORDER BY DiasPromedio DESC;</code></pre>
 <br>
 <p>Calcula el tiempo promedio entre fecha de pedido y envío por proveedor. Útil para detectar retrasos en entregas.</p>
 
+<br>
+<div style="text-align: center;">
+    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL7.PNG?raw=true" alt="Consulta SQL 7">
+</div>
+
 <h4>8. Clientes inactivos (sin pedidos en más de 1 año)</h4>
 <pre><code>SELECT c.CompanyName AS Cliente,
     MAX(o.OrderDate) AS UltimoPedido
@@ -138,6 +174,11 @@ HAVING UltimoPedido < date('now', '-1 year') OR UltimoPedido IS NULL
 ORDER BY UltimoPedido;</code></pre>
 <br>
 <p>Usa LEFT JOIN para incluir incluso clientes sin pedidos. Filtra los que no compran hace más de un año o nunca lo han hecho.</p>
+
+<br>
+<div style="text-align: center;">
+    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL8.PNG?raw=true" alt="Consulta SQL 8">
+</div>
 
 <h4>9. Relación entre ventas y stock (análisis de inventario)</h4>
 <pre><code>SELECT p.ProductName,
@@ -151,6 +192,11 @@ ORDER BY UnidadesVendidas DESC;</code></pre>
 <br>
 <p>Compara el stock disponible con las unidades vendidas por producto. Sirve para detectar posibles faltantes o exceso de inventario.</p>
 
+<br>
+<div style="text-align: center;">
+    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL9.PNG?raw=true" alt="Consulta SQL 9">
+</div>
+
 <h4>10. Clientes y su frecuencia de compra</h4>
 
 <pre><code>SELECT c.CompanyName AS Cliente,
@@ -163,6 +209,11 @@ GROUP BY c.Id
 ORDER BY TotalPedidos DESC;</code></pre>
 <br>
 <p>Lista los clientes con la cantidad de pedidos realizados y el monto total gastado. Se usa <code>LEFT JOIN</code> para incluir clientes sin compras.</p>
+
+<br>
+<div style="text-align: center;">
+    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL10.PNG?raw=true" alt="Consulta SQL 10">
+</div>
 
  </div>
 
