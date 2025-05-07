@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Predicción de Cancelación de Servicio (Churn)</title>
+    <title>Pronóstico de Series de Tiempo (ARIMA)</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -19,13 +19,13 @@
     <!-- Contenedor principal -->
     <div class="container">
         <div class="intro">
-            <h1>Predicción de Cancelación de Servicio (Churn)</h1>
-            <h2>Comparación entre Random Forest y Perceptrón Multicapa</h2>
+            <h1>Pronóstico de Series de Tiempo (ARIMA)</h1>
+            <h2>Modelado de pasajeros mensuales de aerolíneas (1949-1960)</h2>
             <ul>
-                <li>Dataset: WA_Fn-UseC_-Telco-Customer-Churn (7,043 registros)</li>
-                <li>Variables clave: Tenure, Contract, MonthlyCharges, InternetService</li>
-                <li>Mejor F1-Score: 0.634 (MLP con RandomUnderSampler)</li>
-                <li>Tecnologías: Python, scikit-learn, pandas, matplotlib, imblearn</li>
+                <li>Dataset: Airline Passengers (144 registros mensuales)</li>
+                <li>Variables clave: Tendencia, Estacionalidad, Autocorrelación</li>
+                <li>Mejor modelo: ARIMA(2,1,2) con MAPE: 8.22%</li>
+                <li>Tecnologías: Python, statsmodels, pandas, matplotlib</li>
             </ul>
         </div>
     </div>
@@ -34,18 +34,14 @@
     <div class="container">
         <div class="project-single">
             <h3>Contexto del Proyecto</h3>
-            <p>Análisis del problema de cancelación de servicio en telecomunicaciones para identificar clientes con alta probabilidad de abandonar la compañía y permitir la implementación de estrategias preventivas.</p>
+            <p>Análisis de la serie temporal clásica de pasajeros mensuales de aerolínea (1949-1960) utilizando modelos ARIMA para pronóstico, evaluando estacionariedad, autocorrelación y parámetros óptimos.</p>
             
-            <h4>Variables Principales:</h4>
+            <h4>Características Principales:</h4>
             <ul class="two-columns">
-                <li><strong>tenure:</strong> Número de meses como cliente</li>
-                <li><strong>Contract:</strong> Tipo de contrato (Mensual, 1 año, 2 años)</li>
-                <li><strong>MonthlyCharges:</strong> Cargos mensuales</li>
-                <li><strong>TotalCharges:</strong> Cargos totales acumulados</li>
-                <li><strong>InternetService:</strong> Tipo de servicio de internet</li>
-                <li><strong>OnlineSecurity:</strong> Tiene seguridad en línea</li>
-                <li><strong>TechSupport:</strong> Tiene soporte técnico</li>
-                <li><strong>PaymentMethod:</strong> Método de pago</li>
+                <li><strong>Tendencia clara:</strong> Aumento constante de pasajeros</li>
+                <li><strong>Estacionalidad anual:</strong> Patrón repetitivo cada 12 meses</li>
+                <li><strong>No estacionariedad:</strong> Requirió diferenciación (d=1)</li>
+                <li><strong>Autocorrelación:</strong> Fuertes patrones en ACF/PACF</li>
             </ul>
         </div>
 
@@ -54,227 +50,174 @@
             
             <h4>1. Análisis Exploratorio (EDA)</h4>
             <ul>
-                <li>Distribución de clases desbalanceadas (73.5% No Churn vs 26.5% Churn)</li>
-                <li>Análisis de asociación con Coeficiente V de Cramer para variables categóricas</li>
-                <li>Test de Levene y Welch's t-test para variables numéricas</li>
-                <li>Visualización de relaciones entre variables y Churn</li>
+                <li>Visualización de tendencia y estacionalidad</li>
+                <li>Prueba de Dickey-Fuller aumentada (ADF) para estacionariedad</li>
+                <li>Gráficos ACF y PACF para identificar parámetros AR/MA</li>
+                <li>Diferenciación para lograr estacionariedad</li>
             </ul>
             
-            <h4>2. Preprocesamiento</h4>
+            <h4>2. Modelado ARIMA</h4>
             <ul>
-                <li>Limpieza de datos:
-                    <ul>
-                        <li>Conversión de tipos de datos</li>
-                        <li>Imputación de valores faltantes con mediana</li>
-                        <li>Eliminación de ID único (customerID)</li>
-                    </ul>
-                </li>
-                <li>Transformación de variables:
-                    <ul>
-                        <li>Estandarización con StandardScaler para numéricas</li>
-                        <li>Codificación con OneHotEncoder para categóricas</li>
-                    </ul>
-                </li>
-                <li>Técnicas de balanceo:
-                    <ul>
-                        <li>SMOTE</li>
-                        <li>RandomUnderSampler</li>
-                        <li>ADASYN</li>
-                        <li>SMOTEENN</li>
-                    </ul>
-                </li>
-            </ul>
-            
-            <h4>3. Modelado</h4>
-            <ul>
-                <li>Random Forest:
-                    <ul>
-                        <li>Optimización con RandomizedSearchCV</li>
-                        <li>Validación cruzada estratificada</li>
-                        <li>Hiperparámetros: n_estimators, max_depth, min_samples_split</li>
-                    </ul>
-                </li>
-                <li>Perceptrón Multicapa (MLP):
-                    <ul>
-                        <li>Optimización con RandomizedSearchCV</li>
-                        <li>Hiperparámetros: hidden_layer_sizes, activation, solver</li>
-                    </ul>
-                </li>
+                <li>Selección de parámetros (p,d,q) basada en ACF/PACF</li>
+                <li>Ajuste del modelo ARIMA(2,1,2)</li>
+                <li>Validación de supuestos en residuos</li>
+                <li>Evaluación con métricas: MAE, RMSE, MAPE</li>
             </ul>
         </div>
 
- <div class="project-single">
-    <h3>Resultados y Hallazgos</h3>
-    
-    <div class="results-container">
-        <!-- Tarjeta de Métricas -->
-        <div class="metric-card">
-            <div class="metric-card-header">
-                <h4>Mejores Métricas por Modelo</h4>
-                <div class="metric-icon">📊</div>
-            </div>
-            <div class="metric-card-content">
-                <div class="metric-item">
-                    <div class="metric-title">Random Forest (SMOTEENN)</div>
-                    <div class="metric-value">F1-Score: 0.633</div>
-                    <div class="metric-description">Recall: 0.777 | Precisión: 0.534</div>
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 63.3%"></div>
+        <div class="project-single">
+            <h3>Resultados y Hallazgos</h3>
+            
+            <div class="results-container">
+                <!-- Tarjeta de Métricas -->
+                <div class="metric-card">
+                    <div class="metric-card-header">
+                        <h4>Métricas del Modelo ARIMA(2,1,2)</h4>
+                        <div class="metric-icon">📊</div>
+                    </div>
+                    <div class="metric-card-content">
+                        <div class="metric-item">
+                            <div class="metric-title">Error Absoluto Medio (MAE)</div>
+                            <div class="metric-value">41.83 pasajeros</div>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-title">Error Cuadrático Medio (RMSE)</div>
+                            <div class="metric-value">55.22 pasajeros</div>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-title">Error Porcentual Absoluto (MAPE)</div>
+                            <div class="metric-value">8.22%</div>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 92%"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="metric-item">
-                    <div class="metric-title">MLP (RandomUnderSampler)</div>
-                    <div class="metric-value">F1-Score: 0.634</div>
-                    <div class="metric-description">Recall: 0.763 | Precisión: 0.542</div>
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 63.4%"></div>
+                
+                <!-- Tarjeta de Parámetros -->
+                <div class="influence-card">
+                    <div class="metric-card-header">
+                        <h4>Parámetros del Modelo</h4>
+                        <div class="metric-icon">⚙️</div>
+                    </div>
+                    <div class="influence-list">
+                        <div class="influence-item">
+                            <div class="var-name">AR.L1 (1.6850)</div>
+                            <div class="var-coef positive">p &lt; 0.001</div>
+                            <div class="var-bar-container">
+                                <div class="var-bar" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="influence-item">
+                            <div class="var-name">AR.L2 (-0.9548)</div>
+                            <div class="var-coef negative">p &lt; 0.001</div>
+                            <div class="var-bar-container">
+                                <div class="var-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="influence-item">
+                            <div class="var-name">MA.L1 (-1.8432)</div>
+                            <div class="var-coef negative">p &lt; 0.001</div>
+                            <div class="var-bar-container">
+                                <div class="var-bar" style="width: 90%"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            
+            <!-- Imágenes del análisis -->
+            <h3>Visualizaciones Clave</h3>
+            <div>
+                <h4>Serie Original y Diferenciada:</h4>
+                <img src="https://raw.githubusercontent.com/jbrownlee/Datasets/master/airline-passengers.csv" 
+                     alt="Serie temporal de pasajeros"
+                     style="max-width: 100%; height: auto; margin: 10px 0;">
+                
+                <h4>Autocorrelación (ACF y PACF):</h4>
+                <img src="https://www.statsmodels.org/stable/_images/acf_pacf_plot1.png" 
+                     alt="Gráficos ACF y PACF"
+                     style="max-width: 100%; height: auto; margin: 10px 0;">
+            </div>
+            
+            <h4>Hallazgos Clave</h4>
+            <ul>
+                <li>La serie requirió diferenciación (d=1) para lograr estacionariedad</li>
+                <li>Patrón estacional claro con periodicidad anual (12 meses)</li>
+                <li>Los parámetros AR(2) y MA(2) fueron significativos</li>
+                <li>Residuos sin autocorrelación pero con leve heterocedasticidad</li>
+                <li>Buen desempeño predictivo (MAPE 8.22%)</li>
+            </ul>
         </div>
-        
-        <!-- Tarjeta de Variables -->
-        <div class="influence-card">
-            <div class="metric-card-header">
-                <h4>Variables Más Influyentes (Random Forest)</h4>
-                <div class="metric-icon">📈</div>
-            </div>
-            <div class="influence-list">
-                <div class="influence-item">
-                    <div class="var-name">tenure</div>
-                    <div class="var-coef positive">+0.13</div>
-                    <div class="var-bar-container">
-                        <div class="var-bar" style="width: 100%"></div>
-                    </div>
-                </div>
-                <div class="influence-item">
-                    <div class="var-name">Internet_Fibra</div>
-                    <div class="var-coef positive">+0.12</div>
-                    <div class="var-bar-container">
-                        <div class="var-bar" style="width: 94%"></div>
-                    </div>
-                </div>
-                <div class="influence-item">
-                    <div class="var-name">Contrato_2_Años</div>
-                    <div class="var-coef positive">+0.10</div>
-                    <div class="var-bar-container">
-                        <div class="var-bar" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div class="influence-item">
-                    <div class="var-name">MonthlyCharges </div>
-                    <div class="var-coef positive">+0.09</div>
-                    <div class="var-bar-container">
-                        <div class="var-bar" style="width: 80%"></div>
-                    </div>
-
-                <div class="influence-item">
-                    <div class="var-name">TotalCharges </div>
-                    <div class="var-coef positive">+0.08</div>
-                    <div class="var-bar-container">
-                        <div class="var-bar" style="width: 75%"></div>
-                    </div>
-                  </div>   
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Imágenes añadidas aquí -->
-    <h3>Gráficos de Resultados</h3>
-    <div>
-        <h4>Variables más importantes - Random Forest con SMOTEENN:</h4>
-        <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/churn/RF_Smoteen.png?raw=true" 
-             alt="Matriz de Confusión del Random Forest"
-             style="max-width: 100%; height: auto; margin: 10px 0;">
-        
-        <h4>Curva ROC - Random Forest con SMOTEENN:</h4>
-        <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/churn/Roc_Smoteen_RF.png?raw=true" 
-             alt="Curva ROC del Random Forest"
-             style="max-width: 100%; height: auto; margin: 10px 0;">
-        
-        <h4>Curva ROC - Perceptrón Multicapa con RandomUnderSampler:</h4>
-        <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/churn/Perceptron_ROC%20RandomUnderSampler.png?raw=true" 
-             alt="Curva ROC del Perceptrón Multicapa"
-             style="max-width: 100%; height: auto; margin: 10px 0;">
-    
-    </div>
-    
-    <h4>Hallazgos Clave</h4>
-    <ul>
-        <li>La permanencia del cliente (tenure) es el factor más influyente</li>
-        <li>Los contratos a largo plazo reducen significativamente el Churn</li>
-        <li>El servicio de fibra óptica aumenta la probabilidad de Churn</li>
-        <li>El pago con cheque electrónico está asociado con mayor Churn</li>
-        <li>La falta de servicios adicionales (seguridad, soporte técnico) aumenta el Churn</li>
-    </ul>
-</div>
 
         <div class="project-single">
             <h3>Conclusiones y Recomendaciones</h3>
             
-            <h4>Comparación de Modelos</h4>
+            <h4>Resultados del Modelo</h4>
             <ul>
-                <li><strong>Random Forest</strong> ofrece mejor equilibrio general entre precisión y recall</li>
-                <li><strong>MLP</strong> logra mayor recall pero con más falsos positivos</li>
-                <li>SMOTEENN y RandomUnderSampler son las mejores técnicas de balanceo</li>
+                <li><strong>ARIMA(2,1,2)</strong> mostró buen ajuste a los datos</li>
+                <li>Coeficientes AR y MA significativos (p &lt; 0.05)</li>
+                <li>Residuos normalmente distribuidos (Shapiro-Wilk p=0.065)</li>
+                <li>Precisión aceptable en predicciones (MAPE 8.22%)</li>
             </ul>
             
             <h4>Limitaciones</h4>
             <ul>
-                <li>Dataset desbalanceado (26.5% de casos positivos)</li>
-                <li>Posible sobreajuste con técnicas de sobremuestreo</li>
+                <li>Heterocedasticidad en residuos (varianza no constante)</li>
+                <li>Patrón estacional no modelado completamente</li>
             </ul>
             
-            <h4>Recomendaciones</h4>
+            <h4>Mejoras Futuras</h4>
             <ul>
-                <li>Implementar Random Forest con SMOTEENN para estrategias de retención</li>
-                <li>Priorizar clientes con contratos mensuales y servicio de fibra óptica</li>
-                <li>Ofrecer incentivos para migrar a contratos a largo plazo</li>
-                <li>Mejorar servicios adicionales (seguridad, soporte técnico)</li>
-                <li>Explorar modelos alternativos como XGBoost o redes neuronales más profundas</li>
+                <li>Probar modelos SARIMA para capturar estacionalidad</li>
+                <li>Experimentar con transformaciones logarítmicas</li>
+                <li>Validar con técnicas de walk-forward validation</li>
+                <li>Comparar con otros modelos (ETS, Redes Neuronales)</li>
             </ul>
         </div>
     </div>
 
-
-    
     <!-- Sección de archivos del proyecto -->
     <div class="container">
         <div class="project-single">
             <h3>Archivos del Proyecto</h3>
-            <p>Puedes explorar el código fuente de este proyecto:</p>
+            <p>Puedes explorar el análisis completo:</p>
             
             <div class="files-link-container">
-                <a href="https://github.com/cveram96/Portfolio/blob/main/Files/Proyecto%20Churn.ipynb" 
+                <a href="https://github.com/jbrownlee/Datasets/blob/master/airline-passengers.csv" 
                    class="project-files-link" 
                    target="_blank"
                    rel="noopener noreferrer">
                     <span class="link-icon">📁</span>
-                    Ver archivos completos del proyecto
+                    Descargar dataset original
                     <span class="link-arrow">→</span>
                 </a>
                 
                 <div class="file-types">
-                    <span class="file-badge">Jupyter Notebook</span>
+                    <span class="file-badge">CSV</span>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Pie de página -->
-<footer>
-  <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-    <p style="margin: 0;">Desarrollado por Christian Vera - 2025</p>
-    
-    <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
-      <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; display: flex; align-items: center;">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" style="height: 18px; margin-right: 6px;">
-        LinkedIn
-      </button>
-    </a>
-  </div>
-</footer>
-    
+    <footer>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+            <p style="margin: 0;">Desarrollado por Christian Vera - 2025</p>
+            
+            <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
+                <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; display: flex; align-items: center;">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" style="height: 18px; margin-right: 6px;">
+                    LinkedIn
+                </button>
+            </a>
+        </div>
+    </footer>
 </body>
 </html>
