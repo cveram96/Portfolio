@@ -131,22 +131,42 @@
                     </div>
                 </div>
             </div>
-            
+            </div>
+
+<div class="project-single">
             <!-- Imágenes del análisis -->
             <h3>Visualizaciones Clave</h3>
             <div>
-                <h4>Serie Original y Diferenciada:</h4>
-                <img src="https://raw.githubusercontent.com/jbrownlee/Datasets/master/airline-passengers.csv" 
-                     alt="Serie temporal de pasajeros"
-                     style="max-width: 100%; height: auto; margin: 10px 0;">
-                
                 <h4>Autocorrelación (ACF y PACF):</h4>
-                <img src="https://www.statsmodels.org/stable/_images/acf_pacf_plot1.png" 
+                <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/ARIMA/ARIMA.png?raw=true" 
                      alt="Gráficos ACF y PACF"
                      style="max-width: 100%; height: auto; margin: 10px 0;">
-            </div>
-            
-            <h4>Hallazgos Clave</h4>
+    
+  <div style="margin-bottom: 20px;">
+    <h4>Interpretación de Autocorrelación (ACF):</h4>
+    <ul style="margin-top: 10px; margin-bottom: 15px; line-height: 1.6;">
+        <li>Muestra correlaciones significativas cuando las barras superan la zona sombreada</li>
+        <li>Valores cercanos en el tiempo presentan alta relación (primeras barras destacadas)</li>
+        <li>Patrón repetitivo cada 12 meses evidencia estacionalidad anual</li>
+        <li>Disminución gradual en las barras indica menor influencia de datos más antiguos</li>
+    </ul>
+</div>
+
+<div style="margin-bottom: 20px;">
+    <h4>Interpretación de Autocorrelación Parcial (PACF):</h4>
+    <ul style="margin-top: 10px; line-height: 1.6;">
+        <li>Aísla la relación directa entre valores, eliminando efectos intermedios</li>
+        <li>Picos significativos en rezago 1 (mes anterior) y rezago 12 (mismo mes del año anterior)</li>
+        <li>Otras barras dentro del área sombreada indican correlaciones no significativas</li>
+        <li>Confirma que la dependencia más fuerte es con el dato inmediato anterior y el anual equivalente</li>
+    </ul>
+</div>
+ </div> 
+
+             <iframe src="https://cveram96.github.io/Portfolio/arima_animation.html" 
+                style="width:100%; height:800px; border:none;"></iframe>
+
+            <h3>Hallazgos Clave</h3>
             <ul>
                 <li>La serie requirió diferenciación (d=1) para lograr estacionariedad</li>
                 <li>Patrón estacional claro con periodicidad anual (12 meses)</li>
@@ -190,17 +210,17 @@
             <p>Puedes explorar el análisis completo:</p>
             
             <div class="files-link-container">
-                <a href="https://github.com/jbrownlee/Datasets/blob/master/airline-passengers.csv" 
+                <a href="https://github.com/cveram96/Portfolio/blob/main/Files/ARIMA.ipynb" 
                    class="project-files-link" 
                    target="_blank"
                    rel="noopener noreferrer">
                     <span class="link-icon">📁</span>
-                    Descargar dataset original
+                    Puedes explorar el código fuente de este proyecto:
                     <span class="link-arrow">→</span>
                 </a>
                 
                 <div class="file-types">
-                    <span class="file-badge">CSV</span>
+                    <span class="file-badge">Jupyter Notebook</span>
                 </div>
             </div>
         </div>
