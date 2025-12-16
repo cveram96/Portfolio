@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyectos de Ciencia de Datos</title>
 
-    <!-- Google Translate - inicialización silenciosa (sin async para mayor fiabilidad) -->
+    <!-- Google Translate - inicialización silenciosa -->
     <script type="text/javascript">
       function googleTranslateElementInit() {
         new google.translate.TranslateElement({
@@ -18,13 +18,12 @@
     </script>
     <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-    <!-- Estilo para evitar saltos por el banner de Google -->
+    <!-- Corrección de layout si aparece el banner -->
     <style>
       body {
         top: 0 !important;
         position: relative;
       }
-      /* Opcional: si usas tu styles.css, puedes mover esto allá */
     </style>
 
     <link rel="stylesheet" href="styles.css">
@@ -77,7 +76,7 @@
             <p>Pronóstico de Series de Tiempo de una Aerolínea (1949-1960).</p>
             <a href="ARIMA.html">Ver más</a>
         </div>
-    </div> <!-- fin de .projects -->
+    </div>
 
     <!-- Pie de página -->
     <footer>
@@ -92,8 +91,8 @@
         </div>
     </footer>
 
-    <!-- Contenedores para Google Translate -->
-    <div id="google_translate_element" style="display:none;"></div>
+    <!-- Contenedor de Google Translate: invisible pero accesible -->
+    <div id="google_translate_element" style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"></div>
 
     <!-- Botón flotante circular -->
     <div id="gt-toggle" style="
@@ -115,52 +114,53 @@
     ">🌐</div>
 
     <script>
-  let currentLang = 'es';
+      let currentLang = 'es';
+      let translateReady = false;
 
-  // Espera hasta que el selector de Google esté listo
-  function waitForGoogleSelector(callback, maxAttempts = 20, interval = 300) {
-    let attempts = 0;
-    const check = () => {
-      const select = document.querySelector('.goog-te-combo');
-      if (select && select.options.length > 1) {
-        callback(select);
-      } else if (attempts < maxAttempts) {
-        attempts++;
-        setTimeout(check, interval);
-      } else {
-        console.warn('Google Translate selector not found.');
+      function changeLanguage(lang) {
+        if (!translateReady) return;
+        const select = document.querySelector('.goog-te-combo');
+        if (select && select.value !== lang) {
+          select.value = lang;
+          select.dispatchEvent(new Event('change'));
+          currentLang = lang;
+          document.getElementById('gt-toggle').textContent = lang === 'en' ? '🇺🇸' : '🌐';
+        }
       }
-    };
-    check();
-  }
 
-  function setGoogleTranslateLang(lang) {
-    waitForGoogleSelector((select) => {
-      if (select.value !== lang) {
-        select.value = lang;
-        select.dispatchEvent(new Event('change'));
-        currentLang = lang;
-      }
-    });
-  }
+      // Detectar cuando Google inyecte su widget
+      const observer = new MutationObserver(() => {
+        if (document.querySelector('.goog-te-combo')) {
+          observer.disconnect();
+          translateReady = true;
+          console.log('✅ Google Translate está listo.');
 
-  // Acción del botón
-  document.getElementById('gt-toggle').addEventListener('click', () => {
-    currentLang = currentLang === 'es' ? 'en' : 'es';
-    setGoogleTranslateLang(currentLang);
-    document.getElementById('gt-toggle').textContent = currentLang === 'en' ? '🇺🇸' : '🌐';
-  });
+          // Limpiar idiomas
+          const select = document.querySelector('.goog-te-combo');
+          if (select) {
+            Array.from(select.options).forEach(opt => {
+              if (opt.value && !['es', 'en', ''].includes(opt.value)) {
+                opt.remove();
+              }
+            });
+          }
+        }
+      });
 
-  // Limpiar idiomas no deseados cuando esté listo
-  waitForGoogleSelector((select) => {
-    Array.from(select.options).forEach(opt => {
-      if (opt.value && !['es', 'en', ''].includes(opt.value)) {
-        opt.remove();
-      }
-    });
-  });
-</script>
+      observer.observe(document.body, { childList: true, subtree: true });
 
+      document.getElementById('gt-toggle').addEventListener('click', () => {
+        changeLanguage(currentLang === 'es' ? 'en' : 'es');
+      });
 
+      // Alerta si no carga en 5 segundos
+      setTimeout(() => {
+        if (!translateReady) {
+          console.error('❌ Google Translate no se cargó. ¿Bloqueado?');
+          document.getElementById('gt-toggle').style.background = '#d32f2f';
+          document.getElementById('gt-toggle').title = 'Error: Google Translate no disponible';
+        }
+      }, 5000);
+    </script>
 </body>
 </html>
