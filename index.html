@@ -4,9 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyectos de Ciencia de Datos</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Enlace al archivo CSS externo -->
+
+    <!-- Google Translate - inicialización silenciosa (sin async para mayor fiabilidad) -->
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'es',
+          includedLanguages: 'es,en',
+          autoDisplay: false,
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+      }
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Estilo para evitar saltos por el banner de Google -->
+    <style>
+      body {
+        top: 0 !important;
+        position: relative;
+      }
+      /* Opcional: si usas tu styles.css, puedes mover esto allá */
+    </style>
+
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
     <!-- Barra de navegación -->
     <nav>
         <ul>
@@ -15,63 +39,118 @@
         </ul>
     </nav>
 
-    <!-- Contenedor principal -->
-<!-- Sección de introducción -->
-<div class="intro">
-  <h1>Bienvenido a Proyectos de Ciencia de Datos</h1>
-  <p>Explora análisis, visualizaciones y modelos predictivos desarrollados con Python, machine learning y herramientas de datos.</p>
-</div>
-        <!-- Sección de proyectos -->
-        <div class="projects">
-            <div class="project">
-                <h3>Regresión Lineal Múltiple</h3>
-                <p>Predicción del valor mediano de viviendas en California usando Regresión Lineal Múltiple.</p>
-                <a href="RLM.html">Ver más</a>
-            </div>
-            <div class="project">
-                <h3>Predicción de Churn</h3>
-                <p>Modelo de Machine Learning para predecir la pérdida de clientes.</p>
-                <a href="churn.html">Ver más</a>
-            </div>
-            <div class="project">
-                <h3>Segmentación de Clientes</h3>
-                <p>Agrupación de clientes basada en comportamiento de compra.</p>
-                <a href="segmentacion.html">Ver más</a>
-            </div>
-            <div class="project">
-                <h3>Power BI - Netflix Sales</h3>
-                <p>Reporte de catálogo de películas y series a nivel mundial.</p>
-                <a href="netflix.html">Ver más</a>
-            </div>
-            <div class="project">
-                <h3>Sql-Northwind</h3>
-                <p>Generación de consultas y visulizaciones de Northwind.</p>
-                <a href="SQL_Northwind.html">Ver más</a>
-            </div>
-
-            <div class="project">
-                <h3>Pronóstico de Series de Tiempo (ARIMA)</h3>
-                <p>Pronóstico de Series de Tiempo de una Aerolinea (1949-1960).</p>
-                <a href="ARIMA.html">Ver más</a>
-            </div>
-            
-        </div>
+    <!-- Sección de introducción -->
+    <div class="intro">
+        <h1>Bienvenido a Proyectos de Ciencia de Datos</h1>
+        <p>Explora análisis, visualizaciones y modelos predictivos desarrollados con Python, machine learning y herramientas de datos.</p>
     </div>
 
-    <!-- Pie de página -->
-<footer>
-  <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-    <p style="margin: 0;">Desarrollado por Christian Vera - 2025</p>
-    
-    <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
-      <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; display: flex; align-items: center;">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" style="height: 18px; margin-right: 6px;">
-        LinkedIn
-      </button>
-    </a>
-  </div>
-</footer>
+    <!-- Sección de proyectos -->
+    <div class="projects">
+        <div class="project">
+            <h3>Regresión Lineal Múltiple</h3>
+            <p>Predicción del valor mediano de viviendas en California usando Regresión Lineal Múltiple.</p>
+            <a href="RLM.html">Ver más</a>
+        </div>
+        <div class="project">
+            <h3>Predicción de Churn</h3>
+            <p>Modelo de Machine Learning para predecir la pérdida de clientes.</p>
+            <a href="churn.html">Ver más</a>
+        </div>
+        <div class="project">
+            <h3>Segmentación de Clientes</h3>
+            <p>Agrupación de clientes basada en comportamiento de compra.</p>
+            <a href="segmentacion.html">Ver más</a>
+        </div>
+        <div class="project">
+            <h3>Power BI - Netflix Sales</h3>
+            <p>Reporte de catálogo de películas y series a nivel mundial.</p>
+            <a href="netflix.html">Ver más</a>
+        </div>
+        <div class="project">
+            <h3>Sql-Northwind</h3>
+            <p>Generación de consultas y visualizaciones de Northwind.</p>
+            <a href="SQL_Northwind.html">Ver más</a>
+        </div>
+        <div class="project">
+            <h3>Pronóstico de Series de Tiempo (ARIMA)</h3>
+            <p>Pronóstico de Series de Tiempo de una Aerolínea (1949-1960).</p>
+            <a href="ARIMA.html">Ver más</a>
+        </div>
+    </div> <!-- fin de .projects -->
 
-    
+    <!-- Pie de página -->
+    <footer>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+            <p style="margin: 0;">Desarrollado por Christian Vera - 2025</p>
+            <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
+                <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; display: flex; align-items: center;">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" style="height: 18px; margin-right: 6px;">
+                    LinkedIn
+                </button>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Contenedores para Google Translate -->
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <!-- Botón flotante circular -->
+    <div id="gt-toggle" style="
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+        background: #0077B5;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        z-index: 10000;
+    ">🌐</div>
+
+    <script>
+        let currentLang = 'es';
+
+        function setGoogleTranslateLang(lang) {
+            const select = document.querySelector('.goog-te-combo');
+            if (select && select.value !== lang) {
+                select.value = lang;
+                select.dispatchEvent(new Event('change'));
+                currentLang = lang;
+            }
+        }
+
+        document.getElementById('gt-toggle').addEventListener('click', () => {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            setGoogleTranslateLang(currentLang);
+            document.getElementById('gt-toggle').textContent = currentLang === 'en' ? '🇺🇸' : '🌐';
+        });
+
+        // Refuerzo tras carga completa
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const select = document.querySelector('.goog-te-combo');
+                if (select) {
+                    Array.from(select.options).forEach(opt => {
+                        if (opt.value && !['es', 'en'].includes(opt.value)) {
+                            opt.remove();
+                        }
+                    });
+                }
+                // Ocultar banner (uso con cuidado)
+                const banner = document.querySelector('.goog-te-banner-frame');
+                if (banner) {
+                    banner.style.display = 'none';
+                    document.body.style.top = '0';
+                }
+            }, 1500);
+        });
+    </script>
 </body>
 </html>
