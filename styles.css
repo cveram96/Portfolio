@@ -24,7 +24,7 @@
   --shadow-md:  0 6px 20px rgba(0, 0, 0, 0.25);
   --shadow-lg:  0 12px 28px rgba(0, 0, 0, 0.3);
   --border-radius: 12px;
-  --nav-height: 1rem;
+  --nav-height: 3.4rem;   /* --- altura barra arriba --- */
   --max-width: 1200px;
   --container-spacing: 1rem;
 }
@@ -70,39 +70,41 @@ body {
 
 /* ===== NAVEGACIÓN ===== */
 nav {
-  background-color: #1a1c2e; /* ===== MENU COLOR ===== */
-  padding: 0.5rem 0;
+  background-color: #1a1c2e;
+  padding: 0.3rem 0; /* ← barra más baja */
   width: 100%;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
   position: sticky;
   top: 0;
   z-index: 1000;
-  backdrop-filter: blur(5px);
-  border-bottom: 1px solid rgba(71, 71, 99, 0.2);
+  backdrop-filter: blur(4px);
+  border-bottom: 1px solid rgba(70, 80, 120, 0.15);
 }
 
 nav ul {
   display: flex;
   justify-content: center;
+  align-items: center; /* ← centra el botón verticalmente dentro del nav */
   list-style: none;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-  max-width: var(--max-width);
+  gap: 1rem;
   margin: 0 auto;
   padding: 0 2rem;
+  max-width: var(--max-width);
+  height: 100%; /* ocupa todo el alto del nav */
 }
 
 nav ul li a {
   display: block;
-  padding: 0.6rem 1.4rem;
-  background: #ffffff; /* FONDO BLANCO PURO */
-  color: #1e1f29;  /* texto OSCURO para que se lea en fondo blanco (obligatorio por legibilidad) */
+  padding: 0.5rem 1.2rem; /* ← altura del botón controlada por padding */
+  background: #ffffff;
+  color: #1a1c2e;
   text-decoration: none;
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   font-weight: 600;
-  border-radius: 6px; /* ✅ esquinas sutiles, casi cuadradas */
+  border-radius: 5px;
   transition: var(--transition);
   border: 1px solid rgba(0, 0, 0, 0.1);
+  /* NO tiene height: 100% → mantiene su tamaño natural */
 }
 
 /* Al hacer hover: resalta con elegancia */
