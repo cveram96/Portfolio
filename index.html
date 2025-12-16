@@ -115,42 +115,52 @@
     ">🌐</div>
 
     <script>
-        let currentLang = 'es';
+  let currentLang = 'es';
 
-        function setGoogleTranslateLang(lang) {
-            const select = document.querySelector('.goog-te-combo');
-            if (select && select.value !== lang) {
-                select.value = lang;
-                select.dispatchEvent(new Event('change'));
-                currentLang = lang;
-            }
-        }
+  // Espera hasta que el selector de Google esté listo
+  function waitForGoogleSelector(callback, maxAttempts = 20, interval = 300) {
+    let attempts = 0;
+    const check = () => {
+      const select = document.querySelector('.goog-te-combo');
+      if (select && select.options.length > 1) {
+        callback(select);
+      } else if (attempts < maxAttempts) {
+        attempts++;
+        setTimeout(check, interval);
+      } else {
+        console.warn('Google Translate selector not found.');
+      }
+    };
+    check();
+  }
 
-        document.getElementById('gt-toggle').addEventListener('click', () => {
-            currentLang = currentLang === 'es' ? 'en' : 'es';
-            setGoogleTranslateLang(currentLang);
-            document.getElementById('gt-toggle').textContent = currentLang === 'en' ? '🇺🇸' : '🌐';
-        });
+  function setGoogleTranslateLang(lang) {
+    waitForGoogleSelector((select) => {
+      if (select.value !== lang) {
+        select.value = lang;
+        select.dispatchEvent(new Event('change'));
+        currentLang = lang;
+      }
+    });
+  }
 
-        // Refuerzo tras carga completa
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const select = document.querySelector('.goog-te-combo');
-                if (select) {
-                    Array.from(select.options).forEach(opt => {
-                        if (opt.value && !['es', 'en'].includes(opt.value)) {
-                            opt.remove();
-                        }
-                    });
-                }
-                // Ocultar banner (uso con cuidado)
-                const banner = document.querySelector('.goog-te-banner-frame');
-                if (banner) {
-                    banner.style.display = 'none';
-                    document.body.style.top = '0';
-                }
-            }, 1500);
-        });
-    </script>
+  // Acción del botón
+  document.getElementById('gt-toggle').addEventListener('click', () => {
+    currentLang = currentLang === 'es' ? 'en' : 'es';
+    setGoogleTranslateLang(currentLang);
+    document.getElementById('gt-toggle').textContent = currentLang === 'en' ? '🇺🇸' : '🌐';
+  });
+
+  // Limpiar idiomas no deseados cuando esté listo
+  waitForGoogleSelector((select) => {
+    Array.from(select.options).forEach(opt => {
+      if (opt.value && !['es', 'en', ''].includes(opt.value)) {
+        opt.remove();
+      }
+    });
+  });
+</script>
+
+
 </body>
 </html>
