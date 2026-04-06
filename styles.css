@@ -64,7 +64,9 @@ body {
 }
 
 .container + .container {
-  margin-top: calc(var(--container-spacing) * -0.66);
+  /* Avoid visual overlap between consecutive containers
+     (previously used a negative margin to create overlap). */
+  margin-top: var(--container-spacing);
 }
 
 
