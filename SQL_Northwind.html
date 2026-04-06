@@ -8,22 +8,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Barra de navegación -->
+    <!-- Navigation bar -->
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
         </ul>
     </nav>
 
-    <!-- Contenedor principal -->
+    <!-- Main container -->
     <div class="container">
         <div class="intro">
             <h1>SQL Queries - Northwind Database</h1>
             <h2>Data analysis and visualizations for decision making</h2>
             <ul>
-                <li>Dataset: Northwind (empresa simulada de ventas)</li>
-                <li>Tablas principales: Productos, Pedidos, Clientes, Empleados</li>
-                <li>Tecnologías: SQLite, Python, pandas, matplotlib, plotly</li>
+                <li>Dataset: Northwind (sample sales company)</li>
+                <li>Main tables: Products, Orders, Customers, Employees</li>
+                <li>Technologies: SQLite, Python, pandas, matplotlib, plotly</li>
             </ul>
         </div>
     </div>
@@ -36,27 +36,27 @@
             
             <h4>Database Structure:</h4>
             <ul class="two-columns">
-                <li><strong>EMPLOYEE:</strong> Información de empleados</li>
-                <li><strong>CATEGORY:</strong> Categorías de productos</li>
-                <li><strong>CUSTOMER:</strong> Datos de clientes</li>
-                <li><strong>SHIPPER:</strong> Empresas de transporte</li>
-                <li><strong>SUPPLIER:</strong> Proveedores de productos</li>
-                <li><strong>ORDER:</strong> Pedidos realizados</li>
-                <li><strong>PRODUCT:</strong> Productos disponibles</li>
-                <li><strong>ORDERDETAIL:</strong> Detalle de cada pedido</li>
-                <li><strong>REGION/TERRITORY:</strong> Regiones geográficas</li>
+                <li><strong>EMPLOYEE:</strong> Employee information</li>
+                <li><strong>CATEGORY:</strong> Product categories</li>
+                <li><strong>CUSTOMER:</strong> Customer data</li>
+                <li><strong>SHIPPER:</strong> Shipping companies</li>
+                <li><strong>SUPPLIER:</strong> Product suppliers</li>
+                <li><strong>ORDER:</strong> Orders placed</li>
+                <li><strong>PRODUCT:</strong> Available products</li>
+                <li><strong>ORDERDETAIL:</strong> Order line items</li>
+                <li><strong>REGION/TERRITORY:</strong> Geographic regions</li>
             </ul>
         </div>
 
         <div class="project-single">
             <h3>Main Queries Executed</h3>
             
-<h4>1. Productos más vendidos (por cantidad)</h4>
-<pre><code>SELECT p.ProductName, SUM(od.Quantity) AS TotalVendido
+<h4>1. Top-selling Products (by quantity)</h4>
+<pre><code>SELECT p.ProductName, SUM(od.Quantity) AS TotalSold
 FROM OrderDetail od
 JOIN Product p ON od.ProductId = p.Id
 GROUP BY p.ProductName
-ORDER BY TotalVendido DESC
+ORDER BY TotalSold DESC
 LIMIT 10;</code></pre>
 <br>
             <p>This query joins order details with products to sum how many units have been sold per product. It groups by product name and orders to show the top sellers.</p>
@@ -66,13 +66,13 @@ LIMIT 10;</code></pre>
     <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL1.PNG?raw=true" alt="Consulta SQL 1">
 </div>
 
-<h4>2. Clientes que más gastaron (por monto total)</h4>
-<pre><code>SELECT c.CompanyName, SUM(od.UnitPrice * od.Quantity) AS TotalGastado
+<h4>2. Top Customers by Total Spend</h4>
+<pre><code>SELECT c.CompanyName, SUM(od.UnitPrice * od.Quantity) AS TotalSpent
 FROM 'Order' o
 JOIN Customer c ON o.CustomerId = c.Id
 JOIN OrderDetail od ON o.Id = od.OrderId
 GROUP BY c.CompanyName
-ORDER BY TotalGastado DESC
+ORDER BY TotalSpent DESC
 LIMIT 10;</code></pre>
 <br>
             <p>Joins orders, customers and order details to calculate how much each customer has spent (price × quantity). It groups by company and shows the top spenders.</p>
@@ -82,13 +82,13 @@ LIMIT 10;</code></pre>
     <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/SQL_Northwind/SQL2.PNG?raw=true" alt="Consulta SQL 2">
 </div>
 
-<h4>3. Ventas mensuales (agrupadas por año-mes)</h4>
-<pre><code>SELECT strftime('%Y-%m', o.OrderDate) AS Mes,
-    SUM(od.UnitPrice * od.Quantity) AS VentasTotales
+<h4>3. Monthly Sales (grouped by year-month)</h4>
+<pre><code>SELECT strftime('%Y-%m', o.OrderDate) AS Month,
+    SUM(od.UnitPrice * od.Quantity) AS TotalSales
 FROM 'Order' o
 JOIN OrderDetail od ON o.Id = od.OrderId
-GROUP BY Mes
-ORDER BY Mes;</code></pre>
+    GROUP BY Month
+ORDER BY Month;</code></pre>
 <br>
             <p>Calculates monthly sales by joining orders and their details, grouping by year-month. Useful to analyze sales trends.</p>
 
@@ -98,15 +98,15 @@ ORDER BY Mes;</code></pre>
 </div>
 
 
-<h4>4. Empleado con más ventas generadas</h4>
-<pre><code>SELECT e.FirstName || ' ' || e.LastName AS Empleado,
-    SUM(od.UnitPrice * od.Quantity) AS VentasGeneradas
+<h4>4. Employee with Highest Sales Generated</h4>
+<pre><code>SELECT e.FirstName || ' ' || e.LastName AS Employee,
+    SUM(od.UnitPrice * od.Quantity) AS SalesGenerated
 FROM 'Order' o
 JOIN Employee e ON o.EmployeeId = e.Id
 JOIN OrderDetail od ON o.Id = od.OrderId
-GROUP BY Empleado
-ORDER BY VentasGeneradas DESC
-LIMIT 1;</code></pre>
+    GROUP BY Employee
+ORDER BY SalesGenerated DESC
+ LIMIT 1;</code></pre>
 <br>
             <p>Relates employees to the orders they handled and sums the value sold. Returns the employee with the highest sales generated.</p>
 
@@ -115,7 +115,7 @@ LIMIT 1;</code></pre>
     <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL4.PNG?raw=true" alt="Consulta SQL 4">
 </div>
 
-<h4>5. Productos con stock bajo (alerta de reorden)</h4>
+<h4>5. Low-stock Products (reorder alert)</h4>
 <pre><code>SELECT ProductName, UnitsInStock, ReorderLevel
 FROM Product
 WHERE UnitsInStock < ReorderLevel
@@ -128,13 +128,13 @@ ORDER BY UnitsInStock ASC;</code></pre>
     <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL5.PNG?raw=true" alt="Consulta SQL 5">
 </div>
 
-<h4>6. Categoría más vendida (por ingresos)</h4>
-<pre><code>SELECT c.CategoryName, SUM(od.UnitPrice * od.Quantity) AS VentasPorCategoria
+<h4>6. Top Categories by Revenue</h4>
+<pre><code>SELECT c.CategoryName, SUM(od.UnitPrice * od.Quantity) AS SalesByCategory
 FROM OrderDetail od
 JOIN Product p ON od.ProductId = p.Id
 JOIN Category c ON p.CategoryId = c.Id
 GROUP BY c.CategoryName
-ORDER BY VentasPorCategoria DESC
+ORDER BY SalesByCategory DESC
 LIMIT 5;</code></pre>
 <br>
             <p>Joins order details, products and categories to sum revenue by category. Shows the top categories.</p>
@@ -144,16 +144,16 @@ LIMIT 5;</code></pre>
     <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL6.PNG?raw=true" alt="Consulta SQL 6">
 </div>
 
-<h4>7. Proveedores más lentos (tiempo promedio de entrega)</h4>
-<pre><code>SELECT s.CompanyName AS Proveedor,
-    ROUND(AVG(julianday(o.ShippedDate) - julianday(o.OrderDate)), 2) AS DiasPromedio
+<h4>7. Slowest Suppliers (average delivery time)</h4>
+<pre><code>SELECT s.CompanyName AS Supplier,
+    ROUND(AVG(julianday(o.ShippedDate) - julianday(o.OrderDate)), 2) AS AvgDays
 FROM 'Order' o
 JOIN OrderDetail od ON o.Id = od.OrderId
 JOIN Product p ON od.ProductId = p.Id
 JOIN Supplier s ON p.SupplierId = s.Id
 WHERE o.ShippedDate IS NOT NULL
-GROUP BY Proveedor
-ORDER BY DiasPromedio DESC;</code></pre>
+GROUP BY Supplier
+ORDER BY AvgDays DESC;</code></pre>
 <br>
             <p>Computes the average time between order date and shipped date per supplier. Useful to detect delivery delays.</p>
 
@@ -162,9 +162,9 @@ ORDER BY DiasPromedio DESC;</code></pre>
     <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL7.PNG?raw=true" alt="Consulta SQL 7">
 </div>
 
-<h4>8. Clientes inactivos (sin pedidos en más de 1 año)</h4>
-<pre><code>SELECT c.CompanyName AS Cliente,
-    MAX(o.OrderDate) AS UltimoPedido
+<h4>8. Inactive Customers (no orders in over 1 year)</h4>
+<pre><code>SELECT c.CompanyName AS Customer,
+    MAX(o.OrderDate) AS LastOrder
 FROM Customer c
 LEFT JOIN 'Order' o ON c.Id = o.CustomerId
 GROUP BY c.Id
@@ -178,15 +178,15 @@ ORDER BY UltimoPedido;</code></pre>
     <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL8.PNG?raw=true" alt="Consulta SQL 8">
 </div>
 
-<h4>9. Relación entre ventas y stock (análisis de inventario)</h4>
+<h4>9. Sales vs Stock (inventory analysis)</h4>
 <pre><code>SELECT p.ProductName,
-       SUM(od.Quantity) AS UnidadesVendidas,
-       p.UnitsInStock AS StockActual,
-       (p.UnitsInStock - SUM(od.Quantity)) AS Diferencia
+    SUM(od.Quantity) AS UnitsSold,
+    p.UnitsInStock AS CurrentStock,
+    (p.UnitsInStock - SUM(od.Quantity)) AS Difference
 FROM OrderDetail od
 JOIN Product p ON od.ProductId = p.Id
 GROUP BY p.Id
-ORDER BY UnidadesVendidas DESC;</code></pre>
+ORDER BY UnitsSold DESC;</code></pre>
 <br>
             <p>Compares available stock with units sold per product. Useful to detect shortages or excess inventory.</p>
 
@@ -195,16 +195,16 @@ ORDER BY UnidadesVendidas DESC;</code></pre>
     <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL9.PNG?raw=true" alt="Consulta SQL 9">
 </div>
 
-<h4>10. Clientes y su frecuencia de compra</h4>
+<h4>10. Customers and Purchase Frequency</h4>
 
-<pre><code>SELECT c.CompanyName AS Cliente,
-       COUNT(o.Id) AS TotalPedidos,
-       SUM(od.UnitPrice * od.Quantity) AS MontoTotal
+<pre><code>SELECT c.CompanyName AS Customer,
+    COUNT(o.Id) AS TotalOrders,
+    SUM(od.UnitPrice * od.Quantity) AS TotalAmount
 FROM Customer c
 LEFT JOIN 'Order' o ON c.Id = o.CustomerId
 LEFT JOIN OrderDetail od ON o.Id = od.OrderId
-GROUP BY c.Id
-ORDER BY TotalPedidos DESC;</code></pre>
+    GROUP BY c.Id
+ORDER BY TotalOrders DESC;</code></pre>
 <br>
             <p>Lists customers with the number of orders placed and total amount spent. Uses <code>LEFT JOIN</code> to include customers without purchases.</p>
 
@@ -223,17 +223,17 @@ ORDER BY TotalPedidos DESC;</code></pre>
         <div class="project-single">
             <h3>Data Visualizations</h3>
             
-            <h4>Ventas Totales por Categoría</h4>
-            <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/SQL_Northwind/SQL_CATEGORY.png?raw=true" 
-                 alt="Gráfico de barras mostrando ventas por categoría"
+              <h4>Total Sales by Category</h4>
+              <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/SQL_Northwind/SQL_CATEGORY.png?raw=true" 
+                  alt="Bar chart showing sales by category"
                  style="max-width: 100%; height: auto; margin: 10px 0;">
             
-            <h4>Tendencia de Ventas Mensuales</h4>
-            <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/SQL_Northwind/SQL_MONTH.png?raw=true" 
-                 alt="Gráfico de línea mostrando tendencia de ventas mensuales"
+              <h4>Monthly Sales Trend</h4>
+              <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/SQL_Northwind/SQL_MONTH.png?raw=true" 
+                  alt="Line chart showing monthly sales trend"
                  style="max-width: 100%; height: auto; margin: 10px 0;">
             
-            <h4>Ventas por País</h4>
+            <h4>Sales by Country</h4>
             <iframe src="https://cveram96.github.io/Portfolio/MAP.html" 
                 style="width:100%; height:500px; border:none;"></iframe>
 
@@ -242,33 +242,33 @@ ORDER BY TotalPedidos DESC;</code></pre>
         <div class="project-single">
             <h3>Key Findings</h3>
             <ul>
-                <li>Identificación de los productos más vendidos y categorías con mayor rentabilidad</li>
-                <li>Segmentación de clientes por volumen de compras y frecuencia</li>
-                <li>Análisis del desempeño de empleados en generación de ventas</li>
-                <li>Detección de problemas en la cadena de suministro (proveedores más lentos)</li>
-                <li>Identificación de productos con bajo stock que requieren reorden</li>
-                <li>Clasificación de clientes inactivos para campañas de reactivación</li>
-                <li>Análisis geográfico de ventas y distribución de clientes</li>
+                <li>Identification of top-selling products and most profitable categories</li>
+                <li>Customer segmentation by purchase volume and frequency</li>
+                <li>Analysis of employee performance in generating sales</li>
+                <li>Detection of supply chain issues (slow suppliers)</li>
+                <li>Identification of low-stock products that require reordering</li>
+                <li>Classification of inactive customers for reactivation campaigns</li>
+                <li>Geographic analysis of sales and customer distribution</li>
             </ul>
         </div>
 
         <div class="project-single">
             <h3>Conclusions</h3>
             
-            <h4>Beneficios del Análisis</h4>
+            <h4>Analysis Benefits</h4>
             <ul>
-                <li>Optimización del inventario basada en patrones de venta</li>
-                <li>Mejora en la gestión de relaciones con clientes clave</li>
-                <li>Identificación de oportunidades para aumentar ventas</li>
-                <li>Evaluación del desempeño de proveedores y empleados</li>
-                <li>Detección temprana de problemas operacionales</li>
+                <li>Inventory optimization based on sales patterns</li>
+                <li>Improved management of relationships with key customers</li>
+                <li>Identification of opportunities to increase sales</li>
+                <li>Evaluation of supplier and employee performance</li>
+                <li>Early detection of operational issues</li>
             </ul>
             
         
         </div>
     </div>
 
-    <!-- Sección de archivos del proyecto -->
+    <!-- Project files section -->
     <div class="container">
         <div class="project-single">
             <h3>Project Files</h3>

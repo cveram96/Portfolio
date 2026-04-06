@@ -8,14 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Barra de navegación -->
+    <!-- Navigation bar -->
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
         </ul>
     </nav>
 
-    <!-- Contenedor principal -->
+    <!-- Main container -->
     <div class="container">
         <div class="intro">
             <h1>Customer Segmentation with K-Means</h1>
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <!-- Sección de contenido principal -->
+    <!-- Main content section -->
     <div class="container">
         <div class="project-single">
             <h3>Project Context</h3>
@@ -42,38 +42,38 @@
                 <li><strong>Quantity:</strong> Cantidad vendida por transacción</li>
                 <li><strong>InvoiceDate:</strong> Fecha y hora de la transacción</li>
                 <li><strong>UnitPrice:</strong> Precio unitario del producto</li>
-                <li><strong>CustomerID:</strong> Identificador del cliente (25% faltante)</li>
-                <li><strong>Country:</strong> País de origen de la transacción</li>
+                <li><strong>CustomerID:</strong> Customer identifier (25% missing)</li>
+                <li><strong>Country:</strong> Country of the transaction</li>
             </ul>
         </div>
 
         <div class="project-single">
             <h3>Detailed Methodology</h3>
             
-            <h4>1. Análisis Exploratorio (EDA)</h4>
+            <h4>1. Exploratory Data Analysis (EDA)</h4>
             <ul>
                 <li>Filtrado de transacciones canceladas y valores no válidos</li>
                 <li>Identificación de valores atípicos en cantidades y precios</li>
-                <li>Distribución geográfica de ventas (73% Reino Unido)</li>
-                <li>Análisis de Pareto: 25.6% clientes concentran 80% de compras</li>
+                <li>Geographic distribution of sales (73% United Kingdom)</li>
+                <li>Pareto analysis: 25.6% of customers account for 80% of purchases</li>
             </ul>
             
-            <h4>2. Preprocesamiento</h4>
+            <h4>2. Preprocessing</h4>
             <ul>
                 <li>Cálculo de métricas RFM:
                     <ul>
-                        <li><strong>Recency:</strong> Días desde última compra</li>
-                        <li><strong>Frequency:</strong> Número de compras únicas</li>
-                        <li><strong>Monetary:</strong> Gasto total por cliente</li>
+                        <li><strong>Recency:</strong> Days since last purchase</li>
+                        <li><strong>Frequency:</strong> Number of unique purchases</li>
+                        <li><strong>Monetary:</strong> Total spend per customer</li>
                     </ul>
                 </li>
-                <li>Normalización de características con MinMaxScaler</li>
-                <li>Filtrado de 25% transacciones sin CustomerID</li>
+                <li>Feature normalization with MinMaxScaler</li>
+                <li>Filtered out 25% of transactions without CustomerID</li>
             </ul>
             
-            <h4>3. Modelado con K-Means</h4>
+            <h4>3. Modeling with K-Means</h4>
             <ul>
-                <li>Determinación óptima de clusters con método del codo (K=3)</li>
+                <li>Optimal number of clusters determined with elbow method (K=3)</li>
                 <li>Configuración:
                     <ul>
                         <li>Inicialización k-means++</li>
@@ -97,7 +97,7 @@
                         <div class="metric-item">
                             <div class="metric-title">Silhouette Score</div>
                             <div class="metric-value">0.6458</div>
-                            <div class="metric-description">Indica clusters bien definidos y separados</div>
+                            <div class="metric-description">Indicates well-defined and well-separated clusters</div>
                             <div class="progress-container">
                                 <div class="progress-bar" style="width: 64.58%"></div>
                             </div>
@@ -105,12 +105,12 @@
                         <div class="metric-item">
                             <div class="metric-title">Davies-Bouldin</div>
                             <div class="metric-value">0.5043</div>
-                            <div class="metric-description">Baja similitud entre clusters (mejor &lt;1)</div>
+                            <div class="metric-description">Low similarity between clusters (better &lt;1)</div>
                         </div>
                         <div class="metric-item">
                             <div class="metric-title">Calinski-Harabasz</div>
                             <div class="metric-value">15465.7</div>
-                            <div class="metric-description">Excelente separación entre clusters</div>
+                            <div class="metric-description">Excellent separation between clusters</div>
                         </div>
                     </div>
                 </div>
@@ -123,26 +123,26 @@
                         <div class="metric-item">
                             <div class="metric-title">Cluster 0: Valuable</div>
                             <ul>
-                                <li>67% de clientes</li>
-                                <li>Recency: 31 días</li>
-                                <li>Frequency: 5.5 compras</li>
+                                <li>67% of customers</li>
+                                <li>Recency: 31 days</li>
+                                <li>Frequency: 5.5 purchases</li>
                                 <li>Monetary: £370</li>
                             </ul>
                         </div>
                         <div class="metric-item">
-                            <div class="metric-title">Cluster 1: Inactivos</div>
+                            <div class="metric-title">Cluster 1: Inactive</div>
                             <ul>
-                                <li>Recency: 293 días</li>
-                                <li>Frequency: 1.4 compras</li>
+                                <li>Recency: 293 days</li>
+                                <li>Frequency: 1.4 purchases</li>
                                 <li>Monetary: £83</li>
                             </ul>
                         </div>
                         <div class="metric-item">
-                            <div class="metric-title">Cluster 2: Ocasionales</div>
+                            <div class="metric-title">Cluster 2: Occasional</div>
                             <ul>
-                                <li>18.6% de clientes</li>
-                                <li>Recency: 152 días</li>
-                                <li>Frequency: 2.2 compras</li>
+                                <li>18.6% of customers</li>
+                                <li>Recency: 152 days</li>
+                                <li>Frequency: 2.2 purchases</li>
                                 <li>Monetary: £139</li>
                             </ul>
                         </div>
@@ -153,61 +153,61 @@
 
             <h3>Elbow Method and Clusters</h3>
             <div>
-                <h4>Segmentos identificados:</h4>
-                <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Kmeans/Clusters_Kmeans.png?raw=true" 
-                     alt="Clústers Identificados RFM"
+                 <h4>Identified segments:</h4>
+                 <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Kmeans/Clusters_Kmeans.png?raw=true" 
+                     alt="Identified RFM clusters"
                      style="max-width: 100%; height: auto; margin: 10px 0;">
                 
-                <h4>Método del codo:</h4>
-                <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Kmeans/Codo_Kmeans.png?raw=true" 
-                     alt="Cantidad óptima de K."
+                 <h4>Elbow method:</h4>
+                 <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Kmeans/Codo_Kmeans.png?raw=true" 
+                     alt="Optimal number of K"
                      style="max-width: 100%; height: auto; margin: 10px 0;">
             </div>
         </div>
     </div>
 
 
-<!-- Sección de Conclusiones y Recomendaciones -->
+<!-- Conclusions and Recommendations section -->
 <div class="container">
     <div class="project-single">
-        <h3>Conclusiones y Recomendaciones</h3>
+        <h3>Conclusions and Recommendations</h3>
         
-        <h3>Hallazgos Clave</h3>
+        <h3>Key Findings</h3>
         <ul>
-            <li>El 67% de los clientes son valiosos (compra reciente, alta frecuencia y gasto)</li>
-            <li>Existe un 14.4% de clientes inactivos que requieren estrategias de reactivación</li>
-            <li>Los clientes ocasionales (18.6%) representan oportunidad para aumentar frecuencia</li>
-            <li>El modelo muestra excelente calidad según métricas de validación</li>
+            <li>67% of customers are valuable (recent purchases, high frequency and spending)</li>
+            <li>14.4% of customers are inactive and require reactivation strategies</li>
+            <li>Occasional customers (18.6%) represent opportunities to increase frequency</li>
+            <li>The model shows excellent quality according to validation metrics</li>
         </ul>
        
-        <h3>Recomendaciones por Segmento</h3>
+        <h3>Recommendations by Segment</h3>
 
-        <h4>Cluster 0: Clientes Valiosos</h4>
+            <h4>Cluster 0: Valuable Customers</h4>
         <ul>
             <li>Programas de beneficios exclusivos (envíos gratis)</li>
             <li>Upselling de productos premium</li>
             <li>Paquetes de productos complementarios</li>
         </ul>
 
-        <h4>Cluster 1: Clientes Inactivos</h4>
+            <h4>Cluster 1: Inactive Customers</h4>
         <ul>
             <li>Campañas de reactivación con descuentos</li>
             <li>Encuestas de satisfacción</li>
             <li>Evaluación costo-beneficio de retención</li>
         </ul>
 
-        <h4>Cluster 2: Clientes Ocasionales</h4>
+            <h4>Cluster 2: Occasional Customers</h4>
         <ul>
             <li>Programas de fidelización por frecuencia</li>
             <li>Cross-selling con productos relacionados</li>
             <li>Ofertas personalizadas basadas en historial</li>
         </ul>
 
-        <h4>Mejoras Futuras</h4>
+            <h4>Future Improvements</h4>
         <ul>
-            <li>Categorizar productos en grupos más amplios para mejor análisis</li>
-            <li>Incorporar datos de precios y descuentos para análisis de sensibilidad</li>
-            <li>Integrar variables demográficas para segmentación más precisa</li>
+            <li>Categorize products into broader groups for better analysis</li>
+            <li>Include price and discount data for sensitivity analysis</li>
+            <li>Integrate demographic variables for more precise segmentation</li>
         </ul>
     </div>
 </div>
@@ -216,11 +216,11 @@
 
 
 
-    <!-- Sección de archivos del proyecto -->
+    <!-- Project files section -->
     <div class="container">
         <div class="project-single">
-            <h3>Archivos del Proyecto</h3>
-            <p>Puedes explorar todos los archivos, datasets y código fuente de este proyecto:</p>
+            <h3>Project Files</h3>
+            <p>You can explore all files, datasets and source code for this project:</p>
             
             <div class="files-link-container">
                 <a href="https://github.com/cveram96/Portfolio/blob/main/Files/kmeans.ipynb" 
