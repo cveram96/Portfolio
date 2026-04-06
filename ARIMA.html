@@ -15,7 +15,7 @@
         </ul>
     </nav>
 
-    <!-- Main container -->
+    <!-- Intro Section -->
     <div class="container">
         <div class="intro">
             <h1>Time Series Forecasting (ARIMA)</h1>
@@ -29,13 +29,13 @@
         </div>
     </div>
 
-    <!-- Main content section -->
-    <div class="project-single">
-            <!-- Main content section -->
-            <h3>Project Context</h3>
+    <!-- Project Context Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Project Context</h2>
             <p>Analysis of the classic airline passengers time series (1949-1960) using ARIMA models for forecasting, evaluating stationarity, autocorrelation and optimal parameters.</p>
             
-            <h4>Main characteristics:</h4>
+            <h3>Main characteristics:</h3>
             <ul class="two-columns">
                 <li><strong>Clear trend:</strong> Steady increase in passenger counts</li>
                 <li><strong>Annual seasonality:</strong> Repeating pattern every 12 months</li>
@@ -43,11 +43,14 @@
                 <li><strong>Autocorrelation:</strong> Strong patterns in ACF/PACF</li>
             </ul>
         </div>
+    </div>
 
-        <div class="project-single">
-            <h3>Detailed Methodology</h3>
+    <!-- Detailed Methodology Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Detailed Methodology</h2>
             
-            <h4>1. Exploratory Data Analysis (EDA)</h4>
+            <h3>1. Exploratory Data Analysis (EDA)</h3>
             <ul>
                 <li>Visualization of trend and seasonality</li>
                 <li>Augmented Dickey-Fuller (ADF) test for stationarity</li>
@@ -55,7 +58,7 @@
                 <li>Differencing to achieve stationarity</li>
             </ul>
             
-            <h4>2. ARIMA modeling</h4>
+            <h3>2. ARIMA modeling</h3>
             <ul>
                 <li>Parameter selection (p,d,q) based on ACF/PACF</li>
                 <li>Fitting ARIMA(2,1,2) model</li>
@@ -63,9 +66,12 @@
                 <li>Evaluation with metrics: MAE, RMSE, MAPE</li>
             </ul>
         </div>
+    </div>
 
-        <div class="project-single">
-            <h3>Results and Findings</h3>
+    <!-- Results and Findings Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Results and Findings</h2>
             
             <div class="results-container">
                 <!-- Metrics card -->
@@ -74,23 +80,23 @@
                         <h4>ARIMA(2,1,2) Model Metrics</h4>
                     </div>
                     <div class="metric-card-content">
-                                <div class="metric-item">
-                                    <div class="metric-title">Mean Absolute Error (MAE)</div>
-                                    <div class="metric-value">41.83 passengers</div>
+                        <div class="metric-item">
+                            <div class="metric-title">Mean Absolute Error (MAE)</div>
+                            <div class="metric-value">41.83 passengers</div>
                             <div class="progress-container">
                                 <div class="progress-bar" style="width: 85%"></div>
                             </div>
                         </div>
-                                <div class="metric-item">
-                                    <div class="metric-title">Root Mean Squared Error (RMSE)</div>
-                                    <div class="metric-value">55.22 passengers</div>
+                        <div class="metric-item">
+                            <div class="metric-title">Root Mean Squared Error (RMSE)</div>
+                            <div class="metric-value">55.22 passengers</div>
                             <div class="progress-container">
                                 <div class="progress-bar" style="width: 75%"></div>
                             </div>
                         </div>
-                                <div class="metric-item">
-                                    <div class="metric-title">Mean Absolute Percentage Error (MAPE)</div>
-                                    <div class="metric-value">8.22%</div>
+                        <div class="metric-item">
+                            <div class="metric-title">Mean Absolute Percentage Error (MAPE)</div>
+                            <div class="metric-value">8.22%</div>
                             <div class="progress-container">
                                 <div class="progress-bar" style="width: 92%"></div>
                             </div>
@@ -99,7 +105,7 @@
                 </div>
                 
                 <!-- Parameters card -->
-                    <div class="influence-card">
+                <div class="influence-card">
                     <div class="metric-card-header">
                         <h4>Model Parameters</h4>
                     </div>
@@ -128,42 +134,44 @@
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
+    </div>
 
-<div class="project-single">
-            <!-- Analysis images -->
-            <h3>Key Visualizations</h3>
-            <div>
-                <h4>Autocorrelation (ACF and PACF):</h4>
-                <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/ARIMA/ARIMA.png?raw=true" 
-                     alt="ACF and PACF plots"
-                     style="max-width: 100%; height: auto; margin: 10px 0;">
-    
-  <div style="margin-bottom: 20px;">
-    <h4>ACF interpretation:</h4>
-    <ul style="margin-top: 10px; margin-bottom: 15px; line-height: 1.6;">
-        <li>Shows significant correlations when bars exceed the shaded area</li>
-        <li>Nearby time points exhibit strong relation (first lags highlighted)</li>
-        <li>Repeating pattern every 12 months indicates annual seasonality</li>
-        <li>Gradual decay in bars indicates decreasing influence of older observations</li>
-    </ul>
-</div>
+    <!-- Key Visualizations Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Key Visualizations</h2>
+            
+            <h3>Autocorrelation (ACF and PACF):</h3>
+            <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/ARIMA/ARIMA.png?raw=true" 
+                 alt="ACF and PACF plots"
+                 style="max-width: 100%; height: auto; margin: 20px 0;">
+            
+            <h3>ACF interpretation:</h3>
+            <ul>
+                <li>Shows significant correlations when bars exceed the shaded area</li>
+                <li>Nearby time points exhibit strong relation (first lags highlighted)</li>
+                <li>Repeating pattern every 12 months indicates annual seasonality</li>
+                <li>Gradual decay in bars indicates decreasing influence of older observations</li>
+            </ul>
 
-<div style="margin-bottom: 20px;">
-    <h4>PACF interpretation:</h4>
-    <ul style="margin-top: 10px; line-height: 1.6;">
-        <li>Isolates direct relationships between values by removing intermediate effects</li>
-        <li>Significant peaks at lag 1 (previous month) and lag 12 (same month previous year)</li>
-        <li>Other bars inside the shaded area indicate non-significant correlations</li>
-        <li>Confirms the strongest dependence is with the immediate prior observation and the annual equivalent</li>
-    </ul>
-</div>
- </div> 
+            <h3>PACF interpretation:</h3>
+            <ul>
+                <li>Isolates direct relationships between values by removing intermediate effects</li>
+                <li>Significant peaks at lag 1 (previous month) and lag 12 (same month previous year)</li>
+                <li>Other bars inside the shaded area indicate non-significant correlations</li>
+                <li>Confirms the strongest dependence is with the immediate prior observation and the annual equivalent</li>
+            </ul>
 
-             <iframe src="https://cveram96.github.io/Portfolio/arima_animation.html" 
-                style="width:100%; height:520px; border:none;"></iframe>
+            <iframe src="https://cveram96.github.io/Portfolio/arima_animation.html" 
+                style="width:100%; height:520px; border:none; margin-top: 20px;"></iframe>
+        </div>
+    </div>
 
-            <h3>Key findings</h3>
+    <!-- Key Findings Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Key Findings</h2>
             <ul>
                 <li>The series required differencing (d=1) to achieve stationarity</li>
                 <li>Clear seasonal pattern with annual periodicity (12 months)</li>
@@ -172,11 +180,14 @@
                 <li>Good predictive performance (MAPE 8.22%)</li>
             </ul>
         </div>
+    </div>
 
-        <div class="project-single">
-            <h3>Conclusions and Recommendations</h3>
+    <!-- Conclusions and Recommendations Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Conclusions and Recommendations</h2>
             
-            <h4>Model results</h4>
+            <h3>Model results</h3>
             <ul>
                 <li><strong>ARIMA(2,1,2)</strong> showed a good fit to the data</li>
                 <li>Significant AR and MA coefficients (p &lt; 0.05)</li>
@@ -184,13 +195,13 @@
                 <li>Acceptable prediction accuracy (MAPE 8.22%)</li>
             </ul>
             
-            <h4>Limitations</h4>
+            <h3>Limitations</h3>
             <ul>
                 <li>Heteroscedasticity in residuals (non-constant variance)</li>
                 <li>Seasonal pattern not fully modeled</li>
             </ul>
             
-            <h4>Future improvements</h4>
+            <h3>Future improvements</h3>
             <ul>
                 <li>Try SARIMA models to capture seasonality</li>
                 <li>Experiment with logarithmic transformations</li>
@@ -198,6 +209,22 @@
                 <li>Compare with other models (ETS, Neural Networks)</li>
             </ul>
         </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+            <p style="margin: 0;">Developed by Christian Vera - 2025</p>
+            <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
+                <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">
+                    LinkedIn
+                </button>
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>
     </div>
 
     <!-- Project files section -->

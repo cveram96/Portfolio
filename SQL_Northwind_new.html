@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Queries - Northwind Database</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+
+    <!-- Intro Section -->
+    <div class="container">
+        <div class="intro">
+            <h1>SQL Queries - Northwind Database</h1>
+            <h2>Data analysis and visualizations for decision making</h2>
+            <ul>
+                <li>Dataset: Northwind (sample sales company)</li>
+                <li>Main tables: Products, Orders, Customers, Employees</li>
+                <li>Technologies: SQLite, Python, pandas, matplotlib, plotly</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Project Context Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Project Context</h2>
+            <p>Analysis of the Northwind database, a classic dataset that simulates a sales company (products, orders, customers and employees). Using SQL queries and Python visualizations, we explore sales patterns, employee performance, table relationships and key metrics for business decisions.</p>
+            
+            <h3>Database Structure:</h3>
+            <ul class="two-columns">
+                <li><strong>EMPLOYEE:</strong> Employee information</li>
+                <li><strong>CATEGORY:</strong> Product categories</li>
+                <li><strong>CUSTOMER:</strong> Customer data</li>
+                <li><strong>SHIPPER:</strong> Shipping companies</li>
+                <li><strong>SUPPLIER:</strong> Product suppliers</li>
+                <li><strong>ORDER:</strong> Orders placed</li>
+                <li><strong>PRODUCT:</strong> Available products</li>
+                <li><strong>ORDERDETAIL:</strong> Order line items</li>
+                <li><strong>REGION/TERRITORY:</strong> Geographic regions</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- SQL Queries Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Main Queries Executed</h2>
+            
+            <h3>1. Top-selling Products (by quantity)</h3>
+            <pre><code>SELECT p.ProductName, SUM(od.Quantity) AS TotalSold
+FROM OrderDetail od
+JOIN Product p ON od.ProductId = p.Id
+GROUP BY p.ProductName
+ORDER BY TotalSold DESC
+LIMIT 10;</code></pre>
+            <p>This query joins order details with products to sum how many units have been sold per product. It groups by product name and orders to show the top sellers.</p>
+            <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL1.PNG?raw=true" alt="SQL Query 1" style="max-width: 100%; height: auto; margin: 15px 0;">
+
+            <h3>2. Top Customers by Total Spend</h3>
+            <pre><code>SELECT c.CompanyName, SUM(od.UnitPrice * od.Quantity) AS TotalSpent
+FROM 'Order' o
+JOIN Customer c ON o.CustomerId = c.Id
+JOIN OrderDetail od ON o.Id = od.OrderId
+GROUP BY c.CompanyName
+ORDER BY TotalSpent DESC
+LIMIT 10;</code></pre>
+            <p>Joins orders, customers and order details to calculate how much each customer has spent (price × quantity). It groups by company and shows the top spenders.</p>
+            <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/SQL_Northwind/SQL2.PNG?raw=true" alt="SQL Query 2" style="max-width: 100%; height: auto; margin: 15px 0;">
+
+            <h3>3. Monthly Sales (grouped by year-month)</h3>
+            <pre><code>SELECT strftime('%Y-%m', o.OrderDate) AS Month,
+    SUM(od.UnitPrice * od.Quantity) AS TotalSales
+FROM 'Order' o
+JOIN OrderDetail od ON o.Id = od.OrderId
+GROUP BY Month
+ORDER BY Month;</code></pre>
+            <p>Calculates monthly sales by joining orders and their details, grouping by year-month. Useful to analyze sales trends.</p>
+            <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL3.PNG?raw=true" alt="SQL Query 3" style="max-width: 100%; height: auto; margin: 15px 0;">
+
+            <h3>4. Employee with Highest Sales Generated</h3>
+            <pre><code>SELECT e.FirstName || ' ' || e.LastName AS Employee,
+    SUM(od.UnitPrice * od.Quantity) AS SalesGenerated
+FROM 'Order' o
+JOIN Employee e ON o.EmployeeId = e.Id
+JOIN OrderDetail od ON o.Id = od.OrderId
+GROUP BY Employee
+ORDER BY SalesGenerated DESC
+LIMIT 1;</code></pre>
+            <p>Relates employees to the orders they handled and sums the value sold. Returns the employee with the highest sales generated.</p>
+            <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL4.PNG?raw=true" alt="SQL Query 4" style="max-width: 100%; height: auto; margin: 15px 0;">
+
+            <h3>5. Low-stock Products (reorder alert)</h3>
+            <pre><code>SELECT ProductName, UnitsInStock, ReorderLevel
+FROM Product
+WHERE UnitsInStock &lt; ReorderLevel
+ORDER BY UnitsInStock ASC;</code></pre>
+            <p>Shows products whose current stock is below the reorder level. Useful to identify items that need replenishment.</p>
+            <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL5.PNG?raw=true" alt="SQL Query 5" style="max-width: 100%; height: auto; margin: 15px 0;">
+
+            <h3>6. Top Categories by Revenue</h3>
+            <pre><code>SELECT c.CategoryName, SUM(od.UnitPrice * od.Quantity) AS SalesByCategory
+FROM OrderDetail od
+JOIN Product p ON od.ProductId = p.Id
+JOIN Category c ON p.CategoryId = c.Id
+GROUP BY c.CategoryName
+ORDER BY SalesByCategory DESC
+LIMIT 5;</code></pre>
+            <p>Joins order details, products and categories to sum revenue by category. Shows the top categories.</p>
+            <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL6.PNG?raw=true" alt="SQL Query 6" style="max-width: 100%; height: auto; margin: 15px 0;">
+
+            <h3>7. Slowest Suppliers (average delivery time)</h3>
+            <pre><code>SELECT s.CompanyName AS Supplier,
+    ROUND(AVG(julianday(o.ShippedDate) - julianday(o.OrderDate)), 2) AS AvgDays
+FROM 'Order' o
+JOIN OrderDetail od ON o.Id = od.OrderId
+JOIN Product p ON od.ProductId = p.Id
+JOIN Supplier s ON p.SupplierId = s.Id
+WHERE o.ShippedDate IS NOT NULL
+GROUP BY Supplier
+ORDER BY AvgDays DESC;</code></pre>
+            <p>Computes the average time between order date and shipped date per supplier. Useful to detect delivery delays.</p>
+            <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL7.PNG?raw=true" alt="SQL Query 7" style="max-width: 100%; height: auto; margin: 15px 0;">
+
+            <h3>8. Inactive Customers (no orders in over 1 year)</h3>
+            <pre><code>SELECT c.CompanyName AS Customer,
+    MAX(o.OrderDate) AS LastOrder
+FROM Customer c
+LEFT JOIN 'Order' o ON c.Id = o.CustomerId
+GROUP BY c.Id
+HAVING LastOrder &lt; date('now', '-1 year') OR LastOrder IS NULL
+ORDER BY LastOrder;</code></pre>
+            <p>Uses LEFT JOIN to include customers without orders. Filters those who haven't purchased in more than one year or never purchased.</p>
+            <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL8.PNG?raw=true" alt="SQL Query 8" style="max-width: 100%; height: auto; margin: 15px 0;">
+
+            <h3>9. Sales vs Stock (inventory analysis)</h3>
+            <pre><code>SELECT p.ProductName,
+    SUM(od.Quantity) AS UnitsSold,
+    p.UnitsInStock AS CurrentStock,
+    (p.UnitsInStock - SUM(od.Quantity)) AS Difference
+FROM OrderDetail od
+JOIN Product p ON od.ProductId = p.Id
+GROUP BY p.Id
+ORDER BY UnitsSold DESC;</code></pre>
+            <p>Compares available stock with units sold per product. Useful to detect shortages or excess inventory.</p>
+            <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL9.PNG?raw=true" alt="SQL Query 9" style="max-width: 100%; height: auto; margin: 15px 0;">
+
+            <h3>10. Customers and Purchase Frequency</h3>
+            <pre><code>SELECT c.CompanyName AS Customer,
+    COUNT(o.Id) AS TotalOrders,
+    SUM(od.UnitPrice * od.Quantity) AS TotalAmount
+FROM Customer c
+LEFT JOIN 'Order' o ON c.Id = o.CustomerId
+LEFT JOIN OrderDetail od ON o.Id = od.OrderId
+GROUP BY c.Id
+ORDER BY TotalOrders DESC;</code></pre>
+            <p>Lists customers with the number of orders placed and total amount spent. Uses LEFT JOIN to include customers without purchases.</p>
+            <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL10.PNG?raw=true" alt="SQL Query 10" style="max-width: 100%; height: auto; margin: 15px 0;">
+        </div>
+    </div>
+
+    <!-- Visualizations Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Data Visualizations</h2>
+            
+            <h3>Total Sales by Category</h3>
+            <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/SQL_Northwind/SQL_CATEGORY.png?raw=true" 
+                 alt="Bar chart showing sales by category"
+                 style="max-width: 100%; height: auto; margin: 20px 0;">
+            
+            <h3>Monthly Sales Trend</h3>
+            <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/SQL_Northwind/SQL_MONTH.png?raw=true" 
+                 alt="Line chart showing monthly sales trend"
+                 style="max-width: 100%; height: auto; margin: 20px 0;">
+            
+            <h3>Sales by Country (Geographic Map)</h3>
+            <iframe src="https://cveram96.github.io/Portfolio/MAP.html" 
+                style="width:100%; height:500px; border:none;"></iframe>
+        </div>
+    </div>
+
+    <!-- Key Findings Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Key Findings</h2>
+            <ul>
+                <li>Identification of top-selling products and most profitable categories</li>
+                <li>Customer segmentation by purchase volume and frequency</li>
+                <li>Analysis of employee performance in generating sales</li>
+                <li>Detection of supply chain issues (slow suppliers)</li>
+                <li>Identification of low-stock products that require reordering</li>
+                <li>Classification of inactive customers for reactivation campaigns</li>
+                <li>Geographic analysis of sales and customer distribution</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Conclusions Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Conclusions</h2>
+            
+            <h3>Analysis Benefits</h3>
+            <ul>
+                <li>Inventory optimization based on sales patterns</li>
+                <li>Improved management of relationships with key customers</li>
+                <li>Identification of opportunities to increase sales</li>
+                <li>Evaluation of supplier and employee performance</li>
+                <li>Early detection of operational issues</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Project Files Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Project Files</h2>
+            <p>You can explore the project source code:</p>
+            
+            <div class="files-link-container">
+                <a href="https://github.com/cveram96/Portfolio/blob/main/Files/SQL_Northwind.ipynb" 
+                   class="project-files-link" 
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    View full notebook on Colab
+                </a>
+                
+                <div class="file-types">
+                    <span class="file-badge">Jupyter Notebook</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+            <p style="margin: 0;">Developed by Christian Vera - 2025</p>
+        
+            <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
+                <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">LinkedIn</button>
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>

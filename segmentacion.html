@@ -15,7 +15,7 @@
         </ul>
     </nav>
 
-    <!-- Main container -->
+    <!-- Intro Section -->
     <div class="container">
         <div class="intro">
             <h1>Customer Segmentation with K-Means</h1>
@@ -29,13 +29,13 @@
         </div>
     </div>
 
-    <!-- Main content section -->
+    <!-- Project Context Section -->
     <div class="container">
-        <div class="project-single">
-            <h3>Project Context</h3>
+        <div class="section-block">
+            <h2>Project Context</h2>
             <p>Sales transactions analysis to segment customers using unsupervised techniques (K-Means) based on RFM metrics (Recency, Frequency, Monetary).</p>
             
-            <h4>Main Variables:</h4>
+            <h3>Main Variables:</h3>
             <ul class="two-columns">
                 <li><strong>InvoiceNo:</strong> Transaction number (canceled transactions filtered)</li>
                 <li><strong>StockCode:</strong> Product identifier</li>
@@ -46,11 +46,14 @@
                 <li><strong>Country:</strong> Country of the transaction</li>
             </ul>
         </div>
+    </div>
 
-        <div class="project-single">
-            <h3>Detailed Methodology</h3>
+    <!-- Detailed Methodology Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Detailed Methodology</h2>
             
-            <h4>1. Exploratory Data Analysis (EDA)</h4>
+            <h3>1. Exploratory Data Analysis (EDA)</h3>
             <ul>
                 <li>Filtering canceled transactions and invalid values</li>
                 <li>Identification of outliers in quantities and prices</li>
@@ -58,7 +61,7 @@
                 <li>Pareto analysis: 25.6% of customers account for 80% of purchases</li>
             </ul>
             
-            <h4>2. Preprocessing</h4>
+            <h3>2. Preprocessing</h3>
             <ul>
                 <li>Calculation of RFM metrics:
                     <ul>
@@ -71,7 +74,7 @@
                 <li>Filtered out 25% of transactions without CustomerID</li>
             </ul>
             
-            <h4>3. Modeling with K-Means</h4>
+            <h3>3. Modeling with K-Means</h3>
             <ul>
                 <li>Optimal number of clusters determined with elbow method (K=3)</li>
                 <li>Configuration:
@@ -84,13 +87,16 @@
                 <li>Evaluation with multiple validation metrics</li>
             </ul>
         </div>
+    </div>
 
-        <div class="project-single">
-            <h3>Results and Findings</h3>
+    <!-- Results and Findings Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Results and Findings</h2>
             
             <div class="results-container">
                 <div class="metric-card">
-                        <div class="metric-card-header">
+                    <div class="metric-card-header">
                         <h4>Model Metrics</h4>
                     </div>
                     <div class="metric-card-content">
@@ -149,77 +155,75 @@
                     </div>
                 </div>
             </div>
-            
-
-            <h3>Elbow Method and Clusters</h3>
-            <div>
-                 <h4>Identified segments:</h4>
-                 <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Kmeans/Clusters_Kmeans.png?raw=true" 
-                     alt="Identified RFM clusters"
-                     style="max-width: 100%; height: auto; margin: 10px 0;">
-                
-                 <h4>Elbow method:</h4>
-                 <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Kmeans/Codo_Kmeans.png?raw=true" 
-                     alt="Optimal number of K"
-                     style="max-width: 100%; height: auto; margin: 10px 0;">
-            </div>
         </div>
     </div>
 
+    <!-- Cluster Visualization Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Cluster Visualization and Analysis</h2>
+            
+            <h3>Identified Segments:</h3>
+            <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Kmeans/Clusters_Kmeans.png?raw=true" 
+                 alt="Identified RFM clusters"
+                 style="max-width: 100%; height: auto; margin: 20px 0;">
+            
+            <h3>Elbow Method:</h3>
+            <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Kmeans/Codo_Kmeans.png?raw=true" 
+                 alt="Optimal number of K"
+                 style="max-width: 100%; height: auto; margin: 20px 0;">
+        </div>
+    </div>
 
-<!-- Conclusions and Recommendations section -->
-<div class="container">
-    <div class="project-single">
-        <h3>Conclusions and Recommendations</h3>
-        
-        <h3>Key Findings</h3>
-        <ul>
-            <li>67% of customers are valuable (recent purchases, high frequency and spending)</li>
-            <li>14.4% of customers are inactive and require reactivation strategies</li>
-            <li>Occasional customers (18.6%) represent opportunities to increase frequency</li>
-            <li>The model shows excellent quality according to validation metrics</li>
-        </ul>
-       
-        <h3>Recommendations by Segment</h3>
+    <!-- Conclusions and Recommendations Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Conclusions and Recommendations</h2>
+            
+            <h3>Key Findings</h3>
+            <ul>
+                <li>67% of customers are valuable (recent purchases, high frequency and spending)</li>
+                <li>14.4% of customers are inactive and require reactivation strategies</li>
+                <li>Occasional customers (18.6%) represent opportunities to increase frequency</li>
+                <li>The model shows excellent quality according to validation metrics</li>
+            </ul>
+            
+            <h3>Recommendations by Segment</h3>
 
             <h4>Cluster 0: Valuable Customers</h4>
-        <ul>
-            <li>Exclusive benefits programs (free shipping)</li>
-            <li>Upselling premium products</li>
-            <li>Bundles of complementary products</li>
-        </ul>
+            <ul>
+                <li>Exclusive benefits programs (free shipping)</li>
+                <li>Upselling premium products</li>
+                <li>Bundles of complementary products</li>
+            </ul>
 
             <h4>Cluster 1: Inactive Customers</h4>
-        <ul>
-            <li>Reactivation campaigns with discounts</li>
-            <li>Satisfaction surveys</li>
-            <li>Cost-benefit evaluation of retention</li>
-        </ul>
+            <ul>
+                <li>Reactivation campaigns with discounts</li>
+                <li>Satisfaction surveys</li>
+                <li>Cost-benefit evaluation of retention</li>
+            </ul>
 
             <h4>Cluster 2: Occasional Customers</h4>
-        <ul>
-            <li>Frequency-based loyalty programs</li>
-            <li>Cross-selling with related products</li>
-            <li>Personalized offers based on history</li>
-        </ul>
+            <ul>
+                <li>Frequency-based loyalty programs</li>
+                <li>Cross-selling with related products</li>
+                <li>Personalized offers based on history</li>
+            </ul>
 
             <h4>Future Improvements</h4>
-        <ul>
-            <li>Categorize products into broader groups for better analysis</li>
-            <li>Include price and discount data for sensitivity analysis</li>
-            <li>Integrate demographic variables for more precise segmentation</li>
-        </ul>
+            <ul>
+                <li>Categorize products into broader groups for better analysis</li>
+                <li>Include price and discount data for sensitivity analysis</li>
+                <li>Integrate demographic variables for more precise segmentation</li>
+            </ul>
+        </div>
     </div>
-</div>
 
-
-
-
-
-    <!-- Project files section -->
+    <!-- Project Files Section -->
     <div class="container">
-        <div class="project-single">
-            <h3>Project Files</h3>
+        <div class="section-block">
+            <h2>Project Files</h2>
             <p>You can explore all files, datasets and source code for this project:</p>
             
             <div class="files-link-container">
@@ -238,16 +242,19 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+            <p style="margin: 0;">Developed by Christian Vera - 2025</p>
+        
+            <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
+                <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">LinkedIn</button>
+            </a>
+        </div>
+    </footer>
 
-<footer>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-        <p style="margin: 0;">Developed by Christian Vera - 2025</p>
-    
-        <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
-            <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">LinkedIn</button>
-        </a>
-    </div>
-</footer>
+</body>
+</html>
     
 </body>
 </html>

@@ -15,7 +15,7 @@
         </ul>
     </nav>
 
-    <!-- Main container -->
+    <!-- Intro Section -->
     <div class="container">
         <div class="intro">
             <h1>Customer Churn Prediction</h1>
@@ -29,13 +29,13 @@
         </div>
     </div>
 
-        <!-- Main content section -->
+    <!-- Project Context Section -->
     <div class="container">
-        <div class="project-single">
-            <h3>Project context</h3>
+        <div class="section-block">
+            <h2>Project Context</h2>
             <p>Analysis of service cancellation (churn) in telecommunications to identify customers with high probability of leaving and enable preventive retention strategies.</p>
             
-            <h4>Main variables:</h4>
+            <h3>Main Variables:</h3>
             <ul class="two-columns">
                 <li><strong>tenure:</strong> Number of months as a customer</li>
                 <li><strong>Contract:</strong> Contract type (Month-to-month, 1 year, 2 years)</li>
@@ -47,11 +47,14 @@
                 <li><strong>PaymentMethod:</strong> Payment method</li>
             </ul>
         </div>
+    </div>
 
-        <div class="project-single">
-            <h3>Detailed methodology</h3>
+    <!-- Detailed Methodology Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Detailed Methodology</h2>
             
-            <h4>1. Exploratory Data Analysis (EDA)</h4>
+            <h3>1. Exploratory Data Analysis (EDA)</h3>
             <ul>
                 <li>Imbalanced class distribution (73.5% No Churn vs 26.5% Churn)</li>
                 <li>Association analysis using Cramér's V for categorical variables</li>
@@ -59,7 +62,7 @@
                 <li>Visualization of relationships between variables and Churn</li>
             </ul>
             
-            <h4>2. Preprocessing</h4>
+            <h3>2. Preprocessing</h3>
             <ul>
                 <li>Data cleaning:
                     <ul>
@@ -84,7 +87,7 @@
                 </li>
             </ul>
             
-            <h4>3. Modeling</h4>
+            <h3>3. Modeling</h3>
             <ul>
                 <li>Random Forest:
                     <ul>
@@ -101,129 +104,142 @@
                 </li>
             </ul>
         </div>
+    </div>
 
- <div class="project-single">
-    <h3>Results and findings</h3>
-    
-    <div class="results-container">
-        <!-- Metrics card -->
-        <div class="metric-card">
-                <div class="metric-card-header">
-                <h4>Top Metrics by Model</h4>
-            </div>
-            <div class="metric-card-content">
-                <div class="metric-item">
-                    <div class="metric-title">Random Forest (SMOTEENN)</div>
-                    <div class="metric-value">F1-Score: 0.633</div>
-                    <div class="metric-description">Recall: 0.777 | Precision: 0.534</div>
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 63.3%"></div>
+    <!-- Results and Findings Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Results and Findings</h2>
+            
+            <div class="results-container">
+                <!-- Metrics card -->
+                <div class="metric-card">
+                    <div class="metric-card-header">
+                        <h4>Top Metrics by Model</h4>
+                    </div>
+                    <div class="metric-card-content">
+                        <div class="metric-item">
+                            <div class="metric-title">Random Forest (SMOTEENN)</div>
+                            <div class="metric-value">F1-Score: 0.633</div>
+                            <div class="metric-description">Recall: 0.777 | Precision: 0.534</div>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 63.3%"></div>
+                            </div>
+                        </div>
+                        <div class="metric-item">
+                            <div class="metric-title">MLP (RandomUnderSampler)</div>
+                            <div class="metric-value">F1-Score: 0.634</div>
+                            <div class="metric-description">Recall: 0.763 | Precision: 0.542</div>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 63.4%"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="metric-item">
-                    <div class="metric-title">MLP (RandomUnderSampler)</div>
-                    <div class="metric-value">F1-Score: 0.634</div>
-                    <div class="metric-description">Recall: 0.763 | Precision: 0.542</div>
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 63.4%"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Feature importance card -->
-        <div class="influence-card">
+                
+                <!-- Feature importance card -->
+                <div class="influence-card">
                     <div class="metric-card-header">
                         <h4>Most Influential Features (Random Forest)</h4>
                     </div>
-            <div class="influence-list">
-                <div class="influence-item">
-                    <div class="var-name">tenure</div>
-                    <div class="var-coef positive">+0.13</div>
-                    <div class="var-bar-container">
-                        <div class="var-bar" style="width: 100%"></div>
-                    </div>
-                </div>
-                <div class="influence-item">
-                    <div class="var-name">Internet_Fiber</div>
-                    <div class="var-coef positive">+0.12</div>
-                    <div class="var-bar-container">
-                        <div class="var-bar" style="width: 94%"></div>
-                    </div>
-                </div>
-                <div class="influence-item">
-                    <div class="var-name">Contract_2_Years</div>
-                    <div class="var-coef positive">+0.10</div>
-                    <div class="var-bar-container">
-                        <div class="var-bar" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div class="influence-item">
-                    <div class="var-name">MonthlyCharges </div>
-                    <div class="var-coef positive">+0.09</div>
-                    <div class="var-bar-container">
-                        <div class="var-bar" style="width: 80%"></div>
-                    </div>
+                    <div class="influence-list">
+                        <div class="influence-item">
+                            <div class="var-name">tenure</div>
+                            <div class="var-coef positive">+0.13</div>
+                            <div class="var-bar-container">
+                                <div class="var-bar" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <div class="influence-item">
+                            <div class="var-name">Internet_Fiber</div>
+                            <div class="var-coef positive">+0.12</div>
+                            <div class="var-bar-container">
+                                <div class="var-bar" style="width: 94%"></div>
+                            </div>
+                        </div>
+                        <div class="influence-item">
+                            <div class="var-name">Contract_2_Years</div>
+                            <div class="var-coef positive">+0.10</div>
+                            <div class="var-bar-container">
+                                <div class="var-bar" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="influence-item">
+                            <div class="var-name">MonthlyCharges</div>
+                            <div class="var-coef positive">+0.09</div>
+                            <div class="var-bar-container">
+                                <div class="var-bar" style="width: 80%"></div>
+                            </div>
+                        </div>
 
-                <div class="influence-item">
-                    <div class="var-name">TotalCharges </div>
-                    <div class="var-coef positive">+0.08</div>
-                    <div class="var-bar-container">
-                        <div class="var-bar" style="width: 75%"></div>
+                        <div class="influence-item">
+                            <div class="var-name">TotalCharges</div>
+                            <div class="var-coef positive">+0.08</div>
+                            <div class="var-bar-container">
+                                <div class="var-bar" style="width: 75%"></div>
+                            </div>
+                        </div>
                     </div>
-                  </div>   
                 </div>
             </div>
         </div>
     </div>
-    
-        <!-- Images added here -->
-    <h3>Result charts</h3>
-    <div>
-        <h4>Most important features - Random Forest with SMOTEENN:</h4>
-           <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/churn/RF_Smoteen.png?raw=true" 
-               alt="Random Forest confusion matrix"
-             style="max-width: 100%; height: auto; margin: 10px 0;">
-        
-        <h4>Curva ROC - Random Forest con SMOTEENN:</h4>
-           <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/churn/Roc_Smoteen_RF.png?raw=true" 
-               alt="Random Forest ROC curve"
-             style="max-width: 100%; height: auto; margin: 10px 0;">
-        
-        <h4>ROC curve - Multi-Layer Perceptron with RandomUnderSampler:</h4>
-           <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/churn/Perceptron_ROC%20RandomUnderSampler.png?raw=true" 
-               alt="MLP ROC curve"
-             style="max-width: 100%; height: auto; margin: 10px 0;">
-    
-    </div>
-    
-    <h4>Key findings</h4>
-    <ul>
-        <li>Customer tenure is the most influential factor</li>
-        <li>Long-term contracts significantly reduce churn</li>
-        <li>Fiber internet service increases churn probability</li>
-        <li>Payment by electronic check is associated with higher churn</li>
-        <li>Lack of add-on services (security, tech support) increases churn</li>
-    </ul>
-</div>
 
-        <div class="project-single">
-            <h3>Conclusions and recommendations</h3>
+    <!-- Result Charts Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Result Charts</h2>
             
-            <h4>Model comparison</h4>
+            <h3>Most Important Features - Random Forest with SMOTEENN:</h3>
+            <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/churn/RF_Smoteen.png?raw=true" 
+                 alt="Random Forest confusion matrix"
+                 style="max-width: 100%; height: auto; margin: 20px 0;">
+            
+            <h3>ROC Curve - Random Forest with SMOTEENN:</h3>
+            <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/churn/Roc_Smoteen_RF.png?raw=true" 
+                 alt="Random Forest ROC curve"
+                 style="max-width: 100%; height: auto; margin: 20px 0;">
+            
+            <h3>ROC Curve - Multi-Layer Perceptron with RandomUnderSampler:</h3>
+            <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/churn/Perceptron_ROC%20RandomUnderSampler.png?raw=true" 
+                 alt="MLP ROC curve"
+                 style="max-width: 100%; height: auto; margin: 20px 0;">
+        </div>
+    </div>
+
+    <!-- Key Findings Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Key Findings</h2>
+            <ul>
+                <li>Customer tenure is the most influential factor</li>
+                <li>Long-term contracts significantly reduce churn</li>
+                <li>Fiber internet service increases churn probability</li>
+                <li>Payment by electronic check is associated with higher churn</li>
+                <li>Lack of add-on services (security, tech support) increases churn</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Conclusions Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Conclusions and Recommendations</h2>
+            
+            <h3>Model Comparison</h3>
             <ul>
                 <li><strong>Random Forest</strong> offers a better overall balance between precision and recall</li>
                 <li><strong>MLP</strong> achieves higher recall but with more false positives</li>
                 <li>SMOTEENN and RandomUnderSampler are the best balancing techniques</li>
             </ul>
             
-            <h4>Limitations</h4>
+            <h3>Limitations</h3>
             <ul>
                 <li>Imbalanced dataset (26.5% positive cases)</li>
                 <li>Potential overfitting with oversampling techniques</li>
             </ul>
             
-            <h4>Recommendations</h4>
+            <h3>Recommendations</h3>
             <ul>
                 <li>Implement Random Forest with SMOTEENN for retention strategies</li>
                 <li>Prioritize customers with month-to-month contracts and fiber internet</li>
@@ -234,12 +250,10 @@
         </div>
     </div>
 
-
-    
-        <!-- Project files section -->
+    <!-- Project Files Section -->
     <div class="container">
-        <div class="project-single">
-            <h3>Project files</h3>
+        <div class="section-block">
+            <h2>Project Files</h2>
             <p>You can explore the source code for this project:</p>
             
             <div class="files-link-container">
@@ -259,14 +273,14 @@
 
     <!-- Footer -->
     <footer>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-        <p style="margin: 0;">Developed by Christian Vera - 2025</p>
-    
-        <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
-            <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">LinkedIn</button>
-        </a>
-    </div>
-</footer>
-    
+        <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+            <p style="margin: 0;">Developed by Christian Vera - 2025</p>
+        
+            <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
+                <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">LinkedIn</button>
+            </a>
+        </div>
+    </footer>
+
 </body>
 </html>
