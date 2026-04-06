@@ -35,13 +35,13 @@
             <h3>Project Context</h3>
             <p>Sales transactions analysis to segment customers using unsupervised techniques (K-Means) based on RFM metrics (Recency, Frequency, Monetary).</p>
             
-            <h4>Variables Principales:</h4>
+            <h4>Main Variables:</h4>
             <ul class="two-columns">
-                <li><strong>InvoiceNo:</strong> Número de transacción (cancelaciones filtradas)</li>
-                <li><strong>StockCode:</strong> Identificador de producto</li>
-                <li><strong>Quantity:</strong> Cantidad vendida por transacción</li>
-                <li><strong>InvoiceDate:</strong> Fecha y hora de la transacción</li>
-                <li><strong>UnitPrice:</strong> Precio unitario del producto</li>
+                <li><strong>InvoiceNo:</strong> Transaction number (canceled transactions filtered)</li>
+                <li><strong>StockCode:</strong> Product identifier</li>
+                <li><strong>Quantity:</strong> Quantity sold per transaction</li>
+                <li><strong>InvoiceDate:</strong> Transaction date and time</li>
+                <li><strong>UnitPrice:</strong> Unit price of the product</li>
                 <li><strong>CustomerID:</strong> Customer identifier (25% missing)</li>
                 <li><strong>Country:</strong> Country of the transaction</li>
             </ul>
@@ -52,15 +52,15 @@
             
             <h4>1. Exploratory Data Analysis (EDA)</h4>
             <ul>
-                <li>Filtrado de transacciones canceladas y valores no válidos</li>
-                <li>Identificación de valores atípicos en cantidades y precios</li>
+                <li>Filtering canceled transactions and invalid values</li>
+                <li>Identification of outliers in quantities and prices</li>
                 <li>Geographic distribution of sales (73% United Kingdom)</li>
                 <li>Pareto analysis: 25.6% of customers account for 80% of purchases</li>
             </ul>
             
             <h4>2. Preprocessing</h4>
             <ul>
-                <li>Cálculo de métricas RFM:
+                <li>Calculation of RFM metrics:
                     <ul>
                         <li><strong>Recency:</strong> Days since last purchase</li>
                         <li><strong>Frequency:</strong> Number of unique purchases</li>
@@ -74,14 +74,14 @@
             <h4>3. Modeling with K-Means</h4>
             <ul>
                 <li>Optimal number of clusters determined with elbow method (K=3)</li>
-                <li>Configuración:
+                <li>Configuration:
                     <ul>
-                        <li>Inicialización k-means++</li>
-                        <li>300 iteraciones máximas</li>
-                        <li>Tolerancia de convergencia 1e-4</li>
+                        <li>Initialization: k-means++</li>
+                        <li>Maximum 300 iterations</li>
+                        <li>Convergence tolerance: 1e-4</li>
                     </ul>
                 </li>
-                <li>Evaluación con múltiples métricas de validación</li>
+                <li>Evaluation with multiple validation metrics</li>
             </ul>
         </div>
 
@@ -184,23 +184,23 @@
 
             <h4>Cluster 0: Valuable Customers</h4>
         <ul>
-            <li>Programas de beneficios exclusivos (envíos gratis)</li>
-            <li>Upselling de productos premium</li>
-            <li>Paquetes de productos complementarios</li>
+            <li>Exclusive benefits programs (free shipping)</li>
+            <li>Upselling premium products</li>
+            <li>Bundles of complementary products</li>
         </ul>
 
             <h4>Cluster 1: Inactive Customers</h4>
         <ul>
-            <li>Campañas de reactivación con descuentos</li>
-            <li>Encuestas de satisfacción</li>
-            <li>Evaluación costo-beneficio de retención</li>
+            <li>Reactivation campaigns with discounts</li>
+            <li>Satisfaction surveys</li>
+            <li>Cost-benefit evaluation of retention</li>
         </ul>
 
             <h4>Cluster 2: Occasional Customers</h4>
         <ul>
-            <li>Programas de fidelización por frecuencia</li>
-            <li>Cross-selling con productos relacionados</li>
-            <li>Ofertas personalizadas basadas en historial</li>
+            <li>Frequency-based loyalty programs</li>
+            <li>Cross-selling with related products</li>
+            <li>Personalized offers based on history</li>
         </ul>
 
             <h4>Future Improvements</h4>
