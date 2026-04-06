@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultas SQL - Base de Datos Northwind</title>
+    <title>SQL Queries - Northwind Database</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -11,15 +11,15 @@
     <!-- Barra de navegación -->
     <nav>
         <ul>
-            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html">Home</a></li>
         </ul>
     </nav>
 
     <!-- Contenedor principal -->
     <div class="container">
         <div class="intro">
-            <h1>Consultas SQL - Base de Datos Northwind</h1>
-            <h2>Análisis de datos y visualizaciones para toma de decisiones</h2>
+            <h1>SQL Queries - Northwind Database</h1>
+            <h2>Data analysis and visualizations for decision making</h2>
             <ul>
                 <li>Dataset: Northwind (empresa simulada de ventas)</li>
                 <li>Tablas principales: Productos, Pedidos, Clientes, Empleados</li>
@@ -31,10 +31,10 @@
     <!-- Sección de contenido principal -->
     <div class="container">
         <div class="project-single">
-            <h3>Contexto del Proyecto</h3>
-            <p>Análisis de la base de datos Northwind, un conjunto de datos clásico que simula una empresa de ventas (productos, pedidos, clientes y empleados). Mediante consultas SQL y visualizaciones en Python, exploramos patrones de ventas, desempeño de empleados, relaciones entre tablas y métricas clave para la toma de decisiones empresariales.</p>
+            <h3>Project Context</h3>
+            <p>Analysis of the Northwind database, a classic dataset that simulates a sales company (products, orders, customers and employees). Using SQL queries and Python visualizations, we explore sales patterns, employee performance, table relationships and key metrics for business decisions.</p>
             
-            <h4>Estructura de la Base de Datos:</h4>
+            <h4>Database Structure:</h4>
             <ul class="two-columns">
                 <li><strong>EMPLOYEE:</strong> Información de empleados</li>
                 <li><strong>CATEGORY:</strong> Categorías de productos</li>
@@ -49,7 +49,7 @@
         </div>
 
         <div class="project-single">
-            <h3>Consultas Principales Realizadas</h3>
+            <h3>Main Queries Executed</h3>
             
 <h4>1. Productos más vendidos (por cantidad)</h4>
 <pre><code>SELECT p.ProductName, SUM(od.Quantity) AS TotalVendido
@@ -59,7 +59,7 @@ GROUP BY p.ProductName
 ORDER BY TotalVendido DESC
 LIMIT 10;</code></pre>
 <br>
-<p>Esta consulta une los detalles de pedidos con los productos para sumar cuántas unidades se han vendido por producto. Se agrupa por nombre del producto y se ordena para mostrar los más vendidos.</p>
+            <p>This query joins order details with products to sum how many units have been sold per product. It groups by product name and orders to show the top sellers.</p>
 
 <br>
 <div style="text-align: center;">
@@ -75,7 +75,7 @@ GROUP BY c.CompanyName
 ORDER BY TotalGastado DESC
 LIMIT 10;</code></pre>
 <br>
-<p>Une pedidos, clientes y detalles de pedidos para calcular cuánto ha gastado cada cliente (precio × cantidad). Se agrupa por empresa y muestra los que más han comprado.</p>
+            <p>Joins orders, customers and order details to calculate how much each customer has spent (price × quantity). It groups by company and shows the top spenders.</p>
 
 <br>
 <div style="text-align: center;">
@@ -90,7 +90,7 @@ JOIN OrderDetail od ON o.Id = od.OrderId
 GROUP BY Mes
 ORDER BY Mes;</code></pre>
 <br>
-<p>Calcula las ventas mensuales uniendo pedidos y sus detalles, agrupando por año-mes. Útil para analizar tendencias de ventas.</p>
+            <p>Calculates monthly sales by joining orders and their details, grouping by year-month. Useful to analyze sales trends.</p>
 
 <br>
 <div style="text-align: center;">
@@ -108,7 +108,7 @@ GROUP BY Empleado
 ORDER BY VentasGeneradas DESC
 LIMIT 1;</code></pre>
 <br>
-<p>Relaciona empleados con los pedidos que gestionaron y suma el valor vendido. Devuelve el empleado con más ventas generadas.</p>
+            <p>Relates employees to the orders they handled and sums the value sold. Returns the employee with the highest sales generated.</p>
 
 <br>
 <div style="text-align: center;">
@@ -121,7 +121,7 @@ FROM Product
 WHERE UnitsInStock < ReorderLevel
 ORDER BY UnitsInStock ASC;</code></pre>
 <br>
-<p>Muestra los productos cuyo stock actual es menor al nivel de reorden. Sirve para identificar qué productos necesitan ser reabastecidos.</p>
+            <p>Shows products whose current stock is below the reorder level. Useful to identify items that need replenishment.</p>
 
 <br>
 <div style="text-align: center;">
@@ -137,7 +137,7 @@ GROUP BY c.CategoryName
 ORDER BY VentasPorCategoria DESC
 LIMIT 5;</code></pre>
 <br>
-<p>Une detalles de pedidos, productos y categorías para sumar ingresos por categoría. Muestra las más vendidas.</p>
+            <p>Joins order details, products and categories to sum revenue by category. Shows the top categories.</p>
 
 <br>
 <div style="text-align: center;">
@@ -155,7 +155,7 @@ WHERE o.ShippedDate IS NOT NULL
 GROUP BY Proveedor
 ORDER BY DiasPromedio DESC;</code></pre>
 <br>
-<p>Calcula el tiempo promedio entre fecha de pedido y envío por proveedor. Útil para detectar retrasos en entregas.</p>
+            <p>Computes the average time between order date and shipped date per supplier. Useful to detect delivery delays.</p>
 
 <br>
 <div style="text-align: center;">
@@ -171,7 +171,7 @@ GROUP BY c.Id
 HAVING UltimoPedido < date('now', '-1 year') OR UltimoPedido IS NULL
 ORDER BY UltimoPedido;</code></pre>
 <br>
-<p>Usa LEFT JOIN para incluir incluso clientes sin pedidos. Filtra los que no compran hace más de un año o nunca lo han hecho.</p>
+            <p>Uses LEFT JOIN to include customers without orders. Filters those who haven't purchased in more than one year or never purchased.</p>
 
 <br>
 <div style="text-align: center;">
@@ -188,7 +188,7 @@ JOIN Product p ON od.ProductId = p.Id
 GROUP BY p.Id
 ORDER BY UnidadesVendidas DESC;</code></pre>
 <br>
-<p>Compara el stock disponible con las unidades vendidas por producto. Sirve para detectar posibles faltantes o exceso de inventario.</p>
+            <p>Compares available stock with units sold per product. Useful to detect shortages or excess inventory.</p>
 
 <br>
 <div style="text-align: center;">
@@ -206,7 +206,7 @@ LEFT JOIN OrderDetail od ON o.Id = od.OrderId
 GROUP BY c.Id
 ORDER BY TotalPedidos DESC;</code></pre>
 <br>
-<p>Lista los clientes con la cantidad de pedidos realizados y el monto total gastado. Se usa <code>LEFT JOIN</code> para incluir clientes sin compras.</p>
+            <p>Lists customers with the number of orders placed and total amount spent. Uses <code>LEFT JOIN</code> to include customers without purchases.</p>
 
 <br>
 <div style="text-align: center;">
@@ -221,7 +221,7 @@ ORDER BY TotalPedidos DESC;</code></pre>
 
 
         <div class="project-single">
-            <h3>Visualizaciones de Datos</h3>
+            <h3>Data Visualizations</h3>
             
             <h4>Ventas Totales por Categoría</h4>
             <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/SQL_Northwind/SQL_CATEGORY.png?raw=true" 
@@ -240,7 +240,7 @@ ORDER BY TotalPedidos DESC;</code></pre>
         </div>
 
         <div class="project-single">
-            <h3>Hallazgos Clave</h3>
+            <h3>Key Findings</h3>
             <ul>
                 <li>Identificación de los productos más vendidos y categorías con mayor rentabilidad</li>
                 <li>Segmentación de clientes por volumen de compras y frecuencia</li>
@@ -253,7 +253,7 @@ ORDER BY TotalPedidos DESC;</code></pre>
         </div>
 
         <div class="project-single">
-            <h3>Conclusiones </h3>
+            <h3>Conclusions</h3>
             
             <h4>Beneficios del Análisis</h4>
             <ul>
@@ -271,17 +271,15 @@ ORDER BY TotalPedidos DESC;</code></pre>
     <!-- Sección de archivos del proyecto -->
     <div class="container">
         <div class="project-single">
-            <h3>Archivos del Proyecto</h3>
-            <p>Puedes explorar el código fuente de este proyecto:</p>
+            <h3>Project Files</h3>
+            <p>You can explore the project source code:</p>
             
             <div class="files-link-container">
                 <a href="https://github.com/cveram96/Portfolio/blob/main/Files/SQL_Northwind.ipynb" 
                    class="project-files-link" 
                    target="_blank"
                    rel="noopener noreferrer">
-                    <span class="link-icon">📁</span>
-                    Ver Notebook completo en Colab
-                    <span class="link-arrow">→</span>
+                    View full notebook on Colab
                 </a>
                 
                 <div class="file-types">
@@ -292,18 +290,15 @@ ORDER BY TotalPedidos DESC;</code></pre>
     </div>
 
     
-    <!-- Pie de página -->
+    <!-- Footer -->
 <footer>
-  <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-    <p style="margin: 0;">Desarrollado por Christian Vera - 2025</p>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+        <p style="margin: 0;">Developed by Christian Vera - 2025</p>
     
-    <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
-      <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; display: flex; align-items: center;">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" style="height: 18px; margin-right: 6px;">
-        LinkedIn
-      </button>
-    </a>
-  </div>
+        <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
+            <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">LinkedIn</button>
+        </a>
+    </div>
 </footer>
 
     

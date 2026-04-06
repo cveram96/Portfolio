@@ -1,21 +1,21 @@
-/* ===== VARIABLES Y RESET MEJORADO ===== */
+:/* ===== VARIABLES AND IMPROVED RESET ===== */
 :root {
-  /* --- Colores principales (azul moderno + acento cálido) --- */
-  --primary:    #4361ee;      /* Azul vibrante pero suave (mejor que #3a86ff para fondo oscuro) */
-  --primary-dark: #3a56d4;    /* Versión oscura para hover */
+  /* --- Primary colors (modern blue + warm accent) --- */
+  --primary:    #4361ee;      /* Vibrant yet soft blue (better than #3a86ff for dark backgrounds) */
+  --primary-dark: #3a56d4;    /* Darker variant for hover */
   --secondary:  #4895ef;      /* Azul claro complementario (antes era muy oscuro) */
   
-  /* --- Fondos --- */
+  /* --- Backgrounds --- */
   --darker:     #1f1c20;      /* Fondo general: oscuro elegante, no aplastante */
   --dark:       #1a2050;      /* Para elementos como footer, nav, etc. */
-  --card-bg:    #242638;      /* Tarjetas: ligeramente más claras que el fondo */
+  --card-bg:    #242638;      /* Cards: slightly lighter than the background */
   
-  /* --- Texto y elementos claros --- */
+  /* --- Text and light elements --- */
   --light:      #ffffff;      /* Texto principal: blanco suave, no puro */
   --gray:       #f5f5f5;      /* Texto secundario: legible pero discreto */
   
-  /* --- Acento (para CTAs, íconos interactivos) --- */
-  --accent:     #ff9e00;      /* Naranja ámbar cálido (más profesional que amarillo puro) */
+  /* --- Accent (for CTAs and interactive elements) --- */
+  --accent:     #ff9e00;      /* Warm amber orange (more professional than pure yellow) */
   --accent-dark:#e08a00;      /* Hover del acento */
   
   /* --- Otros --- */
@@ -24,7 +24,7 @@
   --shadow-md:  0 6px 20px rgba(0, 0, 0, 0.25);
   --shadow-lg:  0 12px 28px rgba(0, 0, 0, 0.3);
   --border-radius: 12px;
-  --nav-height: 3.4rem;   /* --- altura barra arriba --- */
+  --nav-height: 3.4rem;   /* --- top bar height --- */
   --max-width: 1200px;
   --container-spacing: 1rem;
 }
@@ -55,7 +55,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ===== CONTENEDORES ===== */
+/* ===== CONTAINERS ===== */
 .container {
   width: 100%;
   max-width: var(--max-width);
@@ -68,10 +68,10 @@ body {
 }
 
 
-/* ===== NAVEGACIÓN ===== */
+/* ===== NAVIGATION ===== */
 nav {
   background-color: #1a1c2e;
-  padding: 0.3rem 0; /* ← barra más baja */
+  padding: 0.3rem 0; /* ← slightly lower nav bar */
   width: 100%;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
   position: sticky;
@@ -84,18 +84,18 @@ nav {
 nav ul {
   display: flex;
   justify-content: center;
-  align-items: center; /* ← centra el botón verticalmente dentro del nav */
+  align-items: center; /* ← vertically centers the button inside the nav */
   list-style: none;
   gap: 1rem;
   margin: 0 auto;
   padding: 0 2rem;
   max-width: var(--max-width);
-  height: 100%; /* ocupa todo el alto del nav */
+  height: 100%; /* occupies full nav height */
 }
 
 nav ul li a {
   display: block;
-  padding: 0.5rem 1.2rem; /* ← altura del botón controlada por padding */
+  padding: 0.5rem 1.2rem; /* ← button height controlled by padding */
   background: #ffffff;
   color: #1a1c2e;
   text-decoration: none;
@@ -104,13 +104,13 @@ nav ul li a {
   border-radius: 5px;
   transition: var(--transition);
   border: 1px solid rgba(0, 0, 0, 0.1);
-  /* NO tiene height: 100% → mantiene su tamaño natural */
+  /* Keeps natural height (no height:100%) */
 }
 
-/* Al hacer hover: resalta con elegancia */
+/* On hover: highlight elegantly */
 nav ul li a:hover,
 nav ul li a:focus-visible {
-  background: rgba(255, 255, 255, 0.12); /* blanco translúcido */
+  background: rgba(255, 255, 255, 0.12); /* translucent white */
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
@@ -122,7 +122,7 @@ nav ul li a:active {
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* ===== SECCIÓN INTRODUCCIÓN ===== */
+/* ===== INTRO SECTION ===== */
 .intro {
   max-width: 900px;
   margin: var(--container-spacing) auto;
@@ -192,7 +192,7 @@ nav ul li a:active {
   left: 0;
 }
 
-/* ===== TARJETAS DE PROYECTOS ===== */
+  /* ===== PROJECT CARDS ===== */
 .projects {
   max-width: 1200px;
   margin: var(--container-spacing) auto;
@@ -329,7 +329,7 @@ nav ul li a:active {
   column-gap: 2rem;
 }
 
-/* ===== PIE DE PÁGINA ===== */
+/* ===== FOOTER ===== */
 footer {
   background: #1a1c2e;
   color: #ffffff;
@@ -613,7 +613,7 @@ footer {
   }
 }
 
-/* ===== NUEVOS ESTILOS PARA MÉTRICAS ===== */
+/* ===== NEW STYLES FOR METRICS ===== */
 .results-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -757,7 +757,7 @@ footer {
   background: #ff6b6b;
 }
 
-/* ===== AJUSTES GLOBALES DE TRANSICIÓN Y POLISH ===== */
+/* ===== GLOBAL TRANSITION AND POLISH ADJUSTMENTS ===== */
 * {
   transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }

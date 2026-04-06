@@ -1,2 +1,2 @@
 # Portfolio
-Este repositorio se encuentra en constante actualización con mis proyectos de analisis y ciencia de datos.
+This repository is continuously updated with my data analysis and data science projects.

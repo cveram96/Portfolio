@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Segmentación de Clientes con K-Means</title>
+    <title>Customer Segmentation with K-Means</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -11,20 +11,20 @@
     <!-- Barra de navegación -->
     <nav>
         <ul>
-            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html">Home</a></li>
         </ul>
     </nav>
 
     <!-- Contenedor principal -->
     <div class="container">
         <div class="intro">
-            <h1>Segmentación de Clientes con K-Means</h1>
-            <h2>Análisis RFM para estrategias de marketing</h2>
+            <h1>Customer Segmentation with K-Means</h1>
+            <h2>RFM analysis for marketing strategies</h2>
             <ul>
-                <li>Dataset: Online Retail (541,909 transacciones iniciales)</li>
-                <li>Variables clave: Recency, Frequency, Monetary</li>
-                <li>3 clusters identificados | Silhouette Score: 0.6458</li>
-                <li>Tecnologías: Python, scikit-learn, pandas, matplotlib</li>
+                <li>Dataset: Online Retail (541,909 initial transactions)</li>
+                <li>Key variables: Recency, Frequency, Monetary</li>
+                <li>3 clusters identified | Silhouette Score: 0.6458</li>
+                <li>Technologies: Python, scikit-learn, pandas, matplotlib</li>
             </ul>
         </div>
     </div>
@@ -32,8 +32,8 @@
     <!-- Sección de contenido principal -->
     <div class="container">
         <div class="project-single">
-            <h3>Contexto del Proyecto</h3>
-            <p>Análisis de transacciones de ventas para segmentar clientes mediante técnicas no supervisadas (K-Means) basado en métricas RFM (Recencia, Frecuencia, Valor Monetario).</p>
+            <h3>Project Context</h3>
+            <p>Sales transactions analysis to segment customers using unsupervised techniques (K-Means) based on RFM metrics (Recency, Frequency, Monetary).</p>
             
             <h4>Variables Principales:</h4>
             <ul class="two-columns">
@@ -48,7 +48,7 @@
         </div>
 
         <div class="project-single">
-            <h3>Metodología Detallada</h3>
+            <h3>Detailed Methodology</h3>
             
             <h4>1. Análisis Exploratorio (EDA)</h4>
             <ul>
@@ -86,13 +86,12 @@
         </div>
 
         <div class="project-single">
-            <h3>Resultados y Hallazgos</h3>
+            <h3>Results and Findings</h3>
             
             <div class="results-container">
                 <div class="metric-card">
-                    <div class="metric-card-header">
-                        <h4>Métricas del Modelo</h4>
-                        <div class="metric-icon">📊</div>
+                        <div class="metric-card-header">
+                        <h4>Model Metrics</h4>
                     </div>
                     <div class="metric-card-content">
                         <div class="metric-item">
@@ -118,12 +117,11 @@
 
                 <div class="metric-card">
                     <div class="metric-card-header">
-                        <h4>Segmentos de Clientes</h4>
-                        <div class="metric-icon">👥</div>
+                        <h4>Customer Segments</h4>
                     </div>
                     <div class="metric-card-content">
                         <div class="metric-item">
-                            <div class="metric-title">Cluster 0: Valiosos</div>
+                            <div class="metric-title">Cluster 0: Valuable</div>
                             <ul>
                                 <li>67% de clientes</li>
                                 <li>Recency: 31 días</li>
@@ -153,7 +151,7 @@
             </div>
             
 
-            <h3>Método del codo y Clústers.</h3>
+            <h3>Elbow Method and Clusters</h3>
             <div>
                 <h4>Segmentos identificados:</h4>
                 <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Kmeans/Clusters_Kmeans.png?raw=true" 
@@ -229,9 +227,7 @@
                    class="project-files-link" 
                    target="_blank"
                    rel="noopener noreferrer">
-                    <span class="link-icon">📁</span>
-                    Ver archivos completos del proyecto
-                    <span class="link-arrow">→</span>
+                    View full project files
                 </a>
                 
                 <div class="file-types">
@@ -244,16 +240,13 @@
 
 
 <footer>
-  <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-    <p style="margin: 0;">Desarrollado por Christian Vera - 2025</p>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+        <p style="margin: 0;">Developed by Christian Vera - 2025</p>
     
-    <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
-      <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; display: flex; align-items: center;">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" style="height: 18px; margin-right: 6px;">
-        LinkedIn
-      </button>
-    </a>
-  </div>
+        <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
+            <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">LinkedIn</button>
+        </a>
+    </div>
 </footer>
     
 </body>
