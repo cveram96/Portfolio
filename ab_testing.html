@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A/B Testing Project - Landing Page Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+
+    <!-- Intro Section -->
+    <div class="container">
+        <div class="intro">
+            <h1>A/B Testing Project</h1>
+            <h2>Landing Page Performance Analysis with Real Data</h2>
+            <ul>
+                <li>Dataset: Udacity A/B Test (290,274 users)</li>
+                <li>Metric: Conversion rate comparison</li>
+                <li>Duration: 2 weeks of real user behavior</li>
+                <li>Technologies: Python, pandas, scipy.stats, matplotlib</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Project Context Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Project Context</h2>
+            <p>An online platform conducted an A/B test to validate whether redesigning their landing page would increase conversions. The question was simple but critical: should we launch the new page to all users, or stick with the current design?</p>
+            
+            <h3>The Challenge</h3>
+            <p>Real-world A/B tests aren't about finding statistical significance at all costs. They're about understanding whether a change actually matters for the business. With nearly 300,000 users, we had the data to answer this with confidence.</p>
+        </div>
+    </div>
+
+    <!-- What is A/B Testing Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Understanding A/B Testing</h2>
+            
+            <h3>The Core Concept</h3>
+            <p>A/B testing is straightforward: split your audience randomly, show each group a different version, measure results, and compare. The data tells you which version actually performs better.</p>
+            
+            <h3>Why It Matters</h3>
+            <p>Without testing, companies make decisions based on gut feeling or assumptions. A/B testing removes the guesswork. You know with statistical confidence which version actually performs better.</p>
+            
+            <h3>Real-World Example</h3>
+            <p>Imagine redesigning a checkout button. You think changing it from blue to orange might increase clicks. After testing with half your users for a week:</p>
+            <ul>
+                <li><strong>Blue button (Control):</strong> 10% conversion rate</li>
+                <li><strong>Orange button (Treatment):</strong> 12% conversion rate</li>
+                <li><strong>Result:</strong> 20% improvement in conversions — launch the orange button</li>
+            </ul>
+
+            <h3>Key Concepts</h3>
+            <ul>
+                <li><strong>Uplift:</strong> The percentage change in conversion rate. Positive uplift means the new version performs better.</li>
+                <li><strong>P-Value:</strong> A measure of statistical confidence. A p-value less than 0.05 means 95% confidence the difference is real.</li>
+                <li><strong>Segments:</strong> Breaking users into groups to see if treatment works differently for different audiences.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Methodology Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Analysis Methodology</h2>
+            
+            <h3>1. Data Cleaning</h3>
+            <p>Real-world data isn't always perfect. Users sometimes get assigned to the wrong group due to technical glitches. We removed approximately 3,500 inconsistent records where assignment didn't match the actual page shown.</p>
+            
+            <h3>2. Global Analysis</h3>
+            <p>We calculated the overall conversion rate for each version and compared them. This gives us the headline result: did the new page convert better?</p>
+            <ul>
+                <li>Control (Old Page): ~12.0% conversion rate</li>
+                <li>Treatment (New Page): ~12.9% conversion rate</li>
+                <li>Uplift: +0.9% (7.5% relative improvement)</li>
+                <li>Sample size: 290,274 total users (145k per group)</li>
+            </ul>
+            
+            <h3>3. Statistical Testing (T-Test)</h3>
+            <p>A small difference could be luck. We used a t-test to determine if the improvement was statistically significant or random noise.</p>
+            <ul>
+                <li><strong>T-Statistic:</strong> 1.615</li>
+                <li><strong>P-Value:</strong> 0.0900</li>
+                <li><strong>Confidence Level:</strong> ~91% (marginally significant at α=0.05)</li>
+            </ul>
+            
+            <h3>4. Segment Analysis</h3>
+            <p>We broke down results by time of day and user type to ensure the improvement wasn't driven by a specific subgroup.</p>
+            <ul>
+                <li>Daytime users (8am-8pm): Conversion up ~0.7%</li>
+                <li>Nighttime users (8pm-8am): Conversion up ~1.0%</li>
+                <li>Consistency across segments: ✓ No negative effects detected</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Results Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Key Findings</h2>
+            
+            <h3>Overall Result</h3>
+            <p>The new landing page shows measurable improvement across all user segments. The improvement is consistent and there are no subgroups where the new design performs worse.</p>
+            
+            <h3>Statistical Interpretation</h3>
+            <p>The p-value of 0.09 places us just outside the traditional 0.05 threshold. While technically marginally significant, the underlying improvement (7.5% relative uplift) is meaningful from a business perspective. Combined with consistency across segments, this supports moving forward cautiously.</p>
+            
+            <h3>No Surprises or Red Flags</h3>
+            <ul>
+                <li>Consistent performance across time periods</li>
+                <li>No user segment experienced worse conversion with the new design</li>
+                <li>Business impact aligned with statistical findings</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Recommendations Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Recommendations & Next Steps</h2>
+            
+            <h3>Launch Decision: Yes</h3>
+            <p>We recommend launching the new landing page. The evidence supports deployment:</p>
+            <ul>
+                <li>Measurable improvement across 290,000 users</li>
+                <li>Consistent positive effect across all segments</li>
+                <li>No negative effects detected</li>
+                <li>7.5% relative improvement justifies the change</li>
+            </ul>
+            
+            <h3>Implementation Strategy</h3>
+            <ol>
+                <li><strong>Staged Rollout:</strong> Launch to 25% of users first, monitor for 3-5 days</li>
+                <li><strong>Monitor Key Metrics:</strong> Track conversion rate, bounce rate, page load time</li>
+                <li><strong>Quick Rollback Plan:</strong> If conversion drops >10% or issues arise, revert immediately</li>
+                <li><strong>Post-Launch Analysis:</strong> Compare production results to test environment after 2 weeks</li>
+            </ol>
+            
+            <h3>Future Opportunities</h3>
+            <ul>
+                <li>Test design variations to push improvements further</li>
+                <li>Analyze which specific design elements drive the improvement</li>
+                <li>Run follow-up tests on other pages in the conversion funnel</li>
+                <li>Build a testing culture across the organization</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Technical Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Technical Implementation</h2>
+            
+            <h3>Tools & Technologies</h3>
+            <div class="files-link-container" style="margin: 20px 0;">
+                <span class="file-badge">Python</span>
+                <span class="file-badge">Pandas</span>
+                <span class="file-badge">NumPy</span>
+                <span class="file-badge">Scipy.stats</span>
+                <span class="file-badge">Matplotlib</span>
+                <span class="file-badge">Jupyter Notebooks</span>
+            </div>
+            
+            <h3>Analysis Approach</h3>
+            <p>The analysis was performed entirely in Python for reproducibility. All code is documented in Jupyter notebooks with clear explanations at each step.</p>
+            
+            <h3>Key Components</h3>
+            <ul>
+                <li>Data validation and cleansing routines</li>
+                <li>Conversion rate calculations by segment</li>
+                <li>Independent samples t-test for statistical comparison</li>
+                <li>Visualization pipeline for stakeholder communication</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Project Files Section -->
+    <div class="container">
+        <div class="project-single">
+            <h3>Project Files</h3>
+            <p>Access the complete analysis and experiments:</p>
+            
+            <div class="files-link-container">
+                <a href="https://github.com/cveram96/Portfolio/tree/main/experimentation-platform/experiments" 
+                   class="project-files-link" 
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    View full project repository
+                </a>
+                
+                <div class="file-types">
+                    <span class="file-badge">.IPYNB</span>
+                    <span class="file-badge">Python</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+            <p style="margin: 0;">Developed by Christian Vera - 2025</p>
+        
+            <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
+                <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">LinkedIn</button>
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>
