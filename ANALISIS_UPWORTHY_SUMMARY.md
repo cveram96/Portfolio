@@ -1,215 +1,214 @@
-# 📊 Análisis A/B Testing Upworthy - Resumen Ejecutivo
+# 📊 Upworthy A/B Testing Analysis - Executive Summary
 
-## 🎯 Objetivo
-Analizar **99,063 comparaciones pairwise** de headlines del Upworthy Research Archive para entender:
-- ¿Cuál tipo de headline genera más clics?
-- ¿Es estadísticamente significativo?
-- ¿Hay patrones según características del headline?
+## 🎯 Objective
+Analyze **99,063 pairwise comparisons** of headlines from the Upworthy Research Archive to understand:
+- Which type of headline generates more clicks?
+- Is it statistically significant?
+- Are there patterns based on headline characteristics?
 
 ---
 
-## 📈 Flujo de Análisis
+## 📈 Analysis Flow
 
-### PASO 1: Carga de Datos ✓
+### STEP 1: Data Loading ✓
 - **Dataset:** Upworthy Research Archive (Kaggle)
 - **Size:** 99,063 pairwise comparisons
-- **Estructura:** `[experiment_id, headline_a, headline_b, prob_a_gte_b]`
-- **Métrica:** Probabilidad Bayesiana (A >= B en clicks)
+- **Structure:** `[experiment_id, headline_a, headline_b, prob_a_gte_b]`
+- **Metric:** Bayesian Probability (A >= B in clicks)
 
-### PASO 2: Exploración ✓
-- Sin valores faltantes (casi)
-- Media de probabilidades: 0.5015 (muy cerca del neutro 0.5)
-- Std Dev: 0.124 (varianza moderada)
+### STEP 2: Exploration ✓
+- Almost no missing values
+- Mean probability: 0.5015 (very close to neutral 0.5)
+- Std Dev: 0.124 (moderate variance)
 
-### PASO 3: Crear Métricas Derivadas ✓
+### STEP 3: Create Derived Metrics ✓
 ```python
-# Variables creadas:
+# Variables created:
 - prob_b_gte_a = 1 - prob_a_gte_b
-- winner = 'A' si prob > 0.5 else 'B'
+- winner = 'A' if prob > 0.5 else 'B'
 - confidence = max(prob_a, prob_b)
 ```
 
-**Resultado inicial:**
-- A ganó: 50,151 tests (50.6%)
-- B ganó: 48,912 tests (49.4%)
-- Confianza media: 59.7%
+**Initial result:**
+- A won: 50,151 tests (50.6%)
+- B won: 48,912 tests (49.4%)
+- Mean confidence: 59.7%
 
-### PASO 4: Análisis Agregado ✓
-**Pregunta:** En TOTAL, ¿cuál headline es mejor?
+### STEP 4: Aggregate Analysis ✓
+**Question:** In TOTAL, which headline is better?
 
-**Respuesta:**
-- Probabilidad promedio A >= B: **50.2%**
-- Probabilidad promedio B > A: **49.8%**
-- Conclusión: **Headline A gana por poco, pero muy poco**
+**Response:**
+- Average probability A >= B: **50.2%**
+- Average probability B > A: **49.8%**
+- Conclusion: **Headline A wins by a very narrow margin**
 
-### PASO 5: Significancia Estadística ✓
-**Pregunta:** ¿Es este resultado confiable o podría ser al azar?
+### STEP 5: Statistical Significance ✓
+**Question:** Is this result reliable or could it be by chance?
 
-**Respuesta:**
-- Tests con ganador CLARO (prob > 0.9): 118 (0.1%)
-- Tests con ganador CLARO (prob < 0.1): 131 (0.1%)
-- Tests INCIERTOS (0.1 < prob < 0.9): **98,814 (99.7%)**
-- **Conclusión: MUY BAJA SIGNIFICANCIA** — Casi todo es ambiguo
+**Response:**
+- Tests with CLEAR winner (prob > 0.9): 118 (0.1%)
+- Tests with CLEAR winner (prob < 0.1): 131 (0.1%)
+- UNCERTAIN tests (0.1 < prob < 0.9): **98,814 (99.7%)**
+- **Conclusion: VERY LOW SIGNIFICANCE** — Almost everything is ambiguous
 
-### PASO 6: Análisis de Segmentación ✓
-**Variable de análisis:** Longitud del headline
+### STEP 6: Segmentation Analysis ✓
+**Analysis variable:** Headline length
 
-| Tipo | # Tests | A Gana | B Gana | Patrón |
+| Type | # Tests | A Wins | B Wins | Pattern |
 |------|---------|--------|--------|--------|
-| Corto (<40 chars) | 1,024 | 37.6% | **62.4%** | B mejor ✓ |
-| Medio (40-60 chars) | 8,971 | 46.4% | **53.6%** | B mejor ✓ |
-| Largo (>60 chars) | 89,068 | **51.2%** | 48.8% | A mejor ✓ |
+| Short (<40 chars) | 1,024 | 37.6% | **62.4%** | B better ✓ |
+| Medium (40-60 chars) | 8,971 | 46.4% | **53.6%** | B better ✓ |
+| Long (>60 chars) | 89,068 | **51.2%** | 48.8% | A better ✓ |
 
-**Key insight:** Los headlines contienen patrones según su longitud:
-- Headlines CORTOS: B funciona mejor
-- Headlines LARGOS: A funciona ligeramente mejor
+**Key insight:** Headlines contain patterns based on their length:
+- SHORT headlines: B performs better
+- LONG headlines: A performs slightly better
 
-### PASO 7: Análisis Bayesiano ✓
-Confirmó los hallazgos del PASO 5:
-- Media: 0.502
-- Mediana: 0.502
-- Rango: 0.0 a 1.0
-- **Interpretación:** Muy parejos
+### STEP 7: Bayesian Analysis ✓
+Confirmed findings from STEP 5:
+- Mean: 0.502
+- Median: 0.502
+- Range: 0.0 to 1.0
+- **Interpretation:** Very evenly matched
 
-### PASO 8: Visualizaciones ✓
-4 gráficos creados:
-1. **Distribución de probabilidades** → Curva cercana a 0.5 (neutral)
-2. **Conteo de ganadores** → 50.6% A vs 49.4% B (casi igual)
-3. **Confianza del resultado** → Mayoría en 0.5-0.65 (baja confianza)
-4. **Ventaja por longitud** → Patrón claro: cortos favorecen B
+### STEP 8: Visualizations ✓
+4 charts created:
+1. **Probability Distribution** → Curve close to 0.5 (neutral)
+2. **Winner Count** → 50.6% A vs 49.4% B (almost equal)
+3. **Result Confidence** → Majority in 0.5-0.65 (low confidence)
+4. **Length Advantage** → Clear pattern: short favors B
 
-### PASO 9: Interpretación ✓
-- **Claridad:** 0.3% (muy baja)
-- **Ganador dominante:** 🤝 Muy parejos
-- **Confianza:** ⚠️ Baja (59.7%)
-- **Por longitud:** B gana con headlines cortos
+### STEP 9: Interpretation ✓
+- **Clarity:** 0.3% (very low)
+- **Dominant winner:** 🤝 Very evenly matched
+- **Confidence:** ⚠️ Low (59.7%)
+- **By length:** B wins with short headlines
 
-### PASO 10: Recomendación Final ✓
+### STEP 10: Final Recommendation ✓
 ```
-⚠️ RESULTADOS MUY INCIERTOS
-Recomendación: Realizar más tests o revisar diseño
-Conclusión: INCONCLUSO
+⚠️ VERY UNCERTAIN RESULTS
+Recommendation: Conduct more tests or review design
+Conclusion: INCONCLUSIVE
 ```
 
 ---
 
-## 🎓 Hallazgos Principales
+## 🎓 Main Findings
 
-### 1. **Sin Ganador Claro Global**
-- Headline A: 50.2% de probabilidad
-- Headline B: 49.8% de probabilidad
-- **Diferencia práctica:** Prácticamente nula
+### 1. **No Clear Global Winner**
+- Headline A: 50.2% probability
+- Headline B: 49.8% probability
+- **Practical difference:** Practically zero
 
-### 2. **Resultados Altamente Ambiguos**
-- 99.7% de los tests no tienen un resultado definitivo
-- Confianza promedio solo 59.7%
-- Sugiere efectos muy pequeños o alta varianza natural
+### 2. **Highly Ambiguous Results**
+- 99.7% of tests do not have a definitive result
+- Average confidence only 59.7%
+- Suggests very small effects or high natural variance
 
-### 3. **Patrón Débil por Longitud**
-- En 90% de los tests (headlines largos), A tiene ligera ventaja
-- En 10% de los tests (headlines cortos), B tiene ventaja clara
-- Efecto existe pero es marginal
+### 3. **Weak Pattern by Length**
+- In 90% of tests (long headlines), A has a slight advantage
+- In 10% of tests (short headlines), B has a clear advantage
+- Effect exists but is marginal
 
-### 4. **Estructura de Pares Importa**
-- Comparamos múltiples pares, no un único A vs B
-- Esto "diluye" cualquier efecto individual
-- Cada headline A se compara contra múltiples B diferentes
+### 4. **Pair Structure Matters**
+- We compare multiple pairs, not a single A vs B
+- This "dilutes" any individual effect
+- Each headline A is compared against multiple different B's
 
 ---
 
-## 💡 Conclusiones Ejecutivas
+## 💡 Executive Conclusions
 
-### Para el Equipo de Contenido:
-1. **No hay un patrón universal claro**
-   - A y B funcionan prácticamente igual en promedio
-   - Cualquiera podría usar cualquiera con resultados similares
+### For the Content Team:
+1. **There is no clear universal pattern**
+   - A and B perform practically the same on average
+   - Either could be used with similar results
 
-2. **Considera la longitud del headline**
-   - Cortos (<40 chars): Usa estilo B
-   - Largos (>60 chars): Usa estilo A
-   - Diferencia es pequeña pero consistente
+2. **Consider headline length**
+   - Short (<40 chars): Use style B
+   - Long (>60 chars): Use style A
+   - Difference is small but consistent
 
-3. **Necesitas más datos**
-   - Los efectos son tan pequeños que 99,000 tests no son "suficientes"
-   - Para decisiones confiables, acumula más data o busca otros factores (tema, tono, etc.)
+3. **More data needed**
+   - Effects are so small that 99,000 tests are not "enough"
+   - For reliable decisions, accumulate more data or look for other factors (topic, tone, etc.)
 
-### Para el Data Scientist:
-1. **Validación:**
-   - Dataset está limpio y bien estructurado
-   - Análisis Bayesiano es apropiado
-   - Conclusiones son robustas
+### For the Data Scientist:
+1. **Validation:**
+   - Dataset is clean and well-structured
+   - Bayesian Analysis is appropriate
+   - Conclusions are robust
 
 2. **Next Steps:**
-   - Segmentar por categoría de contenido (si disponible)
-   - Analizar otros factores: palabras clave, emojis, tono, urgencia
-   - Considerar interacciones entre factores
+   - Segment by content category (if available)
+   - Analyze other factors: keywords, emojis, tone, urgency
+   - Consider interactions between factors
 
-3. **Metología:**
-   - A/B testing real tiene muchos resultados "inciertos"
-   - No es culpa del análisis, sino de la naturaleza de los datos
-   - Esto es **normal y esperado** en e-commerce/contenido
+3. **Methodology:**
+   - Real A/B testing has many "uncertain" results
+   - This is not a failure of the analysis, but the nature of the data
+   - This is **normal and expected** in e-commerce/content
 
 ---
 
-## 📊 Métricas Clave
+## 📊 Key Metrics
 
-| Métrica | Valor | Interpretación |
+| Metric | Value | Interpretation |
 |---------|-------|-----------------|
-| Total de comparaciones | 99,063 | Muestra grande ✓ |
-| Prob A promedio | 0.502 | Neutral, muy cerca de 0.5 |
-| Ganador A | 50.6% | Ventaja marginal |
-| Ganador B | 49.4% | Casi lo mismo |
-| Claridad | 0.3% | Muy baja |
-| Confianza promedio | 59.7% | Moderada (ideal >80%) |
-| Patrón longitud corta | B favorecido | Consistente pero 10% de datos |
-| Patrón longitud larga | A favorecido | Ligera ventaja en 90% |
+| Total comparisons | 99,063 | Large sample ✓ |
+| Average Prob A | 0.502 | Neutral, very close to 0.5 |
+| Winner A | 50.6% | Marginal advantage |
+| Winner B | 49.4% | Almost the same |
+| Clarity | 0.3% | Very low |
+| Average confidence | 59.7% | Moderate (ideal >80%) |
+| Short length pattern | B favored | Consistent but 10% of data |
+| Long length pattern | A favored | Slight advantage in 90% |
 
 ---
 
-## 🔄 Cómo Se Ejecutó
+## 🔄 How It Was Executed
 
 ```
-1. Cargar datos Upworthy ✓
+1. Load Upworthy data ✓
    ↓
-2. Explorar y validar ✓
+2. Explore and validate ✓
    ↓
-3. Crear métricas (winner, confidence) ✓
+3. Create metrics (winner, confidence) ✓
    ↓
-4. Análisis agregado global ✓
+4. Global aggregate analysis ✓
    ↓
-5. Validar significancia estadística ✓
+5. Validate statistical significance ✓
    ↓
-6. Buscar patrones por segmento ✓
+6. Look for patterns by segment ✓
    ↓
-7. Análisis Bayesiano profundo ✓
+7. Deep Bayesian analysis ✓
    ↓
-8. Visualizar hallazgos ✓
+8. Visualize findings ✓
    ↓
-9. Interpretar en contexto ✓
+9. Interpret in context ✓
    ↓
-10. Hacer recomendaciones ✓
+10. Make recommendations ✓
 ```
 
 ---
 
-## 📝 Notas Técnicas
+## 📝 Technical Notes
 
-- **Métrica:** Probabilidad Bayesiana posterior (no frecuentista)
-- **Significancia:** Umbral >0.9 o <0.1 para "ganador claro"
-- **Segmentación:** Por longitud de texto (Corto/Medio/Largo)
-- **Confianza:** max(prob_a_gte_b, prob_b_gte_a)
-- **Tamaño efecto:** Muy pequeño (~0.2 desviaciones estándar)
+- **Metric:** Posterior Bayesian probability (non-frequentist)
+- **Significance:** Threshold >0.9 or <0.1 for "clear winner"
+- **Segmentation:** By text length (Short/Medium/Long)
+- **Confidence:** max(prob_a_gte_b, prob_b_gte_a)
+- **Effect size:** Very small (~0.2 standard deviations)
 
 ---
 
-## 🎯 Fichero Principal
+## 🎯 Main File
 
 📁 `experimentation-platform/experiments/02_retail_ab_test.ipynb`
 
-Jupyter Notebook con:
-- 26 celdas (código + markdown)
-- 4 visualizaciones
-- 10 pasos de análisis
-- Comentarios detallados
-- Interpretaciones ejecutivas
-
+Jupyter Notebook with:
+- 26 cells (code + markdown)
+- 4 visualizations
+- 10 analysis steps
+- Detailed comments
+- Executive interpretations
