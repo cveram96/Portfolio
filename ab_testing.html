@@ -21,7 +21,7 @@
             <h1>A/B Testing Project</h1>
             <h2>Landing Page Performance Analysis with Real Data</h2>
             <ul>
-                <li>Dataset: Udacity A/B Test (290,274 users)</li>
+                <li>Dataset: Udacity A/B Test (290,584 users)</li>
                 <li>Metric: Conversion rate comparison</li>
                 <li>Duration: 2 weeks of real user behavior</li>
                 <li>Technologies: Python, pandas, scipy.stats, matplotlib</li>
@@ -74,31 +74,31 @@
             <h2>Analysis Methodology</h2>
             
             <h3>1. Data Cleaning</h3>
-            <p>Real-world data isn't always perfect. Users sometimes get assigned to the wrong group due to technical glitches. We removed approximately 3,500 inconsistent records where assignment didn't match the actual page shown.</p>
+            <p>Real-world data contains inconsistencies. Users sometimes get assigned to the wrong group due to technical glitches. We removed inconsistent records where group assignment didn't match the actual page shown, ending with 290,584 clean records.</p>
             
             <h3>2. Global Analysis</h3>
-            <p>We calculated the overall conversion rate for each version and compared them. This gives us the headline result: did the new page convert better?</p>
+            <p>We calculated the overall conversion rate for each version and compared them. The results are straightforward.</p>
             <ul>
-                <li>Control (Old Page): ~12.0% conversion rate</li>
-                <li>Treatment (New Page): ~12.9% conversion rate</li>
-                <li>Uplift: +0.9% (7.5% relative improvement)</li>
-                <li>Sample size: 290,274 total users (145k per group)</li>
+                <li>Control (Old Page): 12.04% conversion rate (17,489 conversions)</li>
+                <li>Treatment (New Page): 11.88% conversion rate (17,264 conversions)</li>
+                <li>Uplift: -0.16% (treatment performed slightly worse)</li>
+                <li>Sample size: 290,584 total users</li>
             </ul>
             
             <h3>3. Statistical Testing (T-Test)</h3>
-            <p>A small difference could be luck. We used a t-test to determine if the improvement was statistically significant or random noise.</p>
+            <p>The difference could be random chance. We ran a t-test to determine if this was a real effect or just noise.</p>
             <ul>
-                <li><strong>T-Statistic:</strong> 1.615</li>
-                <li><strong>P-Value:</strong> 0.0900</li>
-                <li><strong>Confidence Level:</strong> ~91% (marginally significant at α=0.05)</li>
+                <li><strong>T-Statistic:</strong> -1.3116</li>
+                <li><strong>P-Value:</strong> 0.1897</li>
+                <li><strong>Result:</strong> NOT statistically significant (p > 0.05)</li>
             </ul>
             
             <h3>4. Segment Analysis</h3>
-            <p>We broke down results by time of day and user type to ensure the improvement wasn't driven by a specific subgroup.</p>
+            <p>We analyzed results by time of day to look for hidden patterns. Both segments showed similar patterns to the global result.</p>
             <ul>
-                <li>Daytime users (8am-8pm): Conversion up ~0.7%</li>
-                <li>Nighttime users (8pm-8am): Conversion up ~1.0%</li>
-                <li>Consistency across segments: ✓ No negative effects detected</li>
+                <li>Daytime users (8am-8pm): Slight underperformance</li>
+                <li>Nighttime users (8pm-8am): Slight underperformance</li>
+                <li>Consistency: Effect consistent across time periods</li>
             </ul>
         </div>
     </div>
@@ -106,19 +106,20 @@
     <!-- Results Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Key Findings</h2>
+            <h2>Why We Don't Launch</h2>
             
-            <h3>Overall Result</h3>
-            <p>The new landing page shows measurable improvement across all user segments. The improvement is consistent and there are no subgroups where the new design performs worse.</p>
+            <h3>The Statistical Verdict</h3>
+            <p>This is a straightforward case: the data says "no." The new design performed worse than the original, and the difference could easily be random.</p>
             
-            <h3>Statistical Interpretation</h3>
-            <p>The p-value of 0.09 places us just outside the traditional 0.05 threshold. While technically marginally significant, the underlying improvement (7.5% relative uplift) is meaningful from a business perspective. Combined with consistency across segments, this supports moving forward cautiously.</p>
+            <h3>The Business Decision</h3>
+            <p>Even if the difference were statistically significant, we'd still recommend against launching. The new design underperformed by -0.16 percentage points. When you multiply that by thousands of users, it means lost conversions and revenue.</p>
             
-            <h3>No Surprises or Red Flags</h3>
+            <h3>What We Learned</h3>
             <ul>
-                <li>Consistent performance across time periods</li>
-                <li>No user segment experienced worse conversion with the new design</li>
-                <li>Business impact aligned with statistical findings</li>
+                <li>The new design introduced friction that reduced conversions</li>
+                <li>Users preferred the original layout and flow</li>
+                <li>Not all design changes improve performance</li>
+                <li>Testing prevented a costly mistake</li>
             </ul>
         </div>
     </div>
@@ -128,29 +129,29 @@
         <div class="section-block">
             <h2>Recommendations & Next Steps</h2>
             
-            <h3>Launch Decision: Yes</h3>
-            <p>We recommend launching the new landing page. The evidence supports deployment:</p>
+            <h3>Launch Decision: No</h3>
+            <p>We recommend NOT launching the new landing page. The evidence does not support deployment:</p>
             <ul>
-                <li>Measurable improvement across 290,000 users</li>
-                <li>Consistent positive effect across all segments</li>
-                <li>No negative effects detected</li>
-                <li>7.5% relative improvement justifies the change</li>
+                <li>The new design shows lower conversion (11.88% vs 12.04%)</li>
+                <li>The difference is not statistically significant (p=0.1897)</li>
+                <li>There is no business case for the change</li>
+                <li>Launching would likely hurt performance</li>
             </ul>
             
-            <h3>Implementation Strategy</h3>
+            <h3>Next Steps</h3>
             <ol>
-                <li><strong>Staged Rollout:</strong> Launch to 25% of users first, monitor for 3-5 days</li>
-                <li><strong>Monitor Key Metrics:</strong> Track conversion rate, bounce rate, page load time</li>
-                <li><strong>Quick Rollback Plan:</strong> If conversion drops >10% or issues arise, revert immediately</li>
-                <li><strong>Post-Launch Analysis:</strong> Compare production results to test environment after 2 weeks</li>
+                <li><strong>Keep Current Design:</strong> Continue with the original landing page</li>
+                <li><strong>Investigate Root Cause:</strong> Why did the new design underperform?</li>
+                <li><strong>Gather Feedback:</strong> Talk to users about friction points with the new design</li>
+                <li><strong>Iterate:</strong> Go back to the design phase and build a better version</li>
             </ol>
             
             <h3>Future Opportunities</h3>
             <ul>
-                <li>Test design variations to push improvements further</li>
-                <li>Analyze which specific design elements drive the improvement</li>
-                <li>Run follow-up tests on other pages in the conversion funnel</li>
-                <li>Build a testing culture across the organization</li>
+                <li>Analyze what specific elements of the new design caused underperformance</li>
+                <li>Test design variations that address identified friction points</li>
+                <li>Run follow-up A/B tests with refined designs</li>
+                <li>Document learnings from this test for the team</li>
             </ul>
         </div>
     </div>
