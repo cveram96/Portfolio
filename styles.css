@@ -831,3 +831,108 @@ footer {
 * {
   transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
+/* ===== A/B TESTING SPECIFIC VISUALS ===== */
+.stat-dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.stat-box {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  border-top: 4px solid var(--primary);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.stat-box:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-box.negative { border-top-color: #ff6b6b; }
+.stat-box.positive { border-top-color: #2ecc71; }
+.stat-box.neutral { border-top-color: var(--secondary); }
+
+.stat-box .value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--light);
+  margin-bottom: 0.5rem;
+}
+
+.stat-box .label {
+  color: var(--gray);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.confidence-viz {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  margin: 2rem 0;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.viz-row {
+  margin-bottom: 2rem;
+}
+
+.viz-row:last-child { margin-bottom: 0; }
+
+.viz-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.viz-bar-container {
+  height: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+}
+
+.viz-interval {
+  height: 12px;
+  border-radius: 6px;
+  position: absolute;
+  transition: var(--transition);
+}
+
+.control-interval { background: #e74c3c; opacity: 0.8; }
+.treatment-interval { background: #4ecdc4; opacity: 0.8; }
+
+.viz-marker {
+  width: 4px;
+  height: 20px;
+  background: var(--light);
+  position: absolute;
+  z-index: 2;
+  border-radius: 2px;
+}
+
+.viz-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding: 0 10px;
+  color: var(--gray);
+  font-size: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 0.5rem;
+}

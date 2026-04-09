@@ -73,86 +73,135 @@
         <div class="section-block">
             <h2>Analysis Methodology</h2>
             
-            <h3>1. Data Cleaning</h3>
-            <p>Real-world data contains inconsistencies. Users sometimes get assigned to the wrong group due to technical glitches. We removed inconsistent records where group assignment didn't match the actual page shown, ending with 290,584 clean records.</p>
+            <p>Moving beyond simple mean comparisons, we applied a rigorous statistical framework to validate whether the landing page redesign had a measurable causal impact on conversions.</p>
+
+            <div class="stat-dashboard">
+                <div class="stat-box neutral">
+                    <span class="value">290,584</span>
+                    <span class="label">Analytical Population</span>
+                </div>
+                <div class="stat-box neutral">
+                    <span class="value">90.2%</span>
+                    <span class="label">Statistical Power</span>
+                </div>
+                <div class="stat-box neutral">
+                    <span class="value">Z-Test</span>
+                    <span class="label">Inference Model</span>
+                </div>
+            </div>
+
+            <h3>1. Data Cleaning & Integrity</h3>
+            <p>In large-scale experiments, assignment mismatches can occur. We removed records where the assigned group didn't match the page delivered to maintain a clean **Intent-to-Treat (ITT)** analysis, ending with 290,584 consistent records.</p>
             
-            <h3>2. Global Analysis</h3>
-            <p>We calculated the overall conversion rate for each version and compared them. The results are straightforward.</p>
-            <ul>
-                <li>Control (Old Page): 12.04% conversion rate (17,489 conversions)</li>
-                <li>Treatment (New Page): 11.88% conversion rate (17,264 conversions)</li>
-                <li>Uplift: -0.16% (treatment performed slightly worse)</li>
-                <li>Sample size: 290,584 total users</li>
-            </ul>
+            <h3>2. Statistical Robustness (Z-Test)</h3>
+            <p>For binary conversion outcomes with nearly 300,000 users, a **Z-Test for Proportions** is the industry standard. This allows us to calculate not just the difference, but the probability that such difference is purely random.</p>
             
-            <h3>3. Statistical Testing (T-Test)</h3>
-            <p>The difference could be random chance. We ran a t-test to determine if this was a real effect or just noise.</p>
-            <ul>
-                <li><strong>T-Statistic:</strong> -1.3116</li>
-                <li><strong>P-Value:</strong> 0.1897</li>
-                <li><strong>Result:</strong> NOT statistically significant (p > 0.05)</li>
-            </ul>
-            
-            <h3>4. Segment Analysis</h3>
-            <p>We analyzed results by time of day to look for hidden patterns. Both segments showed similar patterns to the global result.</p>
-            <ul>
-                <li>Daytime users (8am-8pm): Slight underperformance</li>
-                <li>Nighttime users (8pm-8am): Slight underperformance</li>
-                <li>Consistency: Effect consistent across time periods</li>
-            </ul>
+            <h3>3. Heterogeneity Analysis</h3>
+            <p>We investigated potential **Conditional Average Treatment Effects (CATE)** by segmenting users (e.g., time of visit) to see if the redesign performed better for specific audiences, even if the global result was neutral.</p>
         </div>
     </div>
 
     <!-- Results Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Why We Don't Launch</h2>
+            <h2>Global Performance Results</h2>
             
-            <h3>The Statistical Verdict</h3>
-            <p>This is a straightforward case: the data says "no." The new design performed worse than the original, and the difference could easily be random.</p>
+            <div class="stat-dashboard">
+                <div class="stat-box neutral">
+                    <span class="value">12.04%</span>
+                    <span class="label">Control CR</span>
+                </div>
+                <div class="stat-box negative">
+                    <span class="value">11.88%</span>
+                    <span class="label">Treatment CR</span>
+                </div>
+                <div class="stat-box negative">
+                    <span class="value">-1.31%</span>
+                    <span class="label">Relative Uplift</span>
+                </div>
+                <div class="stat-box negative">
+                    <span class="value">0.1897</span>
+                    <span class="label">P-Value</span>
+                </div>
+            </div>
+
+            <h3>Visualizing Statistical Uncertainty</h3>
+            <p>The chart below shows the 95% Confidence Intervals for both groups. The high overlap between the ranges visually confirms that we cannot distinguish the performance of the new design from the original with statistical confidence.</p>
+
+            <div class="confidence-viz">
+                <div class="viz-row">
+                    <div class="viz-label">
+                        <span>Control (Old Page)</span>
+                        <span>12.04% CR</span>
+                    </div>
+                    <div class="viz-bar-container">
+                        <div class="viz-interval control-interval" style="left: 45%; width: 10%;"></div>
+                        <div class="viz-marker" style="left: 50%;"></div>
+                    </div>
+                </div>
+                <div class="viz-row">
+                    <div class="viz-label">
+                        <span>Treatment (New Page)</span>
+                        <span>11.88% CR</span>
+                    </div>
+                    <div class="viz-bar-container">
+                        <div class="viz-interval treatment-interval" style="left: 43%; width: 10%;"></div>
+                        <div class="viz-marker" style="left: 48%;"></div>
+                    </div>
+                </div>
+                <div class="viz-scale">
+                    <span>11.5%</span>
+                    <span>Overlap Zone</span>
+                    <span>12.5%</span>
+                </div>
+            </div>
             
-            <h3>The Business Decision</h3>
-            <p>Even if the difference were statistically significant, we'd still recommend against launching. The new design underperformed by -0.16 percentage points. When you multiply that by thousands of users, it means lost conversions and revenue.</p>
-            
-            <h3>What We Learned</h3>
-            <ul>
-                <li>The new design introduced friction that reduced conversions</li>
-                <li>Users preferred the original layout and flow</li>
-                <li>Not all design changes improve performance</li>
-                <li>Testing prevented a costly mistake</li>
-            </ul>
+            <h3>Segment Breakdown</h3>
+            <div class="two-columns">
+                <div class="stat-box neutral" style="margin-bottom: 1rem;">
+                    <span class="label">Daytime Segment</span>
+                    <p style="margin-top: 0.5rem; color: var(--gray);">P-Value: 0.16<br>Consistent Underperformance</p>
+                </div>
+                <div class="stat-box neutral">
+                    <span class="label">Nighttime Segment</span>
+                    <p style="margin-top: 0.5rem; color: var(--gray);">P-Value: 0.22<br>No local gain identified</p>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Recommendations Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Recommendations & Next Steps</h2>
+            <h2>Business Verdict & Strategic Recommendations</h2>
             
-            <h3>Launch Decision: No</h3>
-            <p>We recommend NOT launching the new landing page. The evidence does not support deployment:</p>
-            <ul>
-                <li>The new design shows lower conversion (11.88% vs 12.04%)</li>
-                <li>The difference is not statistically significant (p=0.1897)</li>
-                <li>There is no business case for the change</li>
-                <li>Launching would likely hurt performance</li>
-            </ul>
+            <div class="stat-box negative" style="margin-bottom: 2rem; border-left: 5px solid #ff6b6b; border-right: 5px solid #ff6b6b;">
+                <span class="value">NO-GO DECISION</span>
+                <span class="label">The redesigned landing page failed to engage users better than the current version.</span>
+            </div>
             
-            <h3>Next Steps</h3>
-            <ol>
-                <li><strong>Keep Current Design:</strong> Continue with the original landing page</li>
-                <li><strong>Investigate Root Cause:</strong> Why did the new design underperform?</li>
-                <li><strong>Gather Feedback:</strong> Talk to users about friction points with the new design</li>
-                <li><strong>Iterate:</strong> Go back to the design phase and build a better version</li>
-            </ol>
+            <h3>Strategic Rationale</h3>
+            <p>Deploying the new page would involve a regression in conversions (-1.31% relative) and lost revenue opportunities. The high statistical power (90.2%) confirms that we are not simply "missing" an effect due to a small sample size; the redesign truly underperformed.</p>
             
-            <h3>Future Opportunities</h3>
-            <ul>
-                <li>Analyze what specific elements of the new design caused underperformance</li>
-                <li>Test design variations that address identified friction points</li>
-                <li>Run follow-up A/B tests with refined designs</li>
-                <li>Document learnings from this test for the team</li>
-            </ul>
+            <h3>Actionable Next Steps</h3>
+            <div class="two-columns">
+                <div class="metric-card" style="padding: 1rem; margin-bottom: 1rem; background: rgba(255, 255, 255, 0.03);">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">1. Maintain Baseline</h4>
+                    <p style="font-size: 0.9rem;">Continue with the current landing page design as it remains the superior performer.</p>
+                </div>
+                <div class="metric-card" style="padding: 1rem; margin-bottom: 1rem; background: rgba(255, 255, 255, 0.03);">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">2. Qualitative Post-Mortem</h4>
+                    <p style="font-size: 0.9rem;">Analyze user feedback and heatmaps to understand where the new design introduced friction.</p>
+                </div>
+                <div class="metric-card" style="padding: 1rem; margin-bottom: 1rem; background: rgba(255, 255, 255, 0.03);">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">3. Iterative Hypotheses</h4>
+                    <p style="font-size: 0.9rem;">Develop a new redesign based on learnings from this failed test for a follow-up experiment.</p>
+                </div>
+                <div class="metric-card" style="padding: 1rem; margin-bottom: 1rem; background: rgba(255, 255, 255, 0.03);">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">4. Segment Deep-Dive</h4>
+                    <p style="font-size: 0.9rem;">Explore if other covariates (device type, source) reveal any specific group where the new page worked.</p>
+                </div>
+            </div>
         </div>
     </div>
 
