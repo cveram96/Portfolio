@@ -1,21 +1,21 @@
-# Experimentation Platform 🧪
+# Experimentation Platform
 
 An educational and professional project focused on **A/B Testing** and digital experimentation. Built from scratch to learn and apply data science concepts to business decisions.
 
 ---
 
-## 📋 What is this project?
+## What is this project?
 
 **Experimentation Platform** is a didactic platform that teaches how to design, execute, and analyze A/B tests. It is ideal for:
 
-- 📚 **Data Science Students**: Learn experimentation fundamentals
-- 💼 **Product Managers**: Understand the statistics behind decisions
-- 📊 **Data Analysts**: Implement tests in production
-- 🎯 **Anyone interested in data-driven decisions**
+- **Data Science Students**: Learn experimentation fundamentals
+- **Product Managers**: Understand the statistics behind decisions
+- **Data Analysts**: Implement tests in production
+- **Anyone interested in data-driven decisions**
 
 ---
 
-## 🎯 What is an A/B Test?
+## What is an A/B Test?
 
 An **A/B test** is a controlled experiment where:
 
@@ -33,7 +33,7 @@ An online store wants to know if changing the "Buy" button color from blue to or
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 experimentation-platform/
@@ -42,8 +42,8 @@ experimentation-platform/
 ├── src/                           # Reusable code
 │   └── [modules and utilities]
 ├── experiments/                   # Experiment notebooks
-│   ├── 01_synthetic.ipynb         # ← THEORETICAL PHASE: Synthetic Data (1-3) ✓
-│   ├── 02_retail_ab_test.ipynb    # ← APPLIED PHASE: Real Data (UCI) 🆕
+│   ├── 01_synthetic.ipynb         # ← THEORETICAL PHASE: Synthetic Data (1-3)
+│   ├── 02_retail_ab_test.ipynb    # ← APPLIED PHASE: Real Data (UCI)
 │   └── ...
 ├── app/                           # Web application (Streamlit)
 │   └── [UI code]
@@ -52,9 +52,9 @@ experimentation-platform/
 
 ---
 
-## ✅ PHASE 1 + PHASE 2 + PHASE 3 + PHASE 4: Fundamentals, Validation, CUPED and Sizing (COMPLETED)
+## PHASE 1 + PHASE 2 + PHASE 3 + PHASE 4: Fundamentals, Validation, CUPED and Sizing (COMPLETED)
 
-### 📌 File: `experiments/01_synthetic.ipynb`
+### File: `experiments/01_synthetic.ipynb`
 
 In this notebook, we built a complete experimentation workflow:
 
@@ -76,13 +76,13 @@ In this notebook, we built a complete experimentation workflow:
 - Mathematical intuition behind θ (theta)
 - Impact analysis: p-value reduction and precision improvement
 
-#### **PHASE 4: Experiment Design (Sizing) 🆕**
+#### **PHASE 4: Experiment Design (Sizing)**
 - Statistical Power Analysis with `statsmodels`
 - Calculation of required sample size
 - Understanding MDE (Minimum Detectable Effect)
 - Pre-experiment planning to avoid underpowered tests
 
-### 📊 Expected Results
+### Expected Results
 
 | Metric | Result |
 |---------|-----------|
@@ -94,9 +94,9 @@ In this notebook, we built a complete experimentation workflow:
 
 ---
 
-## 🔬 APPLIED PHASE: A/B Testing with Real Data 🆕
+## APPLIED PHASE: A/B Testing with Real Data
 
-### 📌 File: `experiments/02_retail_ab_test.ipynb`
+### File: `experiments/02_retail_ab_test.ipynb`
 
 This notebook takes everything learned in PHASE 1-3 and **applies it to a real e-commerce dataset**.
 
@@ -106,7 +106,7 @@ This notebook takes everything learned in PHASE 1-3 and **applies it to a real e
 #### **Dataset: Online Retail (UCI Machine Learning Repository)**
 
 Real data from a UK-based online store:
-- 📊 541,909 transactions
-- 👥 4,372 unique customers  
-- 🛍️ 3,684 products
-- 📅 Period: January 2010 - December 2011
+- 541,909 transactions
+- 4,372 unique customers  
+- 3,684 products
+- Period: January 2010 - December 2011
