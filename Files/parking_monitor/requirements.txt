@@ -1,0 +1,6 @@
+ultralytics
+opencv-python
+sqlalchemy
+PySide6
+pyqtgraph
+pyinstaller

@@ -1,0 +1,82 @@
+/* Global Styles */
+QWidget {
+    background-color: #0f172a;
+    color: #e2e8f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sidebar Menu */
+QListWidget#Sidebar {
+    background-color: #1e293b;
+    border: none;
+    font-size: 16px;
+}
+QListWidget#Sidebar::item {
+    padding: 15px;
+    border-bottom: 1px solid #334155;
+}
+QListWidget#Sidebar::item:selected {
+    background-color: #3b82f6;
+    color: white;
+}
+
+/* Panels */
+QFrame.glass-panel {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 10px;
+}
+
+/* Buttons */
+QPushButton {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background-color: #2563eb;
+}
+QPushButton:pressed {
+    background-color: #1d4ed8;
+}
+QPushButton#Secondary {
+    background-color: #475569;
+}
+QPushButton#Secondary:hover {
+    background-color: #334155;
+}
+
+/* Labels */
+QLabel#Title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+}
+QLabel#StatValue {
+    font-size: 36px;
+    font-weight: bold;
+}
+QLabel#StatValueGreen {
+    font-size: 36px;
+    font-weight: bold;
+    color: #22c55e;
+}
+QLabel#StatValueRed {
+    font-size: 36px;
+    font-weight: bold;
+    color: #ef4444;
+}
+
+/* Combobox */
+QComboBox {
+    background-color: #1e293b;
+    border: 1px solid #3b82f6;
+    border-radius: 5px;
+    padding: 5px;
+}
+QComboBox::drop-down {
+    border: none;
+}
