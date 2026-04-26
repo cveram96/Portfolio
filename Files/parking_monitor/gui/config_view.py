@@ -1,9 +1,11 @@
 import cv2
 import numpy as np
 import math
+import json
 from PySide6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout,
                                QLabel, QPushButton, QComboBox, QListWidget,
-                               QListWidgetItem, QFrame, QMessageBox, QSlider)
+                               QListWidgetItem, QFrame, QMessageBox, QSlider, QLineEdit,
+                               QInputDialog)
 from PySide6.QtGui import QPixmap, QImage, QIcon, QCursor
 from PySide6.QtCore import Qt, Signal, QSize, QPoint
 
@@ -134,6 +136,11 @@ class ConfigView(QWidget):
         self.combo_type.addItems(['Estándar', 'Motos', 'VIP', 'Discapacitados'])
         right_layout.addWidget(self.combo_type)
 
+        right_layout.addWidget(QLabel('Nombre del Espacio (opcional):'))
+        self.edit_name = QLineEdit()
+        self.edit_name.setPlaceholderText('Ej: A-01, VIP-1, P-101...')
+        right_layout.addWidget(self.edit_name)
+
         right_layout.addWidget(QLabel('Inclinación (Autodetect):'))
         self.slider_angle = QSlider(Qt.Horizontal)
         self.slider_angle.setRange(-60, 60); self.slider_angle.setValue(0)
@@ -149,13 +156,19 @@ class ConfigView(QWidget):
         self.slider_h.setRange(80, 300); self.slider_h.setValue(120)
         right_layout.addWidget(self.slider_h)
 
-        self.btn_save_poly = QPushButton('💾 Cerrar y Guardar Polígono Actual')
+        self.btn_save_poly = QPushButton('💾 Finalizar y Guardar (Espacio Manual)')
         self.btn_save_poly.clicked.connect(self.finish_polygon)
+        self.btn_save_poly.setStyleSheet("background-color: #0369a1; font-weight: bold;")
         right_layout.addWidget(self.btn_save_poly)
+
+        self.btn_duplicate = QPushButton('👯 Duplicar Espacio Seleccionado')
+        self.btn_duplicate.clicked.connect(self.duplicate_selected)
+        right_layout.addWidget(self.btn_duplicate)
 
         right_layout.addWidget(QLabel('Espacios Guardados:'))
         self.list_spaces = QListWidget()
         self.list_spaces.setIconSize(QSize(100, 100))
+        self.list_spaces.itemDoubleClicked.connect(self.rename_space)
         right_layout.addWidget(self.list_spaces)
 
         btn_row = QHBoxLayout()
@@ -172,6 +185,9 @@ class ConfigView(QWidget):
 
         main_layout.addLayout(left_panel, stretch=7)
         main_layout.addWidget(right_panel, stretch=3)
+        
+        # Set focus policy to capture keys
+        self.setFocusPolicy(Qt.StrongFocus)
 
     # ── Mode switching ────────────────────────────────────────────────────────
     def set_mode(self, mode):
@@ -211,7 +227,8 @@ class ConfigView(QWidget):
         for i, space in enumerate(self.current_spaces):
             pts   = space['points'] if isinstance(space, dict) else space
             stype = space.get('type', 'Estándar') if isinstance(space, dict) else 'Estándar'
-            item  = QListWidgetItem(f'Espacio {i+1} ({stype})')
+            name = space.get('name', f'Espacio {i+1}') if isinstance(space, dict) else f'Espacio {i+1}'
+            item  = QListWidgetItem(f'{name} ({stype})')
             item.setIcon(self.get_thumbnail(pts))
             self.list_spaces.addItem(item)
 
@@ -287,6 +304,10 @@ class ConfigView(QWidget):
             bw_default = self.slider_w.value()
             bh_default = self.slider_h.value()
             stype = self.combo_type.currentText()
+            prefix = self._get_type_prefix(stype)
+            custom_name = self.edit_name.text().strip()
+            if not custom_name:
+                custom_name = self._get_next_space_number(prefix)
             found = False
             for box in results[0].boxes.xyxy.cpu().numpy():
                 x1, y1, x2, y2 = map(int, box)
@@ -296,74 +317,120 @@ class ConfigView(QWidget):
                     cx = int(x1 + (x2 - x1) / 2)
                     cy = int(y2)
                     poly = self._slanted_box(cx, cy, cw, ch, angle)
-                    self.current_spaces.append({'points': poly, 'type': stype})
+                    self.current_spaces.append({'points': poly, 'type': stype, 'name': custom_name})
                     found = True
                     break
             if not found:
                 # Manual placement at click location using slider values
                 poly = self._slanted_box(px, py + bh_default//2, bw_default, bh_default, angle)
-                self.current_spaces.append({'points': poly, 'type': stype})
+                self.current_spaces.append({'points': poly, 'type': stype, 'name': custom_name})
+            self.edit_name.clear()
             self.redraw_frame(); self.refresh_list()
         except Exception as e:
             print('Smart click error:', e)
 
     # ── Autodetect ────────────────────────────────────────────────────────────
+    _precise_model_cache = None
+    
+    def _get_precise_model(self):
+        """Cache the precise model to avoid reloading."""
+        if self._precise_model_cache is None:
+            from ultralytics import YOLO
+            self._precise_model_cache = YOLO('yolo26m-seg.pt')
+        return self._precise_model_cache
+    
     def _sliced_detect(self, frame):
         """
-        Tile-based inference: splits frame into overlapping tiles, runs YOLO on each,
-        maps boxes back to frame coords, then applies global NMS.
-        Returns list of [x1, y1, x2, y2] in frame coords (filtered by size).
+        Tile-based inference con modelo preciso (yolov8m-seg).
+        Usa segmentación para mejor precisión en detección de vehículos.
         """
-        import cv2, numpy as np
+        precise_model = self._get_precise_model()
+        
         fh, fw = frame.shape[:2]
-        tile_sz  = 480
-        overlap  = 120
+        tile_sz  = 640
+        overlap  = 160
         step     = tile_sz - overlap
-        conf_thr = 0.05    # low threshold to catch aerial cars
-        nms_iou  = 0.35
+        conf_thr = 0.15
+        nms_iou  = 0.45
 
         all_boxes = []
+        all_masks = []
+        all_confs = []
+        
         for y in range(0, fh, step):
             for x in range(0, fw, step):
                 x2 = min(x + tile_sz, fw)
                 y2 = min(y + tile_sz, fh)
                 tile = frame[y:y2, x:x2]
-                r = self.vision_thread.model.predict(
-                    tile, classes=[2, 3, 5, 7], conf=conf_thr, verbose=False)
-                for box in r[0].boxes.xyxy.cpu().numpy():
-                    bx1, by1, bx2, by2 = box
-                    all_boxes.append([x + bx1, y + by1, x + bx2, y + by2])
+                r = precise_model.predict(tile, classes=[2, 3, 5, 7], conf=conf_thr, verbose=False, imgsz=640)
+                
+                for res in r:
+                    if res.masks is not None:
+                        masks_data = res.masks.xy
+                        boxes = res.boxes.xyxy.cpu().numpy()
+                        confs = res.boxes.conf.cpu().numpy()
+                        
+                        for mask_pts, box, conf in zip(masks_data, boxes, confs):
+                            bx1, by1, bx2, by2 = box
+                            adjusted_mask = np.array(mask_pts) + np.array([x, y])
+                            all_boxes.append([x + bx1, y + by1, x + bx2, y + by2])
+                            all_masks.append(adjusted_mask)
+                            all_confs.append(float(conf))
+                    else:
+                        boxes = res.boxes.xyxy.cpu().numpy()
+                        confs = res.boxes.conf.cpu().numpy()
+                        for box, conf in zip(boxes, confs):
+                            bx1, by1, bx2, by2 = box
+                            all_boxes.append([x + bx1, y + by1, x + bx2, y + by2])
+                            all_masks.append(None)
+                            all_confs.append(float(conf))
 
         if not all_boxes:
             return []
 
         boxes_np = np.array(all_boxes, dtype=np.float32)
-
-        # Filter boxes that are too big (false positives = large tiles, rooftops)
-        # or too small (noise). Cars should be between 30x25 and 250x200 pixels.
         widths  = boxes_np[:, 2] - boxes_np[:, 0]
         heights = boxes_np[:, 3] - boxes_np[:, 1]
-        valid   = (widths > 28) & (widths < 260) & (heights > 20) & (heights < 220)
+        valid   = (widths > 30) & (widths < 350) & (heights > 25) & (heights < 300)
         boxes_np = boxes_np[valid]
+        all_confs = [c for i, c in enumerate(all_confs) if valid[i]]
+        all_masks = [m for i, m in enumerate(all_masks) if valid[i]]
 
         if len(boxes_np) == 0:
             return []
 
-        # NMS to remove duplicates from overlapping tiles
         xywh = boxes_np.copy()
         xywh[:, 2] -= xywh[:, 0]
         xywh[:, 3] -= xywh[:, 1]
-        idx = cv2.dnn.NMSBoxes(
-            xywh.astype(int).tolist(),
-            [0.5] * len(boxes_np), conf_thr, nms_iou)
+        idx = cv2.dnn.NMSBoxes(xywh.astype(int).tolist(), all_confs, conf_thr, nms_iou)
 
         if len(idx) == 0:
             return []
 
-        return [boxes_np[i].tolist() for i in idx.flatten()]
+        result = []
+        for i in idx.flatten():
+            box = boxes_np[i]
+            mask = all_masks[i]
+            conf = all_confs[i]
+            
+            if mask is not None and len(mask) >= 3:
+                cx = int(np.mean(mask[:, 0]))
+                cy = int(np.mean(mask[:, 1]))
+            else:
+                cx = int((box[0] + box[2]) / 2)
+                cy = int((box[1] + box[3]) / 2)
+            
+            result.append({
+                'box': box.tolist(),
+                'centroid': (cx, cy),
+                'confidence': conf,
+                'mask': mask
+            })
+        
+        return result
 
     def auto_detect_all(self):
-        """Detect all cars via tiled inference → create a parking space from each car's bounding box."""
+        """Detect all cars via tiled inference con modelo preciso → create parking space from each detection."""
         if self.raw_frame is None:
             return
 
@@ -382,15 +449,12 @@ class ConfigView(QWidget):
 
         angle = self.slider_angle.value()
         stype = self.combo_type.currentText()
+        prefix = self._get_type_prefix(stype)
+        added = 0
 
-        for box in detections:
-            x1, y1, x2, y2 = map(int, box)
-            cw = (x2 - x1) * 1.15  # 15% extra width for parking space
-            ch = (y2 - y1) * 1.05  # 5% extra height
-            cx = int(x1 + (x2 - x1) / 2)
-            cy = int(y2)
+        for det in detections:
+            cx, cy = det['centroid']
 
-            # Avoid duplicating spaces if the car is already covered by an existing space
             is_new = True
             for existing in self.current_spaces:
                 ex_pts = existing['points'] if isinstance(existing, dict) else existing
@@ -399,17 +463,26 @@ class ConfigView(QWidget):
                     break
 
             if is_new:
+                box = det['box']
+                cw = (box[2] - box[0]) * 1.2
+                ch = (box[3] - box[1]) * 1.1
+                custom_name = self.edit_name.text().strip()
+                if not custom_name:
+                    custom_name = self._get_next_space_number(prefix)
                 self.current_spaces.append({
-                    'points': self._slanted_box(cx, cy, cw, ch, angle),
-                    'type':   stype
+                    'points': self._slanted_box(cx, int(box[3]), cw, ch, angle),
+                    'type': stype,
+                    'name': custom_name
                 })
+                added += 1
 
+        self.edit_name.clear()
         self.redraw_frame()
         self.refresh_list()
         QMessageBox.information(self, 'Listo',
-            f'Se crearon {len(detections)} espacios basados en vehículos detectados.\n'
-            f'Ajusta la inclinación con el slider y usa "✏️ Dibujo Manual" para los espacios vacíos.')
-
+            f'Se detectaron {len(detections)} vehículos.\n'
+            f'Se crearon {added} espacios.\n'
+            f'Ajusta la inclinación con el slider.')
 
     # ── Line-based detection ──────────────────────────────────────────────────
     def detect_parking_lines(self):
@@ -470,22 +543,90 @@ class ConfigView(QWidget):
                 (int(x2-dx), int(y2)), (int(x1-dx), int(y2))]
 
     # ── Polygon controls ──────────────────────────────────────────────────────
+    def _get_next_space_number(self, prefix):
+        """Get next sequential number for given prefix (e.g., 'A' -> 'A-01', 'A-02'...)."""
+        max_num = 0
+        for space in self.current_spaces:
+            if isinstance(space, dict) and 'name' in space and space['name']:
+                name = space['name']
+                if name.startswith(prefix + '-'):
+                    try:
+                        num = int(name.split('-')[1])
+                        max_num = max(max_num, num)
+                    except:
+                        pass
+        return f"{prefix}-{max_num + 1:02d}"
+
+    def _get_type_prefix(self, stype):
+        """Map space type to prefix letter."""
+        return {'Estándar': 'A', 'Motos': 'M', 'VIP': 'V', 'Discapacitados': 'D'}.get(stype, 'A')
+
     def finish_polygon(self):
         if self.mode == 'manual' and len(self.current_polygon) > 2:
+            stype = self.combo_type.currentText()
+            prefix = self._get_type_prefix(stype)
+            custom_name = self.edit_name.text().strip()
+            if not custom_name:
+                custom_name = self._get_next_space_number(prefix)
             self.current_spaces.append({
                 'points': list(self.current_polygon),
-                'type':   self.combo_type.currentText()
+                'type': stype,
+                'name': custom_name
             })
             self.current_polygon = []
+            self.edit_name.clear()
             self.redraw_frame(); self.refresh_list()
         else:
             QMessageBox.warning(self, 'Error', 'El polígono necesita al menos 3 puntos.')
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Return or event.key() == Qt.Key_Enter:
+            self.finish_polygon()
+        elif event.key() == Qt.Key_Delete:
+            self.delete_selected()
+        elif event.key() == Qt.Key_D and event.modifiers() & Qt.ControlModifier:
+            self.duplicate_selected()
+        super().keyPressEvent(event)
 
     def delete_selected(self):
         row = self.list_spaces.currentRow()
         if row >= 0:
             self.current_spaces.pop(row)
             self.redraw_frame(); self.refresh_list()
+
+    def rename_space(self, item=None):
+        row = self.list_spaces.currentRow()
+        if row < 0:
+            return
+        space = self.current_spaces[row]
+        current_name = ''
+        if isinstance(space, dict) and 'name' in space:
+            current_name = space['name']
+        new_name, ok = QInputDialog.getText(self, 'Renombrar Espacio',
+                                               'Nuevo nombre:', text=current_name)
+        if ok and new_name.strip():
+            if isinstance(space, dict):
+                space['name'] = new_name.strip()
+            self.redraw_frame(); self.refresh_list()
+
+    def duplicate_selected(self):
+        row = self.list_spaces.currentRow()
+        if row >= 0:
+            space = self.current_spaces[row].copy()
+            pts = space['points'] if isinstance(space, dict) else space
+            new_pts = [(p[0]+20, p[1]+20) for p in pts]
+            if isinstance(space, dict):
+                space['points'] = new_pts
+                # Add "(copia)" suffix to name
+                if 'name' in space and space['name']:
+                    space['name'] = f"{space['name']} (copia)"
+                else:
+                    space['name'] = f'Espacio {len(self.current_spaces)+1} (copia)'
+            else:
+                space = new_pts
+            self.current_spaces.append(space)
+            self.redraw_frame(); self.refresh_list()
+            self.list_spaces.setCurrentRow(len(self.current_spaces)-1)
 
     def clear_all(self):
         self.current_spaces.clear()

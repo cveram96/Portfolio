@@ -1,44 +1,100 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker
-from db.models import Base, OccupancyLog, Alert, Metric
+from db.models import Base, OccupancyLog, Alert, Metric, ParkingSpace
+import json
 
 DATABASE_URL = "sqlite:///./parking.db"
 
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
+def get_db():
+    """Context manager for database sessions."""
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
 def init_db():
     Base.metadata.create_all(bind=engine)
 
 def log_occupancy_change(space_id: int, is_occupied: bool):
     db = SessionLocal()
-    log = OccupancyLog(space_id=space_id, is_occupied=is_occupied)
-    db.add(log)
-    db.commit()
-    db.close()
+    try:
+        log = OccupancyLog(space_id=space_id, is_occupied=is_occupied)
+        db.add(log)
+        db.commit()
+    finally:
+        db.close()
 
 def create_alert(message: str):
     db = SessionLocal()
-    alert = Alert(message=message)
-    db.add(alert)
-    db.commit()
-    db.close()
+    try:
+        alert = Alert(message=message)
+        db.add(alert)
+        db.commit()
+    finally:
+        db.close()
 
 def save_metric(name: str, value: float):
     db = SessionLocal()
-    metric = Metric(metric_name=name, value=value)
-    db.add(metric)
-    db.commit()
-    db.close()
+    try:
+        metric = Metric(metric_name=name, value=value)
+        db.add(metric)
+        db.commit()
+    finally:
+        db.close()
 
 def get_recent_alerts(limit=10):
     db = SessionLocal()
-    alerts = db.query(Alert).order_by(Alert.timestamp.desc()).limit(limit).all()
-    db.close()
-    return [{"message": a.message, "timestamp": a.timestamp.isoformat()} for a in alerts]
+    try:
+        alerts = db.query(Alert).order_by(Alert.timestamp.desc()).limit(limit).all()
+        return [{"message": a.message, "timestamp": a.timestamp.isoformat()} for a in alerts]
+    finally:
+        db.close()
 
 def get_metrics():
     db = SessionLocal()
-    metrics = db.query(Metric).order_by(Metric.timestamp.desc()).limit(20).all()
-    db.close()
-    return [{"name": m.metric_name, "value": m.value, "timestamp": m.timestamp.isoformat()} for m in metrics]
+    try:
+        metrics = db.query(Metric).order_by(Metric.timestamp.desc()).limit(20).all()
+        return [{"name": m.metric_name, "value": m.value, "timestamp": m.timestamp.isoformat()} for m in metrics]
+    finally:
+        db.close()
+
+def get_occupancy_report(limit=5000):
+    """Get occupancy logs with space names and types."""
+    db = SessionLocal()
+    try:
+        results = db.query(
+            OccupancyLog.id,
+            OccupancyLog.space_id,
+            OccupancyLog.is_occupied,
+            OccupancyLog.timestamp,
+            ParkingSpace.poly_data,
+            ParkingSpace.space_type
+        ).outerjoin(ParkingSpace, OccupancyLog.space_id == ParkingSpace.id
+        ).order_by(OccupancyLog.id.desc()).limit(limit).all()
+        
+        report = []
+        for row in results:
+            space_name = f'Espacio {row.space_id}'
+            if row.poly_data:
+                try:
+                    data = json.loads(row.poly_data)
+                    if isinstance(data, dict) and 'name' in data and data['name']:
+                        space_name = data['name']
+                except:
+                    pass
+            
+            report.append({
+                'id': row.id,
+                'space_id': row.space_id,
+                'space_name': space_name,
+                'space_type': row.space_type or 'Estándar',
+                'is_occupied': row.is_occupied,
+                'timestamp': row.timestamp
+            })
+        return report
+    finally:
+        db.close()

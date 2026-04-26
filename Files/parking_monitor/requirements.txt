@@ -1,6 +1,6 @@
-ultralytics
-opencv-python
-sqlalchemy
-PySide6
-pyqtgraph
-pyinstaller
+ultralytics>=8.0.0,<9.0.0
+opencv-python>=4.8.0
+sqlalchemy>=2.0.0
+PySide6>=6.5.0
+pyqtgraph>=0.13.0
+pyinstaller>=5.0.0
