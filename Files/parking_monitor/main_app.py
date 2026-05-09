@@ -97,7 +97,7 @@ class MainWindow(QMainWindow):
         self.btn_ref.clicked.connect(self.capture_reference)
         self.btn_ref.setObjectName("Secondary")
 
-        self.lbl_strategy = QLabel("yolov8m-seg (preciso - Vista Aérea)")
+        self.lbl_strategy = QLabel("yolo26m-seg (preciso - Vista Aérea)")
         self.lbl_strategy.setStyleSheet("color:#38bdf8; font-size:10px; padding:2px 10px;")
 
         sb_layout.addWidget(self.nav)

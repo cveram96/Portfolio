@@ -123,11 +123,16 @@ class MonitorView(QWidget):
 
         # Action buttons
         btn_row = QHBoxLayout()
-        self.btn_snapshot = QPushButton('📸 Captura')
+        btn_row.setSpacing(4)
+        btn_style = 'QPushButton { background-color: #3b82f6; color: white; border: none; padding: 5px 6px; border-radius: 4px; font-size: 10px; font-weight: bold; } QPushButton:hover { background-color: #2563eb; }'
+        self.btn_snapshot = QPushButton('Captura')
+        self.btn_snapshot.setStyleSheet(btn_style)
         self.btn_snapshot.clicked.connect(self.take_snapshot)
-        self.btn_export_csv = QPushButton('📊 Exportar CSV')
+        self.btn_export_csv = QPushButton('Exportar CSV')
+        self.btn_export_csv.setStyleSheet(btn_style)
         self.btn_export_csv.clicked.connect(self.export_csv)
-        self.btn_export_excel = QPushButton('📈 Exportar Excel')
+        self.btn_export_excel = QPushButton('Exportar Excel')
+        self.btn_export_excel.setStyleSheet(btn_style)
         self.btn_export_excel.clicked.connect(self.export_excel)
         btn_row.addWidget(self.btn_snapshot)
         btn_row.addWidget(self.btn_export_csv)
