@@ -15,17 +15,17 @@ class OccupancyLog(Base):
     id = Column(Integer, primary_key=True, index=True)
     space_id = Column(Integer, index=True)
     is_occupied = Column(Boolean)
-    timestamp = Column(DateTime, default=datetime.utcnow)
+    timestamp = Column(DateTime, default=datetime.now)
 
 class Alert(Base):
     __tablename__ = "alerts"
     id = Column(Integer, primary_key=True, index=True)
     message = Column(String)
-    timestamp = Column(DateTime, default=datetime.utcnow)
+    timestamp = Column(DateTime, default=datetime.now)
 
 class Metric(Base):
     __tablename__ = "metrics"
     id = Column(Integer, primary_key=True, index=True)
     metric_name = Column(String, index=True)
     value = Column(Float)
-    timestamp = Column(DateTime, default=datetime.utcnow)
+    timestamp = Column(DateTime, default=datetime.now)

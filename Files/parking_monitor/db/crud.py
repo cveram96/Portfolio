@@ -2,6 +2,9 @@ from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker
 from db.models import Base, OccupancyLog, Alert, Metric, ParkingSpace
 import json
+import csv
+import os
+from datetime import datetime
 
 DATABASE_URL = "sqlite:///./parking.db"
 
@@ -25,6 +28,43 @@ def log_occupancy_change(space_id: int, is_occupied: bool):
         log = OccupancyLog(space_id=space_id, is_occupied=is_occupied)
         db.add(log)
         db.commit()
+        
+        # Guardar en CSV automáticamente
+        try:
+            file_exists = os.path.isfile('parking_occupancy_log.csv')
+            with open('parking_occupancy_log.csv', 'a', newline='', encoding='utf-8-sig') as f:
+                writer = csv.writer(f)
+                if not file_exists:
+                    writer.writerow(['timestamp', 'space_id', 'is_occupied'])
+                writer.writerow([datetime.now().strftime('%Y-%m-%d %H:%M:%S'), space_id, 1 if is_occupied else 0])
+        except Exception as e:
+            print(f"Error al guardar CSV: {e}")
+            
+    finally:
+        db.close()
+
+def log_periodic_state(states: dict):
+    """Guarda el estado de todos los espacios cada N segundos."""
+    db = SessionLocal()
+    try:
+        now = datetime.now()
+        # Guardar en DB
+        for space_id, is_occupied in states.items():
+            log = OccupancyLog(space_id=space_id, is_occupied=is_occupied, timestamp=now)
+            db.add(log)
+        db.commit()
+        
+        # Guardar en CSV
+        try:
+            file_exists = os.path.isfile('parking_occupancy_log.csv')
+            with open('parking_occupancy_log.csv', 'a', newline='', encoding='utf-8-sig') as f:
+                writer = csv.writer(f)
+                if not file_exists:
+                    writer.writerow(['timestamp', 'space_id', 'is_occupied'])
+                for space_id, is_occupied in states.items():
+                    writer.writerow([now.strftime('%Y-%m-%d %H:%M:%S'), space_id, 1 if is_occupied else 0])
+        except:
+            pass
     finally:
         db.close()
 

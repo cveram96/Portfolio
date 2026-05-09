@@ -1,6 +1,7 @@
 import csv
 import os
 import json
+import sys
 from datetime import datetime
 from PySide6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout,
                                  QLabel, QFrame, QListWidget, QListWidgetItem,
@@ -222,6 +223,7 @@ class MonitorView(QWidget):
             self.vision_thread.request_snapshot(path)
 
     def export_csv(self):
+        """Export historical occupancy report to CSV."""
         path, _ = QFileDialog.getSaveFileName(self, 'Exportar Reporte CSV', '', 'CSV (*.csv)')
         if not path:
             return
@@ -229,19 +231,35 @@ class MonitorView(QWidget):
             from db.crud import get_occupancy_report
             report = get_occupancy_report()
             
-            with open(path, 'w', newline='', encoding='utf-8') as f:
-                writer = csv.writer(f)
-                writer.writerow(['id', 'space_id', 'space_name', 'space_type', 
-                               'is_occupied', 'timestamp'])
+            # Intentar usar pandas para un formato más limpio si está disponible
+            try:
+                import pandas as pd
+                data = []
                 for row in report:
-                    writer.writerow([
-                        row['id'], row['space_id'], row['space_name'],
-                        row['space_type'], row['is_occupied'], row['timestamp']
-                    ])
+                    data.append({
+                        'ID': row['id'],
+                        'Espacio ID': row['space_id'],
+                        'Nombre': row['space_name'],
+                        'Tipo': row['space_type'],
+                        'Ocupado': 'Sí' if row['is_occupied'] else 'No',
+                        'Fecha y Hora': row['timestamp']
+                    })
+                df = pd.DataFrame(data)
+                df.to_csv(path, index=False, encoding='utf-8-sig')
+            except ImportError:
+                # Fallback al módulo csv estándar
+                with open(path, 'w', newline='', encoding='utf-8-sig') as f:
+                    writer = csv.writer(f)
+                    writer.writerow(['ID', 'Espacio ID', 'Nombre', 'Tipo', 'Ocupado', 'Fecha y Hora'])
+                    for row in report:
+                        writer.writerow([
+                            row['id'], row['space_id'], row['space_name'],
+                            row['space_type'], 'Sí' if row['is_occupied'] else 'No', row['timestamp']
+                        ])
             
             QMessageBox.information(self, 'Éxito', f'Reporte CSV exportado a:\n{path}')
         except Exception as e:
-            QMessageBox.warning(self, 'Error', str(e))
+            QMessageBox.warning(self, 'Error', f"No se pudo exportar CSV: {str(e)}")
 
     def export_excel(self):
         """Export occupancy report to Excel with multiple sheets."""
@@ -257,11 +275,9 @@ class MonitorView(QWidget):
             return
         
         try:
-            import pandas as pd
             from db.crud import get_occupancy_report
-            import json
             
-            # Sheet 1: Historical Occupancy
+            # Hoja 1: Historial de Ocupación
             report = get_occupancy_report()
             data = []
             for row in report:
@@ -271,34 +287,31 @@ class MonitorView(QWidget):
                     'Nombre': row['space_name'],
                     'Tipo': row['space_type'],
                     'Ocupado': 'Sí' if row['is_occupied'] else 'No',
-                    'Timestamp': row['timestamp']
+                    'Fecha y Hora': row['timestamp']
                 })
             
-            df = pd.DataFrame(data)
+            df_hist = pd.DataFrame(data)
             
-            # Sheet 2: Summary by space
-            if not df.empty:
-                summary = df.groupby(['Espacio ID', 'Nombre', 'Tipo']).agg({
+            # Hoja 2: Resumen por Espacio
+            if not df_hist.empty:
+                summary = df_hist.groupby(['Espacio ID', 'Nombre', 'Tipo']).agg({
                     'Ocupado': ['count', lambda x: (x == 'Sí').sum()]
                 }).reset_index()
                 summary.columns = ['Espacio ID', 'Nombre', 'Tipo', 'Total Eventos', 'Veces Ocupado']
             else:
                 summary = pd.DataFrame(columns=['Espacio ID', 'Nombre', 'Tipo', 'Total Eventos', 'Veces Ocupado'])
             
-            # Sheet 3: Current state from vision thread
+            # Hoja 3: Estado Actual de los espacios
             current_data = []
             if self.vision_thread and hasattr(self.vision_thread, 'spaces'):
                 for i, space in enumerate(self.vision_thread.spaces):
                     name = f'Espacio {i+1}'
                     stype = 'Estándar'
                     if isinstance(space, dict):
-                        if 'name' in space and space['name']:
-                            name = space['name']
-                        stype = space.get('type', 'Estándar')
+                        name = space.get('name', name)
+                        stype = space.get('type', stype)
                     
                     occupied = 'Sí' if self.vision_thread.space_states.get(i, False) else 'No'
-                    
-                    # Get vehicle type if occupied
                     vehicle = ''
                     if occupied == 'Sí' and hasattr(self.vision_thread, 'space_vehicle_types'):
                         if i in self.vision_thread.space_vehicle_types:
@@ -311,126 +324,18 @@ class MonitorView(QWidget):
                         'Nombre': name,
                         'Tipo': stype,
                         'Ocupado': occupied,
-                        'Vehiculo': vehicle
+                        'Vehículo Detectado': vehicle
                     })
             
             df_current = pd.DataFrame(current_data)
             
-            # Write to Excel with multiple sheets
+            # Escribir a Excel con múltiples hojas
             with pd.ExcelWriter(path, engine='openpyxl') as writer:
-                df.to_excel(writer, sheet_name='Historial Ocupación', index=False)
-                summary.to_excel(writer, sheet_name='Resumen por Espacio', index=False)
+                df_hist.to_excel(writer, sheet_name='Historial', index=False)
+                summary.to_excel(writer, sheet_name='Resumen', index=False)
                 if not df_current.empty:
                     df_current.to_excel(writer, sheet_name='Estado Actual', index=False)
             
             QMessageBox.information(self, 'Éxito', f'Reporte Excel exportado a:\n{path}')
         except Exception as e:
-            QMessageBox.warning(self, 'Error', str(e))
-
-    def export_excel(self):
-        """Export occupancy report to Excel with multiple sheets."""
-        if 'pandas' not in sys.modules:
-            try:
-                import pandas as pd
-            except ImportError:
-                QMessageBox.warning(self, 'Error', 
-                    'Pandas no está instalado.\nInstala con: pip install pandas openpyxl')
-                return
-        
-        path, _ = QFileDialog.getSaveFileName(self, 'Exportar Reporte Excel', '', 'Excel (*.xlsx)')
-        if not path:
-            return
-        
-        try:
-            import pandas as pd
-            from db.models import Base, OccupancyLog, ParkingSpace
-            from sqlalchemy import create_engine
-            from sqlalchemy.orm import sessionmaker
-            import json
-            
-            engine  = create_engine('sqlite:///parking.db')
-            Session = sessionmaker(bind=engine)
-            session = Session()
-            
-            # Get enriched occupancy data
-            logs = session.query(
-                OccupancyLog.id,
-                OccupancyLog.space_id,
-                OccupancyLog.is_occupied,
-                OccupancyLog.timestamp,
-                ParkingSpace.poly_data,
-                ParkingSpace.space_type
-            ).outerjoin(ParkingSpace, OccupancyLog.space_id == ParkingSpace.id
-            ).order_by(OccupancyLog.id.desc()).limit(5000).all()
-            
-            session.close()
-            
-            # Process data
-            data = []
-            for log in logs:
-                space_name = f'Espacio {log.space_id}'
-                if log.poly_data:
-                    try:
-                        import json
-                        d = json.loads(log.poly_data)
-                        if isinstance(d, dict) and 'name' in d and d['name']:
-                            space_name = d['name']
-                    except:
-                        pass
-                
-                data.append({
-                    'ID': log.id,
-                    'Espacio ID': log.space_id,
-                    'Nombre': space_name,
-                    'Tipo': log.space_type or 'Estándar',
-                    'Ocupado': 'Sí' if log.is_occupied else 'No',
-                    'Timestamp': log.timestamp
-                })
-            
-            df = pd.DataFrame(data)
-            
-            # Sheet 2: Summary by space
-            summary = df.groupby(['Espacio ID', 'Nombre', 'Tipo']).agg({
-                'Ocupado': ['count', lambda x: (x == 'Sí').sum()]
-            }).reset_index()
-            summary.columns = ['Espacio ID', 'Nombre', 'Tipo', 'Total Eventos', 'Veces Ocupado']
-            
-            # Sheet 3: Current state from vision thread
-            current_data = []
-            if self.vision_thread and hasattr(self.vision_thread, 'spaces'):
-                for i, space in enumerate(self.vision_thread.spaces):
-                    name = f'Espacio {i+1}'
-                    stype = 'Estándar'
-                    if isinstance(space, dict):
-                        if 'name' in space and space['name']:
-                            name = space['name']
-                        stype = space.get('type', 'Estándar')
-                    occupied = 'Sí' if self.vision_thread.space_states.get(i, False) else 'No'
-                    
-                    # Get vehicle type if occupied
-                    vehicle = ''
-                    if occupied == 'Sí' and i in self.vision_thread.space_vehicle_types:
-                        vclass = self.vision_thread.space_vehicle_types[i]
-                        class_names = {2: 'AUTO', 3: 'MOTO', 5: 'BUS', 7: 'CAMION'}
-                        vehicle = class_names.get(vclass, '')
-                    
-                    current_data.append({
-                        'Espacio ID': i,
-                        'Nombre': name,
-                        'Tipo': stype,
-                        'Ocupado': occupied,
-                        'Vehiculo': vehicle
-                    })
-            
-            df_current = pd.DataFrame(current_data)
-            
-            # Write to Excel with multiple sheets
-            with pd.ExcelWriter(path, engine='openpyxl') as writer:
-                df.to_excel(writer, sheet_name='Historial Ocupación', index=False)
-                summary.to_excel(writer, sheet_name='Resumen por Espacio', index=False)
-                if not df_current.empty:
-                    df_current.to_excel(writer, sheet_name='Estado Actual', index=False)
-            
-            QMessageBox.information(self, 'Éxito', f'Reporte Excel exportado a:\n{path}')
-        except Exception as e:
-            QMessageBox.warning(self, 'Error', str(e))
+            QMessageBox.warning(self, 'Error', f"Fallo al exportar Excel: {str(e)}")

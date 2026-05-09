@@ -6,7 +6,7 @@ import time
 from ultralytics import YOLO
 from PySide6.QtCore import QThread, Signal
 from PySide6.QtGui import QImage
-from db.crud import log_occupancy_change, create_alert
+from db.crud import log_occupancy_change, create_alert, log_periodic_state
 from services.analytics import calculate_analytics
 
 OCCUPY_CONFIRM_SECS = 1.0
@@ -77,6 +77,7 @@ class VisionThread(QThread):
         self._snapshot_path      = ''
 
         self._last_detection_time = 0
+        self._last_periodic_log_time = time.time()
         self._detection_interval = 1.0
 
     @property
@@ -632,6 +633,11 @@ class VisionThread(QThread):
                         create_alert('Parqueadero LLENO')
                         self.alert_triggered.emit('LLENO')
                         self.last_alert_time = now
+
+                # Periodic state logging (every 30 seconds)
+                if now - self._last_periodic_log_time >= 30:
+                    log_periodic_state(self.space_states)
+                    self._last_periodic_log_time = now
 
             for i, space_data in enumerate(self.spaces):
                 pts = space_data['points'] if isinstance(space_data, dict) else space_data
