@@ -1,35 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Contact</title>
-	<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Christian David Vera Mendivelso</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-	<nav>
-		<ul>
-			<li><a href="index.html">Home</a></li>
-		</ul>
-	</nav>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#featured">Featured Projects</a></li>
+            <li><a href="index.html#analytics">Analytics</a></li>
+            <li><a href="contacto.html">Contact</a></li>
+        </ul>
+    </nav>
 
-	<main class="container">
-		<h1>Contact</h1>
-		<p>If you'd like to get in touch, send an email to <a href="mailto:christian@example.com">christian@example.com</a> or use the form below.</p>
+    <main class="container" style="max-width: 900px; margin: 2rem auto;">
+        <div class="intro" style="text-align: left; padding: 2.5rem;">
+            <span class="hero-title-badge">Get in Touch</span>
+            <h1 style="text-align: left; margin-bottom: 0.5rem;">Let's Connect</h1>
+            <p style="color: #cbd5e1; font-size: 1.05rem; line-height: 1.7; margin-bottom: 1.5rem;">
+                I am actively open to opportunities in <strong>Data Science, Machine Learning Engineering, and Advanced Business Intelligence</strong> (Full-time, Hybrid, Remote, or Consulting). If you have an exciting project, an open role, or would like to discuss my work, feel free to reach out!
+            </p>
 
-		<form action="#" method="post" style="max-width:600px;">
-			<label for="name">Name</label><br>
-			<input id="name" name="name" type="text" style="width:100%; padding:8px; margin-bottom:8px;"><br>
-			<label for="email">Email</label><br>
-			<input id="email" name="email" type="email" style="width:100%; padding:8px; margin-bottom:8px;"><br>
-			<label for="message">Message</label><br>
-			<textarea id="message" name="message" rows="6" style="width:100%; padding:8px; margin-bottom:8px;"></textarea><br>
-			<button type="submit">Send</button>
-		</form>
-	</main>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                <div style="background: rgba(255, 255, 255, 0.04); padding: 1.2rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div style="color: var(--secondary); font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Email</div>
+                    <a href="mailto:verachristian4@gmail.com" style="color: #ffffff; text-decoration: none; font-size: 1.05rem; font-weight: 600; display: block; margin-top: 0.3rem;">
+                        verachristian4@gmail.com
+                    </a>
+                </div>
 
-	<footer>
-		<p style="text-align:center;">Developed by Christian Vera - 2025</p>
-	</footer>
+                <div style="background: rgba(255, 255, 255, 0.04); padding: 1.2rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div style="color: var(--secondary); font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Phone / WhatsApp</div>
+                    <a href="https://wa.me/573213797876" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 1.05rem; font-weight: 600; display: block; margin-top: 0.3rem;">
+                        +57 321 379 7876
+                    </a>
+                </div>
+
+                <div style="background: rgba(255, 255, 255, 0.04); padding: 1.2rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div style="color: var(--secondary); font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Location</div>
+                    <span style="color: #ffffff; font-size: 1.05rem; font-weight: 600; display: block; margin-top: 0.3rem;">
+                        Bogot&aacute;, Colombia
+                    </span>
+                </div>
+
+                <div style="background: rgba(255, 255, 255, 0.04); padding: 1.2rem; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div style="color: var(--secondary); font-size: 0.85rem; font-weight: 600; text-transform: uppercase;">Professional Profiles</div>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                        <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" rel="noopener noreferrer" style="background: #0077B5; color: white; padding: 4px 10px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">
+                            LinkedIn
+                        </a>
+                        <a href="https://github.com/cveram96" target="_blank" rel="noopener noreferrer" style="background: #333; color: white; padding: 4px 10px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; font-weight: 600;">
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-block" style="margin-top: 1.5rem; padding: 2rem;">
+            <h2>Send a Direct Message</h2>
+            <p style="margin-bottom: 1.5rem; color: #94a3b8;">Fill out the form below to send an email directly to my inbox:</p>
+
+            <form action="https://formspree.io/f/xbjnvqzk" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
+                <div>
+                    <label for="name" style="display: block; font-weight: 600; margin-bottom: 0.3rem; color: #cbd5e1;">Your Name</label>
+                    <input id="name" name="name" type="text" required placeholder="Jane Doe" style="width: 100%; padding: 0.75rem; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.05); color: #fff; font-family: inherit;">
+                </div>
+
+                <div>
+                    <label for="email" style="display: block; font-weight: 600; margin-bottom: 0.3rem; color: #cbd5e1;">Your Email</label>
+                    <input id="email" name="_replyto" type="email" required placeholder="jane@company.com" style="width: 100%; padding: 0.75rem; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.05); color: #fff; font-family: inherit;">
+                </div>
+
+                <div>
+                    <label for="message" style="display: block; font-weight: 600; margin-bottom: 0.3rem; color: #cbd5e1;">Message</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="Hi Christian, I saw your portfolio and would like to discuss..." style="width: 100%; padding: 0.75rem; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.15); background: rgba(255, 255, 255, 0.05); color: #fff; font-family: inherit; resize: vertical;"></textarea>
+                </div>
+
+                <button type="submit" class="btn-hero btn-primary-gradient" style="align-self: flex-start; margin-top: 0.5rem;">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+            <p style="margin: 0;">Developed by Christian Vera - 2025</p>
+            <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
+                <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">
+                    LinkedIn
+                </button>
+            </a>
+        </div>
+    </footer>
 </body>
 </html>

@@ -3,70 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Science Projects</title>
-
+    <title>Christian David Vera | Data Science & Machine Learning Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    
-    </head>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
 <body>
 
+    <!-- Navigation -->
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
+            <li><a href="#featured">Featured Projects</a></li>
+            <li><a href="#analytics">Analytics &amp; BI</a></li>
+            <li><a href="contacto.html">Contact</a></li>
         </ul>
     </nav>
 
-    <div class="intro">
-        <h1>Data Science Projects</h1>
-        <p>Explore analyses, visualizations and predictive models developed with Python, machine learning and data tools.</p>
-    </div>
+    <!-- Hero Profile Section -->
+    <header class="container">
+        <div class="hero-profile">
+            <span class="hero-title-badge">Data Science &amp; Business Intelligence Specialist</span>
+            <h1>Christian David Vera Mendivelso</h1>
+            
+            <p class="hero-bio">
+                <strong>Data Analyst &amp; Data Scientist</strong> bridging strategic business acumen with advanced quantitative methods. Experienced in deploying end-to-end Machine Learning models, Computer Vision systems, digital experimentation frameworks (A/B testing &amp; CUPED), and executive Business Intelligence dashboards.
+            </p>
 
-    <div class="projects">
-        <div class="project">
-            <h3>Multiple Linear Regression</h3>
-            <p>Median house value prediction in California using multiple linear regression.</p>
-            <a href="RLM.html">Learn more</a>
-        </div>
-        <div class="project">
-            <h3>Churn Prediction</h3>
-            <p>Machine learning model to predict customer churn.</p>
-            <a href="churn.html">Learn more</a>
-        </div>
-        <div class="project">
-            <h3>Customer Segmentation</h3>
-            <p>Customer grouping based on purchasing behavior.</p>
-            <a href="segmentacion.html">Learn more</a>
-        </div>
-        <div class="project">
-            <h3>Power BI - Netflix Report</h3>
-            <p>Report of movies and series catalog worldwide.</p>
-            <a href="netflix.html">Learn more</a>
-        </div>
-        <div class="project">
-            <h3>SQL - Northwind</h3>
-            <p>SQL queries and visualizations for the Northwind database.</p>
-            <a href="SQL_Northwind.html">Learn more</a>
-        </div>
-        <div class="project">
-            <h3>Time Series Forecasting (ARIMA)</h3>
-            <p>Time series forecasting for airline passengers (1949-1960).</p>
-            <a href="ARIMA.html">Learn more</a>
-        </div>
-        <div class="project">
-            <h3>A/B Testing</h3>
-            <p>Landing page performance analysis using A/B testing with Udacity real-world data.</p>
-            <a href="ab_testing.html">Learn more</a>
-        </div>
-    </div>
+            <div class="hero-highlights">
+                <span class="hero-pill">&#127891; M.Sc. Data Science &mdash; Pontificia Universidad Javeriana</span>
+                <span class="hero-pill">&#128188; Business Administration &mdash; Universidad Nacional de Colombia</span>
+                <span class="hero-pill">&#128205; Bogot&aacute;, Colombia</span>
+            </div>
 
+            <div class="hero-actions">
+                <a href="#featured" class="btn-hero btn-primary-gradient">Explore Featured Projects</a>
+                <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" rel="noopener noreferrer" class="btn-hero btn-secondary-dark">LinkedIn Profile</a>
+                <a href="https://github.com/cveram96" target="_blank" rel="noopener noreferrer" class="btn-hero btn-secondary-dark">GitHub</a>
+                <a href="contacto.html" class="btn-hero btn-secondary-dark">Contact Me</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 1: FEATURED PROJECTS -->
+    <section id="featured">
+        <div class="category-header">
+            <h2 class="category-title">&#11088; Featured Machine Learning &amp; Engineering Projects</h2>
+            <p class="category-subtitle">Full-stack data solutions: Computer Vision, Advanced Statistical Experimentation, and Production-Oriented ML.</p>
+        </div>
+
+        <div class="projects">
+            <!-- ParkVision AI -->
+            <div class="project featured">
+                <span class="featured-tag">Computer Vision</span>
+                <h3>ParkVision AI &mdash; Smart Parking</h3>
+                <p>End-to-end real-time parking monitoring desktop app using YOLOv8 vehicle detection/segmentation, PySide6 GUI, and persistent SQLite logging.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Python</span>
+                    <span class="card-tag">Ultralytics YOLOv8</span>
+                    <span class="card-tag">PySide6 (Qt)</span>
+                    <span class="card-tag">OpenCV</span>
+                    <span class="card-tag">SQLite</span>
+                </div>
+                <a href="parkvision.html">Explore System &rarr;</a>
+            </div>
+
+            <!-- Experimentation Platform -->
+            <div class="project featured">
+                <span class="featured-tag">Product &amp; Stats</span>
+                <h3>Digital Experimentation &amp; CUPED</h3>
+                <p>A/B testing methodology featuring variance reduction via CUPED, statistical power sizing (MDE), and causal inference on real retail data.</p>
+                <div class="card-tags">
+                    <span class="card-tag">A/B Testing</span>
+                    <span class="card-tag">CUPED</span>
+                    <span class="card-tag">SciPy</span>
+                    <span class="card-tag">Statsmodels</span>
+                    <span class="card-tag">Hypothesis Testing</span>
+                </div>
+                <a href="ab_testing.html">View Methodology &rarr;</a>
+            </div>
+
+            <!-- Churn Prediction -->
+            <div class="project featured">
+                <span class="featured-tag">Business ML</span>
+                <h3>Customer Churn Prevention</h3>
+                <p>Machine learning classification (Random Forest vs MLP) with class imbalance optimization and retention economics to minimize churn.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Python</span>
+                    <span class="card-tag">Scikit-Learn</span>
+                    <span class="card-tag">Imbalanced-Learn</span>
+                    <span class="card-tag">Cost-Benefit Analysis</span>
+                </div>
+                <a href="churn.html">View Analysis &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: CORE ANALYTICS & BI -->
+    <section id="analytics">
+        <div class="category-header">
+            <h2 class="category-title">&#128202; Business Intelligence &amp; Core Analytics</h2>
+            <p class="category-subtitle">Executive dashboards, SQL operations, forecasting models, and customer intelligence.</p>
+        </div>
+
+        <div class="projects">
+            <!-- Power BI Netflix -->
+            <div class="project">
+                <h3>Power BI &mdash; Netflix Analytics</h3>
+                <p>Interactive executive report analyzing worldwide content catalog, ratings distribution, and geographic availability using DAX.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Power BI</span>
+                    <span class="card-tag">DAX</span>
+                    <span class="card-tag">Power Query</span>
+                    <span class="card-tag">Data Modeling</span>
+                </div>
+                <a href="netflix.html">Open Dashboard &rarr;</a>
+            </div>
+
+            <!-- SQL Northwind -->
+            <div class="project">
+                <h3>SQL &mdash; Northwind Business Insights</h3>
+                <p>Relational database queries (aggregations, multi-table JOINs, subqueries) in SQLite coupled with Python visualization pipelines.</p>
+                <div class="card-tags">
+                    <span class="card-tag">SQL</span>
+                    <span class="card-tag">SQLite</span>
+                    <span class="card-tag">Pandas</span>
+                    <span class="card-tag">Plotly</span>
+                </div>
+                <a href="SQL_Northwind.html">Explore Queries &rarr;</a>
+            </div>
+
+            <!-- Time Series ARIMA -->
+            <div class="project">
+                <h3>Time Series Forecasting (ARIMA)</h3>
+                <p>Seasonal demand forecasting on airline passenger volume (1949-1960) with stationarity checks, PACF/ACF, and residual diagnostics.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Time Series</span>
+                    <span class="card-tag">ARIMA</span>
+                    <span class="card-tag">Statsmodels</span>
+                    <span class="card-tag">Matplotlib</span>
+                </div>
+                <a href="ARIMA.html">View Forecast &rarr;</a>
+            </div>
+
+            <!-- Customer Segmentation -->
+            <div class="project">
+                <h3>Customer Segmentation (K-Means)</h3>
+                <p>Behavioral clustering and RFM-inspired grouping to identify high-value customer archetypes and optimize marketing campaigns.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Clustering</span>
+                    <span class="card-tag">K-Means</span>
+                    <span class="card-tag">Scikit-Learn</span>
+                    <span class="card-tag">PCA</span>
+                </div>
+                <a href="segmentacion.html">View Clusters &rarr;</a>
+            </div>
+
+            <!-- Linear Regression -->
+            <div class="project">
+                <h3>Housing Price Regression</h3>
+                <p>Multivariate linear regression model predicting median California home values with feature importance and residual analysis.</p>
+                <div class="card-tags">
+                    <span class="card-tag">Regression</span>
+                    <span class="card-tag">Scikit-Learn</span>
+                    <span class="card-tag">EDA</span>
+                    <span class="card-tag">Pandas</span>
+                </div>
+                <a href="RLM.html">View Model &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-            <p style="margin: 0;">Developed by Christian Vera - 2025</p>
-            <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
-                <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">
-                    LinkedIn
-                </button>
-            </a>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <p style="margin: 0;">Designed &amp; Developed by <strong>Christian David Vera Mendivelso</strong> &mdash; 2025</p>
+            <div style="display: flex; gap: 10px; margin-top: 4px;">
+                <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+                    <button style="background-color: #0077B5; color: white; border: none; padding: 6px 14px; border-radius: 5px; cursor: pointer; font-weight: 600;">
+                        LinkedIn
+                    </button>
+                </a>
+                <a href="https://github.com/cveram96" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+                    <button style="background-color: #333; color: white; border: 1px solid rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 5px; cursor: pointer; font-weight: 600;">
+                        GitHub
+                    </button>
+                </a>
+                <a href="contacto.html" style="text-decoration: none;">
+                    <button style="background-color: var(--primary); color: white; border: none; padding: 6px 14px; border-radius: 5px; cursor: pointer; font-weight: 600;">
+                        Contact
+                    </button>
+                </a>
+            </div>
         </div>
     </footer>
 

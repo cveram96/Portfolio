@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ParkVision AI — Real-Time Smart Parking Monitoring</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#featured">Featured Projects</a></li>
+            <li><a href="index.html#analytics">Analytics</a></li>
+            <li><a href="contacto.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Intro Section -->
+    <div class="container">
+        <div class="intro">
+            <h1>ParkVision AI</h1>
+            <h2>End-to-End Real-Time Smart Parking Monitoring System</h2>
+            <ul>
+                <li><strong>Core Engine:</strong> Ultralytics YOLOv8 / YOLO-seg &amp; OpenCV</li>
+                <li><strong>Application:</strong> PySide6 (Qt) Desktop GUI with Multi-threading (QThread)</li>
+                <li><strong>Data &amp; Storage:</strong> SQLite (parking.db) &amp; CSV Historical Occupancy Logging</li>
+                <li><strong>Input Feeds:</strong> Video Files, USB Webcams &amp; RTSP Network IP Streams</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Business Context Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Project Overview &amp; Business Impact</h2>
+            <p>Urban parking management is a major operational bottleneck in smart cities and commercial hubs. Drivers spending 15–20 minutes searching for vacant spots generates traffic congestion, increases carbon emissions, and creates customer friction in commercial facilities.</p>
+            <p><strong>ParkVision AI</strong> was designed and engineered as a production-grade Computer Vision desktop application that transforms conventional video streams (CCTV, webcams, or IP cameras) into an automated intelligent occupancy monitoring system without requiring expensive ground sensors.</p>
+            
+            <h3>Key Value Drivers:</h3>
+            <ul class="two-columns">
+                <li><strong>Hardware Agnostic:</strong> Integrates seamlessly with existing optical camera infrastructure via RTSP or USB.</li>
+                <li><strong>Operational Cost Reduction:</strong> Eliminates the need for physical ultrasonic/magnetic ground sensors.</li>
+                <li><strong>Real-Time Auditing:</strong> Instant availability tracking with sub-second latency and visual alerts.</li>
+                <li><strong>Historical Insights:</strong> Continuous persistence of occupancy timestamps to analyze peak demand and parking turnover.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Technical Architecture Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>System Architecture &amp; Workflow</h2>
+            
+            <h3>1. Multi-Source Video Stream Ingestion</h3>
+            <p>An asynchronous capture pipeline handles video inputs (local MP4 recordings, live USB webcams, or networked RTSP CCTV cameras) in dedicated PySide6 background threads, ensuring the graphical interface remains smooth and responsive at 30+ FPS.</p>
+
+            <h3>2. Deep Learning Detection &amp; Tracking Pipeline</h3>
+            <ul>
+                <li><strong>Model:</strong> Ultralytics YOLOv8 nano/medium segmentation weights (optimized for real-time edge inference).</li>
+                <li><strong>Target Classes:</strong> Multi-class vehicle detection (cars, vans, trucks, buses, motorcycles).</li>
+                <li><strong>Inference Strategies:</strong> Flexible inference modes including direct YOLO bounding box detection, background subtraction, and hybrid thresholding for low-contrast lighting conditions.</li>
+            </ul>
+
+            <h3>3. Interactive Spatial Slot Management</h3>
+            <p>The application includes an integrated polygon management tool where operators can draw, calibrate, and save individual parking bay coordinates directly over the camera feed. Each spot is stored as a vector polygon in the database.</p>
+
+            <h3>4. Occupancy Logic &amp; State Machine</h3>
+            <p>For each frame, detected vehicle centroids and bounding polygons are computed against the calibrated parking spots using geometric intersection algorithms (Point-in-Polygon &amp; IoU). Spaces are color-coded in real time:</p>
+            <ul>
+                <li><strong style="color: #4ade80;">Green Zone:</strong> Available parking slot.</li>
+                <li><strong style="color: #f87171;">Red Zone:</strong> Occupied slot with detected vehicle.</li>
+            </ul>
+
+            <h3>5. Data Persistence &amp; Analytics Layer</h3>
+            <p>Every occupancy change triggers an event logged to a local SQLite database (<code>parking.db</code>) and continuous CSV logs, recording spot IDs, status timestamps, and session durations for downstream business analytics.</p>
+        </div>
+    </div>
+
+    <!-- Key Features & GUI Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Application Features</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                <div class="metric-card" style="padding: 1.2rem; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border-left: 4px solid var(--primary);">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">Live Monitoring Dashboard</h4>
+                    <p style="font-size: 0.95rem;">Real-time video rendering with overlayed status polygons, live occupancy counter (Occupied / Total), and instant visual alerts.</p>
+                </div>
+                
+                <div class="metric-card" style="padding: 1.2rem; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border-left: 4px solid var(--primary);">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">Interactive Slot Calibrator</h4>
+                    <p style="font-size: 0.95rem;">Intuitive vector point-and-click slot editor allowing administrators to adapt the system to any parking lot layout.</p>
+                </div>
+
+                <div class="metric-card" style="padding: 1.2rem; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border-left: 4px solid var(--primary);">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">RTSP &amp; Network IP Ready</h4>
+                    <p style="font-size: 0.95rem;">Native RTSP protocol support for streaming commercial IP surveillance cameras over local or wide-area networks.</p>
+                </div>
+
+                <div class="metric-card" style="padding: 1.2rem; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border-left: 4px solid var(--primary);">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">Data Persistence &amp; Audit Trail</h4>
+                    <p style="font-size: 0.95rem;">Automated transaction storage in SQLite with schema migrations and exportable CSV reports for operational audits.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technical Implementation Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Technologies &amp; Libraries Used</h2>
+            
+            <div class="files-link-container" style="margin: 20px 0; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                <span class="file-badge">Python 3.10+</span>
+                <span class="file-badge">PySide6 (Qt)</span>
+                <span class="file-badge">Ultralytics YOLOv8</span>
+                <span class="file-badge">OpenCV (cv2)</span>
+                <span class="file-badge">PyTorch</span>
+                <span class="file-badge">SQLite3</span>
+                <span class="file-badge">NumPy</span>
+                <span class="file-badge">Multithreading (QThread)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Files Section -->
+    <div class="container">
+        <div class="project-single">
+            <h3>Project Repository &amp; Source Code</h3>
+            <p>Explore the full application source code, modules, GUI views, and database schemas in the GitHub repository:</p>
+            
+            <div class="files-link-container">
+                <a href="https://github.com/cveram96/Portfolio/tree/main/Files/parking_monitor" 
+                   class="project-files-link" 
+                   target="_blank" 
+                   rel="noopener noreferrer">
+                    Explore ParkVision AI Codebase
+                </a>
+                
+                <div class="file-types">
+                    <span class="file-badge">Python</span>
+                    <span class="file-badge">PySide6 GUI</span>
+                    <span class="file-badge">YOLO Weights</span>
+                    <span class="file-badge">SQLite</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+            <p style="margin: 0;">Developed by Christian Vera - 2025</p>
+            <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
+                <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">
+                    LinkedIn
+                </button>
+            </a>
+            <a href="contacto.html" style="text-decoration: none;">
+                <button style="background-color: var(--primary); color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">
+                    Contact
+                </button>
+            </a>
+        </div>
+    </footer>
+
+</body>
+</html>
