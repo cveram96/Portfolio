@@ -3,307 +3,385 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQL Queries - Northwind Database</title>
+    <title>Enterprise SQL Analytics — Northwind Database</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation bar -->
-        <nav>
+    <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#featured">Featured</a></li>
-            <li><a href="index.html#analytics">Analytics</a></li>
+            <li><a href="index.html#featured">Featured Projects</a></li>
+            <li><a href="index.html#analytics">Analytics &amp; BI</a></li>
             <li><a href="contacto.html">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- Main container -->
+    <!-- Intro Section -->
     <div class="container">
         <div class="intro">
-            <h1>SQL Queries - Northwind Database</h1>
-            <h2>Data analysis and visualizations for decision making</h2>
+            <h1>Enterprise SQL Analytics</h1>
+            <h2>Northwind Relational Database &bull; Advanced Window Functions &amp; Customer Intelligence</h2>
             <ul>
-                <li>Dataset: Northwind (sample sales company)</li>
-                <li>Main tables: Products, Orders, Customers, Employees</li>
-                <li>Technologies: SQLite, Python, pandas, matplotlib, plotly</li>
+                <li>Dataset: Northwind Relational Database (13 Normalized Tables, SQLite)</li>
+                <li>Methodologies: CTEs (Common Table Expressions), Window Functions, RFM Segmentation, Cohort Retention</li>
+                <li>Data Hygiene: Fan-Out Prevention (Distinct Counts), Accounting Discount Integration, Performance Optimization</li>
+                <li>Technologies: SQL (SQLite), Python, Pandas, Matplotlib, Plotly</li>
             </ul>
         </div>
     </div>
 
-    <!-- Sección de contenido principal -->
+    <!-- Project Context Section -->
     <div class="container">
-        <div class="project-single">
-            <h3>Project Context</h3>
-            <p>Analysis of the Northwind database, a classic dataset that simulates a sales company (products, orders, customers and employees). Using SQL queries and Python visualizations, we explore sales patterns, employee performance, table relationships and key metrics for business decisions.</p>
+        <div class="section-block">
+            <h2>Project Overview &amp; Architecture</h2>
+            <p>The <strong>Northwind database</strong> is an industry-standard relational benchmark simulating a global wholesale distributor managing products, inventory, customers, suppliers, and fulfillment. This project moves far beyond introductory queries to demonstrate <strong>enterprise-grade SQL engineering</strong>, addressing real-world reporting challenges such as join fan-out, discount accounting, revenue momentum, and customer lifecycle cohort modeling.</p>
             
-            <h4>Database Structure:</h4>
+            <h3>Entity-Relationship Schema Summary:</h3>
             <ul class="two-columns">
-                <li><strong>EMPLOYEE:</strong> Employee information</li>
-                <li><strong>CATEGORY:</strong> Product categories</li>
-                <li><strong>CUSTOMER:</strong> Customer data</li>
-                <li><strong>SHIPPER:</strong> Shipping companies</li>
-                <li><strong>SUPPLIER:</strong> Product suppliers</li>
-                <li><strong>ORDER:</strong> Orders placed</li>
-                <li><strong>PRODUCT:</strong> Available products</li>
-                <li><strong>ORDERDETAIL:</strong> Order line items</li>
-                <li><strong>REGION/TERRITORY:</strong> Geographic regions</li>
+                <li><strong>Customer:</strong> Client master data, corporate identities, and geographies.</li>
+                <li><strong>Order &amp; OrderDetail:</strong> Header-line transactional structure capturing orders, quantities, unit prices, and discount percentages.</li>
+                <li><strong>Product &amp; Category:</strong> Catalog hierarchy, unit costs, inventory stock, and reorder thresholds.</li>
+                <li><strong>Supplier:</strong> Vendor supply chain partners, lead times, and fulfillment origin.</li>
+                <li><strong>Employee:</strong> Sales organizational hierarchy and territory assignments.</li>
+                <li><strong>Shipper:</strong> Logistics logistics carriers and transit dates.</li>
             </ul>
         </div>
+    </div>
 
-        <div class="project-single">
-            <h3>Main Queries Executed</h3>
-            
-<h4>1. Top-selling Products (by quantity)</h4>
-<pre><code>SELECT p.ProductName, SUM(od.Quantity) AS TotalSold
-FROM OrderDetail od
-JOIN Product p ON od.ProductId = p.Id
-GROUP BY p.ProductName
-ORDER BY TotalSold DESC
-LIMIT 10;</code></pre>
-<br>
-            <p>This query joins order details with products to sum how many units have been sold per product. It groups by product name and orders to show the top sellers.</p>
+    <!-- PART 1: CORE REPORTING & DATA HYGIENE -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Part 1: Core Commercial Operations (Data Hygiene &amp; Bug-Fixed)</h2>
+            <p>Establishing accurate operational reporting while correcting common SQL traps (such as cartesian duplication and ignoring transaction discounts).</p>
 
-<br>
-<div style="text-align: center;">
-    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL1.PNG?raw=true" alt="Consulta SQL 1">
-</div>
-
-<h4>2. Top Customers by Total Spend</h4>
-<pre><code>SELECT c.CompanyName, SUM(od.UnitPrice * od.Quantity) AS TotalSpent
-FROM 'Order' o
-JOIN Customer c ON o.CustomerId = c.Id
-JOIN OrderDetail od ON o.Id = od.OrderId
-GROUP BY c.CompanyName
-ORDER BY TotalSpent DESC
-LIMIT 10;</code></pre>
-<br>
-            <p>Joins orders, customers and order details to calculate how much each customer has spent (price × quantity). It groups by company and shows the top spenders.</p>
-
-<br>
-<div style="text-align: center;">
-    <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/SQL_Northwind/SQL2.PNG?raw=true" alt="Consulta SQL 2">
-</div>
-
-<h4>3. Monthly Sales (grouped by year-month)</h4>
-<pre><code>SELECT strftime('%Y-%m', o.OrderDate) AS Month,
-    SUM(od.UnitPrice * od.Quantity) AS TotalSales
-FROM 'Order' o
-JOIN OrderDetail od ON o.Id = od.OrderId
-    GROUP BY Month
-ORDER BY Month;</code></pre>
-<br>
-            <p>Calculates monthly sales by joining orders and their details, grouping by year-month. Useful to analyze sales trends.</p>
-
-<br>
-<div style="text-align: center;">
-    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL3.PNG?raw=true" alt="Consulta SQL 3">
-</div>
-
-
-<h4>4. Employee with Highest Sales Generated</h4>
-<pre><code>SELECT e.FirstName || ' ' || e.LastName AS Employee,
-    SUM(od.UnitPrice * od.Quantity) AS SalesGenerated
-FROM 'Order' o
-JOIN Employee e ON o.EmployeeId = e.Id
-JOIN OrderDetail od ON o.Id = od.OrderId
-    GROUP BY Employee
-ORDER BY SalesGenerated DESC
- LIMIT 1;</code></pre>
-<br>
-            <p>Relates employees to the orders they handled and sums the value sold. Returns the employee with the highest sales generated.</p>
-
-<br>
-<div style="text-align: center;">
-    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL4.PNG?raw=true" alt="Consulta SQL 4">
-</div>
-
-<h4>5. Low-stock Products (reorder alert)</h4>
-<pre><code>SELECT ProductName, UnitsInStock, ReorderLevel
-FROM Product
-WHERE UnitsInStock < ReorderLevel
-ORDER BY UnitsInStock ASC;</code></pre>
-<br>
-            <p>Shows products whose current stock is below the reorder level. Useful to identify items that need replenishment.</p>
-
-<br>
-<div style="text-align: center;">
-    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL5.PNG?raw=true" alt="Consulta SQL 5">
-</div>
-
-<h4>6. Top Categories by Revenue</h4>
-<pre><code>SELECT c.CategoryName, SUM(od.UnitPrice * od.Quantity) AS SalesByCategory
+            <!-- Query 1 -->
+            <h3>1. Top 5 Products by Net Revenue (Accounting for Discounts)</h3>
+            <pre><code>SELECT 
+    p.ProductName,
+    c.CategoryName,
+    ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS NetRevenue,
+    SUM(od.Quantity) AS UnitsSold
 FROM OrderDetail od
 JOIN Product p ON od.ProductId = p.Id
 JOIN Category c ON p.CategoryId = c.Id
-GROUP BY c.CategoryName
-ORDER BY SalesByCategory DESC
+GROUP BY p.Id
+ORDER BY NetRevenue DESC
 LIMIT 5;</code></pre>
-<br>
-            <p>Joins order details, products and categories to sum revenue by category. Shows the top categories.</p>
+            <p><strong>Business Context:</strong> Standard sales reports often calculate gross volume (`UnitPrice * Quantity`). Applying `(1 - od.Discount)` captures the actual realized net cash flow, identifying <em>C&ocirc;te de Blaye</em> and <em>Th&uuml;ringer Rostbratwurst</em> as the primary revenue engines.</p>
 
-<br>
-<div style="text-align: center;">
-    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL6.PNG?raw=true" alt="Consulta SQL 6">
-</div>
+            <!-- Query 2 -->
+            <h3>2. Top Customers &amp; Order Frequency (Preventing Join Fan-Out)</h3>
+            <pre><code>SELECT 
+    c.CompanyName,
+    c.Country,
+    COUNT(DISTINCT o.Id) AS TotalOrders,
+    ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS TotalSpent,
+    ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) / COUNT(DISTINCT o.Id), 2) AS AvgOrderValue
+FROM Customer c
+JOIN 'Order' o ON c.Id = o.CustomerId
+JOIN OrderDetail od ON o.Id = od.OrderId
+GROUP BY c.Id
+ORDER BY TotalSpent DESC
+LIMIT 5;</code></pre>
+            <p><strong>Data Hygiene Note:</strong> Joining `Order` to `OrderDetail` produces multiple line items per order. Using `COUNT(DISTINCT o.Id)` ensures orders are not artificially multiplied by line item counts, preventing inflated transaction metrics.</p>
 
-<h4>7. Slowest Suppliers (average delivery time)</h4>
-<pre><code>SELECT s.CompanyName AS Supplier,
-    ROUND(AVG(julianday(o.ShippedDate) - julianday(o.OrderDate)), 2) AS AvgDays
+            <!-- Query 3 -->
+            <h3>3. Supplier Fulfillment Lead Time (Logistics Bottlenecks)</h3>
+            <pre><code>SELECT 
+    s.CompanyName AS SupplierName,
+    s.Country,
+    COUNT(DISTINCT o.Id) AS OrdersFulfilled,
+    ROUND(AVG(julianday(o.ShippedDate) - julianday(o.OrderDate)), 1) AS AvgFulfillmentDays
 FROM 'Order' o
 JOIN OrderDetail od ON o.Id = od.OrderId
 JOIN Product p ON od.ProductId = p.Id
 JOIN Supplier s ON p.SupplierId = s.Id
 WHERE o.ShippedDate IS NOT NULL
-GROUP BY Supplier
-ORDER BY AvgDays DESC;</code></pre>
-<br>
-            <p>Computes the average time between order date and shipped date per supplier. Useful to detect delivery delays.</p>
+GROUP BY s.Id
+ORDER BY AvgFulfillmentDays DESC
+LIMIT 5;</code></pre>
+            <p><strong>Business Context:</strong> Analyzes turnaround latency between purchase placement and carrier handover, flagging potential supply chain delays.</p>
 
-<br>
-<div style="text-align: center;">
-    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL7.PNG?raw=true" alt="Consulta SQL 7">
-</div>
-
-<h4>8. Inactive Customers (no orders in over 1 year)</h4>
-<pre><code>SELECT c.CompanyName AS Customer,
-    MAX(o.OrderDate) AS LastOrder
+            <!-- Query 4 -->
+            <h3>4. Inactive Account Identification (Churn Risk Audit)</h3>
+            <pre><code>SELECT 
+    c.CompanyName,
+    c.ContactTitle,
+    c.Country,
+    MAX(o.OrderDate) AS LastOrderDate
 FROM Customer c
 LEFT JOIN 'Order' o ON c.Id = o.CustomerId
 GROUP BY c.Id
-HAVING UltimoPedido < date('now', '-1 year') OR UltimoPedido IS NULL
-ORDER BY UltimoPedido;</code></pre>
-<br>
-            <p>Uses LEFT JOIN to include customers without orders. Filters those who haven't purchased in more than one year or never purchased.</p>
-
-<br>
-<div style="text-align: center;">
-    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL8.PNG?raw=true" alt="Consulta SQL 8">
-</div>
-
-<h4>9. Sales vs Stock (inventory analysis)</h4>
-<pre><code>SELECT p.ProductName,
-    SUM(od.Quantity) AS UnitsSold,
-    p.UnitsInStock AS CurrentStock,
-    (p.UnitsInStock - SUM(od.Quantity)) AS Difference
-FROM OrderDetail od
-JOIN Product p ON od.ProductId = p.Id
-GROUP BY p.Id
-ORDER BY UnitsSold DESC;</code></pre>
-<br>
-            <p>Compares available stock with units sold per product. Useful to detect shortages or excess inventory.</p>
-
-<br>
-<div style="text-align: center;">
-    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL9.PNG?raw=true" alt="Consulta SQL 9">
-</div>
-
-<h4>10. Customers and Purchase Frequency</h4>
-
-<pre><code>SELECT c.CompanyName AS Customer,
-    COUNT(o.Id) AS TotalOrders,
-    SUM(od.UnitPrice * od.Quantity) AS TotalAmount
-FROM Customer c
-LEFT JOIN 'Order' o ON c.Id = o.CustomerId
-LEFT JOIN OrderDetail od ON o.Id = od.OrderId
-    GROUP BY c.Id
-ORDER BY TotalOrders DESC;</code></pre>
-<br>
-            <p>Lists customers with the number of orders placed and total amount spent. Uses <code>LEFT JOIN</code> to include customers without purchases.</p>
-
-<br>
-<div style="text-align: center;">
-    <img src="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/SQL_Northwind/SQL10.PNG?raw=true" alt="Consulta SQL 10">
-</div>
-
- </div>
-
-
-
-
-
-
-        <div class="project-single">
-            <h3>Data Visualizations</h3>
-            
-              <h4>Total Sales by Category</h4>
-              <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/SQL_Northwind/SQL_CATEGORY.png?raw=true" 
-                  alt="Bar chart showing sales by category"
-                 style="max-width: 100%; height: auto; margin: 10px 0;">
-            
-              <h4>Monthly Sales Trend</h4>
-              <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/SQL_Northwind/SQL_MONTH.png?raw=true" 
-                  alt="Line chart showing monthly sales trend"
-                 style="max-width: 100%; height: auto; margin: 10px 0;">
-            
-            <h4>Sales by Country</h4>
-            <iframe src="https://cveram96.github.io/Portfolio/MAP.html" 
-                style="width:100%; height:500px; border:none;"></iframe>
-
-        </div>
-
-        <div class="project-single">
-            <h3>Key Findings</h3>
-            <ul>
-                <li>Identification of top-selling products and most profitable categories</li>
-                <li>Customer segmentation by purchase volume and frequency</li>
-                <li>Analysis of employee performance in generating sales</li>
-                <li>Detection of supply chain issues (slow suppliers)</li>
-                <li>Identification of low-stock products that require reordering</li>
-                <li>Classification of inactive customers for reactivation campaigns</li>
-                <li>Geographic analysis of sales and customer distribution</li>
-            </ul>
-        </div>
-
-        <div class="project-single">
-            <h3>Conclusions</h3>
-            
-            <h4>Analysis Benefits</h4>
-            <ul>
-                <li>Inventory optimization based on sales patterns</li>
-                <li>Improved management of relationships with key customers</li>
-                <li>Identification of opportunities to increase sales</li>
-                <li>Evaluation of supplier and employee performance</li>
-                <li>Early detection of operational issues</li>
-            </ul>
-            
-        
+HAVING LastOrderDate &lt; date('now', '-1 year') OR LastOrderDate IS NULL
+ORDER BY LastOrderDate ASC;</code></pre>
+            <p><strong>Bug-Fixed Execution:</strong> Fixes alias translation mismatches (`LastOrderDate`) to correctly filter dormant accounts that have placed zero orders or have been inactive for over twelve months.</p>
         </div>
     </div>
 
-    <!-- Project files section -->
+    <!-- PART 2: ADVANCED WINDOW FUNCTIONS -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Part 2: Advanced SQL &amp; Window Functions (Analytics Engineering)</h2>
+            <p>Utilizing Common Table Expressions (CTEs) and analytical window functions (`DENSE_RANK`, `LAG`, `SUM() OVER`) to solve complex analytical questions without inefficient correlated subqueries.</p>
+
+            <!-- Query 5 -->
+            <h3>5. Top 3 Products within Each Category (Partitioned Ranking)</h3>
+            <pre><code>WITH CategoryProductSales AS (
+    SELECT 
+        c.CategoryName,
+        p.ProductName,
+        ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS Revenue,
+        DENSE_RANK() OVER (
+            PARTITION BY c.Id 
+            ORDER BY SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) DESC
+        ) AS CategoryRank
+    FROM OrderDetail od
+    JOIN Product p ON od.ProductId = p.Id
+    JOIN Category c ON p.CategoryId = c.Id
+    GROUP BY c.Id, p.Id
+)
+SELECT 
+    CategoryName, 
+    CategoryRank, 
+    ProductName, 
+    Revenue
+FROM CategoryProductSales
+WHERE CategoryRank &lt;= 3
+ORDER BY CategoryName, CategoryRank;</code></pre>
+            <p><strong>Technical Rationale:</strong> Rather than running multiple category-specific queries, `DENSE_RANK() OVER (PARTITION BY c.Id)` generates departmental rankings in a single scan, providing localized product leadership insights across Beverages, Dairy, Produce, and Confections.</p>
+
+            <!-- Query 6 -->
+            <h3>6. Month-over-Month (MoM) Revenue Growth Rate</h3>
+            <pre><code>WITH MonthlyRevenue AS (
+    SELECT 
+        strftime('%Y-%m', o.OrderDate) AS OrderMonth,
+        ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS CurrentMonthRevenue
+    FROM 'Order' o
+    JOIN OrderDetail od ON o.Id = od.OrderId
+    GROUP BY OrderMonth
+)
+SELECT 
+    OrderMonth,
+    CurrentMonthRevenue,
+    LAG(CurrentMonthRevenue, 1) OVER (ORDER BY OrderMonth) AS PreviousMonthRevenue,
+    ROUND(
+        (CurrentMonthRevenue - LAG(CurrentMonthRevenue, 1) OVER (ORDER BY OrderMonth)) 
+        / LAG(CurrentMonthRevenue, 1) OVER (ORDER BY OrderMonth) * 100, 2
+    ) AS MoMGrowthPercent
+FROM MonthlyRevenue
+ORDER BY OrderMonth;</code></pre>
+            <p><strong>Technical Rationale:</strong> Uses `LAG()` to pull the prior month's aggregate into the current row, calculating exact commercial momentum without self-joins.</p>
+
+            <!-- Query 7 -->
+            <h3>7. Year-to-Date (YTD) Running Total Revenue</h3>
+            <pre><code>WITH MonthlyTotals AS (
+    SELECT 
+        strftime('%Y', o.OrderDate) AS OrderYear,
+        strftime('%Y-%m', o.OrderDate) AS OrderMonth,
+        ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS MonthlySales
+    FROM 'Order' o
+    JOIN OrderDetail od ON o.Id = od.OrderId
+    GROUP BY OrderMonth
+)
+SELECT 
+    OrderYear,
+    OrderMonth,
+    MonthlySales,
+    ROUND(SUM(MonthlySales) OVER (
+        PARTITION BY OrderYear 
+        ORDER BY OrderMonth
+    ), 2) AS YTD_RunningRevenue
+FROM MonthlyTotals
+ORDER BY OrderMonth;</code></pre>
+            <p><strong>Technical Rationale:</strong> Cumulative window partitioning resets at the turn of each calendar year, tracking progress toward annual revenue benchmarks.</p>
+
+            <!-- Query 8 -->
+            <h3>8. Customer Reorder Velocity (Average Days Between Purchases)</h3>
+            <pre><code>WITH OrderSequence AS (
+    SELECT 
+        CustomerId,
+        OrderDate,
+        LAG(OrderDate) OVER (
+            PARTITION BY CustomerId 
+            ORDER BY OrderDate
+        ) AS PreviousOrderDate
+    FROM 'Order'
+),
+OrderIntervals AS (
+    SELECT 
+        CustomerId,
+        ROUND(julianday(OrderDate) - julianday(PreviousOrderDate), 1) AS DaysBetweenOrders
+    FROM OrderSequence
+    WHERE PreviousOrderDate IS NOT NULL
+)
+SELECT 
+    c.CompanyName,
+    COUNT(i.DaysBetweenOrders) AS RepeatOrdersCount,
+    ROUND(AVG(i.DaysBetweenOrders), 1) AS AvgDaysBetweenOrders
+FROM OrderIntervals i
+JOIN Customer c ON i.CustomerId = c.Id
+GROUP BY c.Id
+HAVING RepeatOrdersCount &gt;= 10
+ORDER BY AvgDaysBetweenOrders ASC
+LIMIT 5;</code></pre>
+            <p><strong>Technical Rationale:</strong> Calculates repurchase frequency at the individual account level, revealing that top accounts such as <em>Save-a-lot Markets</em> reorder every 19 days on average.</p>
+        </div>
+    </div>
+
+    <!-- PART 3: STRATEGIC CUSTOMER INTELLIGENCE -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Part 3: Strategic Customer Intelligence (RFM &amp; Cohort Retention)</h2>
+            <p>Bridging database querying with managerial marketing strategy: customer tiering and retention cohort analysis coded in 100% pure SQL.</p>
+
+            <!-- Query 9: RFM -->
+            <h3>9. Automated RFM Customer Segmentation (Pure SQL)</h3>
+            <pre><code>WITH CustomerAggregates AS (
+    SELECT 
+        c.Id AS CustomerId,
+        c.CompanyName,
+        MAX(o.OrderDate) AS LastOrderDate,
+        COUNT(DISTINCT o.Id) AS Frequency,
+        ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS Monetary
+    FROM Customer c
+    JOIN 'Order' o ON c.Id = o.CustomerId
+    JOIN OrderDetail od ON o.Id = od.OrderId
+    GROUP BY c.Id
+),
+RFM_Quartiles AS (
+    SELECT 
+        CustomerId,
+        CompanyName,
+        Frequency,
+        Monetary,
+        LastOrderDate,
+        NTILE(4) OVER (ORDER BY LastOrderDate ASC) AS R_Score,
+        NTILE(4) OVER (ORDER BY Frequency ASC) AS F_Score,
+        NTILE(4) OVER (ORDER BY Monetary ASC) AS M_Score
+    FROM CustomerAggregates
+)
+SELECT 
+    CompanyName,
+    R_Score, F_Score, M_Score,
+    Frequency AS TotalOrders,
+    Monetary AS LifetimeSpend,
+    CASE 
+        WHEN R_Score &gt;= 3 AND F_Score &gt;= 3 AND M_Score &gt;= 3 THEN 'VIP Champion'
+        WHEN R_Score &gt;= 3 AND F_Score &gt;= 2 THEN 'Loyal Customer'
+        WHEN R_Score = 1 AND F_Score &gt;= 3 THEN 'High-Value At Risk'
+        WHEN R_Score = 1 AND F_Score = 1 THEN 'Dormant Account'
+        ELSE 'Regular Buyer'
+    END AS CustomerSegment
+FROM RFM_Quartiles
+ORDER BY Monetary DESC
+LIMIT 8;</code></pre>
+            <p><strong>Management Impact:</strong> Using `NTILE(4)` categorizes all accounts into actionable marketing quadrants without external statistical packages, pinpointing high-spend accounts requiring immediate account manager retention calls.</p>
+
+            <!-- Query 10: Cohort Analysis -->
+            <h3>10. Customer Retention Cohort Analysis (Pure SQL Matrix)</h3>
+            <pre><code>WITH CustomerFirstOrder AS (
+    SELECT 
+        CustomerId,
+        MIN(OrderDate) AS FirstOrderDate,
+        strftime('%Y-%m', MIN(OrderDate)) AS CohortMonth
+    FROM 'Order'
+    GROUP BY CustomerId
+),
+UserMonthlyActivity AS (
+    SELECT 
+        o.CustomerId,
+        c.CohortMonth,
+        (CAST(strftime('%Y', o.OrderDate) AS INTEGER) - CAST(strftime('%Y', c.FirstOrderDate) AS INTEGER)) * 12 +
+        (CAST(strftime('%m', o.OrderDate) AS INTEGER) - CAST(strftime('%m', c.FirstOrderDate) AS INTEGER)) AS MonthIndex
+    FROM 'Order' o
+    JOIN CustomerFirstOrder c ON o.CustomerId = c.CustomerId
+)
+SELECT 
+    CohortMonth,
+    COUNT(DISTINCT CustomerId) AS CohortSize,
+    COUNT(DISTINCT CASE WHEN MonthIndex = 1 THEN CustomerId END) AS M1_Repeat,
+    COUNT(DISTINCT CASE WHEN MonthIndex = 2 THEN CustomerId END) AS M2_Repeat,
+    COUNT(DISTINCT CASE WHEN MonthIndex = 3 THEN CustomerId END) AS M3_Repeat,
+    ROUND(COUNT(DISTINCT CASE WHEN MonthIndex = 1 THEN CustomerId END) * 100.0 / COUNT(DISTINCT CustomerId), 1) AS M1_RetentionRate
+FROM UserMonthlyActivity
+GROUP BY CohortMonth
+ORDER BY CohortMonth
+LIMIT 6;</code></pre>
+            <p><strong>Management Impact:</strong> Generates a classic SaaS/e-commerce cohort retention table directly in SQL, measuring repeat order stability across customer onboarding cohorts.</p>
+        </div>
+    </div>
+
+    <!-- PART 4: PERFORMANCE & QUERY OPTIMIZATION -->
+    <div class="container">
+        <div class="section-block">
+            <h2>Part 4: Database Performance &amp; Query Optimization</h2>
+            
+            <p>In production databases with millions of rows, unindexed queries cause heavy table scans and server I/O bottlenecks. We examine execution plans using <code>EXPLAIN QUERY PLAN</code>:</p>
+
+            <pre><code>EXPLAIN QUERY PLAN
+SELECT c.CompanyName, COUNT(DISTINCT o.Id) AS Orders
+FROM Customer c
+JOIN 'Order' o ON c.Id = o.CustomerId
+GROUP BY c.Id;</code></pre>
+
+            <h3>Production Optimization Takeaways:</h3>
+            <ul>
+                <li><strong>Foreign Key Indexing:</strong> Ensuring composite indices on `Order(CustomerId, OrderDate)` transforms full-table sequential scans into B-Tree index lookups (`SEARCH TABLE`).</li>
+                <li><strong>Selective Projection:</strong> Avoiding `SELECT *` and projecting only required columns reduces memory footprint during hash aggregation (`TEMP B-TREE FOR GROUP BY`).</li>
+                <li><strong>Safe Aggregations:</strong> Using `COUNT(DISTINCT)` whenever child detail tables are joined protects against relational duplication.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Project Files Section -->
     <div class="container">
         <div class="project-single">
-            <h3>Project Files</h3>
-            <p>You can explore the project source code:</p>
+            <h3>Project Notebook &amp; Source Database</h3>
+            <p>Explore the full interactive Python notebook and the underlying SQLite database in the repository:</p>
             
             <div class="files-link-container">
                 <a href="https://github.com/cveram96/Portfolio/blob/main/Files/SQL_Northwind.ipynb" 
                    class="project-files-link" 
-                   target="_blank"
+                   target="_blank" 
                    rel="noopener noreferrer">
-                    View full notebook on Colab
+                    Open SQL_Northwind.ipynb in GitHub &rarr;
                 </a>
                 
                 <div class="file-types">
-                    <span class="file-badge">Jupyter Notebook</span>
+                    <span class="file-badge">SQL (SQLite)</span>
+                    <span class="file-badge">Window Functions</span>
+                    <span class="file-badge">CTEs</span>
+                    <span class="file-badge">Python Pandas</span>
                 </div>
             </div>
         </div>
     </div>
 
-    
     <!-- Footer -->
-<footer>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-        <p style="margin: 0;">Developed by Christian Vera - 2025</p>
-    
-        <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
-            <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">LinkedIn</button>
-        </a>
-    </div>
-</footer>
+    <footer>
+        <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <p style="margin: 0;">Designed &amp; Developed by <strong style="color: #ffffff;">Christian David Vera Mendivelso</strong> &bull; 2025&ndash;2026</p>
+            <div style="display: flex; gap: 12px; margin-top: 6px;">
+                <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+                    <button style="background-color: #0077B5; color: white; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem;">
+                        LinkedIn
+                    </button>
+                </a>
+                <a href="https://github.com/cveram96" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
+                    <button style="background-color: rgba(255,255,255,0.08); color: white; border: 1px solid rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem;">
+                        GitHub
+                    </button>
+                </a>
+                <a href="contacto.html" style="text-decoration: none;">
+                    <button style="background-color: var(--primary); color: white; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem;">
+                        Contact
+                    </button>
+                </a>
+            </div>
+        </div>
+    </footer>
 
-    
 </body>
 </html>
