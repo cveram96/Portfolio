@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Christian David Vera | Data Science & Machine Learning Portfolio</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <!-- Ultra-Sleek Glass Navigation -->
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#featured">Featured Projects</a></li>
-            <li><a href="#analytics">Analytics &amp; BI</a></li>
-            <li><a href="contacto.html">Contact</a></li>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="#featured" data-i18n="nav.featured">Featured Projects</a></li>
+            <li><a href="#analytics" data-i18n="nav.analytics">Analytics &amp; BI</a></li>
+            <li><a href="contacto.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
     </nav>
 
@@ -24,50 +24,50 @@
         <div class="hero-profile">
             <div class="availability-badge">
                 <span class="pulse-dot"></span>
-                <span>Available for Data Science &amp; AI Opportunities</span>
+                <span data-i18n="hero.availability">Available for Data Science &amp; AI Opportunities</span>
             </div>
 
-            <h1>Christian David Vera Mendivelso</h1>
-            <div class="hero-subtitle">Data Scientist &amp; Business Intelligence Specialist</div>
+            <h1 data-i18n="hero.title">Christian David Vera Mendivelso</h1>
+            <div class="hero-subtitle" data-i18n="hero.subtitle">Data Scientist &amp; Business Intelligence Specialist</div>
             
-            <p class="hero-bio">
+            <p class="hero-bio" data-i18n-html="hero.bio">
                 Bridging <strong>strategic business acumen</strong> with <strong>advanced machine learning and engineering</strong>. Experienced in designing and deploying end-to-end computer vision systems, causal inference &amp; digital experimentation platforms (A/B testing &amp; CUPED), and executive BI dashboards.
             </p>
 
             <div class="hero-highlights">
-                <span class="hero-pill">M.Sc. in Data Science &mdash; Pontificia Universidad Javeriana</span>
-                <span class="hero-pill">Business Administration &mdash; Universidad Nacional de Colombia</span>
-                <span class="hero-pill">Bogot&aacute;, Colombia &bull; Remote Available</span>
+                <span class="hero-pill" data-i18n="hero.pill1">M.Sc. in Data Science &mdash; Pontificia Universidad Javeriana</span>
+                <span class="hero-pill" data-i18n="hero.pill2">Business Administration &mdash; Universidad Nacional de Colombia</span>
+                <span class="hero-pill" data-i18n="hero.pill3">Bogot&aacute;, Colombia &bull; Remote Available</span>
             </div>
 
             <!-- Value Metric Counters -->
             <div class="hero-stats">
                 <div class="stat-box">
-                    <div class="stat-number">Real-Time</div>
-                    <div class="stat-label">Computer Vision (YOLO)</div>
+                    <div class="stat-number" data-i18n="hero.stat1.num">Real-Time</div>
+                    <div class="stat-label" data-i18n="hero.stat1.label">Computer Vision (YOLO)</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-number">CUPED</div>
-                    <div class="stat-label">Variance Reduction</div>
+                    <div class="stat-number" data-i18n="hero.stat2.num">CUPED</div>
+                    <div class="stat-label" data-i18n="hero.stat2.label">Variance Reduction</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-number">Full-Stack</div>
-                    <div class="stat-label">BI &amp; Automated ETL</div>
+                    <div class="stat-number" data-i18n="hero.stat3.num">Full-Stack</div>
+                    <div class="stat-label" data-i18n="hero.stat3.label">BI &amp; Automated ETL</div>
                 </div>
             </div>
 
             <div class="hero-actions">
                 <a href="#featured" class="btn-hero btn-primary-gradient">
-                    <span>Explore Featured Projects</span>
+                    <span data-i18n="hero.btn.explore">Explore Featured Projects</span>
                 </a>
                 <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" rel="noopener noreferrer" class="btn-hero btn-secondary-dark">
-                    <span>LinkedIn Profile</span>
+                    <span data-i18n="hero.btn.linkedin">LinkedIn Profile</span>
                 </a>
                 <a href="https://github.com/cveram96" target="_blank" rel="noopener noreferrer" class="btn-hero btn-secondary-dark">
-                    <span>GitHub</span>
+                    <span data-i18n="hero.btn.github">GitHub</span>
                 </a>
                 <a href="contacto.html" class="btn-hero btn-secondary-dark">
-                    <span>Contact Details</span>
+                    <span data-i18n="hero.btn.contact">Contact Details</span>
                 </a>
             </div>
         </div>
@@ -76,15 +76,15 @@
     <!-- SECTION 1: FEATURED PROJECTS -->
     <section id="featured">
         <div class="category-header">
-            <h2 class="category-title">Featured Machine Learning &amp; Engineering Projects</h2>
-            <p class="category-subtitle">Production-oriented systems: Deep Learning, Computer Vision, and Advanced Statistical Experimentation.</p>
+            <h2 class="category-title" data-i18n="featured.title">Featured Machine Learning &amp; Engineering Projects</h2>
+            <p class="category-subtitle" data-i18n="featured.subtitle">Production-oriented systems: Deep Learning, Computer Vision, and Advanced Statistical Experimentation.</p>
         </div>
 
         <div class="projects">
             <!-- ParkVision AI -->
             <div class="project featured">
-                <h3>ParkVision AI &mdash; Smart Parking Monitoring</h3>
-                <p>Real-time vehicle detection and parking occupancy monitoring system built with YOLOv8, PySide6 desktop GUI, OpenCV, and persistent SQLite transaction logging.</p>
+                <h3 data-i18n="project.parkvision.title">ParkVision AI &mdash; Smart Parking Monitoring</h3>
+                <p data-i18n="project.parkvision.desc">Real-time vehicle detection and parking occupancy monitoring system built with YOLOv8, PySide6 desktop GUI, OpenCV, and persistent SQLite transaction logging.</p>
                 <div class="card-tags">
                     <span class="card-tag">Python 3.10+</span>
                     <span class="card-tag">Ultralytics YOLOv8</span>
@@ -92,13 +92,13 @@
                     <span class="card-tag">OpenCV</span>
                     <span class="card-tag">SQLite</span>
                 </div>
-                <a href="parkvision.html">Explore System &rarr;</a>
+                <a href="parkvision.html" data-i18n-html="project.parkvision.btn">Explore System &rarr;</a>
             </div>
 
             <!-- Experimentation Platform -->
             <div class="project featured">
-                <h3>Digital Experimentation &amp; CUPED</h3>
-                <p>Scientific experimentation framework featuring variance reduction via CUPED, statistical power sizing (MDE), and causal inference applied to real-world e-commerce data.</p>
+                <h3 data-i18n="project.ab.title">Digital Experimentation &amp; CUPED</h3>
+                <p data-i18n="project.ab.desc">Scientific experimentation framework featuring variance reduction via CUPED, statistical power sizing (MDE), and causal inference applied to real-world e-commerce data.</p>
                 <div class="card-tags">
                     <span class="card-tag">A/B Testing</span>
                     <span class="card-tag">CUPED</span>
@@ -106,20 +106,20 @@
                     <span class="card-tag">SciPy.stats</span>
                     <span class="card-tag">Statsmodels</span>
                 </div>
-                <a href="ab_testing.html">View Methodology &rarr;</a>
+                <a href="ab_testing.html" data-i18n-html="project.ab.btn">View Methodology &rarr;</a>
             </div>
 
             <!-- Churn Prediction -->
             <div class="project featured">
-                <h3>Customer Churn &amp; Retention Strategy</h3>
-                <p>Supervised machine learning classification comparing Random Forest and Multi-Layer Perceptrons with imbalanced learning and retention financial trade-off analysis.</p>
+                <h3 data-i18n="project.churn.title">Customer Churn &amp; Retention Strategy</h3>
+                <p data-i18n="project.churn.desc">Supervised machine learning classification comparing Random Forest and Multi-Layer Perceptrons with imbalanced learning and retention financial trade-off analysis.</p>
                 <div class="card-tags">
                     <span class="card-tag">Python</span>
                     <span class="card-tag">Scikit-Learn</span>
                     <span class="card-tag">Imbalanced-Learn</span>
                     <span class="card-tag">Cost-Benefit ROI</span>
                 </div>
-                <a href="churn.html">View Analysis &rarr;</a>
+                <a href="churn.html" data-i18n-html="project.churn.btn">View Analysis &rarr;</a>
             </div>
         </div>
     </section>
@@ -127,74 +127,74 @@
     <!-- SECTION 2: CORE ANALYTICS & BI -->
     <section id="analytics">
         <div class="category-header">
-            <h2 class="category-title">Business Intelligence &amp; Core Analytics</h2>
-            <p class="category-subtitle">Executive dashboards, SQL relational analytics, forecasting models, and customer intelligence.</p>
+            <h2 class="category-title" data-i18n="analytics.title">Business Intelligence &amp; Core Analytics</h2>
+            <p class="category-subtitle" data-i18n="analytics.subtitle">Executive dashboards, SQL relational analytics, forecasting models, and customer intelligence.</p>
         </div>
 
         <div class="projects">
             <!-- Power BI Netflix -->
             <div class="project">
-                <h3>Power BI &mdash; Netflix Global Catalog</h3>
-                <p>Interactive executive dashboard analyzing worldwide content distribution, movie/series catalog balance, and audience ratings with dynamic DAX formulas and slicers.</p>
+                <h3 data-i18n="project.netflix.title">Power BI &mdash; Netflix Global Catalog</h3>
+                <p data-i18n="project.netflix.desc">Interactive executive dashboard analyzing worldwide content distribution, movie/series catalog balance, and audience ratings with dynamic DAX formulas and slicers.</p>
                 <div class="card-tags">
                     <span class="card-tag">Power BI</span>
                     <span class="card-tag">DAX Measures</span>
                     <span class="card-tag">Power Query</span>
                     <span class="card-tag">Data Modeling</span>
                 </div>
-                <a href="netflix.html">Open Dashboard &rarr;</a>
+                <a href="netflix.html" data-i18n-html="project.netflix.btn">Open Dashboard &rarr;</a>
             </div>
 
             <!-- SQL Northwind -->
             <div class="project">
-                <h3>SQL &mdash; Northwind Business Insights</h3>
-                <p>Relational database operations (multi-table JOINs, window aggregations, subqueries) in SQLite coupled with Python analytical visualization pipelines.</p>
+                <h3 data-i18n="project.sql.title">SQL &mdash; Northwind Business Insights</h3>
+                <p data-i18n="project.sql.desc">Relational database operations (multi-table JOINs, window aggregations, subqueries) in SQLite coupled with Python analytical visualization pipelines.</p>
                 <div class="card-tags">
                     <span class="card-tag">SQL</span>
                     <span class="card-tag">SQLite</span>
                     <span class="card-tag">Pandas</span>
                     <span class="card-tag">Plotly</span>
                 </div>
-                <a href="SQL_Northwind.html">Explore Queries &rarr;</a>
+                <a href="SQL_Northwind.html" data-i18n-html="project.sql.btn">Explore Queries &rarr;</a>
             </div>
 
             <!-- Time Series ARIMA -->
             <div class="project">
-                <h3>Time Series Forecasting (ARIMA)</h3>
-                <p>Seasonal demand forecasting on airline passenger volumes (1949&ndash;1960) with Dickey-Fuller stationarity tests, PACF/ACF diagnostic plots, and residual validation.</p>
+                <h3 data-i18n="project.arima.title">Time Series Forecasting (ARIMA)</h3>
+                <p data-i18n="project.arima.desc">Seasonal demand forecasting on airline passenger volumes (1949&ndash;1960) with Dickey-Fuller stationarity tests, PACF/ACF diagnostic plots, and residual validation.</p>
                 <div class="card-tags">
                     <span class="card-tag">Time Series</span>
                     <span class="card-tag">ARIMA</span>
                     <span class="card-tag">Statsmodels</span>
                     <span class="card-tag">Forecasting</span>
                 </div>
-                <a href="ARIMA.html">View Forecast &rarr;</a>
+                <a href="ARIMA.html" data-i18n-html="project.arima.btn">View Forecast &rarr;</a>
             </div>
 
             <!-- Customer Segmentation -->
             <div class="project">
-                <h3>Customer Segmentation (K-Means)</h3>
-                <p>Unsupervised clustering and RFM-inspired grouping to segment customers into actionable behavioural archetypes for personalized marketing strategies.</p>
+                <h3 data-i18n="project.segmentation.title">Customer Segmentation (K-Means)</h3>
+                <p data-i18n="project.segmentation.desc">Unsupervised clustering and RFM-inspired grouping to segment customers into actionable behavioural archetypes for personalized marketing strategies.</p>
                 <div class="card-tags">
                     <span class="card-tag">Clustering</span>
                     <span class="card-tag">K-Means</span>
                     <span class="card-tag">Scikit-Learn</span>
                     <span class="card-tag">RFM Analysis</span>
                 </div>
-                <a href="segmentacion.html">View Clusters &rarr;</a>
+                <a href="segmentacion.html" data-i18n-html="project.segmentation.btn">View Clusters &rarr;</a>
             </div>
 
             <!-- Linear Regression -->
             <div class="project">
-                <h3>Housing Price Regression</h3>
-                <p>Multivariate linear regression model predicting median California home values with feature significance analysis and residual diagnostics.</p>
+                <h3 data-i18n="project.regression.title">Housing Price Regression</h3>
+                <p data-i18n="project.regression.desc">Multivariate linear regression model predicting median California home values with feature significance analysis and residual diagnostics.</p>
                 <div class="card-tags">
                     <span class="card-tag">Regression</span>
                     <span class="card-tag">Scikit-Learn</span>
                     <span class="card-tag">EDA</span>
                     <span class="card-tag">Statistical Testing</span>
                 </div>
-                <a href="RLM.html">View Model &rarr;</a>
+                <a href="RLM.html" data-i18n-html="project.regression.btn">View Model &rarr;</a>
             </div>
         </div>
     </section>
@@ -202,8 +202,8 @@
     <!-- Footer -->
     <footer>
         <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <p style="margin: 0; font-weight: 500;">Designed &amp; Developed by <strong style="color: #ffffff;">Christian David Vera Mendivelso</strong> &bull; 2025&ndash;2026</p>
-            <p style="margin: 0; font-size: 0.88rem; color: var(--gray-muted);">Bogot&aacute;, Colombia &bull; Open to Remote &amp; Hybrid roles</p>
+            <p style="margin: 0; font-weight: 500;" data-i18n-html="footer.credit">Designed &amp; Developed by <strong style="color: #ffffff;">Christian David Vera Mendivelso</strong> &bull; 2025&ndash;2026</p>
+            <p style="margin: 0; font-size: 0.88rem; color: var(--gray-muted);" data-i18n-html="footer.status">Bogot&aacute;, Colombia &bull; Open to Remote &amp; Hybrid roles</p>
             <div style="display: flex; gap: 12px; margin-top: 6px;">
                 <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
                     <button style="background-color: #0077B5; color: white; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem;">
@@ -216,7 +216,7 @@
                     </button>
                 </a>
                 <a href="contacto.html" style="text-decoration: none;">
-                    <button style="background-color: var(--primary); color: white; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem;">
+                    <button style="background-color: var(--primary); color: white; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem;" data-i18n="footer.contact">
                         Contact
                     </button>
                 </a>
@@ -224,5 +224,8 @@
         </div>
     </footer>
 
+    <!-- Multilingual i18n Scripts -->
+    <script src="translations.js"></script>
+    <script src="i18n.js"></script>
 </body>
 </html>

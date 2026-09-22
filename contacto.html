@@ -10,60 +10,60 @@
 <body>
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#featured">Featured Projects</a></li>
-            <li><a href="index.html#analytics">Analytics &amp; BI</a></li>
-            <li><a href="contacto.html">Contact</a></li>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="index.html#featured" data-i18n="nav.featured">Featured Projects</a></li>
+            <li><a href="index.html#analytics" data-i18n="nav.analytics">Analytics &amp; BI</a></li>
+            <li><a href="contacto.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
     </nav>
 
     <main class="container" style="max-width: 960px; margin: 2.5rem auto;">
         <div class="intro" style="text-align: left; padding: 3rem 2.5rem;">
-            <span class="hero-title-badge">Contact</span>
-            <h1 style="text-align: left; margin-bottom: 0.5rem;">Let's Connect</h1>
-            <p style="color: var(--gray); font-size: 1.05rem; line-height: 1.75; margin-bottom: 2rem;">
+            <span class="hero-title-badge" data-i18n="contact.badge">Contact</span>
+            <h1 style="text-align: left; margin-bottom: 0.5rem;" data-i18n="contact.title">Let's Connect</h1>
+            <p style="color: var(--gray); font-size: 1.05rem; line-height: 1.75; margin-bottom: 2rem;" data-i18n-html="contact.desc">
                 I am actively open to opportunities in <strong>Data Science, Machine Learning Engineering, and Business Intelligence</strong> (Full-time, Hybrid, Remote, or Consulting). Reach out directly through any of the channels below:
             </p>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.2rem; margin-top: 1.5rem;">
                 <div class="contact-card">
-                    <div class="contact-label">Email</div>
+                    <div class="contact-label" data-i18n="contact.email.label">Email</div>
                     <a href="mailto:verachristian4@gmail.com" class="contact-value">
                         verachristian4@gmail.com
                     </a>
                 </div>
 
                 <div class="contact-card">
-                    <div class="contact-label">Phone / WhatsApp</div>
+                    <div class="contact-label" data-i18n="contact.phone.label">Phone / WhatsApp</div>
                     <a href="https://wa.me/573213797876" target="_blank" rel="noopener noreferrer" class="contact-value">
                         +57 321 379 7876
                     </a>
                 </div>
 
                 <div class="contact-card">
-                    <div class="contact-label">Location</div>
-                    <span class="contact-value" style="color: #ffffff;">
+                    <div class="contact-label" data-i18n="contact.location.label">Location</div>
+                    <span class="contact-value" style="color: #ffffff;" data-i18n="contact.location.value">
                         Bogot&aacute;, Colombia (Remote Available)
                     </span>
                 </div>
 
                 <div class="contact-card">
-                    <div class="contact-label">LinkedIn Profile</div>
-                    <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" rel="noopener noreferrer" class="contact-value">
+                    <div class="contact-label" data-i18n="contact.linkedin.label">LinkedIn Profile</div>
+                    <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" rel="noopener noreferrer" class="contact-value" data-i18n-html="contact.linkedin.btn">
                         View LinkedIn &rarr;
                     </a>
                 </div>
 
                 <div class="contact-card">
-                    <div class="contact-label">GitHub Profile</div>
-                    <a href="https://github.com/cveram96" target="_blank" rel="noopener noreferrer" class="contact-value">
+                    <div class="contact-label" data-i18n="contact.github.label">GitHub Profile</div>
+                    <a href="https://github.com/cveram96" target="_blank" rel="noopener noreferrer" class="contact-value" data-i18n-html="contact.github.label">
                         github.com/cveram96 &rarr;
                     </a>
                 </div>
 
                 <div class="contact-card">
-                    <div class="contact-label">Availability</div>
-                    <span class="contact-value" style="color: var(--secondary-light);">
+                    <div class="contact-label" data-i18n="contact.availability.label">Availability</div>
+                    <span class="contact-value" style="color: var(--secondary-light);" data-i18n="contact.availability.value">
                         Immediate / Flexible
                     </span>
                 </div>
@@ -73,7 +73,7 @@
 
     <footer>
         <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-            <p style="margin: 0;">Designed &amp; Developed by <strong style="color: #ffffff;">Christian David Vera Mendivelso</strong> &bull; 2025&ndash;2026</p>
+            <p style="margin: 0;" data-i18n-html="footer.credit">Designed &amp; Developed by <strong style="color: #ffffff;">Christian David Vera Mendivelso</strong> &bull; 2025&ndash;2026</p>
             <div style="display: flex; gap: 12px; margin-top: 6px;">
                 <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
                     <button style="background-color: #0077B5; color: white; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem;">
@@ -88,5 +88,9 @@
             </div>
         </div>
     </footer>
+
+    <!-- Multilingual i18n Scripts -->
+    <script src="translations.js"></script>
+    <script src="i18n.js"></script>
 </body>
 </html>
