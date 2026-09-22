@@ -8,26 +8,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation bar -->
-        <nav>
+        <!-- Navigation bar -->
+    <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#featured">Featured</a></li>
-            <li><a href="index.html#analytics">Analytics</a></li>
-            <li><a href="contacto.html">Contact</a></li>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="index.html#featured" data-i18n="nav.featured">Featured Projects</a></li>
+            <li><a href="index.html#analytics" data-i18n="nav.analytics">Analytics &amp; BI</a></li>
+            <li><a href="contacto.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
     </nav>
 
     <!-- Intro Section -->
     <div class="container">
         <div class="intro">
-            <h1>Median House Value Prediction in California</h1>
-            <h2>Analysis with Multiple Linear Regression</h2>
+            <h1 data-i18n="rlm.intro.title">Median House Value Prediction in California</h1>
+            <h2 data-i18n="rlm.intro.subtitle">Analysis with Multiple Linear Regression</h2>
             <ul>
-                <li>Dataset: fetch_california_housing (20,640 records)</li>
-                <li>Key variables: Median income, housing age, location</li>
-                <li>R²: 0.6364 | RMSE: 0.6574</li>
-                <li>Technologies: Python, scikit-learn, pandas, matplotlib</li>
+                <li data-i18n="rlm.intro.li1">Dataset: fetch_california_housing (20,640 records)</li>
+                <li data-i18n="rlm.intro.li2">Key variables: Median income, housing age, location</li>
+                <li data-i18n="rlm.intro.li3">R²: 0.6364 | RMSE: 0.6574</li>
+                <li data-i18n="rlm.intro.li4">Technologies: Python, scikit-learn, pandas, matplotlib</li>
             </ul>
         </div>
     </div>
@@ -35,19 +35,19 @@
     <!-- Project Context Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Project Context</h2>
-            <p>Analysis of the California housing market using 1990 census data to predict median house value across districts.</p>
+            <h2 data-i18n="rlm.context.title">Project Context</h2>
+            <p data-i18n="rlm.context.p">Analysis of the California housing market using 1990 census data to predict median house value across districts.</p>
             
-            <h3>Main variables:</h3>
+            <h3 data-i18n="rlm.context.vars_title">Main variables:</h3>
             <ul class="two-columns">
-                <li><strong>MedInc:</strong> Median household income</li>
-                <li><strong>HouseAge:</strong> Median house age</li>
-                <li><strong>AveRooms:</strong> Average rooms</li>
-                <li><strong>AveBedrms:</strong> Average bedrooms</li>
-                <li><strong>Population:</strong> Population in the block</li>
-                <li><strong>AveOccup:</strong> Average occupancy</li>
-                <li><strong>Latitude:</strong> Geographic latitude</li>
-                <li><strong>Longitude:</strong> Geographic longitude</li>
+                <li data-i18n-html="rlm.var.medinc"><strong>MedInc:</strong> Median household income</li>
+                <li data-i18n-html="rlm.var.houseage"><strong>HouseAge:</strong> Median house age</li>
+                <li data-i18n-html="rlm.var.averooms"><strong>AveRooms:</strong> Average rooms</li>
+                <li data-i18n-html="rlm.var.avebedrms"><strong>AveBedrms:</strong> Average bedrooms</li>
+                <li data-i18n-html="rlm.var.population"><strong>Population:</strong> Population in the block</li>
+                <li data-i18n-html="rlm.var.aveoccup"><strong>AveOccup:</strong> Average occupancy</li>
+                <li data-i18n-html="rlm.var.latitude"><strong>Latitude:</strong> Geographic latitude</li>
+                <li data-i18n-html="rlm.var.longitude"><strong>Longitude:</strong> Geographic longitude</li>
             </ul>
         </div>
     </div>
@@ -55,16 +55,16 @@
     <!-- Detailed Methodology Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Detailed Methodology</h2>
+            <h2 data-i18n="rlm.method.title">Detailed Methodology</h2>
             
-            <h3>1. Exploratory Data Analysis (EDA)</h3>
+            <h3 data-i18n="rlm.method.step1_title">1. Exploratory Data Analysis (EDA)</h3>
             <ul>
-                <li>Variable distributions and outlier detection</li>
-                <li>Correlation matrix between features</li>
-                <li>Visualization of geographic patterns</li>
+                <li data-i18n="rlm.method.step1_li1">Variable distributions and outlier detection</li>
+                <li data-i18n="rlm.method.step1_li2">Correlation matrix between features</li>
+                <li data-i18n="rlm.method.step1_li3">Visualization of geographic patterns</li>
             </ul>
             
-            <h3>2. Preprocessing</h3>
+            <h3 data-i18n="rlm.method.step2_title">2. Preprocessing</h3>
             <ul>
                 <li>Feature engineering:
                     <ul>
@@ -73,11 +73,11 @@
                         <li><code>People_per_House</code>: Occupants per house</li>
                     </ul>
                 </li>
-                <li>Outlier removal using the IQR method</li>
-                <li>Standardization of numeric variables</li>
+                <li data-i18n="rlm.method.step2_outliers">Outlier removal using the IQR method</li>
+                <li data-i18n="rlm.method.step2_std">Standardization of numeric variables</li>
             </ul>
             
-            <h3>3. Modeling</h3>
+            <h3 data-i18n="rlm.method.step3_title">3. Modeling</h3>
             <ul>
                 <li>Pipeline components:
                     <ul>
@@ -95,27 +95,27 @@
     <!-- Results and Findings Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Results and Findings</h2>
+            <h2 data-i18n="rlm.results.title">Results and Findings</h2>
             
             <div class="results-container">
                 <!-- Metrics card -->
                 <div class="metric-card">
                     <div class="metric-card-header">
-                        <h4>Model Metrics</h4>
+                        <h4 data-i18n="rlm.results.metrics_header">Model Metrics</h4>
                     </div>
                     <div class="metric-card-content">
                         <div class="metric-item">
-                            <div class="metric-title">R² coefficient</div>
+                            <div class="metric-title" data-i18n="rlm.results.r2_title">R² coefficient</div>
                             <div class="metric-value">0.6364</div>
-                            <div class="metric-description">Explains <strong>63.64%</strong> of the variance</div>
+                            <div class="metric-description" data-i18n-html="rlm.results.r2_desc">Explains <strong>63.64%</strong> of the variance</div>
                             <div class="progress-container">
                                 <div class="progress-bar" style="width: 63.64%"></div>
                             </div>
                         </div>
                         <div class="metric-item">
-                            <div class="metric-title">RMSE</div>
+                            <div class="metric-title" data-i18n="rlm.results.rmse_title">RMSE</div>
                             <div class="metric-value">0.6574</div>
-                            <div class="metric-description">Root mean squared error</div>
+                            <div class="metric-description" data-i18n="rlm.results.rmse_desc">Root mean squared error</div>
                         </div>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
                 <!-- Feature importance card -->
                 <div class="influence-card">
                     <div class="metric-card-header">
-                        <h4>Most Influential Features</h4>
+                        <h4 data-i18n="rlm.results.influence_header">Most Influential Features</h4>
                     </div>
                     <div class="influence-list">
                         <div class="influence-item">
@@ -158,11 +158,11 @@
                 </div>
             </div>
             
-            <h3>Assumption Validation</h3>
+            <h3 data-i18n="rlm.results.assumptions_title">Assumption Validation</h3>
             <ul>
-                <li><strong>Residual normality:</strong> Not satisfied (p < 0.05)</li>
-                <li><strong>Homoscedasticity:</strong> Not satisfied (p < 0.05)</li>
-                <li><strong>Independence:</strong> Satisfied (Durbin-Watson ≈ 2)</li>
+                <li data-i18n-html="rlm.results.assump1"><strong>Residual normality:</strong> Not satisfied (p < 0.05)</li>
+                <li data-i18n-html="rlm.results.assump2"><strong>Homoscedasticity:</strong> Not satisfied (p < 0.05)</li>
+                <li data-i18n-html="rlm.results.assump3"><strong>Independence:</strong> Satisfied (Durbin-Watson ≈ 2)</li>
             </ul>
         </div>
     </div>
@@ -170,14 +170,14 @@
     <!-- Conclusions Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Conclusions and Recommendations</h2>
+            <h2 data-i18n="rlm.concl.title">Conclusions and Recommendations</h2>
             
-            <h3>Key Findings</h3>
+            <h3 data-i18n="rlm.concl.findings_title">Key Findings</h3>
             <ul>
-                <li>Median income is the strongest predictor of house value</li>
-                <li>Geographic location shows clear spatial patterns</li>
-                <li>More occupied houses tend to be worth less</li>
-                <li>Engineered features improved predictive power</li>
+                <li data-i18n="rlm.concl.f1">Median income is the strongest predictor of house value</li>
+                <li data-i18n="rlm.concl.f2">Geographic location shows clear spatial patterns</li>
+                <li data-i18n="rlm.concl.f3">More occupied houses tend to be worth less</li>
+                <li data-i18n="rlm.concl.f4">Engineered features improved predictive power</li>
             </ul>
             
             <h3>Limitations</h3>
@@ -229,5 +229,9 @@
         </div>
     </footer>
 
+
+    <!-- Multilingual i18n Scripts -->
+    <script src="translations.js"></script>
+    <script src="i18n.js"></script>
 </body>
 </html>

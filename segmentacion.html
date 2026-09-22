@@ -8,26 +8,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation bar -->
-        <nav>
+        <!-- Navigation bar -->
+    <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#featured">Featured</a></li>
-            <li><a href="index.html#analytics">Analytics</a></li>
-            <li><a href="contacto.html">Contact</a></li>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="index.html#featured" data-i18n="nav.featured">Featured Projects</a></li>
+            <li><a href="index.html#analytics" data-i18n="nav.analytics">Analytics &amp; BI</a></li>
+            <li><a href="contacto.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
     </nav>
 
     <!-- Intro Section -->
     <div class="container">
         <div class="intro">
-            <h1>Customer Segmentation with K-Means</h1>
-            <h2>RFM analysis for marketing strategies</h2>
+            <h1 data-i18n="seg.intro.title">Customer Segmentation with K-Means</h1>
+            <h2 data-i18n="seg.intro.subtitle">RFM analysis for marketing strategies</h2>
             <ul>
-                <li>Dataset: Online Retail (541,909 initial transactions)</li>
-                <li>Key variables: Recency, Frequency, Monetary</li>
-                <li>3 clusters identified | Silhouette Score: 0.6458</li>
-                <li>Technologies: Python, scikit-learn, pandas, matplotlib</li>
+                <li data-i18n="seg.intro.li1">Dataset: Online Retail (541,909 initial transactions)</li>
+                <li data-i18n="seg.intro.li2">Key variables: Recency, Frequency, Monetary</li>
+                <li data-i18n="seg.intro.li3">3 clusters identified | Silhouette Score: 0.6458</li>
+                <li data-i18n="seg.intro.li4">Technologies: Python, scikit-learn, pandas, matplotlib</li>
             </ul>
         </div>
     </div>
@@ -35,18 +35,18 @@
     <!-- Project Context Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Project Context</h2>
-            <p>Sales transactions analysis to segment customers using unsupervised techniques (K-Means) based on RFM metrics (Recency, Frequency, Monetary).</p>
+            <h2 data-i18n="seg.context.title">Project Context</h2>
+            <p data-i18n="seg.context.p">Sales transactions analysis to segment customers using unsupervised techniques (K-Means) based on RFM metrics (Recency, Frequency, Monetary).</p>
             
-            <h3>Main Variables:</h3>
+            <h3 data-i18n="seg.context.vars_title">Main Variables:</h3>
             <ul class="two-columns">
-                <li><strong>InvoiceNo:</strong> Transaction number (canceled transactions filtered)</li>
-                <li><strong>StockCode:</strong> Product identifier</li>
-                <li><strong>Quantity:</strong> Quantity sold per transaction</li>
-                <li><strong>InvoiceDate:</strong> Transaction date and time</li>
-                <li><strong>UnitPrice:</strong> Unit price of the product</li>
-                <li><strong>CustomerID:</strong> Customer identifier (25% missing)</li>
-                <li><strong>Country:</strong> Country of the transaction</li>
+                <li data-i18n-html="seg.var.invoiceno"><strong>InvoiceNo:</strong> Transaction number (canceled transactions filtered)</li>
+                <li data-i18n-html="seg.var.stockcode"><strong>StockCode:</strong> Product identifier</li>
+                <li data-i18n-html="seg.var.quantity"><strong>Quantity:</strong> Quantity sold per transaction</li>
+                <li data-i18n-html="seg.var.invoicedate"><strong>InvoiceDate:</strong> Transaction date and time</li>
+                <li data-i18n-html="seg.var.unitprice"><strong>UnitPrice:</strong> Unit price of the product</li>
+                <li data-i18n-html="seg.var.customerid"><strong>CustomerID:</strong> Customer identifier (25% missing)</li>
+                <li data-i18n-html="seg.var.country"><strong>Country:</strong> Country of the transaction</li>
             </ul>
         </div>
     </div>
@@ -54,17 +54,17 @@
     <!-- Detailed Methodology Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Detailed Methodology</h2>
+            <h2 data-i18n="seg.method.title">Detailed Methodology</h2>
             
-            <h3>1. Exploratory Data Analysis (EDA)</h3>
+            <h3 data-i18n="seg.method.step1_title">1. Exploratory Data Analysis (EDA)</h3>
             <ul>
-                <li>Filtering canceled transactions and invalid values</li>
-                <li>Identification of outliers in quantities and prices</li>
-                <li>Geographic distribution of sales (73% United Kingdom)</li>
-                <li>Pareto analysis: 25.6% of customers account for 80% of purchases</li>
+                <li data-i18n="seg.method.step1_li1">Filtering canceled transactions and invalid values</li>
+                <li data-i18n="seg.method.step1_li2">Identification of outliers in quantities and prices</li>
+                <li data-i18n="seg.method.step1_li3">Geographic distribution of sales (73% United Kingdom)</li>
+                <li data-i18n="seg.method.step1_li4">Pareto analysis: 25.6% of customers account for 80% of purchases</li>
             </ul>
             
-            <h3>2. Preprocessing</h3>
+            <h3 data-i18n="seg.method.step2_title">2. Preprocessing</h3>
             <ul>
                 <li>Calculation of RFM metrics:
                     <ul>
@@ -73,13 +73,13 @@
                         <li><strong>Monetary:</strong> Total spend per customer</li>
                     </ul>
                 </li>
-                <li>Feature normalization with MinMaxScaler</li>
-                <li>Filtered out 25% of transactions without CustomerID</li>
+                <li data-i18n="seg.method.step2_norm">Feature normalization with MinMaxScaler</li>
+                <li data-i18n="seg.method.step2_filter">Filtered out 25% of transactions without CustomerID</li>
             </ul>
             
-            <h3>3. Modeling with K-Means</h3>
+            <h3 data-i18n="seg.method.step3_title">3. Modeling with K-Means</h3>
             <ul>
-                <li>Optimal number of clusters determined with elbow method (K=3)</li>
+                <li data-i18n="seg.method.step3_elbow">Optimal number of clusters determined with elbow method (K=3)</li>
                 <li>Configuration:
                     <ul>
                         <li>Initialization: k-means++</li>
@@ -95,42 +95,42 @@
     <!-- Results and Findings Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Results and Findings</h2>
+            <h2 data-i18n="seg.results.title">Results and Findings</h2>
             
             <div class="results-container">
                 <div class="metric-card">
                     <div class="metric-card-header">
-                        <h4>Model Metrics</h4>
+                        <h4 data-i18n="seg.results.metrics_header">Model Metrics</h4>
                     </div>
                     <div class="metric-card-content">
                         <div class="metric-item">
-                            <div class="metric-title">Silhouette Score</div>
+                            <div class="metric-title" data-i18n="seg.results.sil_title">Silhouette Score</div>
                             <div class="metric-value">0.6458</div>
-                            <div class="metric-description">Indicates well-defined and well-separated clusters</div>
+                            <div class="metric-description" data-i18n="seg.results.sil_desc">Indicates well-defined and well-separated clusters</div>
                             <div class="progress-container">
                                 <div class="progress-bar" style="width: 64.58%"></div>
                             </div>
                         </div>
                         <div class="metric-item">
-                            <div class="metric-title">Davies-Bouldin</div>
+                            <div class="metric-title" data-i18n="seg.results.db_title">Davies-Bouldin</div>
                             <div class="metric-value">0.5043</div>
-                            <div class="metric-description">Low similarity between clusters (better &lt;1)</div>
+                            <div class="metric-description" data-i18n-html="seg.results.db_desc">Low similarity between clusters (better &lt;1)</div>
                         </div>
                         <div class="metric-item">
-                            <div class="metric-title">Calinski-Harabasz</div>
+                            <div class="metric-title" data-i18n="seg.results.ch_title">Calinski-Harabasz</div>
                             <div class="metric-value">15465.7</div>
-                            <div class="metric-description">Excellent separation between clusters</div>
+                            <div class="metric-description" data-i18n="seg.results.ch_desc">Excellent separation between clusters</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="metric-card">
                     <div class="metric-card-header">
-                        <h4>Customer Segments</h4>
+                        <h4 data-i18n="seg.results.segments_header">Customer Segments</h4>
                     </div>
                     <div class="metric-card-content">
                         <div class="metric-item">
-                            <div class="metric-title">Cluster 0: Valuable</div>
+                            <div class="metric-title" data-i18n="seg.results.c0_title">Cluster 0: Valuable</div>
                             <ul>
                                 <li>67% of customers</li>
                                 <li>Recency: 31 days</li>
@@ -139,7 +139,7 @@
                             </ul>
                         </div>
                         <div class="metric-item">
-                            <div class="metric-title">Cluster 1: Inactive</div>
+                            <div class="metric-title" data-i18n="seg.results.c1_title">Cluster 1: Inactive</div>
                             <ul>
                                 <li>Recency: 293 days</li>
                                 <li>Frequency: 1.4 purchases</li>
@@ -147,7 +147,7 @@
                             </ul>
                         </div>
                         <div class="metric-item">
-                            <div class="metric-title">Cluster 2: Occasional</div>
+                            <div class="metric-title" data-i18n="seg.results.c2_title">Cluster 2: Occasional</div>
                             <ul>
                                 <li>18.6% of customers</li>
                                 <li>Recency: 152 days</li>
@@ -164,14 +164,14 @@
     <!-- Cluster Visualization Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Cluster Visualization and Analysis</h2>
+            <h2 data-i18n="seg.viz.title">Cluster Visualization and Analysis</h2>
             
-            <h3>Identified Segments:</h3>
+            <h3 data-i18n="seg.viz.segments_title">Identified Segments:</h3>
             <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Kmeans/Clusters_Kmeans.png?raw=true" 
                  alt="Identified RFM clusters"
                  style="max-width: 100%; height: auto; margin: 20px 0;">
             
-            <h3>Elbow Method:</h3>
+            <h3 data-i18n="seg.viz.elbow_title">Elbow Method:</h3>
             <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Kmeans/Codo_Kmeans.png?raw=true" 
                  alt="Optimal number of K"
                  style="max-width: 100%; height: auto; margin: 20px 0;">
@@ -256,6 +256,10 @@
         </div>
     </footer>
 
+
+    <!-- Multilingual i18n Scripts -->
+    <script src="translations.js"></script>
+    <script src="i18n.js"></script>
 </body>
 </html>
     

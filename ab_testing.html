@@ -8,26 +8,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation bar -->
+        <!-- Navigation bar -->
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#featured">Featured Projects</a></li>
-            <li><a href="index.html#analytics">Analytics &amp; BI</a></li>
-            <li><a href="contacto.html">Contact</a></li>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="index.html#featured" data-i18n="nav.featured">Featured Projects</a></li>
+            <li><a href="index.html#analytics" data-i18n="nav.analytics">Analytics &amp; BI</a></li>
+            <li><a href="contacto.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
     </nav>
 
     <!-- Intro Section -->
     <div class="container">
         <div class="intro">
-            <h1>A/B Testing Project</h1>
-            <h2>Landing Page Performance Analysis &amp; Decision Science</h2>
+            <h1 data-i18n="abt.intro.title">A/B Testing Project</h1>
+            <h2 data-i18n-html="abt.intro.subtitle">Landing Page Performance Analysis &amp; Decision Science</h2>
             <ul>
-                <li>Dataset: Udacity Landing Page Experiment (290,584 unique users)</li>
-                <li>Primary Metric: Conversion Rate (Binary Proportion)</li>
-                <li>Methodology: SRM Validation (&chi;&sup2;), Two-Sample Z-Test, NormalIndPower Analysis</li>
-                <li>Technologies: Python, pandas, numpy, scipy.stats, statsmodels, matplotlib</li>
+                <li data-i18n="abt.intro.li1">Dataset: Udacity Landing Page Experiment (290,584 unique users)</li>
+                <li data-i18n="abt.intro.li2">Primary Metric: Conversion Rate (Binary Proportion)</li>
+                <li data-i18n-html="abt.intro.li3">Methodology: SRM Validation (&chi;&sup2;), Two-Sample Z-Test, NormalIndPower Analysis</li>
+                <li data-i18n="abt.intro.li4">Technologies: Python, pandas, numpy, scipy.stats, statsmodels, matplotlib</li>
             </ul>
         </div>
     </div>
@@ -35,86 +35,86 @@
     <!-- Project Context Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Project Context &amp; Business Dilemma</h2>
-            <p>An online education platform designed and implemented a new landing page aiming to boost course enrollment rates. The core product question was straightforward yet commercially high-stakes: <strong>should the company deploy the new landing page to 100% of incoming traffic, or retain the existing baseline design?</strong></p>
+            <h2 data-i18n-html="abt.context.title">Project Context &amp; Business Dilemma</h2>
+            <p data-i18n-html="abt.context.p1">An online education platform designed and implemented a new landing page aiming to boost course enrollment rates. The core product question was straightforward yet commercially high-stakes: <strong>should the company deploy the new landing page to 100% of incoming traffic, or retain the existing baseline design?</strong></p>
             
-            <h3>The Analytical Challenge</h3>
-            <p>Real-world experimentation is not about manufacturing statistical significance. It is about establishing reliable causal attribution and guarding the business against regressions. With a population of nearly 300,000 users, our analysis applied strict methodological quality gates to deliver a statistically sound and commercially actionable verdict.</p>
+            <h3 data-i18n="abt.context.challenge_title">The Analytical Challenge</h3>
+            <p data-i18n="abt.context.challenge_p">Real-world experimentation is not about manufacturing statistical significance. It is about establishing reliable causal attribution and guarding the business against regressions. With a population of nearly 300,000 users, our analysis applied strict methodological quality gates to deliver a statistically sound and commercially actionable verdict.</p>
         </div>
     </div>
 
     <!-- Methodology Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Statistical Methodology &amp; Quality Gates</h2>
+            <h2 data-i18n-html="abt.method.title">Statistical Methodology &amp; Quality Gates</h2>
             
-            <p>Rather than relying on basic metric summaries, we executed a 4-step statistical validation workflow designed to eliminate bias and verify experimental integrity.</p>
+            <p data-i18n="abt.method.p">Rather than relying on basic metric summaries, we executed a 4-step statistical validation workflow designed to eliminate bias and verify experimental integrity.</p>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
                 <div style="background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 10px; border-left: 3px solid var(--secondary); text-align: center;">
                     <div style="font-size: 1.4rem; font-weight: 800; color: #ffffff;">290,584</div>
-                    <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;">Clean Population</div>
+                    <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;" data-i18n="abt.card.pop">Clean Population</div>
                 </div>
                 <div style="background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 10px; border-left: 3px solid var(--success); text-align: center;">
                     <div style="font-size: 1.4rem; font-weight: 800; color: #34d399;">Passed</div>
-                    <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;">SRM Check (&chi;&sup2;)</div>
+                    <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;" data-i18n-html="abt.card.srm">SRM Check (&chi;&sup2;)</div>
                 </div>
                 <div style="background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 10px; border-left: 3px solid var(--primary); text-align: center;">
                     <div style="font-size: 1.4rem; font-weight: 800; color: #ffffff;">Z-Test</div>
-                    <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;">Inference Model</div>
+                    <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;" data-i18n="abt.card.model">Inference Model</div>
                 </div>
                 <div style="background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 10px; border-left: 3px solid var(--accent); text-align: center;">
                     <div style="font-size: 1.4rem; font-weight: 800; color: #fbbf24;">&gt; 90%</div>
-                    <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;">Statistical Power</div>
+                    <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;" data-i18n="abt.card.power">Statistical Power</div>
                 </div>
             </div>
 
-            <h3>1. Data Cleaning &amp; User Deduplication</h3>
-            <p>We filtered out records with technical delivery mismatches (e.g., treatment users served old pages) and deduplicated repeated user IDs to ensure that observations satisfied the Independent and Identically Distributed (I.I.D.) condition, yielding 290,584 distinct users.</p>
+            <h3 data-i18n-html="abt.method.s1_title">1. Data Cleaning &amp; User Deduplication</h3>
+            <p data-i18n="abt.method.s1_p">We filtered out records with technical delivery mismatches (e.g., treatment users served old pages) and deduplicated repeated user IDs to ensure that observations satisfied the Independent and Identically Distributed (I.I.D.) condition, yielding 290,584 distinct users.</p>
             
-            <h3>2. Sample Ratio Mismatch (SRM) Test</h3>
-            <p>Prior to evaluating conversion metrics, we performed a <strong>Chi-Square (&chi;&sup2;) Goodness-of-Fit Test</strong> to confirm that traffic allocation operated at an unbiased 50:50 ratio. The test confirmed no allocation distortion (&chi;&sup2; = 0.0045, p = 0.947), validating that the experimental randomization was untainted.</p>
+            <h3 data-i18n="abt.method.s2_title">2. Sample Ratio Mismatch (SRM) Test</h3>
+            <p data-i18n-html="abt.method.s2_p">Prior to evaluating conversion metrics, we performed a <strong>Chi-Square (&chi;&sup2;) Goodness-of-Fit Test</strong> to confirm that traffic allocation operated at an unbiased 50:50 ratio. The test confirmed no allocation distortion (&chi;&sup2; = 0.0045, p = 0.947), validating that the experimental randomization was untainted.</p>
 
-            <h3>3. Inferential Model: Two-Sample Z-Test for Proportions</h3>
-            <p>For independent binary conversion events across large populations, the Two-Sample Z-Test is the mathematically appropriate model (superior to a standard Student's t-test). We computed both group-level confidence intervals and the 95% Confidence Interval for the difference between proportions.</p>
+            <h3 data-i18n="abt.method.s3_title">3. Inferential Model: Two-Sample Z-Test for Proportions</h3>
+            <p data-i18n="abt.method.s3_p">For independent binary conversion events across large populations, the Two-Sample Z-Test is the mathematically appropriate model (superior to a standard Student's t-test). We computed both group-level confidence intervals and the 95% Confidence Interval for the difference between proportions.</p>
             
-            <h3>4. Heterogeneity Analysis (CATE)</h3>
-            <p>We evaluated Conditional Average Treatment Effects across visit segments (Day vs. Night) to verify whether specific audience cohorts benefited from the redesign despite global neutral performance.</p>
+            <h3 data-i18n="abt.method.s4_title">4. Heterogeneity Analysis (CATE)</h3>
+            <p data-i18n="abt.method.s4_p">We evaluated Conditional Average Treatment Effects across visit segments (Day vs. Night) to verify whether specific audience cohorts benefited from the redesign despite global neutral performance.</p>
         </div>
     </div>
 
     <!-- Results Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Experimental Findings &amp; Uncertainty Quantification</h2>
+            <h2 data-i18n-html="abt.results.title">Experimental Findings &amp; Uncertainty Quantification</h2>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
                 <div style="background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); text-align: center;">
-                    <div style="font-size: 0.8rem; color: var(--secondary-light); text-transform: uppercase; font-weight: 600;">Control CR</div>
+                    <div style="font-size: 0.8rem; color: var(--secondary-light); text-transform: uppercase; font-weight: 600;" data-i18n="abt.res.control_cr">Control CR</div>
                     <div style="font-size: 1.5rem; font-weight: 800; color: #ffffff; margin-top: 0.3rem;">12.04%</div>
                     <div style="font-size: 0.78rem; color: var(--gray-muted);">95% CI: [11.87%, 12.21%]</div>
                 </div>
                 <div style="background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); text-align: center;">
-                    <div style="font-size: 0.8rem; color: var(--secondary-light); text-transform: uppercase; font-weight: 600;">Treatment CR</div>
+                    <div style="font-size: 0.8rem; color: var(--secondary-light); text-transform: uppercase; font-weight: 600;" data-i18n="abt.res.treat_cr">Treatment CR</div>
                     <div style="font-size: 1.5rem; font-weight: 800; color: #ffffff; margin-top: 0.3rem;">11.88%</div>
                     <div style="font-size: 0.78rem; color: var(--gray-muted);">95% CI: [11.71%, 12.05%]</div>
                 </div>
                 <div style="background: rgba(239, 68, 68, 0.08); padding: 1.2rem; border-radius: 10px; border: 1px solid rgba(239, 68, 68, 0.3); text-align: center;">
-                    <div style="font-size: 0.8rem; color: #f87171; text-transform: uppercase; font-weight: 600;">Relative Uplift</div>
+                    <div style="font-size: 0.8rem; color: #f87171; text-transform: uppercase; font-weight: 600;" data-i18n="abt.res.uplift">Relative Uplift</div>
                     <div style="font-size: 1.5rem; font-weight: 800; color: #f87171; margin-top: 0.3rem;">-1.31%</div>
                     <div style="font-size: 0.78rem; color: #fca5a5;">Absolute: -0.158%</div>
                 </div>
                 <div style="background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); text-align: center;">
-                    <div style="font-size: 0.8rem; color: var(--secondary-light); text-transform: uppercase; font-weight: 600;">Z-Score &bull; P-Value</div>
+                    <div style="font-size: 0.8rem; color: var(--secondary-light); text-transform: uppercase; font-weight: 600;" data-i18n-html="abt.res.pvalue">Z-Score &bull; P-Value</div>
                     <div style="font-size: 1.5rem; font-weight: 800; color: #ffffff; margin-top: 0.3rem;">p = 0.1899</div>
                     <div style="font-size: 0.78rem; color: var(--gray-muted);">z = -1.3109 (Fail to reject H0)</div>
                 </div>
             </div>
 
-            <h3>Difference Confidence Interval (&Delta; = p_treat &minus; p_control)</h3>
+            <h3 data-i18n-html="abt.res.ci_title">Difference Confidence Interval (&Delta; = p_treat &minus; p_control)</h3>
             <p>The 95% Confidence Interval for the true difference in proportions is <strong>[-0.3938%, +0.0781%]</strong>. Because this interval contains zero (0%), we fail to reject the null hypothesis. There is no empirical evidence that the redesign provides an improvement; on the contrary, the point estimate indicates a slight conversion drag.</p>
 
-            <h3>Segment Consistency Check</h3>
+            <h3 data-i18n="abt.res.seg_title">Segment Consistency Check</h3>
             <div class="two-columns">
                 <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); padding: 1.2rem; border-radius: 8px; margin-bottom: 1rem;">
                     <strong style="color: #ffffff;">Daytime Traffic (08:00&ndash;20:00)</strong>
@@ -131,14 +131,14 @@
     <!-- Business Impact & Recommendations Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Business Verdict &amp; Financial Risk Mitigation</h2>
+            <h2 data-i18n-html="abt.verdict.title">Business Verdict &amp; Financial Risk Mitigation</h2>
             
             <div style="background: rgba(239, 68, 68, 0.08); border-left: 4px solid #ef4444; padding: 1.4rem; border-radius: 8px; margin-bottom: 2rem;">
-                <div style="font-size: 1.15rem; font-weight: 700; color: #f87171;">EXECUTIVE DECISION: NO-GO</div>
-                <p style="margin: 0.4rem 0 0 0; color: #fecaca; font-size: 0.95rem;">Do not deploy the redesigned landing page to production. Maintain the current baseline version.</p>
+                <div style="font-size: 1.15rem; font-weight: 700; color: #f87171;" data-i18n="abt.verdict.badge">EXECUTIVE DECISION: NO-GO</div>
+                <p style="margin: 0.4rem 0 0 0; color: #fecaca; font-size: 0.95rem;" data-i18n="abt.verdict.badge_p">Do not deploy the redesigned landing page to production. Maintain the current baseline version.</p>
             </div>
             
-            <h3>Financial Opportunity Cost Analysis</h3>
+            <h3 data-i18n="abt.verdict.fin_title">Financial Opportunity Cost Analysis</h3>
             <p>A failed experiment is an invaluable risk prevention mechanism. To illustrate the financial stakes for business leadership, assuming a monthly scale of <strong>1,000,000 visitors</strong> and an <strong>Average Order Value (AOV) of $50 USD</strong>:</p>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
@@ -254,5 +254,9 @@
         </div>
     </footer>
 
+
+    <!-- Multilingual i18n Scripts -->
+    <script src="translations.js"></script>
+    <script src="i18n.js"></script>
 </body>
 </html>

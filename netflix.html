@@ -8,13 +8,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation bar -->
-        <nav>
+        <!-- Navigation bar -->
+    <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#featured">Featured</a></li>
-            <li><a href="index.html#analytics">Analytics</a></li>
-            <li><a href="contacto.html">Contact</a></li>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="index.html#featured" data-i18n="nav.featured">Featured Projects</a></li>
+            <li><a href="index.html#analytics" data-i18n="nav.analytics">Analytics &amp; BI</a></li>
+            <li><a href="contacto.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
     </nav>
 
@@ -22,11 +22,11 @@
     <!-- Main container -->
     <div class="container">
         <div class="intro">
-            <h1>Netflix Series and Movies Report</h1>
-            <h2>Comprehensive catalog analysis</h2>
+            <h1 data-i18n="nflx.intro.title">Netflix Series and Movies Report</h1>
+            <h2 data-i18n="nflx.intro.subtitle">Comprehensive catalog analysis</h2>
       <ul>
-                <li>Series and movies analysis</li>
-                <li>Technologies: Power BI, Power Query, DAX</li>
+                <li data-i18n="nflx.intro.li1">Series and movies analysis</li>
+                <li data-i18n="nflx.intro.li2">Technologies: Power BI, Power Query, DAX</li>
             </ul>
         </div>
     </div>
@@ -34,15 +34,15 @@
     <!-- Titles count section -->
     <div class="container" id="explicacion">
         <div class="project-single">
-            <h3>Report</h3>
-            <p>Open in full screen for better visualization</p>
+            <h3 data-i18n="nflx.report.title">Report</h3>
+            <p data-i18n="nflx.report.p">Open in full screen for better visualization</p>
             <ul>
-                <li>Cards and KPIs (Key Performance Indicators)</li>
-                <li>Data segmentation (Slicers)</li>
-                <li>Geographic distribution map</li>
-                <li>Stacked bar chart</li>
-                <li>Population pyramid chart (Ratings distribution)</li>
-                <li>Data table with conditional formatting</li>
+                <li data-i18n="nflx.report.li1">Cards and KPIs (Key Performance Indicators)</li>
+                <li data-i18n="nflx.report.li2">Data segmentation (Slicers)</li>
+                <li data-i18n="nflx.report.li3">Geographic distribution map</li>
+                <li data-i18n="nflx.report.li4">Stacked bar chart</li>
+                <li data-i18n="nflx.report.li5">Population pyramid chart (Ratings distribution)</li>
+                <li data-i18n="nflx.report.li6">Data table with conditional formatting</li>
             </ul>
 
 
@@ -61,14 +61,12 @@
     <!-- Project files section -->
     <div class="container">
         <div class="project-single">
-            <h3>Project Files</h3>
-            <p>You can explore the original project file:</p>
+            <h3 data-i18n="nflx.files.title">Project Files</h3>
+            <p data-i18n="nflx.files.p">You can explore the original project file:</p>
             
             <div class="files-link-container">
                 <a href="https://github.com/cveram96/Portfolio/blob/main/Files/Netflix.pbix" 
-                   class="project-files-link" 
-                   target="_blank"
-                   rel="noopener noreferrer">
+                   class="project-files-link" target="_blank" rel="noopener noreferrer" data-i18n="nflx.files.link">
                     View full project files
                 </a>
                 
@@ -91,5 +89,9 @@
     </div>
 </footer>
     
+
+    <!-- Multilingual i18n Scripts -->
+    <script src="translations.js"></script>
+    <script src="i18n.js"></script>
 </body>
 </html>

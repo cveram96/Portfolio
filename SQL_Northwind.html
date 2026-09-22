@@ -8,26 +8,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation bar -->
+        <!-- Navigation bar -->
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#featured">Featured Projects</a></li>
-            <li><a href="index.html#analytics">Analytics &amp; BI</a></li>
-            <li><a href="contacto.html">Contact</a></li>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="index.html#featured" data-i18n="nav.featured">Featured Projects</a></li>
+            <li><a href="index.html#analytics" data-i18n="nav.analytics">Analytics &amp; BI</a></li>
+            <li><a href="contacto.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
     </nav>
 
     <!-- Intro Section -->
     <div class="container">
         <div class="intro">
-            <h1>Enterprise SQL Analytics</h1>
-            <h2>Northwind Relational Database &bull; Advanced Window Functions &amp; Customer Intelligence</h2>
+            <h1 data-i18n="sql.intro.title">Enterprise SQL Analytics</h1>
+            <h2 data-i18n-html="sql.intro.subtitle">Northwind Relational Database &bull; Advanced Window Functions &amp; Customer Intelligence</h2>
             <ul>
-                <li>Dataset: Northwind Relational Database (13 Normalized Tables, SQLite)</li>
-                <li>Methodologies: CTEs (Common Table Expressions), Window Functions, RFM Segmentation, Cohort Retention</li>
-                <li>Data Hygiene: Fan-Out Prevention (Distinct Counts), Accounting Discount Integration, Performance Optimization</li>
-                <li>Technologies: SQL (SQLite), Python, Pandas, Matplotlib, Plotly</li>
+                <li data-i18n="sql.intro.li1">Dataset: Northwind Relational Database (13 Normalized Tables, SQLite)</li>
+                <li data-i18n="sql.intro.li2">Methodologies: CTEs (Common Table Expressions), Window Functions, RFM Segmentation, Cohort Retention</li>
+                <li data-i18n="sql.intro.li3">Data Hygiene: Fan-Out Prevention (Distinct Counts), Accounting Discount Integration, Performance Optimization</li>
+                <li data-i18n="sql.intro.li4">Technologies: SQL (SQLite), Python, Pandas, Matplotlib, Plotly</li>
             </ul>
         </div>
     </div>
@@ -35,17 +35,17 @@
     <!-- Project Context Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Project Overview &amp; Architecture</h2>
-            <p>The <strong>Northwind database</strong> is an industry-standard relational benchmark simulating a global wholesale distributor managing products, inventory, customers, suppliers, and fulfillment. This project moves far beyond introductory queries to demonstrate <strong>enterprise-grade SQL engineering</strong>, addressing real-world reporting challenges such as join fan-out, discount accounting, revenue momentum, and customer lifecycle cohort modeling.</p>
+            <h2 data-i18n="sql.overview.title">Project Overview &amp; Architecture</h2>
+            <p data-i18n-html="sql.overview.p">The <strong>Northwind database</strong> is an industry-standard relational benchmark simulating a global wholesale distributor managing products, inventory, customers, suppliers, and fulfillment. This project moves far beyond introductory queries to demonstrate <strong>enterprise-grade SQL engineering</strong>, addressing real-world reporting challenges such as join fan-out, discount accounting, revenue momentum, and customer lifecycle cohort modeling.</p>
             
-            <h3>Entity-Relationship Schema Summary:</h3>
+            <h3 data-i18n="sql.overview.schema_title">Entity-Relationship Schema Summary:</h3>
             <ul class="two-columns">
-                <li><strong>Customer:</strong> Client master data, corporate identities, and geographies.</li>
-                <li><strong>Order &amp; OrderDetail:</strong> Header-line transactional structure capturing orders, quantities, unit prices, and discount percentages.</li>
-                <li><strong>Product &amp; Category:</strong> Catalog hierarchy, unit costs, inventory stock, and reorder thresholds.</li>
-                <li><strong>Supplier:</strong> Vendor supply chain partners, lead times, and fulfillment origin.</li>
-                <li><strong>Employee:</strong> Sales organizational hierarchy and territory assignments.</li>
-                <li><strong>Shipper:</strong> Logistics logistics carriers and transit dates.</li>
+                <li data-i18n-html="sql.schema.cust"><strong>Customer:</strong> Client master data, corporate identities, and geographies.</li>
+                <li data-i18n-html="sql.schema.order"><strong>Order &amp; OrderDetail:</strong> Header-line transactional structure capturing orders, quantities, unit prices, and discount percentages.</li>
+                <li data-i18n-html="sql.schema.prod"><strong>Product &amp; Category:</strong> Catalog hierarchy, unit costs, inventory stock, and reorder thresholds.</li>
+                <li data-i18n-html="sql.schema.supp"><strong>Supplier:</strong> Vendor supply chain partners, lead times, and fulfillment origin.</li>
+                <li data-i18n-html="sql.schema.emp"><strong>Employee:</strong> Sales organizational hierarchy and territory assignments.</li>
+                <li data-i18n-html="sql.schema.ship"><strong>Shipper:</strong> Logistics logistics carriers and transit dates.</li>
             </ul>
         </div>
     </div>
@@ -53,11 +53,11 @@
     <!-- PART 1: CORE REPORTING & DATA HYGIENE -->
     <div class="container">
         <div class="section-block">
-            <h2>Part 1: Core Commercial Operations (Data Hygiene &amp; Bug-Fixed)</h2>
-            <p>Establishing accurate operational reporting while correcting common SQL traps (such as cartesian duplication and ignoring transaction discounts).</p>
+            <h2 data-i18n="sql.p1.title">Part 1: Core Commercial Operations (Data Hygiene &amp; Bug-Fixed)</h2>
+            <p data-i18n="sql.p1.p">Establishing accurate operational reporting while correcting common SQL traps (such as cartesian duplication and ignoring transaction discounts).</p>
 
             <!-- Query 1 -->
-            <h3>1. Top 5 Products by Net Revenue (Accounting for Discounts)</h3>
+            <h3 data-i18n="sql.q1.title">1. Top 5 Products by Net Revenue (Accounting for Discounts)</h3>
             <pre><code>SELECT 
     p.ProductName,
     c.CategoryName,
@@ -69,10 +69,10 @@ JOIN Category c ON p.CategoryId = c.Id
 GROUP BY p.Id
 ORDER BY NetRevenue DESC
 LIMIT 5;</code></pre>
-            <p><strong>Business Context:</strong> Standard sales reports often calculate gross volume (`UnitPrice * Quantity`). Applying `(1 - od.Discount)` captures the actual realized net cash flow, identifying <em>C&ocirc;te de Blaye</em> and <em>Th&uuml;ringer Rostbratwurst</em> as the primary revenue engines.</p>
+            <p data-i18n-html="sql.q1.desc"><strong>Business Context:</strong> Standard sales reports often calculate gross volume (`UnitPrice * Quantity`). Applying `(1 - od.Discount)` captures the actual realized net cash flow, identifying <em>C&ocirc;te de Blaye</em> and <em>Th&uuml;ringer Rostbratwurst</em> as the primary revenue engines.</p>
 
             <!-- Query 2 -->
-            <h3>2. Top Customers &amp; Order Frequency (Preventing Join Fan-Out)</h3>
+            <h3 data-i18n="sql.q2.title">2. Top Customers &amp; Order Frequency (Preventing Join Fan-Out)</h3>
             <pre><code>SELECT 
     c.CompanyName,
     c.Country,
@@ -85,10 +85,10 @@ JOIN OrderDetail od ON o.Id = od.OrderId
 GROUP BY c.Id
 ORDER BY TotalSpent DESC
 LIMIT 5;</code></pre>
-            <p><strong>Data Hygiene Note:</strong> Joining `Order` to `OrderDetail` produces multiple line items per order. Using `COUNT(DISTINCT o.Id)` ensures orders are not artificially multiplied by line item counts, preventing inflated transaction metrics.</p>
+            <p data-i18n-html="sql.q2.desc"><strong>Data Hygiene Note:</strong> Joining `Order` to `OrderDetail` produces multiple line items per order. Using `COUNT(DISTINCT o.Id)` ensures orders are not artificially multiplied by line item counts, preventing inflated transaction metrics.</p>
 
             <!-- Query 3 -->
-            <h3>3. Supplier Fulfillment Lead Time (Logistics Bottlenecks)</h3>
+            <h3 data-i18n="sql.q3.title">3. Supplier Fulfillment Lead Time (Logistics Bottlenecks)</h3>
             <pre><code>SELECT 
     s.CompanyName AS SupplierName,
     s.Country,
@@ -102,10 +102,10 @@ WHERE o.ShippedDate IS NOT NULL
 GROUP BY s.Id
 ORDER BY AvgFulfillmentDays DESC
 LIMIT 5;</code></pre>
-            <p><strong>Business Context:</strong> Analyzes turnaround latency between purchase placement and carrier handover, flagging potential supply chain delays.</p>
+            <p data-i18n="sql.q3.desc"><strong>Business Context:</strong> Analyzes turnaround latency between purchase placement and carrier handover, flagging potential supply chain delays.</p>
 
             <!-- Query 4 -->
-            <h3>4. Inactive Account Identification (Churn Risk Audit)</h3>
+            <h3 data-i18n="sql.q4.title">4. Inactive Account Identification (Churn Risk Audit)</h3>
             <pre><code>SELECT 
     c.CompanyName,
     c.ContactTitle,
@@ -116,18 +116,18 @@ LEFT JOIN 'Order' o ON c.Id = o.CustomerId
 GROUP BY c.Id
 HAVING LastOrderDate &lt; date('now', '-1 year') OR LastOrderDate IS NULL
 ORDER BY LastOrderDate ASC;</code></pre>
-            <p><strong>Bug-Fixed Execution:</strong> Fixes alias translation mismatches (`LastOrderDate`) to correctly filter dormant accounts that have placed zero orders or have been inactive for over twelve months.</p>
+            <p data-i18n="sql.q4.desc"><strong>Bug-Fixed Execution:</strong> Fixes alias translation mismatches (`LastOrderDate`) to correctly filter dormant accounts that have placed zero orders or have been inactive for over twelve months.</p>
         </div>
     </div>
 
     <!-- PART 2: ADVANCED WINDOW FUNCTIONS -->
     <div class="container">
         <div class="section-block">
-            <h2>Part 2: Advanced SQL &amp; Window Functions (Analytics Engineering)</h2>
-            <p>Utilizing Common Table Expressions (CTEs) and analytical window functions (`DENSE_RANK`, `LAG`, `SUM() OVER`) to solve complex analytical questions without inefficient correlated subqueries.</p>
+            <h2 data-i18n="sql.p2.title">Part 2: Advanced SQL &amp; Window Functions (Analytics Engineering)</h2>
+            <p data-i18n="sql.p2.p">Utilizing Common Table Expressions (CTEs) and analytical window functions (`DENSE_RANK`, `LAG`, `SUM() OVER`) to solve complex analytical questions without inefficient correlated subqueries.</p>
 
             <!-- Query 5 -->
-            <h3>5. Top 3 Products within Each Category (Partitioned Ranking)</h3>
+            <h3 data-i18n="sql.q5.title">5. Top 3 Products within Each Category (Partitioned Ranking)</h3>
             <pre><code>WITH CategoryProductSales AS (
     SELECT 
         c.CategoryName,
@@ -150,10 +150,10 @@ SELECT
 FROM CategoryProductSales
 WHERE CategoryRank &lt;= 3
 ORDER BY CategoryName, CategoryRank;</code></pre>
-            <p><strong>Technical Rationale:</strong> Rather than running multiple category-specific queries, `DENSE_RANK() OVER (PARTITION BY c.Id)` generates departmental rankings in a single scan, providing localized product leadership insights across Beverages, Dairy, Produce, and Confections.</p>
+            <p data-i18n-html="sql.q5.desc"><strong>Technical Rationale:</strong> Rather than running multiple category-specific queries, `DENSE_RANK() OVER (PARTITION BY c.Id)` generates departmental rankings in a single scan, providing localized product leadership insights across Beverages, Dairy, Produce, and Confections.</p>
 
             <!-- Query 6 -->
-            <h3>6. Month-over-Month (MoM) Revenue Growth Rate</h3>
+            <h3 data-i18n="sql.q6.title">6. Month-over-Month (MoM) Revenue Growth Rate</h3>
             <pre><code>WITH MonthlyRevenue AS (
     SELECT 
         strftime('%Y-%m', o.OrderDate) AS OrderMonth,
@@ -383,5 +383,9 @@ GROUP BY c.Id;</code></pre>
         </div>
     </footer>
 
+
+    <!-- Multilingual i18n Scripts -->
+    <script src="translations.js"></script>
+    <script src="i18n.js"></script>
 </body>
 </html>

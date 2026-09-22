@@ -8,26 +8,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation bar -->
-        <nav>
+        <!-- Navigation bar -->
+    <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#featured">Featured</a></li>
-            <li><a href="index.html#analytics">Analytics</a></li>
-            <li><a href="contacto.html">Contact</a></li>
+            <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+            <li><a href="index.html#featured" data-i18n="nav.featured">Featured Projects</a></li>
+            <li><a href="index.html#analytics" data-i18n="nav.analytics">Analytics &amp; BI</a></li>
+            <li><a href="contacto.html" data-i18n="nav.contact">Contact</a></li>
         </ul>
     </nav>
 
     <!-- Intro Section -->
     <div class="container">
         <div class="intro">
-            <h1>Customer Churn Prediction</h1>
-            <h2>Comparison between Random Forest and Multilayer Perceptron</h2>
+            <h1 data-i18n="churn.intro.title">Customer Churn Prediction</h1>
+            <h2 data-i18n="churn.intro.subtitle">Comparison between Random Forest and Multilayer Perceptron</h2>
             <ul>
-                <li>Dataset: WA_Fn-UseC_-Telco-Customer-Churn (7,043 records)</li>
-                <li>Key variables: tenure, Contract, MonthlyCharges, InternetService</li>
-                <li>Best F1-Score: 0.634 (MLP with RandomUnderSampler)</li>
-                <li>Technologies: Python, scikit-learn, pandas, matplotlib, imblearn</li>
+                <li data-i18n="churn.intro.li1">Dataset: WA_Fn-UseC_-Telco-Customer-Churn (7,043 records)</li>
+                <li data-i18n="churn.intro.li2">Key variables: tenure, Contract, MonthlyCharges, InternetService</li>
+                <li data-i18n="churn.intro.li3">Best F1-Score: 0.634 (MLP with RandomUnderSampler)</li>
+                <li data-i18n="churn.intro.li4">Technologies: Python, scikit-learn, pandas, matplotlib, imblearn</li>
             </ul>
         </div>
     </div>
@@ -35,19 +35,19 @@
     <!-- Project Context Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Project Context</h2>
-            <p>Analysis of service cancellation (churn) in telecommunications to identify customers with high probability of leaving and enable preventive retention strategies.</p>
+            <h2 data-i18n="churn.context.title">Project Context</h2>
+            <p data-i18n="churn.context.p">Analysis of service cancellation (churn) in telecommunications to identify customers with high probability of leaving and enable preventive retention strategies.</p>
             
-            <h3>Main Variables:</h3>
+            <h3 data-i18n="churn.context.vars_title">Main Variables:</h3>
             <ul class="two-columns">
-                <li><strong>tenure:</strong> Number of months as a customer</li>
-                <li><strong>Contract:</strong> Contract type (Month-to-month, 1 year, 2 years)</li>
-                <li><strong>MonthlyCharges:</strong> Monthly charges</li>
-                <li><strong>TotalCharges:</strong> Total accumulated charges</li>
-                <li><strong>InternetService:</strong> Type of internet service</li>
-                <li><strong>OnlineSecurity:</strong> Has online security</li>
-                <li><strong>TechSupport:</strong> Has technical support</li>
-                <li><strong>PaymentMethod:</strong> Payment method</li>
+                <li data-i18n-html="churn.var.tenure"><strong>tenure:</strong> Number of months as a customer</li>
+                <li data-i18n-html="churn.var.contract"><strong>Contract:</strong> Contract type (Month-to-month, 1 year, 2 years)</li>
+                <li data-i18n-html="churn.var.monthly"><strong>MonthlyCharges:</strong> Monthly charges</li>
+                <li data-i18n-html="churn.var.total"><strong>TotalCharges:</strong> Total accumulated charges</li>
+                <li data-i18n-html="churn.var.internet"><strong>InternetService:</strong> Type of internet service</li>
+                <li data-i18n-html="churn.var.security"><strong>OnlineSecurity:</strong> Has online security</li>
+                <li data-i18n-html="churn.var.support"><strong>TechSupport:</strong> Has technical support</li>
+                <li data-i18n-html="churn.var.payment"><strong>PaymentMethod:</strong> Payment method</li>
             </ul>
         </div>
     </div>
@@ -55,17 +55,17 @@
     <!-- Detailed Methodology Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Detailed Methodology</h2>
+            <h2 data-i18n="churn.method.title">Detailed Methodology</h2>
             
-            <h3>1. Exploratory Data Analysis (EDA)</h3>
+            <h3 data-i18n="churn.method.s1_title">1. Exploratory Data Analysis (EDA)</h3>
             <ul>
-                <li>Imbalanced class distribution (73.5% No Churn vs 26.5% Churn)</li>
-                <li>Association analysis using Cramér's V for categorical variables</li>
-                <li>Levene's test and Welch's t-test for numerical variables</li>
-                <li>Visualization of relationships between variables and Churn</li>
+                <li data-i18n="churn.method.s1_li1">Imbalanced class distribution (73.5% No Churn vs 26.5% Churn)</li>
+                <li data-i18n="churn.method.s1_li2">Association analysis using Cramér's V for categorical variables</li>
+                <li data-i18n="churn.method.s1_li3">Levene's test and Welch's t-test for numerical variables</li>
+                <li data-i18n="churn.method.s1_li4">Visualization of relationships between variables and Churn</li>
             </ul>
             
-            <h3>2. Preprocessing</h3>
+            <h3 data-i18n="churn.method.s2_title">2. Preprocessing</h3>
             <ul>
                 <li>Data cleaning:
                     <ul>
@@ -90,7 +90,7 @@
                 </li>
             </ul>
             
-            <h3>3. Modeling</h3>
+            <h3 data-i18n="churn.method.s3_title">3. Modeling</h3>
             <ul>
                 <li>Random Forest:
                     <ul>
@@ -112,27 +112,27 @@
     <!-- Results and Findings Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Results and Findings</h2>
+            <h2 data-i18n="churn.results.title">Results and Findings</h2>
             
             <div class="results-container">
                 <!-- Metrics card -->
                 <div class="metric-card">
                     <div class="metric-card-header">
-                        <h4>Top Metrics by Model</h4>
+                        <h4 data-i18n="churn.results.metrics_header">Top Metrics by Model</h4>
                     </div>
                     <div class="metric-card-content">
                         <div class="metric-item">
-                            <div class="metric-title">Random Forest (SMOTEENN)</div>
-                            <div class="metric-value">F1-Score: 0.633</div>
-                            <div class="metric-description">Recall: 0.777 | Precision: 0.534</div>
+                            <div class="metric-title" data-i18n="churn.results.rf_title">Random Forest (SMOTEENN)</div>
+                            <div class="metric-value" data-i18n="churn.results.rf_val">F1-Score: 0.633</div>
+                            <div class="metric-description" data-i18n="churn.results.rf_desc">Recall: 0.777 | Precision: 0.534</div>
                             <div class="progress-container">
                                 <div class="progress-bar" style="width: 63.3%"></div>
                             </div>
                         </div>
                         <div class="metric-item">
-                            <div class="metric-title">MLP (RandomUnderSampler)</div>
-                            <div class="metric-value">F1-Score: 0.634</div>
-                            <div class="metric-description">Recall: 0.763 | Precision: 0.542</div>
+                            <div class="metric-title" data-i18n="churn.results.mlp_title">MLP (RandomUnderSampler)</div>
+                            <div class="metric-value" data-i18n="churn.results.mlp_val">F1-Score: 0.634</div>
+                            <div class="metric-description" data-i18n="churn.results.mlp_desc">Recall: 0.763 | Precision: 0.542</div>
                             <div class="progress-container">
                                 <div class="progress-bar" style="width: 63.4%"></div>
                             </div>
@@ -143,7 +143,7 @@
                 <!-- Feature importance card -->
                 <div class="influence-card">
                     <div class="metric-card-header">
-                        <h4>Most Influential Features (Random Forest)</h4>
+                        <h4 data-i18n="churn.results.influence_header">Most Influential Features (Random Forest)</h4>
                     </div>
                     <div class="influence-list">
                         <div class="influence-item">
@@ -191,19 +191,19 @@
     <!-- Result Charts Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Result Charts</h2>
+            <h2 data-i18n="churn.charts.title">Result Charts</h2>
             
-            <h3>Most Important Features - Random Forest with SMOTEENN:</h3>
+            <h3 data-i18n="churn.charts.rf_title">Most Important Features - Random Forest with SMOTEENN:</h3>
             <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/churn/RF_Smoteen.png?raw=true" 
                  alt="Random Forest confusion matrix"
                  style="max-width: 100%; height: auto; margin: 20px 0;">
             
-            <h3>ROC Curve - Random Forest with SMOTEENN:</h3>
+            <h3 data-i18n="churn.charts.roc_rf_title">ROC Curve - Random Forest with SMOTEENN:</h3>
             <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/churn/Roc_Smoteen_RF.png?raw=true" 
                  alt="Random Forest ROC curve"
                  style="max-width: 100%; height: auto; margin: 20px 0;">
             
-            <h3>ROC Curve - Multi-Layer Perceptron with RandomUnderSampler:</h3>
+            <h3 data-i18n="churn.charts.roc_mlp_title">ROC Curve - Multi-Layer Perceptron with RandomUnderSampler:</h3>
             <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/churn/Perceptron_ROC%20RandomUnderSampler.png?raw=true" 
                  alt="MLP ROC curve"
                  style="max-width: 100%; height: auto; margin: 20px 0;">
@@ -213,13 +213,13 @@
     <!-- Key Findings Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Key Findings</h2>
+            <h2 data-i18n="churn.findings.title">Key Findings</h2>
             <ul>
-                <li>Customer tenure is the most influential factor</li>
-                <li>Long-term contracts significantly reduce churn</li>
-                <li>Fiber internet service increases churn probability</li>
-                <li>Payment by electronic check is associated with higher churn</li>
-                <li>Lack of add-on services (security, tech support) increases churn</li>
+                <li data-i18n="churn.findings.li1">Customer tenure is the most influential factor</li>
+                <li data-i18n="churn.findings.li2">Long-term contracts significantly reduce churn</li>
+                <li data-i18n="churn.findings.li3">Fiber internet service increases churn probability</li>
+                <li data-i18n="churn.findings.li4">Payment by electronic check is associated with higher churn</li>
+                <li data-i18n="churn.findings.li5">Lack of add-on services (security, tech support) increases churn</li>
             </ul>
         </div>
     </div>
@@ -227,13 +227,13 @@
     <!-- Conclusions Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Conclusions and Recommendations</h2>
+            <h2 data-i18n="churn.concl.title">Conclusions and Recommendations</h2>
             
-            <h3>Model Comparison</h3>
+            <h3 data-i18n="churn.concl.comp_title">Model Comparison</h3>
             <ul>
-                <li><strong>Random Forest</strong> offers a better overall balance between precision and recall</li>
-                <li><strong>MLP</strong> achieves higher recall but with more false positives</li>
-                <li>SMOTEENN and RandomUnderSampler are the best balancing techniques</li>
+                <li data-i18n-html="churn.concl.c1"><strong>Random Forest</strong> offers a better overall balance between precision and recall</li>
+                <li data-i18n-html="churn.concl.c2"><strong>MLP</strong> achieves higher recall but with more false positives</li>
+                <li data-i18n="churn.concl.c3">SMOTEENN and RandomUnderSampler are the best balancing techniques</li>
             </ul>
             
             <h3>Limitations</h3>
@@ -285,5 +285,9 @@
         </div>
     </footer>
 
+
+    <!-- Multilingual i18n Scripts -->
+    <script src="translations.js"></script>
+    <script src="i18n.js"></script>
 </body>
 </html>
