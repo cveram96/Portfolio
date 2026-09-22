@@ -66,11 +66,11 @@
             
             <h3 data-i18n="rlm.method.step2_title">2. Preprocessing</h3>
             <ul>
-                <li>Feature engineering:
+                <li><span data-i18n="rlm.method.step2_fe">Feature engineering:</span>
                     <ul>
-                        <li><code>Rooms_per_Population</code>: Rooms per person</li>
-                        <li><code>Bedroom_Ratio</code>: Bedroom ratio</li>
-                        <li><code>People_per_House</code>: Occupants per house</li>
+                        <li data-i18n-html="rlm.method.step2_fe1"><code>Rooms_per_Population</code>: Rooms per person</li>
+                        <li data-i18n-html="rlm.method.step2_fe2"><code>Bedroom_Ratio</code>: Bedroom ratio</li>
+                        <li data-i18n-html="rlm.method.step2_fe3"><code>People_per_House</code>: Occupants per house</li>
                     </ul>
                 </li>
                 <li data-i18n="rlm.method.step2_outliers">Outlier removal using the IQR method</li>
@@ -79,15 +79,15 @@
             
             <h3 data-i18n="rlm.method.step3_title">3. Modeling</h3>
             <ul>
-                <li>Pipeline components:
+                <li><span data-i18n="rlm.method.step3_pipe">Pipeline components:</span>
                     <ul>
-                        <li><code>StandardScaler</code> para normalización</li>
-                        <li><code>PolynomialFeatures</code> para relaciones no lineales</li>
-                        <li><code>SelectKBest</code> para selección de características</li>
-                        <li><code>LinearRegression</code> como modelo final</li>
+                        <li data-i18n-html="rlm.method.step3_pipe1"><code>StandardScaler</code> for normalization</li>
+                        <li data-i18n-html="rlm.method.step3_pipe2"><code>PolynomialFeatures</code> for non-linear relationships</li>
+                        <li data-i18n-html="rlm.method.step3_pipe3"><code>SelectKBest</code> for feature selection</li>
+                        <li data-i18n-html="rlm.method.step3_pipe4"><code>LinearRegression</code> as final model</li>
                     </ul>
                 </li>
-                <li>Optimización con <code>RandomizedSearchCV</code></li>
+                <li data-i18n-html="rlm.method.step3_opt">Optimization with <code>RandomizedSearchCV</code></li>
             </ul>
         </div>
     </div>
@@ -180,19 +180,19 @@
                 <li data-i18n="rlm.concl.f4">Engineered features improved predictive power</li>
             </ul>
             
-            <h3>Limitations</h3>
+            <h3 data-i18n="rlm.concl.lim_title">Limitations</h3>
             <ul>
-                <li>The model does not satisfy residual normality</li>
-                <li>Presence of heteroscedasticity</li>
-                <li>Complex relationships not captured by linear regression</li>
+                <li data-i18n="rlm.concl.lim1">The model does not satisfy residual normality</li>
+                <li data-i18n="rlm.concl.lim2">Presence of heteroscedasticity</li>
+                <li data-i18n="rlm.concl.lim3">Complex relationships not captured by linear regression</li>
             </ul>
             
-            <h3>Recommendations</h3>
+            <h3 data-i18n="rlm.concl.rec_title">Recommendations</h3>
             <ul>
-                <li>Try non-linear models (Random Forest, XGBoost)</li>
-                <li>Apply transformations to improve normality</li>
-                <li>Consider spatial models for location</li>
-                <li>Explore techniques to handle heteroscedasticity</li>
+                <li data-i18n="rlm.concl.rec1">Try non-linear models (Random Forest, XGBoost)</li>
+                <li data-i18n="rlm.concl.rec2">Apply transformations to improve normality</li>
+                <li data-i18n="rlm.concl.rec3">Consider spatial models for location</li>
+                <li data-i18n="rlm.concl.rec4">Explore techniques to handle heteroscedasticity</li>
             </ul>
         </div>
     </div>
@@ -200,8 +200,8 @@
     <!-- Project Files Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Project Files</h2>
-            <p>You can explore all files, datasets and source code for this project:</p>
+            <h2 data-i18n="rlm.repo.title">Project Files</h2>
+            <p data-i18n="rlm.repo.p">You can explore all files, datasets and source code for this project:</p>
             
             <div class="files-link-container">
                 <a href="https://github.com/cveram96/Portfolio/blob/main/Files/RLM.ipynb" 
@@ -221,7 +221,7 @@
     <!-- Footer -->
     <footer>
         <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-            <p style="margin: 0;">Developed by Christian Vera - 2025</p>
+            <p style="margin: 0;" data-i18n="footer.dev">Developed by Christian Vera - 2025</p>
         
             <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
                 <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">LinkedIn</button>

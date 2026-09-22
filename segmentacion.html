@@ -66,11 +66,11 @@
             
             <h3 data-i18n="seg.method.step2_title">2. Preprocessing</h3>
             <ul>
-                <li>Calculation of RFM metrics:
+                <li><span data-i18n="seg.prep.rfm_title">Calculation of RFM metrics:</span>
                     <ul>
-                        <li><strong>Recency:</strong> Days since last purchase</li>
-                        <li><strong>Frequency:</strong> Number of unique purchases</li>
-                        <li><strong>Monetary:</strong> Total spend per customer</li>
+                        <li data-i18n-html="seg.prep.rfm_recency"><strong>Recency:</strong> Days since last purchase</li>
+                        <li data-i18n-html="seg.prep.rfm_freq"><strong>Frequency:</strong> Number of unique purchases</li>
+                        <li data-i18n-html="seg.prep.rfm_mon"><strong>Monetary:</strong> Total spend per customer</li>
                     </ul>
                 </li>
                 <li data-i18n="seg.method.step2_norm">Feature normalization with MinMaxScaler</li>
@@ -80,14 +80,14 @@
             <h3 data-i18n="seg.method.step3_title">3. Modeling with K-Means</h3>
             <ul>
                 <li data-i18n="seg.method.step3_elbow">Optimal number of clusters determined with elbow method (K=3)</li>
-                <li>Configuration:
+                <li><span data-i18n="seg.mod.cfg_title">Configuration:</span>
                     <ul>
-                        <li>Initialization: k-means++</li>
-                        <li>Maximum 300 iterations</li>
-                        <li>Convergence tolerance: 1e-4</li>
+                        <li data-i18n="seg.mod.c1">Initialization: k-means++</li>
+                        <li data-i18n="seg.mod.c2">Maximum 300 iterations</li>
+                        <li data-i18n="seg.mod.c3">Convergence tolerance: 1e-4</li>
                     </ul>
                 </li>
-                <li>Evaluation with multiple validation metrics</li>
+                <li data-i18n="seg.mod.c4">Evaluation with multiple validation metrics</li>
             </ul>
         </div>
     </div>
@@ -132,27 +132,27 @@
                         <div class="metric-item">
                             <div class="metric-title" data-i18n="seg.results.c0_title">Cluster 0: Valuable</div>
                             <ul>
-                                <li>67% of customers</li>
-                                <li>Recency: 31 days</li>
-                                <li>Frequency: 5.5 purchases</li>
-                                <li>Monetary: £370</li>
+                                <li data-i18n="seg.res.c0_li1">67% of customers</li>
+                                <li data-i18n="seg.res.c0_li2">Recency: 31 days</li>
+                                <li data-i18n="seg.res.c0_li3">Frequency: 5.5 purchases</li>
+                                <li data-i18n="seg.res.c0_li4">Monetary: £370</li>
                             </ul>
                         </div>
                         <div class="metric-item">
                             <div class="metric-title" data-i18n="seg.results.c1_title">Cluster 1: Inactive</div>
                             <ul>
-                                <li>Recency: 293 days</li>
-                                <li>Frequency: 1.4 purchases</li>
-                                <li>Monetary: £83</li>
+                                <li data-i18n="seg.res.c1_li1">Recency: 293 days</li>
+                                <li data-i18n="seg.res.c1_li2">Frequency: 1.4 purchases</li>
+                                <li data-i18n="seg.res.c1_li3">Monetary: £83</li>
                             </ul>
                         </div>
                         <div class="metric-item">
                             <div class="metric-title" data-i18n="seg.results.c2_title">Cluster 2: Occasional</div>
                             <ul>
-                                <li>18.6% of customers</li>
-                                <li>Recency: 152 days</li>
-                                <li>Frequency: 2.2 purchases</li>
-                                <li>Monetary: £139</li>
+                                <li data-i18n="seg.res.c2_li1">18.6% of customers</li>
+                                <li data-i18n="seg.res.c2_li2">Recency: 152 days</li>
+                                <li data-i18n="seg.res.c2_li3">Frequency: 2.2 purchases</li>
+                                <li data-i18n="seg.res.c2_li4">Monetary: £139</li>
                             </ul>
                         </div>
                     </div>
@@ -181,44 +181,44 @@
     <!-- Conclusions and Recommendations Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Conclusions and Recommendations</h2>
+            <h2 data-i18n="seg.concl.title">Conclusions and Recommendations</h2>
             
-            <h3>Key Findings</h3>
+            <h3 data-i18n="seg.concl.find_title">Key Findings</h3>
             <ul>
-                <li>67% of customers are valuable (recent purchases, high frequency and spending)</li>
-                <li>14.4% of customers are inactive and require reactivation strategies</li>
-                <li>Occasional customers (18.6%) represent opportunities to increase frequency</li>
-                <li>The model shows excellent quality according to validation metrics</li>
+                <li data-i18n="seg.concl.f1">67% of customers are valuable (recent purchases, high frequency and spending)</li>
+                <li data-i18n="seg.concl.f2">14.4% of customers are inactive and require reactivation strategies</li>
+                <li data-i18n="seg.concl.f3">Occasional customers (18.6%) represent opportunities to increase frequency</li>
+                <li data-i18n="seg.concl.f4">The model shows excellent quality according to validation metrics</li>
             </ul>
             
-            <h3>Recommendations by Segment</h3>
+            <h3 data-i18n="seg.concl.rec_seg_title">Recommendations by Segment</h3>
 
-            <h4>Cluster 0: Valuable Customers</h4>
+            <h4 data-i18n="seg.concl.c0_name">Cluster 0: Valuable Customers</h4>
             <ul>
-                <li>Exclusive benefits programs (free shipping)</li>
-                <li>Upselling premium products</li>
-                <li>Bundles of complementary products</li>
+                <li data-i18n="seg.concl.c0_r1">Exclusive benefits programs (free shipping)</li>
+                <li data-i18n="seg.concl.c0_r2">Upselling premium products</li>
+                <li data-i18n="seg.concl.c0_r3">Bundles of complementary products</li>
             </ul>
 
-            <h4>Cluster 1: Inactive Customers</h4>
+            <h4 data-i18n="seg.concl.c1_name">Cluster 1: Inactive Customers</h4>
             <ul>
-                <li>Reactivation campaigns with discounts</li>
-                <li>Satisfaction surveys</li>
-                <li>Cost-benefit evaluation of retention</li>
+                <li data-i18n="seg.concl.c1_r1">Reactivation campaigns with discounts</li>
+                <li data-i18n="seg.concl.c1_r2">Satisfaction surveys</li>
+                <li data-i18n="seg.concl.c1_r3">Cost-benefit evaluation of retention</li>
             </ul>
 
-            <h4>Cluster 2: Occasional Customers</h4>
+            <h4 data-i18n="seg.concl.c2_name">Cluster 2: Occasional Customers</h4>
             <ul>
-                <li>Frequency-based loyalty programs</li>
-                <li>Cross-selling with related products</li>
-                <li>Personalized offers based on history</li>
+                <li data-i18n="seg.concl.c2_r1">Frequency-based loyalty programs</li>
+                <li data-i18n="seg.concl.c2_r2">Cross-selling with related products</li>
+                <li data-i18n="seg.concl.c2_r3">Personalized offers based on history</li>
             </ul>
 
-            <h4>Future Improvements</h4>
+            <h4 data-i18n="seg.concl.fut_title">Future Improvements</h4>
             <ul>
-                <li>Categorize products into broader groups for better analysis</li>
-                <li>Include price and discount data for sensitivity analysis</li>
-                <li>Integrate demographic variables for more precise segmentation</li>
+                <li data-i18n="seg.concl.fut1">Categorize products into broader groups for better analysis</li>
+                <li data-i18n="seg.concl.fut2">Include price and discount data for sensitivity analysis</li>
+                <li data-i18n="seg.concl.fut3">Integrate demographic variables for more precise segmentation</li>
             </ul>
         </div>
     </div>
@@ -226,8 +226,8 @@
     <!-- Project Files Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Project Files</h2>
-            <p>You can explore all files, datasets and source code for this project:</p>
+            <h2 data-i18n="seg.repo.title">Project Files</h2>
+            <p data-i18n="seg.repo.p">You can explore all files, datasets and source code for this project:</p>
             
             <div class="files-link-container">
                 <a href="https://github.com/cveram96/Portfolio/blob/main/Files/kmeans.ipynb" 
@@ -248,7 +248,7 @@
     <!-- Footer -->
     <footer>
         <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-            <p style="margin: 0;">Developed by Christian Vera - 2025</p>
+            <p style="margin: 0;" data-i18n="footer.dev">Developed by Christian Vera - 2025</p>
         
             <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
                 <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">LinkedIn</button>

@@ -172,10 +172,10 @@ SELECT
     ) AS MoMGrowthPercent
 FROM MonthlyRevenue
 ORDER BY OrderMonth;</code></pre>
-            <p><strong>Technical Rationale:</strong> Uses `LAG()` to pull the prior month's aggregate into the current row, calculating exact commercial momentum without self-joins.</p>
+            <p data-i18n-html="sql.q6.desc"><strong>Technical Rationale:</strong> Uses `LAG()` to pull the prior month's aggregate into the current row without a self-join, computing the month-over-month rate of change to assess business momentum and identify seasonal slowdowns.</p>
 
             <!-- Query 7 -->
-            <h3>7. Year-to-Date (YTD) Running Total Revenue</h3>
+            <h3 data-i18n="sql.q7.title">7. Year-to-Date (YTD) Running Total Revenue</h3>
             <pre><code>WITH MonthlyTotals AS (
     SELECT 
         strftime('%Y', o.OrderDate) AS OrderYear,
@@ -195,10 +195,10 @@ SELECT
     ), 2) AS YTD_RunningRevenue
 FROM MonthlyTotals
 ORDER BY OrderMonth;</code></pre>
-            <p><strong>Technical Rationale:</strong> Cumulative window partitioning resets at the turn of each calendar year, tracking progress toward annual revenue benchmarks.</p>
+            <p data-i18n-html="sql.q7.desc"><strong>Technical Rationale:</strong> Cumulative window partitioning resets at the turn of each calendar year, delivering executive-ready fiscal progress tracking without external reporting middleware.</p>
 
             <!-- Query 8 -->
-            <h3>8. Customer Reorder Velocity (Average Days Between Purchases)</h3>
+            <h3 data-i18n="sql.q8.title">8. Customer Reorder Velocity (Average Days Between Purchases)</h3>
             <pre><code>WITH OrderSequence AS (
     SELECT 
         CustomerId,
@@ -226,18 +226,18 @@ GROUP BY c.Id
 HAVING RepeatOrdersCount &gt;= 10
 ORDER BY AvgDaysBetweenOrders ASC
 LIMIT 5;</code></pre>
-            <p><strong>Technical Rationale:</strong> Calculates repurchase frequency at the individual account level, revealing that top accounts such as <em>Save-a-lot Markets</em> reorder every 19 days on average.</p>
+            <p data-i18n-html="sql.q8.desc"><strong>Technical Rationale:</strong> Calculates repurchase frequency at the individual account level, establishing customer purchase cycles to power predictive CRM re-engagement campaigns.</p>
         </div>
     </div>
 
     <!-- PART 3: STRATEGIC CUSTOMER INTELLIGENCE -->
     <div class="container">
         <div class="section-block">
-            <h2>Part 3: Strategic Customer Intelligence (RFM &amp; Cohort Retention)</h2>
-            <p>Bridging database querying with managerial marketing strategy: customer tiering and retention cohort analysis coded in 100% pure SQL.</p>
+            <h2 data-i18n-html="sql.p3.title">Part 3: Strategic Customer Intelligence (RFM &amp; Cohort Retention)</h2>
+            <p data-i18n="sql.p3.p">Bridging database querying with managerial marketing strategy: customer tiering and retention cohort analysis coded in 100% pure SQL.</p>
 
             <!-- Query 9: RFM -->
-            <h3>9. Automated RFM Customer Segmentation (Pure SQL)</h3>
+            <h3 data-i18n="sql.q9.title">9. Automated RFM Customer Segmentation (Pure SQL)</h3>
             <pre><code>WITH CustomerAggregates AS (
     SELECT 
         c.Id AS CustomerId,
@@ -277,10 +277,10 @@ SELECT
 FROM RFM_Quartiles
 ORDER BY Monetary DESC
 LIMIT 8;</code></pre>
-            <p><strong>Management Impact:</strong> Using `NTILE(4)` categorizes all accounts into actionable marketing quadrants without external statistical packages, pinpointing high-spend accounts requiring immediate account manager retention calls.</p>
+            <p data-i18n-html="sql.q9.desc"><strong>Management Impact:</strong> Using `NTILE(4)` categorizes all accounts into actionable marketing quadrants without external statistical packages, pinpointing high-spend accounts requiring immediate account manager retention calls.</p>
 
             <!-- Query 10: Cohort Analysis -->
-            <h3>10. Customer Retention Cohort Analysis (Pure SQL Matrix)</h3>
+            <h3 data-i18n="sql.q10.title">10. Customer Retention Cohort Analysis (Pure SQL Matrix)</h3>
             <pre><code>WITH CustomerFirstOrder AS (
     SELECT 
         CustomerId,
@@ -309,14 +309,14 @@ FROM UserMonthlyActivity
 GROUP BY CohortMonth
 ORDER BY CohortMonth
 LIMIT 6;</code></pre>
-            <p><strong>Management Impact:</strong> Generates a classic SaaS/e-commerce cohort retention table directly in SQL, measuring repeat order stability across customer onboarding cohorts.</p>
+            <p data-i18n-html="sql.q10.desc"><strong>Management Impact:</strong> Generates a classic SaaS/e-commerce cohort retention table directly in SQL, measuring repeat order stability across customer onboarding cohorts.</p>
         </div>
     </div>
 
     <!-- PART 4: PERFORMANCE & QUERY OPTIMIZATION -->
     <div class="container">
         <div class="section-block">
-            <h2>Part 4: Database Performance &amp; Query Optimization</h2>
+            <h2 data-i18n-html="sql.p4.title">Part 4: Database Performance &amp; Query Optimization</h2>
             
             <p>In production databases with millions of rows, unindexed queries cause heavy table scans and server I/O bottlenecks. We examine execution plans using <code>EXPLAIN QUERY PLAN</code>:</p>
 
@@ -326,11 +326,11 @@ FROM Customer c
 JOIN 'Order' o ON c.Id = o.CustomerId
 GROUP BY c.Id;</code></pre>
 
-            <h3>Production Optimization Takeaways:</h3>
+            <h3 data-i18n="sql.p4.takeaways_title">Production Optimization Takeaways:</h3>
             <ul>
-                <li><strong>Foreign Key Indexing:</strong> Ensuring composite indices on `Order(CustomerId, OrderDate)` transforms full-table sequential scans into B-Tree index lookups (`SEARCH TABLE`).</li>
-                <li><strong>Selective Projection:</strong> Avoiding `SELECT *` and projecting only required columns reduces memory footprint during hash aggregation (`TEMP B-TREE FOR GROUP BY`).</li>
-                <li><strong>Safe Aggregations:</strong> Using `COUNT(DISTINCT)` whenever child detail tables are joined protects against relational duplication.</li>
+                <li data-i18n-html="sql.p4.t1"><strong>Foreign Key Indexing:</strong> Ensuring composite indices on `Order(CustomerId, OrderDate)` transforms full-table sequential scans into B-Tree index lookups (`SEARCH TABLE`).</li>
+                <li data-i18n-html="sql.p4.t2"><strong>Selective Projection:</strong> Avoiding `SELECT *` and projecting only required columns reduces memory footprint during hash aggregation (`TEMP B-TREE FOR GROUP BY`).</li>
+                <li data-i18n-html="sql.p4.t3"><strong>Safe Aggregations:</strong> Using `COUNT(DISTINCT)` whenever child detail tables are joined protects against relational duplication.</li>
             </ul>
         </div>
     </div>
@@ -338,8 +338,8 @@ GROUP BY c.Id;</code></pre>
     <!-- Project Files Section -->
     <div class="container">
         <div class="project-single">
-            <h3>Project Notebook &amp; Source Database</h3>
-            <p>Explore the full interactive Python notebook and the underlying SQLite database in the repository:</p>
+            <h3 data-i18n-html="sql.repo.title">Project Notebook &amp; Source Database</h3>
+            <p data-i18n="sql.repo.p">Explore the full interactive Python notebook and the underlying SQLite database in the repository:</p>
             
             <div class="files-link-container">
                 <a href="https://github.com/cveram96/Portfolio/blob/main/Files/SQL_Northwind.ipynb" 
@@ -362,7 +362,7 @@ GROUP BY c.Id;</code></pre>
     <!-- Footer -->
     <footer>
         <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-            <p style="margin: 0;">Designed &amp; Developed by <strong style="color: #ffffff;">Christian David Vera Mendivelso</strong> &bull; 2025&ndash;2026</p>
+            <p style="margin: 0;" data-i18n-html="footer.credit">Designed &amp; Developed by <strong style="color: #ffffff;">Christian David Vera Mendivelso</strong> &bull; 2025&ndash;2026</p>
             <div style="display: flex; gap: 12px; margin-top: 6px;">
                 <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
                     <button style="background-color: #0077B5; color: white; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem;">

@@ -198,36 +198,31 @@
                 <li data-i18n-html="arima.concl.r4">Acceptable prediction accuracy (MAPE 8.22%)</li>
             </ul>
             
-            <h3>Limitations</h3>
+            <h3 data-i18n="arima.concl.lim_title">Limitations</h3>
             <ul>
-                <li>Heteroscedasticity in residuals (non-constant variance)</li>
-                <li>Seasonal pattern not fully modeled</li>
+                <li data-i18n="arima.concl.lim1">Heteroscedasticity in residuals (non-constant variance)</li>
+                <li data-i18n="arima.concl.lim2">Seasonal pattern not fully modeled</li>
             </ul>
             
-            <h3>Future improvements</h3>
+            <h3 data-i18n="arima.concl.fut_title">Future improvements</h3>
             <ul>
-                <li>Try SARIMA models to capture seasonality</li>
-                <li>Experiment with logarithmic transformations</li>
-                <li>Validate using walk-forward validation techniques</li>
-                <li>Compare with other models (ETS, Neural Networks)</li>
+                <li data-i18n="arima.concl.fut1">Try SARIMA models to capture seasonality</li>
+                <li data-i18n="arima.concl.fut2">Experiment with logarithmic transformations</li>
+                <li data-i18n="arima.concl.fut3">Validate using walk-forward validation techniques</li>
+                <li data-i18n="arima.concl.fut4">Compare with other models (ETS, Neural Networks)</li>
             </ul>
         </div>
     </div>
 
 
 
-    <!-- Multilingual i18n Scripts -->
-    <script src="translations.js"></script>
-    <script src="i18n.js"></script>
-</body>
-</html>
-    </div>
+        </div>
 
     <!-- Project files section -->
     <div class="container">
         <div class="project-single">
-            <h3>Project Files</h3>
-            <p>You can explore the full analysis:</p>
+            <h3 data-i18n="arima.repo.title">Project Files</h3>
+            <p data-i18n="arima.repo.p">You can explore the full analysis:</p>
             
             <div class="files-link-container">
                 <a href="https://github.com/cveram96/Portfolio/blob/main/Files/ARIMA.ipynb" 
@@ -247,12 +242,15 @@
     <!-- Footer -->
     <footer>
         <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-            <p style="margin: 0;">Developed by Christian Vera - 2025</p>
+            <p style="margin: 0;" data-i18n="footer.dev">Developed by Christian Vera - 2025</p>
             
             <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
                 <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">LinkedIn</button>
             </a>
         </div>
     </footer>
+    <!-- Multilingual i18n Scripts -->
+    <script src="translations.js"></script>
+    <script src="i18n.js"></script>
 </body>
 </html>

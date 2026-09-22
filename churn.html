@@ -67,42 +67,42 @@
             
             <h3 data-i18n="churn.method.s2_title">2. Preprocessing</h3>
             <ul>
-                <li>Data cleaning:
+                <li><span data-i18n="churn.prep.clean_title">Data cleaning:</span>
                     <ul>
-                        <li>Data type conversion</li>
-                        <li>Imputation of missing values using the median</li>
-                        <li>Removal of unique ID column (customerID)</li>
+                        <li data-i18n="churn.prep.c1">Data type conversion</li>
+                        <li data-i18n="churn.prep.c2">Imputation of missing values using the median</li>
+                        <li data-i18n="churn.prep.c3">Removal of unique ID column (customerID)</li>
                     </ul>
                 </li>
-                <li>Feature transformation:
+                <li><span data-i18n="churn.prep.trans_title">Feature transformation:</span>
                     <ul>
-                        <li>Standardization with StandardScaler for numeric features</li>
-                        <li>Encoding with OneHotEncoder for categorical features</li>
+                        <li data-i18n="churn.prep.t1">Standardization with StandardScaler for numeric features</li>
+                        <li data-i18n="churn.prep.t2">Encoding with OneHotEncoder for categorical features</li>
                     </ul>
                 </li>
-                <li>Balancing techniques:
+                <li><span data-i18n="churn.prep.bal_title">Balancing techniques:</span>
                     <ul>
-                        <li>SMOTE</li>
-                        <li>RandomUnderSampler</li>
-                        <li>ADASYN</li>
-                        <li>SMOTEENN</li>
+                        <li data-i18n="churn.prep.b1">SMOTE</li>
+                        <li data-i18n="churn.prep.b2">RandomUnderSampler</li>
+                        <li data-i18n="churn.prep.b3">ADASYN</li>
+                        <li data-i18n="churn.prep.b4">SMOTEENN</li>
                     </ul>
                 </li>
             </ul>
             
             <h3 data-i18n="churn.method.s3_title">3. Modeling</h3>
             <ul>
-                <li>Random Forest:
+                <li><span data-i18n="churn.mod.rf_title">Random Forest:</span>
                     <ul>
-                        <li>Optimization with RandomizedSearchCV</li>
-                        <li>Stratified cross-validation</li>
-                        <li>Hyperparameters: n_estimators, max_depth, min_samples_split</li>
+                        <li data-i18n="churn.mod.rf1">Optimization with RandomizedSearchCV</li>
+                        <li data-i18n="churn.mod.rf2">Stratified cross-validation</li>
+                        <li data-i18n="churn.mod.rf3">Hyperparameters: n_estimators, max_depth, min_samples_split</li>
                     </ul>
                 </li>
-                <li>Multi-Layer Perceptron (MLP):
+                <li><span data-i18n="churn.mod.mlp_title">Multi-Layer Perceptron (MLP):</span>
                     <ul>
-                        <li>Optimization with RandomizedSearchCV</li>
-                        <li>Hyperparameters: hidden_layer_sizes, activation, solver</li>
+                        <li data-i18n="churn.mod.mlp1">Optimization with RandomizedSearchCV</li>
+                        <li data-i18n="churn.mod.mlp2">Hyperparameters: hidden_layer_sizes, activation, solver</li>
                     </ul>
                 </li>
             </ul>
@@ -236,19 +236,19 @@
                 <li data-i18n="churn.concl.c3">SMOTEENN and RandomUnderSampler are the best balancing techniques</li>
             </ul>
             
-            <h3>Limitations</h3>
+            <h3 data-i18n="churn.concl.lim_title">Limitations</h3>
             <ul>
-                <li>Imbalanced dataset (26.5% positive cases)</li>
-                <li>Potential overfitting with oversampling techniques</li>
+                <li data-i18n="churn.concl.lim1">Imbalanced dataset (26.5% positive cases)</li>
+                <li data-i18n="churn.concl.lim2">Potential overfitting with oversampling techniques</li>
             </ul>
             
-            <h3>Recommendations</h3>
+            <h3 data-i18n="churn.concl.rec_title">Recommendations</h3>
             <ul>
-                <li>Implement Random Forest with SMOTEENN for retention strategies</li>
-                <li>Prioritize customers with month-to-month contracts and fiber internet</li>
-                <li>Offer incentives to migrate to long-term contracts</li>
-                <li>Improve add-on services (security, tech support)</li>
-                <li>Explore alternative models such as XGBoost or deeper neural networks</li>
+                <li data-i18n="churn.concl.rec1">Implement Random Forest with SMOTEENN for retention strategies</li>
+                <li data-i18n="churn.concl.rec2">Prioritize customers with month-to-month contracts and fiber internet</li>
+                <li data-i18n="churn.concl.rec3">Offer incentives to migrate to long-term contracts</li>
+                <li data-i18n="churn.concl.rec4">Improve add-on services (security, tech support)</li>
+                <li data-i18n="churn.concl.rec5">Explore alternative models such as XGBoost or deeper neural networks</li>
             </ul>
         </div>
     </div>
@@ -256,8 +256,8 @@
     <!-- Project Files Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Project Files</h2>
-            <p>You can explore the source code for this project:</p>
+            <h2 data-i18n="churn.repo.title">Project Files</h2>
+            <p data-i18n="churn.repo.p">You can explore the source code for this project:</p>
             
             <div class="files-link-container">
                 <a href="https://github.com/cveram96/Portfolio/blob/main/Files/Proyecto%20Churn.ipynb" 
@@ -277,7 +277,7 @@
     <!-- Footer -->
     <footer>
         <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-            <p style="margin: 0;">Developed by Christian Vera - 2025</p>
+            <p style="margin: 0;" data-i18n="footer.dev">Developed by Christian Vera - 2025</p>
         
             <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
                 <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">LinkedIn</button>

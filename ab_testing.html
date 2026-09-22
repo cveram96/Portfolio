@@ -112,17 +112,17 @@
             </div>
 
             <h3 data-i18n-html="abt.res.ci_title">Difference Confidence Interval (&Delta; = p_treat &minus; p_control)</h3>
-            <p>The 95% Confidence Interval for the true difference in proportions is <strong>[-0.3938%, +0.0781%]</strong>. Because this interval contains zero (0%), we fail to reject the null hypothesis. There is no empirical evidence that the redesign provides an improvement; on the contrary, the point estimate indicates a slight conversion drag.</p>
+            <p data-i18n-html="abt.res.ci_p_full">The 95% Confidence Interval for the true difference in proportions is <strong>[-0.3938%, +0.0781%]</strong>. Because this interval contains zero (0%), we fail to reject the null hypothesis. There is no empirical evidence that the redesign provides an improvement; on the contrary, the point estimate indicates a slight conversion drag.</p>
 
             <h3 data-i18n="abt.res.seg_title">Segment Consistency Check</h3>
             <div class="two-columns">
                 <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); padding: 1.2rem; border-radius: 8px; margin-bottom: 1rem;">
                     <strong style="color: #ffffff;">Daytime Traffic (08:00&ndash;20:00)</strong>
-                    <p style="margin: 0.5rem 0 0 0; color: var(--gray); font-size: 0.95rem;">Control CR: 12.09% &bull; Treatment CR: 11.89% &bull; p = 0.16<br><span style="color: var(--gray-muted);">Consistent negative trend observed during peak business hours.</span></p>
+                    <p style="margin: 0.5rem 0 0 0; color: var(--gray); font-size: 0.95rem;" data-i18n-html="abt.res.seg_day_content">Control CR: 12.09% &bull; Treatment CR: 11.89% &bull; p = 0.16<br><span style="color: var(--gray-muted);">Consistent negative trend observed during peak business hours.</span></p>
                 </div>
                 <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); padding: 1.2rem; border-radius: 8px; margin-bottom: 1rem;">
                     <strong style="color: #ffffff;">Nighttime Traffic (20:00&ndash;08:00)</strong>
-                    <p style="margin: 0.5rem 0 0 0; color: var(--gray); font-size: 0.95rem;">Control CR: 11.98% &bull; Treatment CR: 11.87% &bull; p = 0.22<br><span style="color: var(--gray-muted);">No compensatory uplift detected in off-peak hours.</span></p>
+                    <p style="margin: 0.5rem 0 0 0; color: var(--gray); font-size: 0.95rem;" data-i18n-html="abt.res.seg_night_content">Control CR: 11.98% &bull; Treatment CR: 11.87% &bull; p = 0.22<br><span style="color: var(--gray-muted);">No compensatory uplift detected in off-peak hours.</span></p>
                 </div>
             </div>
         </div>
@@ -139,43 +139,43 @@
             </div>
             
             <h3 data-i18n="abt.verdict.fin_title">Financial Opportunity Cost Analysis</h3>
-            <p>A failed experiment is an invaluable risk prevention mechanism. To illustrate the financial stakes for business leadership, assuming a monthly scale of <strong>1,000,000 visitors</strong> and an <strong>Average Order Value (AOV) of $50 USD</strong>:</p>
+            <p data-i18n-html="abt.verdict.fin_p_full">A failed experiment is an invaluable risk prevention mechanism. To illustrate the financial stakes for business leadership, assuming a monthly scale of <strong>1,000,000 visitors</strong> and an <strong>Average Order Value (AOV) of $50 USD</strong>:</p>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
                 <div class="contact-card">
-                    <div class="contact-label">Monthly Conversions Preserved</div>
+                    <div class="contact-label" data-i18n="abt.verdict.card1_lbl">Monthly Conversions Preserved</div>
                     <div class="contact-value" style="color: #34d399;">+1,578 orders / month</div>
                     <div style="font-size: 0.8rem; color: var(--gray-muted); margin-top: 0.2rem;">Loss avoided by rejecting treatment</div>
                 </div>
                 <div class="contact-card">
-                    <div class="contact-label">Monthly Revenue Protected</div>
+                    <div class="contact-label" data-i18n="abt.verdict.card2_lbl">Monthly Revenue Protected</div>
                     <div class="contact-value" style="color: #34d399;">$78,900 USD / month</div>
                     <div style="font-size: 0.8rem; color: var(--gray-muted); margin-top: 0.2rem;">Calculated at $50 AOV</div>
                 </div>
                 <div class="contact-card">
-                    <div class="contact-label">Annualized Decision Value</div>
+                    <div class="contact-label" data-i18n="abt.verdict.card3_lbl">Annualized Decision Value</div>
                     <div class="contact-value" style="color: #34d399;">~$946,800 USD / year</div>
                     <div style="font-size: 0.8rem; color: var(--gray-muted); margin-top: 0.2rem;">Cumulative commercial downside averted</div>
                 </div>
             </div>
 
-            <h3>Strategic Recommendations for the Product Team:</h3>
+            <h3 data-i18n="abt.rec.title">Strategic Recommendations for the Product Team:</h3>
             <div class="two-columns">
                 <div class="contact-card" style="margin-bottom: 1rem;">
-                    <div class="contact-label">1. Maintain Status Quo</div>
-                    <p style="margin: 0; font-size: 0.92rem; color: var(--gray);">Keep the original page live. It delivers a proven baseline of 12.04% conversion without friction.</p>
+                    <div class="contact-label" data-i18n="abt.rec.s1_title">1. Maintain Status Quo</div>
+                    <p style="margin: 0; font-size: 0.92rem; color: var(--gray);" data-i18n="abt.rec.s1_p">Keep the original page live. It delivers a proven baseline of 12.04% conversion without friction.</p>
                 </div>
                 <div class="contact-card" style="margin-bottom: 1rem;">
-                    <div class="contact-label">2. Qualitative Post-Mortem</div>
-                    <p style="margin: 0; font-size: 0.92rem; color: var(--gray);">Inspect heatmaps, session recordings, and user survey feedback to pinpoint where the redesign added cognitive friction.</p>
+                    <div class="contact-label" data-i18n="abt.rec.s2_title">2. Qualitative Post-Mortem</div>
+                    <p style="margin: 0; font-size: 0.92rem; color: var(--gray);" data-i18n="abt.rec.s2_p">Inspect heatmaps, session recordings, and user survey feedback to pinpoint where the redesign added cognitive friction.</p>
                 </div>
                 <div class="contact-card" style="margin-bottom: 1rem;">
-                    <div class="contact-label">3. Component-Level Iteration</div>
-                    <p style="margin: 0; font-size: 0.92rem; color: var(--gray);">Avoid full-page overhauls. Test isolated elements (CTA copy, social proof badges, hero messaging) in subsequent sprints.</p>
+                    <div class="contact-label" data-i18n="abt.rec.s3_title">3. Component-Level Iteration</div>
+                    <p style="margin: 0; font-size: 0.92rem; color: var(--gray);" data-i18n="abt.rec.s3_p">Avoid full-page overhauls. Test isolated elements (CTA copy, social proof badges, hero messaging) in subsequent sprints.</p>
                 </div>
                 <div class="contact-card" style="margin-bottom: 1rem;">
-                    <div class="contact-label">4. Pre-Experiment Sizing</div>
-                    <p style="margin: 0; font-size: 0.92rem; color: var(--gray);">Ensure future test designs calculate required MDE in advance using statistical power analysis.</p>
+                    <div class="contact-label" data-i18n="abt.rec.s4_title">4. Pre-Experiment Sizing</div>
+                    <p style="margin: 0; font-size: 0.92rem; color: var(--gray);" data-i18n="abt.rec.s4_p">Ensure future test designs calculate required MDE in advance using statistical power analysis.</p>
                 </div>
             </div>
         </div>
@@ -184,7 +184,7 @@
     <!-- Technical Section -->
     <div class="container">
         <div class="section-block">
-            <h2>Technical Implementation &amp; Stack</h2>
+            <h2 data-i18n-html="abt.tech.title">Technical Implementation &amp; Stack</h2>
             
             <div class="files-link-container" style="margin: 20px 0;">
                 <span class="file-badge">Python 3.10+</span>
@@ -196,7 +196,7 @@
                 <span class="file-badge">Jupyter Notebooks</span>
             </div>
             
-            <h3>Statistical Tools &amp; Methods</h3>
+            <h3 data-i18n-html="abt.tech.subtitle">Statistical Tools &amp; Methods</h3>
             <ul>
                 <li><code>scipy.stats.chisquare</code>: Formal validation of the 50/50 Sample Ratio Mismatch (SRM).</li>
                 <li><code>statsmodels.stats.proportion.proportions_ztest</code>: Large-sample two-proportion Z-Test.</li>
@@ -209,8 +209,8 @@
     <!-- Project Files Section -->
     <div class="container">
         <div class="project-single">
-            <h3>Project Notebooks &amp; Source Code</h3>
-            <p>Access the reproducible Jupyter notebooks directly in the GitHub repository:</p>
+            <h3 data-i18n-html="abt.repo.title">Project Notebooks &amp; Source Code</h3>
+            <p data-i18n="abt.repo.p">Access the reproducible Jupyter notebooks directly in the GitHub repository:</p>
             
             <div class="files-link-container">
                 <a href="https://github.com/cveram96/Portfolio/tree/main/experimentation-platform/experiments" 
@@ -233,7 +233,7 @@
     <!-- Footer -->
     <footer>
         <div class="container" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
-            <p style="margin: 0;">Designed &amp; Developed by <strong style="color: #ffffff;">Christian David Vera Mendivelso</strong> &bull; 2025&ndash;2026</p>
+            <p style="margin: 0;" data-i18n-html="footer.credit">Designed &amp; Developed by <strong style="color: #ffffff;">Christian David Vera Mendivelso</strong> &bull; 2025&ndash;2026</p>
             <div style="display: flex; gap: 12px; margin-top: 6px;">
                 <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">
                     <button style="background-color: #0077B5; color: white; border: none; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem;">
