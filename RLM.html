@@ -92,6 +92,20 @@
         </div>
     </div>
 
+    <!-- Geographic Distribution Visualization -->
+    <div class="container">
+        <div class="section-block">
+            <h2 data-i18n="rlm.geo.title">Geographic Price Distribution in California</h2>
+            <p data-i18n="rlm.geo.desc">Geospatial visualization of 20,640 census block groups mapping median home values across California. Distinct high-density clusters are evident along coastal metropolitan areas (San Francisco Bay Area, Los Angeles, San Diego) compared to lower-cost agricultural zones in the Central Valley.</p>
+            <div style="margin-top: 1.5rem; text-align: center;">
+                <img src="Files/images/RLM/california_housing_geo.png" 
+                     alt="California Housing Geospatial Price Distribution" 
+                     style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,0.5);" 
+                     loading="lazy">
+            </div>
+        </div>
+    </div>
+
     <!-- Results and Findings Section -->
     <div class="container">
         <div class="section-block">
@@ -160,10 +174,24 @@
             
             <h3 data-i18n="rlm.results.assumptions_title">Assumption Validation</h3>
             <ul>
-                <li data-i18n-html="rlm.results.assump1"><strong>Residual normality:</strong> Not satisfied (p < 0.05)</li>
-                <li data-i18n-html="rlm.results.assump2"><strong>Homoscedasticity:</strong> Not satisfied (p < 0.05)</li>
+                <li data-i18n-html="rlm.results.assump1"><strong>Residual normality:</strong> Not satisfied (p &lt; 0.05)</li>
+                <li data-i18n-html="rlm.results.assump2"><strong>Homoscedasticity:</strong> Not satisfied (p &lt; 0.05)</li>
                 <li data-i18n-html="rlm.results.assump3"><strong>Independence:</strong> Satisfied (Durbin-Watson ≈ 2)</li>
             </ul>
+        </div>
+    </div>
+
+    <!-- Residual Diagnostics Suite -->
+    <div class="container">
+        <div class="section-block">
+            <h2 data-i18n="rlm.diag.title">Econometric Residual Diagnostics Suite</h2>
+            <p data-i18n="rlm.diag.desc">Four-panel diagnostic analysis validating linear regression Gauss-Markov assumptions: Residuals vs Fitted (non-constant variance), Normal Q-Q plot (heavy tails rejecting normality with Shapiro-Wilk p &lt; 0.001), Scale-Location (heteroscedasticity confirmed by Breusch-Pagan p &lt; 0.001), and Residual Density confirming zero autocorrelation (Durbin-Watson ≈ 2.0).</p>
+            <div style="margin-top: 1.5rem; text-align: center;">
+                <img src="Files/images/RLM/rlm_residuals_diagnostics.png" 
+                     alt="Multiple Linear Regression Residual Diagnostics Suite" 
+                     style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,0.5);" 
+                     loading="lazy">
+            </div>
         </div>
     </div>
 

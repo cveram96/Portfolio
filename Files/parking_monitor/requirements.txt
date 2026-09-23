@@ -1,6 +1,9 @@
-ultralytics>=8.0.0,<9.0.0
-opencv-python>=4.8.0
-sqlalchemy>=2.0.0
-PySide6>=6.5.0
-pyqtgraph>=0.13.0
-pyinstaller>=5.0.0
+fastapi>=0.110.0
+uvicorn[standard]>=0.28.0
+opencv-python>=4.9.0
+ultralytics>=8.1.0
+numpy>=1.26.0
+shapely>=2.0.0
+pydantic>=2.6.0
+python-multipart>=0.0.9
+onnxruntime-directml>=1.17.0

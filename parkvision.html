@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ParkVision AI — Real-Time Smart Parking Monitoring</title>
+    <title data-i18n="pv.page_title">ParkVision AI — Real-Time Smart Parking Monitoring</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation bar -->
-        <!-- Navigation bar -->
     <nav>
         <ul>
             <li><a href="index.html" data-i18n="nav.home">Home</a></li>
@@ -25,10 +24,10 @@
             <h1 data-i18n="pv.intro.title">ParkVision AI</h1>
             <h2 data-i18n="pv.intro.subtitle">End-to-End Real-Time Smart Parking Monitoring System</h2>
             <ul>
-                <li data-i18n-html="pv.intro.li1"><strong>Core Engine:</strong> Ultralytics YOLOv8 / YOLO-seg &amp; OpenCV</li>
-                <li data-i18n-html="pv.intro.li2"><strong>Application:</strong> PySide6 (Qt) Desktop GUI with Multi-threading (QThread)</li>
+                <li data-i18n-html="pv.intro.li1"><strong>Core Engine:</strong> Ultralytics YOLOv8, ByteTrack &amp; OpenCV</li>
+                <li data-i18n-html="pv.intro.li2"><strong>Application:</strong> High-Performance FastAPI Web Server &amp; Real-Time WebSockets Dashboard</li>
                 <li data-i18n-html="pv.intro.li3"><strong>Data &amp; Storage:</strong> SQLite (parking.db) &amp; CSV Historical Occupancy Logging</li>
-                <li data-i18n-html="pv.intro.li4"><strong>Input Feeds:</strong> Video Files, USB Webcams &amp; RTSP Network IP Streams</li>
+                <li data-i18n-html="pv.intro.li4"><strong>Input Feeds &amp; Hardware:</strong> Video Files, USB Webcams, RTSP IP Streams with DirectML / CUDA Multi-GPU</li>
             </ul>
         </div>
     </div>
@@ -38,11 +37,11 @@
         <div class="section-block">
             <h2 data-i18n="pv.overview.title">Project Overview &amp; Business Impact</h2>
             <p data-i18n="pv.overview.p1">Urban parking management is a major operational bottleneck in smart cities and commercial hubs. Drivers spending 15–20 minutes searching for vacant spots generates traffic congestion, increases carbon emissions, and creates customer friction in commercial facilities.</p>
-            <p data-i18n-html="pv.overview.p2"><strong>ParkVision AI</strong> was designed and engineered as a production-grade Computer Vision desktop application that transforms conventional video streams (CCTV, webcams, or IP cameras) into an automated intelligent occupancy monitoring system without requiring expensive ground sensors.</p>
+            <p data-i18n-html="pv.overview.p2"><strong>ParkVision AI</strong> was designed and engineered as a production-grade Computer Vision web application that transforms conventional video streams (CCTV, webcams, or IP cameras) into an automated intelligent occupancy monitoring system without requiring expensive ground sensors.</p>
             
             <h3 data-i18n="pv.overview.drivers_title">Key Value Drivers:</h3>
             <ul class="two-columns">
-                <li data-i18n-html="pv.overview.driver1"><strong>Hardware Agnostic:</strong> Integrates seamlessly with existing optical camera infrastructure via RTSP or USB.</li>
+                <li data-i18n-html="pv.overview.driver1"><strong>Hardware Agnostic:</strong> Integrates seamlessly with existing optical camera infrastructure via RTSP or USB, accelerated by DirectML (AMD/Intel) and CUDA (NVIDIA).</li>
                 <li data-i18n-html="pv.overview.driver2"><strong>Operational Cost Reduction:</strong> Eliminates the need for physical ultrasonic/magnetic ground sensors.</li>
                 <li data-i18n-html="pv.overview.driver3"><strong>Real-Time Auditing:</strong> Instant availability tracking with sub-second latency and visual alerts.</li>
                 <li data-i18n-html="pv.overview.driver4"><strong>Historical Insights:</strong> Continuous persistence of occupancy timestamps to analyze peak demand and parking turnover.</li>
@@ -56,7 +55,7 @@
             <h2 data-i18n="pv.arch.title">System Architecture &amp; Workflow</h2>
             
             <h3 data-i18n="pv.arch.step1_title">1. Multi-Source Video Stream Ingestion</h3>
-            <p data-i18n="pv.arch.step1_p">An asynchronous capture pipeline handles video inputs (local MP4 recordings, live USB webcams, or networked RTSP CCTV cameras) in dedicated PySide6 background threads, ensuring the graphical interface remains smooth and responsive at 30+ FPS.</p>
+            <p data-i18n="pv.arch.step1_p">An asynchronous capture pipeline handles video inputs (local MP4 recordings, live USB webcams, or networked RTSP CCTV cameras) in dedicated asynchronous background tasks with OpenCV and FastAPI WebSockets, ensuring the responsive web interface delivers smooth live streaming at 30 FPS.</p>
 
             <h3 data-i18n="pv.arch.step2_title">2. Deep Learning Detection &amp; Tracking Pipeline</h3>
             <ul>
@@ -109,6 +108,27 @@
         </div>
     </div>
 
+    <!-- Interface & Real-Time Detection Showcase -->
+    <div class="container">
+        <div class="section-block">
+            <h2 data-i18n="pv.shots.title">Interface &amp; Real-Time Detection Showcase</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; padding: 1.2rem;">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;" data-i18n="pv.shots.live_title">Live Monitoring &amp; Spatial HUD</h4>
+                    <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1rem;" data-i18n="pv.shots.live_desc">Real-time edge detection overlay showing available spaces in green, occupied spaces in red, bounding boxes, and telemetry metrics (FPS &amp; latency).</p>
+                    <img src="Files/images/parkvision/parkvision_live_monitor.png" alt="ParkVision Live Monitoring Dashboard" style="width: 100%; height: auto; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);" loading="lazy">
+                </div>
+                
+                <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; padding: 1.2rem;">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.5rem;" data-i18n="pv.shots.calib_title">Vector Slot Calibrator</h4>
+                    <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1rem;" data-i18n="pv.shots.calib_desc">Interactive vector calibration mode allowing operators to define, adjust anchor vertices, and persist slot polygons directly over the video stream.</p>
+                    <img src="Files/images/parkvision/parkvision_slot_calibration.png" alt="ParkVision Vector Slot Calibrator" style="width: 100%; height: auto; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Technical Implementation Section -->
     <div class="container">
         <div class="section-block">
@@ -116,13 +136,14 @@
             
             <div class="files-link-container" style="margin: 20px 0; display: flex; flex-wrap: wrap; gap: 0.5rem;">
                 <span class="file-badge">Python 3.10+</span>
-                <span class="file-badge">PySide6 (Qt)</span>
+                <span class="file-badge">FastAPI &amp; WebSockets</span>
                 <span class="file-badge">Ultralytics YOLOv8</span>
+                <span class="file-badge">ByteTrack Tracking</span>
                 <span class="file-badge">OpenCV (cv2)</span>
-                <span class="file-badge">PyTorch</span>
-                <span class="file-badge">SQLite3</span>
-                <span class="file-badge">NumPy</span>
-                <span class="file-badge">Multithreading (QThread)</span>
+                <span class="file-badge">DirectML &amp; CUDA Multi-GPU</span>
+                <span class="file-badge">SQLite3 &amp; CSV Analytics</span>
+                <span class="file-badge">Shapely Geometry</span>
+                <span class="file-badge">HTML5 / Vanilla JS Dashboard</span>
             </div>
         </div>
     </div>
@@ -137,15 +158,16 @@
                 <a href="https://github.com/cveram96/Portfolio/tree/main/Files/parking_monitor" 
                    class="project-files-link" 
                    target="_blank" 
-                   rel="noopener noreferrer">
+                   rel="noopener noreferrer"
+                   data-i18n="pv.repo.link">
                     Explore ParkVision AI Codebase
                 </a>
                 
                 <div class="file-types">
                     <span class="file-badge">Python</span>
-                    <span class="file-badge">PySide6 GUI</span>
-                    <span class="file-badge">YOLO Weights</span>
-                    <span class="file-badge">SQLite</span>
+                    <span class="file-badge">FastAPI Web App</span>
+                    <span class="file-badge">YOLOv8 Weights</span>
+                    <span class="file-badge">SQLite &amp; Reports</span>
                 </div>
             </div>
         </div>

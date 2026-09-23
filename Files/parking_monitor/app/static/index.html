@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="doc.title">🅿️ Smart Parking Vision | AI & Multi-GPU</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🅿️</text></svg>">
+</head>
+<body>
+
+    <!-- TOP CONTROL BAR / NAVBAR - CLEAN SINGLE LINE -->
+    <header class="navbar">
+        <div class="brand">
+            <div class="brand-icon-box">🅿️</div>
+            <span class="brand-text">PARKING VISION AI</span>
+        </div>
+
+        <!-- MAIN TABS NAVIGATION -->
+        <nav class="nav-tabs">
+            <button class="tab-btn active" id="tabBtn-monitor" onclick="switchTab('monitor')" data-i18n="nav.monitor">
+                🖥️ Live Monitor
+            </button>
+            <button class="tab-btn" id="tabBtn-editor" onclick="switchTab('editor')" data-i18n="nav.editor">
+                📐 Bay Editor
+            </button>
+            <button class="tab-btn" id="tabBtn-guide" onclick="switchTab('guide')" data-i18n="nav.guide">
+                📖 How It Works
+            </button>
+        </nav>
+
+        <div class="nav-controls">
+            <!-- Language Switcher Pill -->
+            <div class="lang-switch-pill" title="Switch Language / Cambiar Idioma">
+                <button id="langBtn-en" class="lang-btn active" onclick="setLanguage('en')">EN</button>
+                <button id="langBtn-es" class="lang-btn" onclick="setLanguage('es')">ES</button>
+            </div>
+
+            <!-- Hardware Acceleration -->
+            <div class="control-pill" title="Hardware Acceleration: NVIDIA CUDA, AMD DirectML or CPU" data-i18n-title="pill.device_title">
+                <label data-i18n="pill.device_label">⚡ Engine:</label>
+                <select id="deviceSelect" onchange="changeDevice(this.value)">
+                    <option value="auto" data-i18n="pill.device_auto">Auto Detection</option>
+                </select>
+            </div>
+
+            <!-- Video Source -->
+            <div class="control-pill" title="Select video stream or camera" data-i18n-title="pill.source_title">
+                <label data-i18n="pill.source_label">📹 Source:</label>
+                <select id="sourceSelect" onchange="changeSource(this.value)">
+                    <option value="" data-i18n="pill.source_loading">Loading...</option>
+                </select>
+            </div>
+
+            <!-- Upload Custom Video -->
+            <label class="btn btn-glass btn-icon" title="Upload local parking video" data-i18n-title="btn.upload_title">
+                📁 <span data-i18n="btn.upload">Upload</span>
+                <input type="file" accept="video/*" style="display:none;" onchange="uploadVideoFile(this)">
+            </label>
+
+            <!-- Reports -->
+            <button class="btn btn-emerald" onclick="openReportsModal()" title="Generate and download audit reports" data-i18n-title="btn.reports_title">
+                📊 <span data-i18n="btn.reports">Reports</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- TAB 1: LIVE MONITOR (EXECUTIVE DASHBOARD) -->
+    <section class="tab-view active" id="tabView-monitor">
+        <main class="dashboard-grid">
+            <!-- LEFT: LIVE STREAM & KPIS -->
+            <section class="video-section">
+                <div class="video-container">
+                    <!-- Live Video Stream Feed -->
+                    <img id="videoFeed" src="/video_feed" alt="Parking Lot Live Stream" data-i18n-alt="stream.alt">
+
+                    <!-- HUD Status Overlay -->
+                    <div class="video-hud">
+                        <div class="hud-glass-badge">
+                            <div class="pulse-dot"></div>
+                            <span data-i18n="hud.live">LIVE</span>
+                        </div>
+                        <div class="hud-glass-badge">
+                            <span id="liveFps" style="color:var(--neon-cyan);font-family:monospace;">-- FPS</span>
+                        </div>
+                        <div class="hud-glass-badge" id="deviceActiveBadge" style="max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#cbd5e1;">
+                            Auto Hardware
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KPI DECK -->
+                <div class="kpi-deck">
+                    <div class="kpi-card">
+                        <span class="kpi-label" data-i18n="kpi.total_spots">Total Bays</span>
+                        <span class="kpi-value val-cyan" id="kpiTotalSpots">0</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label" data-i18n="kpi.occupied">Occupied</span>
+                        <span class="kpi-value val-scarlet" id="kpiOccupiedSpots">0</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label" data-i18n="kpi.available">Available</span>
+                        <span class="kpi-value val-emerald" id="kpiAvailableSpots">0</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label" data-i18n="kpi.occupancy_rate">Occupancy Rate</span>
+                        <span class="kpi-value val-amber" id="kpiOccupancyRate">0%</span>
+                        <div class="progress-track">
+                            <div class="progress-bar-fill" id="occupancyProgressBar" style="width: 0%;"></div>
+                        </div>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label" data-i18n="kpi.avg_stay">Avg Dwell Time</span>
+                        <span class="kpi-value val-white" id="kpiAvgStay" style="font-size:1.25rem;">0m 00s</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label" data-i18n="kpi.vehicles_today">Vehicles (Today)</span>
+                        <span class="kpi-value val-white" id="kpiTotalVehicles">0</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT SIDEBAR: PARKED VEHICLES & SPOTS TILES -->
+            <aside class="sidebar">
+                <!-- LIVE PARKED VEHICLES WITH DYNAMIC STOPWATCHES -->
+                <div class="glass-panel" style="flex:1;">
+                    <div class="panel-head">
+                        <div class="panel-heading">
+                            <span>🚗</span>
+                            <span data-i18n="panel.parked_vehicles">Parked Vehicles</span>
+                        </div>
+                    </div>
+                    <div class="panel-content" style="max-height: 230px;">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="th.bay">Bay</th>
+                                    <th data-i18n="th.id">ID</th>
+                                    <th data-i18n="th.type">Type</th>
+                                    <th data-i18n="th.entry">Entry</th>
+                                    <th data-i18n="th.time">Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody id="parkedVehiclesTableBody">
+                                <tr>
+                                    <td colspan="5" style="text-align:center;color:var(--text-muted);padding:1.5rem;" data-i18n="table.monitoring">
+                                        Monitoring parking lot...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- MINI SPOTS GRID -->
+                <div class="glass-panel">
+                    <div class="panel-head">
+                        <div class="panel-heading">
+                            <span>🗺️</span>
+                            <span data-i18n="panel.spot_status">Parking Bay Status</span>
+                        </div>
+                        <button class="btn btn-glass" style="font-size:0.7rem;padding:0.2rem 0.5rem;" onclick="switchTab('editor')">
+                            ✏️ <span data-i18n="btn.open_editor">Open Editor</span>
+                        </button>
+                    </div>
+                    <div class="panel-content">
+                        <div class="spots-grid" id="spotsList">
+                            <!-- Spot tiles populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </section>
+
+    <!-- TAB 2: BAY & EXCLUSIONS EDITOR -->
+    <section class="tab-view" id="tabView-editor">
+        <main class="dashboard-grid">
+            <!-- LEFT: INTERACTIVE DRAWING VIDEO STAGE -->
+            <section class="video-section">
+                <!-- DRAWING CONTROLS BAR -->
+                <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;background:var(--bg-surface);border:1px solid var(--border-subtle);border-radius:9px;padding:0.4rem 0.75rem;">
+                    <div style="display:flex;gap:0.35rem;align-items:center;flex-wrap:wrap;">
+                        <span style="font-size:0.76rem;font-weight:700;color:var(--neon-cyan);margin-right:0.2rem;" data-i18n="editor.tools">📐 Tools:</span>
+                        <button class="btn btn-cyan" onclick="setDrawMode('rotate_rectangle')" title="Create rectangle and adjust angle with slider" data-i18n-title="btn.rect_title">
+                            🔲 <span data-i18n="btn.rect">Rectangle</span>
+                        </button>
+                        <button class="btn btn-glass" onclick="setDrawMode('free_polygon')" title="Draw arbitrary polygon vertices point by point" data-i18n-title="btn.poly_title">
+                            ⬡ <span data-i18n="btn.poly">Polygon</span>
+                        </button>
+                        <button class="btn btn-glass" onclick="setDrawMode('perspective')" title="Mark 4 perspective corners" data-i18n-title="btn.corners_title">
+                            📍 <span data-i18n="btn.corners">4 Corners</span>
+                        </button>
+                        <button class="btn btn-scarlet-outline" onclick="setDrawMode('exclusion_zone')" title="Draw exclusion zone where model ignores all activity" data-i18n-title="btn.excl_title">
+                            🚫 <span data-i18n="btn.excl">Exclusion Zone</span>
+                        </button>
+                        <button class="btn btn-glass" id="toggleExclusionsCanvasBtn" onclick="toggleExclusionsVisibility()" title="Toggle visibility of ignored zones on canvas" data-i18n-title="btn.toggle_excl_title">
+                            👁️ <span data-i18n="btn.toggle_excl">Ignored Zones</span>
+                        </button>
+                    </div>
+
+                    <div style="display:flex;gap:0.35rem;align-items:center;">
+                        <button class="btn btn-glass" onclick="loadPresetTemplate()" title="Load 6-bay demo template" data-i18n-title="btn.template_title">
+                            📐 <span data-i18n="btn.template">Template</span>
+                        </button>
+                        <button class="btn btn-scarlet-outline" onclick="clearAllSpots()" title="Delete all parking bays" data-i18n-title="btn.clear_title">
+                            🗑️ <span data-i18n="btn.clear">Clear</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="video-container" style="position:relative;">
+                    <img id="videoFeedEditor" src="/video_feed" alt="Bay Editor Canvas" data-i18n-alt="editor.canvas_alt">
+                    <canvas id="drawCanvas"></canvas>
+
+                    <!-- Floating Canvas Toolbar -->
+                    <div class="draw-toolbar" id="drawToolbar">
+                        <span id="drawInstructions" style="font-size:0.82rem;font-weight:700;color:var(--neon-cyan);"></span>
+                        
+                        <!-- Rotation Slider -->
+                        <div class="rotate-control-box" id="rotateControlBox" style="display:none;">
+                            <span data-i18n="editor.angle">📐 Angle:</span>
+                            <input type="range" min="-180" max="180" value="0" class="rotate-slider" oninput="updateRotationAngle(this.value)">
+                            <span id="rotationAngleValue" style="font-family:monospace;font-weight:700;color:var(--neon-cyan);">0°</span>
+                        </div>
+
+                        <button class="btn btn-emerald" id="finishPolygonBtn" onclick="finishDrawingSpot()" style="display:none;font-size:0.75rem;padding:0.3rem 0.7rem;">
+                            ✅ <span data-i18n="btn.save">Save</span>
+                        </button>
+                        <button class="btn btn-scarlet-outline btn-icon" onclick="cancelDrawing()" style="font-size:0.75rem;padding:0.3rem 0.6rem;">
+                            ✕ <span data-i18n="btn.cancel">Cancel</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT: COMPREHENSIVE SPOTS & EXCLUSIONS MANAGEMENT TABLE -->
+            <aside class="sidebar">
+                <div class="glass-panel" style="flex:1;">
+                    <div class="panel-head" style="flex-wrap: wrap; gap: 0.5rem;">
+                        <div style="display:flex; gap:0.4rem;">
+                            <button class="btn btn-glass active" id="editorSubView-spots" onclick="switchEditorSubView('spots')" data-i18n="editor.tab_spots">🅿️ Bays</button>
+                            <button class="btn btn-glass" id="editorSubView-exclusions" onclick="switchEditorSubView('exclusions')" data-i18n="editor.tab_exclusions">🚫 Ignored Zones</button>
+                        </div>
+                        <span id="managerSpotCount" style="font-size:0.75rem;color:var(--neon-cyan);font-weight:700;">0 registered</span>
+                    </div>
+                    <div class="panel-content" style="max-height: calc(100vh - 170px); overflow-y: auto;">
+                        <table class="custom-table" id="managerSpotsTable">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="th.id">ID</th>
+                                    <th data-i18n="th.name">Name</th>
+                                    <th data-i18n="th.type">Type</th>
+                                    <th data-i18n="th.status">Status</th>
+                                    <th style="text-align:right;" data-i18n="th.actions">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="managerTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+
+                        <table class="custom-table" id="managerExclusionsTable" style="display:none;">
+                            <thead>
+                                <tr>
+                                    <th data-i18n="th.id">ID</th>
+                                    <th data-i18n="th.desc">Name / Description</th>
+                                    <th data-i18n="th.vertices">Vertices</th>
+                                    <th style="text-align:right;" data-i18n="th.actions">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="managerExclusionsTableBody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </section>
+
+    <!-- TAB 3: HOW IT WORKS (TECHNICAL ARCHITECTURE & GUIDE) -->
+    <section class="tab-view" id="tabView-guide">
+        <div class="guide-container">
+            <div class="guide-hero">
+                <div class="brand-icon-box" style="width:54px;height:54px;font-size:1.8rem;">🧠</div>
+                <div>
+                    <h2 style="font-size:1.45rem;font-weight:800;color:#fff;margin-bottom:0.35rem;" data-i18n="guide.hero_title">
+                        Architecture & Engineering of the Smart Parking Monitor
+                    </h2>
+                    <p style="color:var(--text-muted);font-size:0.88rem;line-height:1.5;" data-i18n="guide.hero_p">
+                        Discover how convolutional neural networks, Bayesian Kalman tracking, 2D/3D spatial geometry, and real-time hardware acceleration operate in synchronization.
+                    </p>
+                </div>
+            </div>
+
+            <div class="guide-grid">
+                <!-- CARD 1 -->
+                <div class="guide-card">
+                    <span class="guide-badge-tag" data-i18n="guide.c1_tag">Module 1 • Ingestion & Stream</span>
+                    <div class="guide-card-title">
+                        <span>📡</span>
+                        <span data-i18n="guide.c1_title">Decoupled Asynchronous Architecture</span>
+                    </div>
+                    <p data-i18n="guide.c1_p">
+                        To prevent server bottlenecks and maintain minimal CPU usage, video acquisition operates on an independent secondary worker thread.
+                    </p>
+                    <ul class="guide-feature-list">
+                        <li data-i18n-html="guide.c1_li1"><strong>Intelligent Frame Pacing:</strong> The capture loop regulates the refresh rate to ~25-30 FPS with active sleep intervals between frames.</li>
+                        <li data-i18n-html="guide.c1_li2"><strong>Async HTTP Streaming:</strong> Live video is dispatched via FastAPI async generators in <code>multipart/x-mixed-replace</code> format without blocking the REST API.</li>
+                        <li data-i18n-html="guide.c1_li3"><strong>INTER_AREA HD Sampling:</strong> Crisp scaling to 720p without aliasing or blur, preserving license plates and painted demarcation lines.</li>
+                    </ul>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="guide-card">
+                    <span class="guide-badge-tag" data-i18n="guide.c2_tag">Module 2 • Neural Network</span>
+                    <div class="guide-card-title">
+                        <span>🎯</span>
+                        <span data-i18n="guide.c2_title">Vehicle Detection with YOLOv8</span>
+                    </div>
+                    <p data-i18n="guide.c2_p">
+                        Computer vision utilizes deep neural networks trained on perimeter surveillance, processing <code>640x640</code> tensors in low-latency milliseconds.
+                    </p>
+                    <ul class="guide-feature-list">
+                        <li data-i18n-html="guide.c2_li1"><strong>Strict Multi-Class Filtering:</strong> Exclusively isolates cars, motorcycles, buses, and trucks, filtering out pedestrians, shopping carts, and static clutter.</li>
+                        <li data-i18n-html="guide.c2_li2"><strong>Balanced Confidence Threshold (0.22):</strong> Calibrated to capture distant vehicles, shadowed parking bays, or intense asphalt sun glare.</li>
+                        <li data-i18n-html="guide.c2_li3"><strong>Non-Maximum Suppression (NMS):</strong> Merges overlapping bounding proposals into high-precision spatial bounding boxes.</li>
+                    </ul>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="guide-card">
+                    <span class="guide-badge-tag" data-i18n="guide.c3_tag">Module 3 • Tracking</span>
+                    <div class="guide-card-title">
+                        <span>🔄</span>
+                        <span data-i18n="guide.c3_title">Persistent Tracking with ByteTrack</span>
+                    </div>
+                    <p data-i18n="guide.c3_p">
+                        In a parking facility, vehicles maneuver, halt, and encounter transient occlusions from pillars, trees, or pedestrians.
+                    </p>
+                    <ul class="guide-feature-list">
+                        <li data-i18n-html="guide.c3_li1"><strong>Kalman Filtering:</strong> Models the state vector (position, velocity, aspect ratio) to predict trajectory across frames.</li>
+                        <li data-i18n-html="guide.c3_li2"><strong>Two-Stage Association:</strong> Pairs high-confidence detections first, then rescues low-confidence proposals (partially occluded vehicles).</li>
+                        <li data-i18n-html="guide.c3_li3"><strong>Persistent Identity (#ID):</strong> Retains a consistent numeric identifier from vehicular entry until exit.</li>
+                    </ul>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="guide-card">
+                    <span class="guide-badge-tag" data-i18n="guide.c4_tag">Module 4 • Perspective & Space</span>
+                    <div class="guide-card-title">
+                        <span>📐</span>
+                        <span data-i18n="guide.c4_title">3D Geometry & Ground Footprint</span>
+                    </div>
+                    <p data-i18n="guide.c4_p">
+                        With tilted CCTV cameras, the roofline of a car in Bay 2 visually overlaps into Bay 1. Our algorithm solves this parallax distortion:
+                    </p>
+                    <ul class="guide-feature-list">
+                        <li data-i18n-html="guide.c4_li1"><strong>Ground Footprint Isolation:</strong> Discards the top 52% of the bounding box (floating roof and glass) to evaluate only the tire contact patch on asphalt.</li>
+                        <li data-i18n-html="guide.c4_li2"><strong>Axle Anchor Verification:</strong> Confirms the physical center of the wheels falls within the calibrated <code>Shapely</code> vector polygon.</li>
+                        <li data-i18n-html="guide.c4_li3"><strong>Exclusive 1-to-1 Assignment:</strong> A vehicle can never occupy two bays simultaneously; the bay with the highest ground overlap claims exclusive occupancy.</li>
+                    </ul>
+                </div>
+
+                <!-- CARD 5 -->
+                <div class="guide-card">
+                    <span class="guide-badge-tag" data-i18n="guide.c5_tag">Module 5 • Performance</span>
+                    <div class="guide-card-title">
+                        <span>🚫</span>
+                        <span data-i18n="guide.c5_title">Exclusion Zones (Pre-Masking)</span>
+                    </div>
+                    <p data-i18n="guide.c5_p">
+                        Allows defining regions where the model should omit all computation (such as external public roadways, pedestrian sidewalks, or off-property areas).
+                    </p>
+                    <ul class="guide-feature-list">
+                        <li data-i18n-html="guide.c5_li1"><strong>Pixel Zeroing:</strong> The excluded region is filled with zeros on the internal inference tensor, preventing redundant candidate proposals.</li>
+                        <li data-i18n-html="guide.c5_li2"><strong>Up to 300% Acceleration:</strong> Bypassing street traffic tracking reduces frame processing latency from 78ms to 26ms.</li>
+                        <li data-i18n-html="guide.c5_li3"><strong>Pristine Visual Feed:</strong> On the Live Monitor, the video stream remains 100% natural, without artificial black boxes or blemishes.</li>
+                    </ul>
+                </div>
+
+                <!-- CARD 6 -->
+                <div class="guide-card">
+                    <span class="guide-badge-tag" data-i18n="guide.c6_tag">Module 6 • Business Logic</span>
+                    <div class="guide-card-title">
+                        <span>⏱️</span>
+                        <span data-i18n="guide.c6_title">Hysteresis (Debounce) & Database</span>
+                    </div>
+                    <p data-i18n="guide.c6_p">
+                        A vehicle driving past an aisle must not mark a vacant parking bay as occupied for a transient fraction of a second.
+                    </p>
+                    <ul class="guide-feature-list">
+                        <li data-i18n-html="guide.c6_li1"><strong>Confirmation Window (4 frames):</strong> Requires continuous presence to confirm arrival, and sustained absence to confirm departure.</li>
+                        <li data-i18n-html="guide.c6_li2"><strong>SQLite Session Logging:</strong> On confirmed arrival, the session is logged with an ISO timestamp and activates the real-time dwell stopwatch.</li>
+                        <li data-i18n-html="guide.c6_li3"><strong>Audit & CSV Export:</strong> On departure, the total elapsed dwell time is finalized for billing, audits, or analysis in Power BI and Excel.</li>
+                    </ul>
+                </div>
+
+                <!-- CARD 7 -->
+                <div class="guide-card">
+                    <span class="guide-badge-tag" data-i18n="guide.c7_tag">Module 7 • Multi-GPU Hardware</span>
+                    <div class="guide-card-title">
+                        <span>⚡</span>
+                        <span data-i18n="guide.c7_title">DirectML & CUDA Acceleration</span>
+                    </div>
+                    <p data-i18n="guide.c7_p">
+                        The system automatically detects physical host GPUs at boot to compile the computation graph on the optimal acceleration engine:
+                    </p>
+                    <ul class="guide-feature-list">
+                        <li data-i18n-html="guide.c7_li1"><strong>AMD Radeon RX (DirectML):</strong> ONNX Runtime execution provider over DirectX 12 with native support for RDNA 2/3 hardware.</li>
+                        <li data-i18n-html="guide.c7_li2"><strong>NVIDIA GeForce / RTX (CUDA):</strong> Massive parallel acceleration across Tensor and CUDA cores for ONNX and PyTorch weights.</li>
+                        <li data-i18n-html="guide.c7_li3"><strong>Anti Spin-Wait Policy:</strong> Configures <code>OMP_WAIT_POLICY=PASSIVE</code> and <code>KMP_BLOCKTIME=0</code> to eliminate idle CPU spin-locks.</li>
+                    </ul>
+                </div>
+
+                <!-- CARD 8 -->
+                <div class="guide-card">
+                    <span class="guide-badge-tag" data-i18n="guide.c8_tag">Module 8 • Analytics</span>
+                    <div class="guide-card-title">
+                        <span>📊</span>
+                        <span data-i18n="guide.c8_title">Key Metrics & Turnover (KPIs)</span>
+                    </div>
+                    <p data-i18n="guide.c8_p">
+                        The dashboard centralizes operational intelligence in real time for efficient parking facility management:
+                    </p>
+                    <ul class="guide-feature-list">
+                        <li data-i18n-html="guide.c8_li1"><strong>Occupancy Rate:</strong> Dynamic percentage with a chromatic progress bar (emerald / amber / scarlet).</li>
+                        <li data-i18n-html="guide.c8_li2"><strong>Average Dwell Time:</strong> Continuous weighted duration monitoring of currently parked vehicles.</li>
+                        <li data-i18n-html="guide.c8_li3"><strong>Cumulative Daily Traffic:</strong> Real-time turnover counters and total vehicle throughput across operating hours.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL: CREATE SPOT (AFTER DRAWING) -->
+    <div class="modal-backdrop" id="spotModal">
+        <div class="modal-card" style="max-width: 440px;">
+            <div class="modal-card-header">
+                <h3 style="font-size:1.05rem;font-weight:800;color:#fff;" data-i18n="modal.spot_title">🅿️ Save Parking Bay</h3>
+                <button class="btn btn-glass btn-icon" onclick="closeModal('spotModal')">✕</button>
+            </div>
+            <div class="modal-card-body">
+                <div class="form-group">
+                    <label data-i18n="modal.spot_id_label">Bay Identifier (ID):</label>
+                    <input type="text" id="spotIdInput" class="form-input" placeholder="e.g. P-01, A-10" data-i18n-placeholder="modal.spot_id_ph">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="modal.spot_name_label">Visible Name / Label:</label>
+                    <input type="text" id="spotLabelInput" class="form-input" placeholder="e.g. Bay 1, VIP Entrance" data-i18n-placeholder="modal.spot_name_ph">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="modal.spot_type_label">Allowed Vehicle Type:</label>
+                    <select id="spotTypeInput" class="form-input">
+                        <option value="car" data-i18n="opt.car">🚗 Standard Car</option>
+                        <option value="motorcycle" data-i18n="opt.motorcycle">🏍️ Motorcycle</option>
+                        <option value="truck" data-i18n="opt.truck">🚚 Truck / Bus</option>
+                        <option value="disabled" data-i18n="opt.disabled">♿ Accessible Parking</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-card-footer">
+                <button class="btn btn-glass" onclick="closeModal('spotModal')" data-i18n="btn.cancel">Cancel</button>
+                <button class="btn btn-cyan" onclick="saveSpotFromModal()" data-i18n="btn.save_spot">Save Bay</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: CREATE EXCLUSION ZONE -->
+    <div class="modal-backdrop" id="exclusionModal">
+        <div class="modal-card" style="max-width: 440px;">
+            <div class="modal-card-header">
+                <h3 style="font-size:1.05rem;font-weight:800;color:#fff;" data-i18n="modal.excl_title">🚫 Save Exclusion / Ignored Zone</h3>
+                <button class="btn btn-glass btn-icon" onclick="closeModal('exclusionModal')">✕</button>
+            </div>
+            <div class="modal-card-body">
+                <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.8rem;" data-i18n="modal.excl_desc">
+                    The artificial intelligence model will completely ignore all vehicles inside this polygon.
+                </p>
+                <div class="form-group">
+                    <label data-i18n="modal.excl_id_label">Identifier (ID):</label>
+                    <input type="text" id="exclusionIdInput" class="form-input" placeholder="e.g. EZ-01, STREET" data-i18n-placeholder="modal.excl_id_ph">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="modal.excl_name_label">Descriptive Name / Label:</label>
+                    <input type="text" id="exclusionLabelInput" class="form-input" placeholder="e.g. Outside street, Sidewalk" data-i18n-placeholder="modal.excl_name_ph">
+                </div>
+            </div>
+            <div class="modal-card-footer">
+                <button class="btn btn-glass" onclick="closeModal('exclusionModal')" data-i18n="btn.cancel">Cancel</button>
+                <button class="btn btn-scarlet-outline" onclick="saveExclusionFromModal()" style="color:#ff6b8b;border-color:#ff2a5f;" data-i18n="btn.save_excl">Save Exclusion</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: EDIT SINGLE SPOT -->
+    <div class="modal-backdrop" id="editSpotModal">
+        <div class="modal-card" style="max-width: 440px;">
+            <div class="modal-card-header">
+                <h3 style="font-size:1.05rem;font-weight:800;color:#fff;" data-i18n="modal.edit_title">✏️ Edit Parking Bay</h3>
+                <button class="btn btn-glass btn-icon" onclick="closeModal('editSpotModal')">✕</button>
+            </div>
+            <div class="modal-card-body">
+                <input type="hidden" id="editSpotOldId">
+                <div class="form-group">
+                    <label data-i18n="modal.spot_id_label">Bay Identifier (ID):</label>
+                    <input type="text" id="editSpotIdInput" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="modal.spot_name_label">Visible Name / Label:</label>
+                    <input type="text" id="editSpotLabelInput" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label data-i18n="modal.spot_type_label">Bay Type:</label>
+                    <select id="editSpotTypeInput" class="form-input">
+                        <option value="car" data-i18n="opt.car">🚗 Standard Car</option>
+                        <option value="motorcycle" data-i18n="opt.motorcycle">🏍️ Motorcycle</option>
+                        <option value="truck" data-i18n="opt.truck">🚚 Truck / Bus</option>
+                        <option value="disabled" data-i18n="opt.disabled">♿ Accessible Parking</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-card-footer">
+                <button class="btn btn-glass" onclick="closeModal('editSpotModal')" data-i18n="btn.cancel">Cancel</button>
+                <button class="btn btn-cyan" onclick="saveEditedSpot()" data-i18n="btn.save_changes">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: REPORTS & HISTORICAL DATA -->
+    <div class="modal-backdrop" id="reportsModal">
+        <div class="modal-card" style="max-width: 900px;">
+            <div class="modal-card-header">
+                <div>
+                    <h3 style="font-size:1.15rem;font-weight:800;color:#fff;" data-i18n="rep.title">📊 Occupancy & Traffic Reports</h3>
+                    <p style="font-size:0.75rem;color:var(--text-muted);" data-i18n="rep.subtitle">Full historical logs of entries, exits, dwell times, and facility analytics</p>
+                </div>
+                <button class="btn btn-glass btn-icon" onclick="closeModal('reportsModal')">✕</button>
+            </div>
+            <div class="modal-card-body">
+                <!-- Summary Metrics Bar -->
+                <div class="kpi-deck" style="grid-template-columns: repeat(4, 1fr);">
+                    <div class="kpi-card">
+                        <span class="kpi-label" data-i18n="rep.total_historical">Total Vehicles</span>
+                        <span class="kpi-value val-cyan" id="repTotalHistorical">0</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label" data-i18n="rep.completed_stays">Completed Stays</span>
+                        <span class="kpi-value val-emerald" id="repCompletedStays">0</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label" data-i18n="rep.avg_duration">Avg Dwell Time</span>
+                        <span class="kpi-value val-white" id="repAvgDuration" style="font-size:1.3rem;">0s</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label" data-i18n="rep.busiest_hour">Peak Hour</span>
+                        <span class="kpi-value val-amber" id="repBusiestHour" style="font-size:1.2rem;">--</span>
+                    </div>
+                </div>
+
+                <!-- Breakdown -->
+                <div style="display:flex;align-items:center;gap:0.65rem;font-size:0.8rem;background:rgba(255,255,255,0.02);padding:0.5rem 0.85rem;border-radius:7px;">
+                    <span style="color:var(--text-muted);font-weight:700;" data-i18n="rep.types_label">Types:</span>
+                    <div id="repVehicleTypes" style="display:flex;gap:0.4rem;flex-wrap:wrap;"></div>
+                </div>
+
+                <!-- Action Bar -->
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+                    <input type="text" id="historySearchInput" placeholder="🔍 Filter by Bay or Vehicle ID..." oninput="filterHistoryTable()" class="form-input" style="width:320px;" data-i18n-placeholder="rep.search_ph">
+                    <button class="btn btn-emerald" onclick="downloadCsv()">
+                        📥 <span data-i18n="rep.download_btn">Download CSV / Excel</span>
+                    </button>
+                </div>
+
+                <!-- History Table -->
+                <div style="max-height:280px;overflow-y:auto;border:1px solid var(--border-subtle);border-radius:9px;">
+                    <table class="custom-table">
+                        <thead style="position:sticky;top:0;background:#0f1624;">
+                            <tr>
+                                <th data-i18n="th.bay">Bay</th>
+                                <th data-i18n="th.vehicle_id">Vehicle ID</th>
+                                <th data-i18n="th.type">Type</th>
+                                <th data-i18n="th.entry_time">Entry Time</th>
+                                <th data-i18n="th.exit_time">Exit Time</th>
+                                <th data-i18n="th.stay_duration">Dwell Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-card-footer">
+                <button class="btn btn-glass" onclick="closeModal('reportsModal')" data-i18n="btn.close">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: IP CAMERA / RTSP CONNECTION -->
+    <div class="modal-backdrop" id="ipModal">
+        <div class="modal-card" style="max-width: 440px;">
+            <div class="modal-card-header">
+                <h3 style="font-size:1.05rem;font-weight:800;color:#fff;" data-i18n="ip.title">🌐 Connect IP / RTSP Camera</h3>
+                <button class="btn btn-glass btn-icon" onclick="closeModal('ipModal')">✕</button>
+            </div>
+            <div class="modal-card-body">
+                <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.8rem;" data-i18n="ip.desc">
+                    Enter the full RTSP or HTTP video stream URL from your security camera:
+                </p>
+                <div class="form-group">
+                    <label data-i18n="ip.url_label">Stream URL:</label>
+                    <input type="text" id="ipCameraUrl" class="form-input" placeholder="rtsp://user:pass@192.168.1.50:554/stream1" data-i18n-placeholder="ip.url_ph">
+                </div>
+            </div>
+            <div class="modal-card-footer">
+                <button class="btn btn-glass" onclick="closeModal('ipModal')" data-i18n="btn.cancel">Cancel</button>
+                <button class="btn btn-cyan" onclick="connectIpCamera()" data-i18n="btn.connect">Connect Stream</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

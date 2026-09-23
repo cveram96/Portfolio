@@ -1,0 +1,178 @@
+[
+  {
+    "id": "P-01",
+    "label": "Plaza 1",
+    "spot_type": "car",
+    "points": [
+      [
+        955,
+        698
+      ],
+      [
+        1118,
+        691
+      ],
+      [
+        1153,
+        775
+      ],
+      [
+        955,
+        783
+      ],
+      [
+        960,
+        773
+      ],
+      [
+        955,
+        782
+      ]
+    ],
+    "is_occupied": false,
+    "vehicle_id": null,
+    "vehicle_type": null,
+    "entry_time": null,
+    "duration_seconds": 0
+  },
+  {
+    "id": "P-02",
+    "label": "Plaza 2",
+    "spot_type": "car",
+    "points": [
+      [
+        1128,
+        696
+      ],
+      [
+        1249,
+        687
+      ],
+      [
+        1303,
+        772
+      ],
+      [
+        1164,
+        770
+      ]
+    ],
+    "is_occupied": false,
+    "vehicle_id": null,
+    "vehicle_type": null,
+    "entry_time": null,
+    "duration_seconds": 0
+  },
+  {
+    "id": "P-03",
+    "label": "Plaza 3",
+    "spot_type": "car",
+    "points": [
+      [
+        1263,
+        694
+      ],
+      [
+        1362,
+        679
+      ],
+      [
+        1458,
+        760
+      ],
+      [
+        1317,
+        767
+      ]
+    ],
+    "is_occupied": false,
+    "vehicle_id": null,
+    "vehicle_type": null,
+    "entry_time": null,
+    "duration_seconds": 0
+  },
+  {
+    "id": "P-04",
+    "label": "Plaza 4",
+    "spot_type": "car",
+    "points": [
+      [
+        1389,
+        689
+      ],
+      [
+        1449,
+        675
+      ],
+      [
+        1560,
+        743
+      ],
+      [
+        1464,
+        759
+      ]
+    ],
+    "is_occupied": false,
+    "vehicle_id": null,
+    "vehicle_type": null,
+    "entry_time": null,
+    "duration_seconds": 0
+  },
+  {
+    "id": "P-05",
+    "label": "Plaza 5",
+    "spot_type": "car",
+    "points": [
+      [
+        1586,
+        740
+      ],
+      [
+        1668,
+        728
+      ],
+      [
+        1566,
+        661
+      ],
+      [
+        1459,
+        670
+      ]
+    ],
+    "is_occupied": false,
+    "vehicle_id": null,
+    "vehicle_type": null,
+    "entry_time": null,
+    "duration_seconds": 0
+  },
+  {
+    "id": "P-06",
+    "label": "Plaza 6",
+    "spot_type": "car",
+    "points": [
+      [
+        1673,
+        724
+      ],
+      [
+        1753,
+        708
+      ],
+      [
+        1640,
+        659
+      ],
+      [
+        1573,
+        664
+      ]
+    ],
+    "is_occupied": false,
+    "vehicle_id": null,
+    "vehicle_type": null,
+    "entry_time": null,
+    "duration_seconds": 0
+  }
+]

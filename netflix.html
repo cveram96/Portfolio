@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Netflix Report - Series and Movies</title>
+    <title>Netflix Report — Series and Movies</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-        <!-- Navigation bar -->
+    <!-- Navigation bar -->
     <nav>
         <ul>
             <li><a href="index.html" data-i18n="nav.home">Home</a></li>
@@ -18,20 +18,152 @@
         </ul>
     </nav>
 
-
-    <!-- Main container -->
+    <!-- Intro Section -->
     <div class="container">
         <div class="intro">
             <h1 data-i18n="nflx.intro.title">Netflix Series and Movies Report</h1>
             <h2 data-i18n="nflx.intro.subtitle">Comprehensive catalog analysis</h2>
-      <ul>
+            <ul>
                 <li data-i18n="nflx.intro.li1">Series and movies analysis</li>
                 <li data-i18n="nflx.intro.li2">Technologies: Power BI, Power Query, DAX</li>
+                <li data-i18n="nflx.intro.li3">Data Pipeline: Ingestion &amp; cleaning in Power Query (M), semantic modeling in Analysis Services</li>
+                <li data-i18n="nflx.intro.li4">Semantic Model: 5 tables, 14 DAX measures, dynamic Field Parameters, and custom color scales</li>
             </ul>
         </div>
     </div>
 
-    <!-- Titles count section -->
+    <!-- Executive Business Findings Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2 data-i18n="nflx.findings.title">Key Business Findings &amp; Strategic Insights</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.2rem; margin-top: 1.2rem;">
+                <!-- Finding 1 -->
+                <div class="metric-card" style="padding: 1.3rem; background: rgba(255, 255, 255, 0.02); border-radius: 8px; border-left: 4px solid var(--secondary);">
+                    <h4 style="color: var(--secondary-light); margin-bottom: 0.6rem;" data-i18n="nflx.find1.title">1. Format Distribution vs. Engagement Paradox</h4>
+                    <p style="font-size: 0.93rem; color: var(--gray);" data-i18n="nflx.find1.desc">While feature films constitute the majority of unique catalog titles (~70%), television series generate significantly higher average votes and viewer engagement per title (VPT). This quantitative disparity highlights that episodic content drives sustained subscriber retention, recurring platform visits, and higher customer lifetime value (LTV).</p>
+                </div>
+
+                <!-- Finding 2 -->
+                <div class="metric-card" style="padding: 1.3rem; background: rgba(255, 255, 255, 0.02); border-radius: 8px; border-left: 4px solid var(--accent);">
+                    <h4 style="color: var(--accent-glow); margin-bottom: 0.6rem;" data-i18n="nflx.find2.title">2. Quality &amp; Rating Spread (Bell-Shaped Clustering)</h4>
+                    <p style="font-size: 0.93rem; color: var(--gray);" data-i18n="nflx.find2.desc">The IMDb audience rating distribution exhibits a normal bell-shaped curve with over 65% of all titles concentrated in the 6.0–7.5 score band. High-tier critically acclaimed productions (ratings &gt;= 8.0) represent a scarce premium segment (&lt;8% of catalog) that serves primarily as a subscriber acquisition and brand prestige driver, while mid-tier titles provide everyday viewing volume.</p>
+                </div>
+
+                <!-- Finding 3 -->
+                <div class="metric-card" style="padding: 1.3rem; background: rgba(255, 255, 255, 0.02); border-radius: 8px; border-left: 4px solid var(--primary-light);">
+                    <h4 style="color: var(--primary-light); margin-bottom: 0.6rem;" data-i18n="nflx.find3.title">3. International Expansion &amp; Regional Production Hubs</h4>
+                    <p style="font-size: 0.93rem; color: var(--gray);" data-i18n="nflx.find3.desc">Geographic mapping reveals the United States as the historical core contributor, but highlights aggressive content diversification across emerging international hubs: India (high-volume Bollywood releases), United Kingdom, South Korea (K-drama surge), and Japan (Anime). This illustrates Netflix's strategic pivot toward 'local-for-local' content that simultaneously achieves cross-border viral appeal.</p>
+                </div>
+
+                <!-- Finding 4 -->
+                <div class="metric-card" style="padding: 1.3rem; background: rgba(255, 255, 255, 0.02); border-radius: 8px; border-left: 4px solid var(--success);">
+                    <h4 style="color: var(--success); margin-bottom: 0.6rem;" data-i18n="nflx.find4.title">4. Catalog Modernity &amp; Originals Pivot</h4>
+                    <p style="font-size: 0.93rem; color: var(--gray);" data-i18n="nflx.find4.desc">Temporal release trends show a steep exponential concentration of titles released after 2015. This reflects Netflix's structural shift away from licensing costly legacy third-party studio catalogs toward producing proprietary 'Netflix Originals', insulating the business from studio content clawbacks and intellectual property exclusivity wars.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DAX Modeling & Engineering Architecture Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2 data-i18n="nflx.dax.title">DAX Modeling &amp; Engineering Architecture</h2>
+            <p data-i18n="nflx.dax.subtitle">Production DAX measures implemented in the tabular semantic model (Calculations table):</p>
+            
+            <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem;">
+                <!-- DAX Block 1 -->
+                <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--card-border); border-radius: 8px; padding: 1.2rem;">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.4rem;" data-i18n="nflx.dax.m1_title">Catalog Volume &amp; Basic Aggregations</h4>
+                    <p style="font-size: 0.9rem; color: var(--gray-muted); margin-bottom: 0.8rem;" data-i18n="nflx.dax.m1_desc">Core scalar aggregations computing distinct titles, total audience votes, and average ratings across active filter contexts.</p>
+                    <pre><code>// Core Catalog Aggregations
+# Titles = DISTINCTCOUNT(netflix_list[ID])
+
+Avg Rating = AVERAGE(netflix_list[Rating])
+
+# Votes = SUM(netflix_list[Votes])
+
+# Votes Per Title = DIVIDE([# Votes], [# Titles])</code></pre>
+                </div>
+
+                <!-- DAX Block 2 -->
+                <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--card-border); border-radius: 8px; padding: 1.2rem;">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.4rem;" data-i18n="nflx.dax.m2_title">Context-Filtered Segmentations (Movies vs. Television)</h4>
+                    <p style="font-size: 0.9rem; color: var(--gray-muted); margin-bottom: 0.8rem;" data-i18n="nflx.dax.m2_desc">Measures leveraging CALCULATE and FILTER to evaluate performance metrics independently across Movies and Television series.</p>
+                    <pre><code>// Format-Specific Context Segmentation
+Movie Titles = 
+CALCULATE(
+    'Calculations'[# Titles], 
+    FILTER(netflix_list, netflix_list[Listing Types] = "Movie")
+)
+
+TV Titles = 
+CALCULATE(
+    'Calculations'[# Titles], 
+    FILTER(netflix_list, netflix_list[Listing Types] = "Television")
+)
+
+Movie Avg Rating = 
+CALCULATE(
+    [Avg Rating], 
+    FILTER(netflix_list, netflix_list[Listing Types] = "Movie")
+)
+
+TV Avg Rating = 
+CALCULATE(
+    [Avg Rating], 
+    FILTER(netflix_list, netflix_list[Listing Types] = "Television")
+)</code></pre>
+                </div>
+
+                <!-- DAX Block 3 -->
+                <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--card-border); border-radius: 8px; padding: 1.2rem;">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.4rem;" data-i18n="nflx.dax.m3_title">Dynamic KPI Labeling &amp; Engagement Ratios</h4>
+                    <p style="font-size: 0.9rem; color: var(--gray-muted); margin-bottom: 0.8rem;" data-i18n="nflx.dax.m3_desc">Composite string measures computing percentage of total votes and average Votes Per Title (VPT) with custom number formatting.</p>
+                    <pre><code>// Dynamic KPI Labeling with Execution Variables
+% Movie Votes Label = 
+VAR percentoftotal = ROUND(DIVIDE([Movie Votes], [# Votes]), 2) * 100
+VAR votespertitle = FORMAT(ROUND(DIVIDE([Movie Votes], [Movie Titles]), 0), "#,##")
+RETURN "(" &amp; percentoftotal &amp; "%) | " &amp; votespertitle &amp; " VPT."
+
+% Tv Votes Label = 
+VAR percentoftotal = ROUND(DIVIDE([TV Votes], [# Votes]), 2) * 100
+VAR votespertitle = FORMAT(ROUND(DIVIDE([TV Votes], [TV Titles]), 0), "#,##")
+RETURN "(" &amp; percentoftotal &amp; "%) | " &amp; votespertitle &amp; " VPT."</code></pre>
+                </div>
+
+                <!-- DAX Block 4 -->
+                <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--card-border); border-radius: 8px; padding: 1.2rem;">
+                    <h4 style="color: var(--secondary); margin-bottom: 0.4rem;" data-i18n="nflx.dax.m4_title">Conditional Formatting &amp; Dynamic Color Palette</h4>
+                    <p style="font-size: 0.9rem; color: var(--gray-muted); margin-bottom: 0.8rem;" data-i18n="nflx.dax.m4_desc">Hex color scale generators based on SWITCH(TRUE()) logic to dynamically shade visual elements from neutral grey to signature Netflix red (#E50914) with accessible font contrast.</p>
+                    <pre><code>// Dynamic Conditional Formatting (10-Tier Palette Ramp)
+Dynamic Rating Fill = 
+SWITCH(
+    TRUE(),
+    [Avg Rating] &gt;= 0 &amp;&amp; [Avg Rating] &lt; 1, "#EBEAEA",
+    [Avg Rating] &gt;= 1 &amp;&amp; [Avg Rating] &lt; 2, "#EAD1D2",
+    [Avg Rating] &gt;= 2 &amp;&amp; [Avg Rating] &lt; 3, "#EAB8BA",
+    [Avg Rating] &gt;= 3 &amp;&amp; [Avg Rating] &lt; 4, "#E99FA3",
+    [Avg Rating] &gt;= 4 &amp;&amp; [Avg Rating] &lt; 5, "#E8868B",
+    [Avg Rating] &gt;= 5 &amp;&amp; [Avg Rating] &lt; 6, "#E86D73",
+    [Avg Rating] &gt;= 6 &amp;&amp; [Avg Rating] &lt; 7, "#E7545B",
+    [Avg Rating] &gt;= 7 &amp;&amp; [Avg Rating] &lt; 8, "#E63B44",
+    [Avg Rating] &gt;= 8 &amp;&amp; [Avg Rating] &lt; 9, "#E6222C",
+    [Avg Rating] &gt;= 9 &amp;&amp; [Avg Rating] &lt;= 10, "#E50914"
+)
+
+Dynamic Rating Font = 
+SWITCH(
+    TRUE(),
+    [Avg Rating] &gt;= 0 &amp;&amp; [Avg Rating] &lt; 6, "#000000",
+    [Avg Rating] &gt;= 6 &amp;&amp; [Avg Rating] &lt;= 10, "#FFFFFF"
+)</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Dashboard Section -->
     <div class="container" id="explicacion">
         <div class="project-single">
             <h3 data-i18n="nflx.report.title">Report</h3>
@@ -44,21 +176,21 @@
                 <li data-i18n="nflx.report.li5">Population pyramid chart (Ratings distribution)</li>
                 <li data-i18n="nflx.report.li6">Data table with conditional formatting</li>
             </ul>
-
-
         </div>
     </div>
 
-<div style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100vh;">
-    <iframe title="Netflix" 
-        style="width: 60%; height: 90vh; border: none;" 
-        src="https://app.powerbi.com/view?r=eyJrIjoiZjQ3OTI1NTMtZGZkYi00Zjc3LWI1YmItYzBlZDQ3MDRkN2M5IiwidCI6IjE2YWY2YjQ1LTAwYzUtNGJhMy05ZDRjLThiZmExNmU0MzYwMyIsImMiOjR9" 
-        allowFullScreen="true">
-    </iframe>
-</div>
+    <!-- Power BI Embed Container -->
+    <div class="container" style="margin-bottom: 2rem;">
+        <div style="position: relative; width: 100%; aspect-ratio: 16/9; max-height: 850px; border-radius: 8px; overflow: hidden; border: 1px solid var(--card-border); box-shadow: 0 8px 32px rgba(0,0,0,0.5);">
+            <iframe title="Netflix" 
+                style="width: 100%; height: 100%; border: none;" 
+                src="https://app.powerbi.com/view?r=eyJrIjoiZjQ3OTI1NTMtZGZkYi00Zjc3LWI1YmItYzBlZDQ3MDRkN2M5IiwidCI6IjE2YWY2YjQ1LTAwYzUtNGJhMy05ZDRjLThiZmExNmU0MzYwMyIsImMiOjR9" 
+                allowFullScreen="true">
+            </iframe>
+        </div>
+    </div>
 
-
-    <!-- Project files section -->
+    <!-- Project Files Section -->
     <div class="container">
         <div class="project-single">
             <h3 data-i18n="nflx.files.title">Project Files</h3>
@@ -67,28 +199,29 @@
             <div class="files-link-container">
                 <a href="https://github.com/cveram96/Portfolio/blob/main/Files/Netflix.pbix" 
                    class="project-files-link" target="_blank" rel="noopener noreferrer" data-i18n="nflx.files.link">
-                    View full project files
+                    View full project files (.pbix)
                 </a>
                 
                 <div class="file-types">
                     <span class="file-badge">.PBIX</span>
+                    <span class="file-badge">DAX</span>
+                    <span class="file-badge">Power Query (M)</span>
+                    <span class="file-badge">Tabular Model</span>
                 </div>
             </div>
         </div>
     </div>
 
-
     <!-- Footer -->
-<footer>
-    <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-        <p style="margin: 0;">Developed by Christian Vera - 2025</p>
-    
-        <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
-            <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">LinkedIn</button>
-        </a>
-    </div>
-</footer>
-    
+    <footer>
+        <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+            <p style="margin: 0;" data-i18n="footer.dev">Developed by Christian Vera - 2025</p>
+        
+            <a href="https://www.linkedin.com/in/christian-david-vera-mendivelso-659524210/" target="_blank" style="text-decoration: none;">
+                <button style="background-color: #0077B5; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer;">LinkedIn</button>
+            </a>
+        </div>
+    </footer>
 
     <!-- Multilingual i18n Scripts -->
     <script src="translations.js"></script>
