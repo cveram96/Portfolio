@@ -1,82 +1,82 @@
-# 🅿️ Smart Parking Monitor | Visión Artificial e Inteligencia Artificial
+# Smart Parking Monitor | Computer Vision & Artificial Intelligence
 
-Sistema inteligente de visión por computador y analítica de estacionamientos en tiempo real. Permite crear y administrar plazas de parqueo interactivamente sobre el video (con corrección de perspectiva por 4 esquinas o rectángulos rápidos), trackear vehículos (autos, motos, camiones, buses), registrar tiempos exactos de ingreso y permanencia, conectar múltiples fuentes (videos locales, webcams con nombres reales, cámaras IP RTSP) y exportar reportes detallados en CSV/Excel.
+Intelligent real-time computer vision and parking analytics system. Allows operators to interactively create and manage parking bays directly over video streams (with 4-corner perspective correction or quick rectangles), track vehicles (cars, motorcycles, trucks, buses), record exact entry and dwell times, connect multiple video sources (local sample videos, USB webcams with native device names, RTSP IP cameras), and export detailed analytics reports to CSV and Excel.
 
-Optimizado con aceleración multi-hardware para **GPU AMD (Radeon RX 6700 XT vía Microsoft DirectML)**, **GPU NVIDIA (CUDA)** y **CPU**.
-
----
-
-## 🌟 Características Principales
-
-1. **Gestión Interactiva de Plazas de Parqueo (Spots)**:
-   - **Modo 4 Esquinas / Perspectiva**: Permite trazar cajones de estacionamiento en cámaras con ángulo inclinado marcando 4 puntos en el video.
-   - **Modo Rectángulo Rápido**: Trazado instantáneo para cámaras cenitales o planos rectos.
-   - **Plantilla Rápida de Ejemplo**: Crea 6 plazas instantáneamente para pruebas con un solo clic.
-   - **Persistencia Total**: Plazas guardadas en SQLite y JSON; no se pierden al reiniciar.
-   - **Indicadores en Vivo sobre el Video**:
-     - 🟢 **Verde**: Plaza Libre / Disponible.
-     - 🔴 **Rojo**: Plaza Ocupada, mostrando `#ID del Vehículo` y cronómetro de permanencia en tiempo real (`P-01 [#4] 14m 20s`).
-
-2. **Detección y Tracking de Vehículos (YOLOv8 + ByteTrack)**:
-   - Identificación de clases vehiculares: automóvil, motocicleta, camión y autobús.
-   - Identificador único (`#1`, `#2`, etc.) persistente mediante filtro de Kalman y concordancia IoU.
-   - Asignación inteligente a plazas mediante solapamiento geométrico poligonal (Shapely).
-   - Filtro de histéresis anti-falsos positivos: evita que autos en movimiento por el pasillo marquen una plaza como ocupada por error.
-
-3. **Métricas Temporales y Cronómetro en Tiempo Real**:
-   - Registro exacto de fecha y hora de ingreso a la plaza.
-   - Cronómetro activo segundo a segundo para cada vehículo estacionado.
-   - Registro de hora de salida y duración total de la estancia.
-
-4. **Multi-Fuente de Video**:
-   - **Videos locales / muestras**: Clips incluidos en la carpeta `samples/` que se reproducen en bucle continuo.
-   - **Subida de videos**: Sube tus propios archivos de video directamente desde la interfaz web.
-   - **Cámaras Web Locales**: Detección y listado de los nombres oficiales de los dispositivos en Windows (DirectShow).
-   - **Cámaras IP / RTSP / HTTP**: Conexión a cámaras de seguridad IP en red local o remota (Hikvision, Dahua, Tapo, Axis, etc.).
-
-5. **Optimización Multi-Hardware**:
-   - **GPU AMD Radeon** (ej. RX 6700 XT): Inferencia acelerada mediante ONNX Runtime con Microsoft DirectML (DirectX 12).
-   - **GPU NVIDIA**: Inferencia mediante PyTorch con CUDA.
-   - **CPU**: Inferencia multi-hilo con optimizaciones vectoriales.
-   - Selector en caliente en el panel superior para alternar motores y ver FPS en tiempo real.
-
-6. **Reportes y Analítica Exportable**:
-   - **Exportación en CSV / Excel**: Descarga de reportes detallados con ID de sesión, plaza, ID de vehículo, tipo, fecha/hora de ingreso, fecha/hora de salida y tiempo de permanencia.
-   - Métricas ejecutivas: tasa de ocupación actual (%), rotación de vehículos, tiempo promedio de estacionamiento y hora pico.
-   - Buscador y filtro en vivo dentro de la plataforma.
+Optimized with multi-hardware acceleration for **AMD GPUs (Radeon RX 6700 XT via Microsoft DirectML)**, **NVIDIA GPUs (CUDA)**, and **multi-threaded CPU**.
 
 ---
 
-## 🚀 Inicio Rápido
+## Key Features
 
-### Opción 1: Con un solo clic (Recomendado)
-Haz doble clic sobre el archivo **`iniciar.bat`**.
-Liberará automáticamente el puerto 8000, iniciará el servidor de visión y **abrirá tu navegador en `http://localhost:8000`**.
+1. **Interactive Parking Bay Management (Spots)**:
+   - **4-Corner / Perspective Mode**: Allows tracing parking bays in angled surveillance camera feeds by placing 4 anchor points directly on the video canvas.
+   - **Quick Rectangle Mode**: Instant rectangular bounding boxes for top-down or orthogonal camera angles.
+   - **Quick Preset Template**: Instantly loads 6 calibrated bays for rapid testing with a single click.
+   - **Full Persistence**: Bay coordinates are persisted in both SQLite (`parking.db`) and JSON (`data/spots.json`); configurations are preserved across application restarts.
+   - **Live Video Indicators**:
+     - **Green**: Vacant / Available Bay.
+     - **Red**: Occupied Bay, displaying the detected Vehicle ID and real-time dwell timer (e.g., `P-01 [#4] 14m 20s`).
 
-### Opción 2: Con PowerShell
+2. **Vehicle Detection & Tracking (YOLOv8 + ByteTrack)**:
+   - Multi-class vehicle classification: car, motorcycle, truck, and bus.
+   - Persistent unique vehicle IDs (`#1`, `#2`, etc.) maintained via Kalman filtering and IoU association.
+   - Spatial spot assignment using geometric polygon intersection (Shapely).
+   - Hysteresis anti-false-positive filter: prevents moving transit vehicles in lanes from momentarily triggering false occupancy states.
+
+3. **Temporal Metrics & Real-Time Dwell Timer**:
+   - Exact entry date and timestamp logging upon bay occupancy.
+   - Active second-by-second dwell timer for each parked vehicle.
+   - Exit timestamp logging and total session duration calculation upon vacancy.
+
+4. **Multi-Source Video Feeds**:
+   - **Local Video Files / Samples**: Pre-loaded clips in the `samples/` directory with seamless continuous looping.
+   - **Video Upload**: Operators can upload custom MP4/AVI video files directly through the web interface.
+   - **Local USB Webcams**: Automatic enumeration and display of native device names on Windows (DirectShow).
+   - **IP / RTSP / HTTP Cameras**: Direct connection to commercial network IP surveillance cameras (Hikvision, Dahua, Tapo, Axis, etc.).
+
+5. **Multi-Hardware Acceleration**:
+   - **AMD Radeon GPUs** (e.g., RX 6700 XT): Hardware-accelerated inference via ONNX Runtime with Microsoft DirectML (DirectX 12).
+   - **NVIDIA GPUs**: PyTorch inference accelerated via CUDA.
+   - **CPU**: Multi-threaded execution with vectorized math optimizations.
+   - Hot-swappable execution engine selector in the top navbar with live FPS telemetry.
+
+6. **Exportable Reports & Analytics**:
+   - **CSV / Excel Export**: Download detailed historical session records including Session ID, Bay ID, Vehicle ID, Vehicle Type, Entry Timestamp, Exit Timestamp, and Total Dwell Duration.
+   - Executive KPIs: Current occupancy rate (%), vehicle turnover, average parking duration, and peak hours.
+   - Real-time search and filter tools within the web dashboard.
+
+---
+
+## Quick Start
+
+### Option 1: One-Click Launcher (Recommended)
+Double-click the **`iniciar.bat`** file.
+It automatically terminates any conflicting processes on port 8000, launches the FastAPI vision server, and **opens your default browser at `http://localhost:8000`**.
+
+### Option 2: Using PowerShell
 ```powershell
 .\iniciar.ps1
 ```
 
-### Opción 3: Manual desde la terminal
+### Option 3: Manual Terminal Execution
 ```bash
 .venv\Scripts\python.exe run.py
 ```
 
 ---
 
-## 📐 Cómo Dibujar y Configurar Plazas
+## How to Draw and Configure Parking Bays
 
-1. En la barra superior, pulsa **"➕ Crear Plaza (4 Puntos)"**.
-2. Haz 4 clics sobre el video en las esquinas de la plaza de parqueo siguiendo la perspectiva del cajón.
-3. Se abrirá una ventana para ingresar el identificador (ej: `P-01`, `A-10`), el nombre visible y el tipo de vehículo permitido (Auto, Moto, etc.).
-4. Pulsa **"Guardar Plaza"**. ¡Listo! El sistema comenzará a monitorear esa plaza inmediatamente.
-5. También puedes pulsar **"📐 Plantilla Rápida"** para cargar 6 plazas preconfiguradas sobre el video de prueba.
+1. On the top navigation bar, click **"Create Bay (4 Points)"**.
+2. Click 4 times on the video feed at the corners of the parking bay, following the perspective of the road markings.
+3. A configuration modal will appear to set the identifier (e.g., `P-01`, `A-10`), the display label, and permitted vehicle types (Car, Motorcycle, etc.).
+4. Click **"Save Bay"**. The system begins monitoring the new bay immediately.
+5. Alternatively, click **"Quick Template"** to load 6 pre-configured bays mapped to the sample video.
 
 ---
 
-## 📊 Descarga de Reportes
+## Exporting Analytics Reports
 
-1. Pulsa el botón verde **"📊 Reportes"** en la barra superior.
-2. Consulta el resumen de vehículos totales, horas pico y permanencia promedio.
-3. Haz clic en **"📥 Descargar Reporte en CSV"** para abrirlo en Microsoft Excel, Power BI o Google Sheets.
+1. Click the **"Reports"** button on the top navigation bar.
+2. Review aggregated metrics: total vehicles served, peak occupancy hours, and average dwell duration.
+3. Click **"Download CSV Report"** to export the dataset for analysis in Microsoft Excel, Power BI, or Python.
