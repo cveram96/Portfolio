@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0NCSQ1FW3J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-0NCSQ1FW3J');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Primary Meta Tags -->
@@ -534,7 +543,7 @@ LIMIT 6;</code></pre>
         <div class="section-block">
             <h2 data-i18n-html="sql.p4.title">Part 4: Database Performance &amp; Query Optimization</h2>
             
-            <p>In production databases with millions of rows, unindexed queries cause heavy table scans and server I/O bottlenecks. We examine execution plans using <code>EXPLAIN QUERY PLAN</code>:</p>
+            <p data-i18n-html="sql.p4.desc">In production databases with millions of rows, unindexed queries cause heavy table scans and server I/O bottlenecks. We examine execution plans using <code>EXPLAIN QUERY PLAN</code>:</p>
 
             <pre><code>EXPLAIN QUERY PLAN
 SELECT c.CompanyName, COUNT(DISTINCT o.Id) AS Orders
