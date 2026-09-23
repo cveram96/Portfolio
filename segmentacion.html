@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-        <!-- Navigation bar -->
+    <!-- Navigation bar -->
     <nav>
         <ul>
             <li><a href="index.html" data-i18n="nav.home">Home</a></li>
@@ -75,6 +75,7 @@
                 </li>
                 <li data-i18n="seg.method.step2_norm">Feature normalization with MinMaxScaler</li>
                 <li data-i18n="seg.method.step2_filter">Filtered out 25% of transactions without CustomerID</li>
+                <li data-i18n-html="seg.prep.skew_desc"><strong>Methodological Insight:</strong> Frequency and Monetary variables in e-commerce exhibit severe positive skewness (heavy right tails and extreme outliers). In contrast, Recency is bounded. When applying <code>MinMaxScaler</code> directly without a log transform (e.g., <code>np.log1p</code>), extreme spenders compress the 0–1 range for typical buyers, causing Recency to dominate Euclidean distance calculations. In production customer analytics, applying a logarithmic transformation prior to scaling normalizes variances and yields more balanced, behaviourally distinct clusters.</li>
             </ul>
             
             <h3 data-i18n="seg.method.step3_title">3. Modeling with K-Means</h3>
@@ -167,14 +168,14 @@
             <h2 data-i18n="seg.viz.title">Cluster Visualization and Analysis</h2>
             
             <h3 data-i18n="seg.viz.segments_title">Identified Segments:</h3>
-            <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Kmeans/Clusters_Kmeans.png?raw=true" 
+            <img src="Files/images/Kmeans/Clusters_Kmeans.png" 
                  alt="Identified RFM clusters"
-                 style="max-width: 100%; height: auto; margin: 20px 0;">
+                 style="max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
             
             <h3 data-i18n="seg.viz.elbow_title">Elbow Method:</h3>
-            <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/Kmeans/Codo_Kmeans.png?raw=true" 
+            <img src="Files/images/Kmeans/Codo_Kmeans.png" 
                  alt="Optimal number of K"
-                 style="max-width: 100%; height: auto; margin: 20px 0;">
+                 style="max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
         </div>
     </div>
 
@@ -232,14 +233,13 @@
             <div class="files-link-container">
                 <a href="https://github.com/cveram96/Portfolio/blob/main/Files/kmeans.ipynb" 
                    class="project-files-link" 
-                   target="_blank"
+                   target="_blank" 
                    rel="noopener noreferrer">
                     View full project files
                 </a>
                 
                 <div class="file-types">
                     <span class="file-badge">Jupyter Notebook</span>
-                    <span class="file-badge">PDF</span>
                 </div>
             </div>
         </div>
@@ -256,13 +256,8 @@
         </div>
     </footer>
 
-
     <!-- Multilingual i18n Scripts -->
     <script src="translations.js"></script>
     <script src="i18n.js"></script>
 </body>
 </html>
-    
-</body>
-</html>
-

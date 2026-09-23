@@ -194,19 +194,19 @@
             <h2 data-i18n="churn.charts.title">Result Charts</h2>
             
             <h3 data-i18n="churn.charts.rf_title">Most Important Features - Random Forest with SMOTEENN:</h3>
-            <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/churn/RF_Smoteen.png?raw=true" 
+            <img src="Files/images/churn/RF_Smoteen.png" 
                  alt="Random Forest feature importance"
-                 style="max-width: 100%; height: auto; margin: 20px 0;">
+                 style="max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
             
             <h3 data-i18n="churn.charts.roc_rf_title">ROC Curve - Random Forest with SMOTEENN:</h3>
-            <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/churn/Roc_Smoteen_RF.png?raw=true" 
+            <img src="Files/images/churn/Roc_Smoteen_RF.png" 
                  alt="Random Forest ROC curve"
-                 style="max-width: 100%; height: auto; margin: 20px 0;">
+                 style="max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
             
             <h3 data-i18n="churn.charts.roc_mlp_title">ROC Curve - Multi-Layer Perceptron with RandomUnderSampler:</h3>
-            <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/churn/Perceptron_ROC%20RandomUnderSampler.png?raw=true" 
+            <img src="Files/images/churn/Perceptron_ROC%20RandomUnderSampler.png" 
                  alt="MLP ROC curve"
-                 style="max-width: 100%; height: auto; margin: 20px 0;">
+                 style="max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
         </div>
     </div>
 
@@ -231,8 +231,8 @@
             
             <h3 data-i18n="churn.concl.comp_title">Model Comparison</h3>
             <ul>
-                <li data-i18n-html="churn.concl.c1"><strong>Random Forest</strong> offers a better overall balance between precision and recall</li>
-                <li data-i18n-html="churn.concl.c2"><strong>MLP</strong> achieves higher recall but with more false positives</li>
+                <li data-i18n-html="churn.concl.c1"><strong>Random Forest (SMOTEENN)</strong> maximizes churn detection with higher recall (77.7%), capturing more customers at risk with minimal false negatives.</li>
+                <li data-i18n-html="churn.concl.c2"><strong>MLP (RandomUnderSampler)</strong> achieves slightly higher precision (54.2%), resulting in a lower false alarm rate with a competitive 76.3% recall.</li>
                 <li data-i18n="churn.concl.c3">SMOTEENN and RandomUnderSampler are the best balancing techniques</li>
             </ul>
             

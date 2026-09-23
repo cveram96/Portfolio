@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-        <!-- Navigation bar -->
+    <!-- Navigation bar -->
     <nav>
         <ul>
             <li><a href="index.html" data-i18n="nav.home">Home</a></li>
@@ -26,7 +26,7 @@
             <ul>
                 <li data-i18n="abt.intro.li1">Dataset: Udacity Landing Page Experiment (290,584 unique users)</li>
                 <li data-i18n="abt.intro.li2">Primary Metric: Conversion Rate (Binary Proportion)</li>
-                <li data-i18n-html="abt.intro.li3">Methodology: SRM Validation (&chi;&sup2;), Two-Sample Z-Test, NormalIndPower Analysis</li>
+                <li data-i18n-html="abt.intro.li3">Methodology: SRM Validation (&chi;&sup2;), CUPED Variance Reduction, Two-Sample Z-Test &amp; Power Sizing</li>
                 <li data-i18n="abt.intro.li4">Technologies: Python, pandas, numpy, scipy.stats, statsmodels, matplotlib</li>
             </ul>
         </div>
@@ -72,13 +72,13 @@
             <h3 data-i18n-html="abt.method.s1_title">1. Data Cleaning &amp; User Deduplication</h3>
             <p data-i18n="abt.method.s1_p">We filtered out records with technical delivery mismatches (e.g., treatment users served old pages) and deduplicated repeated user IDs to ensure that observations satisfied the Independent and Identically Distributed (I.I.D.) condition, yielding 290,584 distinct users.</p>
             
-            <h3 data-i18n="abt.method.s2_title">2. Sample Ratio Mismatch (SRM) Test</h3>
+            <h3 data-i18n-html="abt.method.s2_title">2. Sample Ratio Mismatch (SRM) Test</h3>
             <p data-i18n-html="abt.method.s2_p">Prior to evaluating conversion metrics, we performed a <strong>Chi-Square (&chi;&sup2;) Goodness-of-Fit Test</strong> to confirm that traffic allocation operated at an unbiased 50:50 ratio. The test confirmed no allocation distortion (&chi;&sup2; = 0.0045, p = 0.947), validating that the experimental randomization was untainted.</p>
 
-            <h3 data-i18n="abt.method.s3_title">3. Inferential Model: Two-Sample Z-Test for Proportions</h3>
+            <h3 data-i18n-html="abt.method.s3_title">3. Inferential Model: Two-Sample Z-Test for Proportions</h3>
             <p data-i18n="abt.method.s3_p">For independent binary conversion events across large populations, the Two-Sample Z-Test is the mathematically appropriate model (superior to a standard Student's t-test). We computed both group-level confidence intervals and the 95% Confidence Interval for the difference between proportions.</p>
             
-            <h3 data-i18n="abt.method.s4_title">4. Heterogeneity Analysis (CATE)</h3>
+            <h3 data-i18n-html="abt.method.s4_title">4. Heterogeneity Analysis (CATE)</h3>
             <p data-i18n="abt.method.s4_p">We evaluated Conditional Average Treatment Effects across visit segments (Day vs. Night) to verify whether specific audience cohorts benefited from the redesign despite global neutral performance.</p>
         </div>
     </div>
@@ -125,6 +125,44 @@
                     <p style="margin: 0.5rem 0 0 0; color: var(--gray); font-size: 0.95rem;" data-i18n-html="abt.res.seg_night_content">Control CR: 11.98% &bull; Treatment CR: 11.87% &bull; p = 0.22<br><span style="color: var(--gray-muted);">No compensatory uplift detected in off-peak hours.</span></p>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Digital Experimentation & CUPED Section -->
+    <div class="container">
+        <div class="section-block">
+            <h2 data-i18n-html="abt.cuped.title">Digital Experimentation Framework: Variance Reduction (CUPED) &amp; Power Sizing</h2>
+            <p data-i18n-html="abt.cuped.p1">In digital product experimentation, statistical sensitivity and business velocity are constrained by natural metric variance. By integrating <strong>CUPED (Controlled-experiment Using Pre-Experiment Data)</strong>, we leverage pre-experiment user baseline behavior as an orthogonal covariate to strip out unexplained variance without introducing bias.</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+                <div style="background: rgba(0, 242, 254, 0.05); padding: 1.2rem; border-radius: 10px; border-left: 3px solid var(--secondary); text-align: center;">
+                    <div style="font-size: 1.4rem; font-weight: 800; color: #00f2fe;">-42.8%</div>
+                    <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;" data-i18n="abt.cuped.card_var">Variance Reduction</div>
+                </div>
+                <div style="background: rgba(52, 211, 153, 0.05); padding: 1.2rem; border-radius: 10px; border-left: 3px solid #34d399; text-align: center;">
+                    <div style="font-size: 1.4rem; font-weight: 800; color: #34d399;">-24.4%</div>
+                    <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;" data-i18n="abt.cuped.card_ci">CI Width Narrowed</div>
+                </div>
+                <div style="background: rgba(251, 191, 36, 0.05); padding: 1.2rem; border-radius: 10px; border-left: 3px solid #fbbf24; text-align: center;">
+                    <div style="font-size: 1.4rem; font-weight: 800; color: #fbbf24;">-42.7%</div>
+                    <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;" data-i18n="abt.cuped.card_sample">Sample Size Saved</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 10px; border-left: 3px solid #a855f7; text-align: center;">
+                    <div style="font-size: 1.4rem; font-weight: 800; color: #ffffff;">290,584</div>
+                    <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;" data-i18n="abt.cuped.card_benchmark">Real Benchmark</div>
+                </div>
+            </div>
+
+            <h3 data-i18n-html="abt.cuped.math_title">Mathematical Formulation &amp; Covariate Adjustment</h3>
+            <p data-i18n-html="abt.cuped.math_p">For metric $Y$ and pre-experiment covariate $X$, the variance-minimizing adjustment is $Y_{CUPED} = Y - \theta (X - \bar{X})$, with $\theta = \frac{\text{Cov}(Y, X)}{\text{Var}(X)}$. The resulting metric variance contracts by a factor of $(1 - \rho^2)$, dramatically accelerating experimentation velocity:</p>
+
+            <img src="Files/images/ab_testing/cuped_variance_reduction_and_ci.png" 
+                 alt="CUPED Variance Reduction, Confidence Interval Shrinking, and Power Sizing" 
+                 style="max-width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); margin: 20px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+
+            <p style="font-size: 0.9rem; color: var(--gray-muted); line-height: 1.6;" data-i18n-html="abt.cuped.fig_caption">
+                <strong>Figure 1:</strong> Four-panel experimentation diagnostic suite. (A) Distribution narrowing via covariate adjustment (-42.8% variance). (B) Shrinking 95% Confidence Interval for Average Treatment Effect (ATE). (C) Statistical power curves reaching 80% power with 42.7% fewer users. (D) Real-world benchmark: Udacity landing page conversion rate (Z = -1.31, p = 0.1899).
+            </p>
         </div>
     </div>
 
@@ -253,7 +291,6 @@
             </div>
         </div>
     </footer>
-
 
     <!-- Multilingual i18n Scripts -->
     <script src="translations.js"></script>

@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-        <!-- Navigation bar -->
+    <!-- Navigation bar -->
     <nav>
         <ul>
             <li><a href="index.html" data-i18n="nav.home">Home</a></li>
@@ -47,6 +47,192 @@
                 <li data-i18n-html="sql.schema.emp"><strong>Employee:</strong> Sales organizational hierarchy and territory assignments.</li>
                 <li data-i18n-html="sql.schema.ship"><strong>Shipper:</strong> Logistics logistics carriers and transit dates.</li>
             </ul>
+
+            <h3 data-i18n="sql.erd.title" style="margin-top: 2rem;">Relational Entity-Relationship Diagram (13 Normalized Tables)</h3>
+            <p data-i18n="sql.erd.desc">Architectural schema diagram illustrating primary and foreign key relationships across the 13 normalized tables in SQLite, highlighting transactional flows from Customers and Employees through Orders to OrderDetails, Products, Suppliers, and Shippers.</p>
+            
+            <div style="background: rgba(16, 23, 36, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; overflow-x: auto; box-shadow: 0 8px 30px rgba(0,0,0,0.4);">
+                <svg viewBox="0 0 960 480" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="display: block; font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;">
+                    <defs>
+                        <marker id="erd-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#00f2fe"/>
+                        </marker>
+                        <marker id="erd-arrow-emerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#34d399"/>
+                        </marker>
+                        <marker id="erd-arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
+                        </marker>
+                    </defs>
+
+                    <!-- Relationship Lines -->
+                    <!-- Shippers -> Order -->
+                    <path d="M 220 85 C 250 85, 250 200, 280 200" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#erd-arrow-amber)"/>
+                    <text x="245" y="135" fill="#fbbf24" font-size="10" font-weight="600">ShipVia</text>
+
+                    <!-- Customers -> Order -->
+                    <path d="M 220 220 C 250 220, 250 220, 280 220" fill="none" stroke="#00f2fe" stroke-width="2" marker-end="url(#erd-arrow)"/>
+                    <text x="232" y="213" fill="#00f2fe" font-size="10" font-weight="600">1:N</text>
+
+                    <!-- Employees -> Order -->
+                    <path d="M 220 395 C 255 395, 250 240, 280 240" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#erd-arrow)"/>
+                    <text x="235" y="325" fill="#a855f7" font-size="10" font-weight="600">EmployeeId</text>
+
+                    <!-- Order -> OrderDetail -->
+                    <path d="M 470 230 L 515 230" fill="none" stroke="#00f2fe" stroke-width="2.5" marker-end="url(#erd-arrow)"/>
+                    <text x="483" y="222" fill="#00f2fe" font-size="11" font-weight="700">1:N</text>
+
+                    <!-- Products -> OrderDetail -->
+                    <path d="M 740 230 L 705 230" fill="none" stroke="#34d399" stroke-width="2.5" marker-end="url(#erd-arrow-emerald)"/>
+                    <text x="712" y="222" fill="#34d399" font-size="11" font-weight="700">1:N</text>
+
+                    <!-- Categories -> Products -->
+                    <path d="M 830 125 L 830 145" fill="none" stroke="#38bdf8" stroke-width="2" marker-end="url(#erd-arrow)"/>
+                    <text x="836" y="138" fill="#38bdf8" font-size="10" font-weight="600">CategoryId</text>
+
+                    <!-- Suppliers -> Products -->
+                    <path d="M 830 355 L 830 335" fill="none" stroke="#fbbf24" stroke-width="2" marker-end="url(#erd-arrow-amber)"/>
+                    <text x="836" y="348" fill="#fbbf24" font-size="10" font-weight="600">SupplierId</text>
+
+                    <!-- TABLE 1: Shippers -->
+                    <g transform="translate(40, 30)">
+                        <rect width="180" height="105" rx="8" fill="#0c1322" stroke="#1e293b" stroke-width="1.5"/>
+                        <path d="M 0 8 Q 0 0 8 0 L 172 0 Q 180 0 180 8 L 180 28 L 0 28 Z" fill="#78350f"/>
+                        <text x="12" y="19" fill="#fef3c7" font-size="12" font-weight="700">Shippers</text>
+                        <text x="12" y="48" fill="#fbbf24" font-size="10" font-weight="700">PK</text>
+                        <text x="36" y="48" fill="#e2e8f0" font-size="11">Id</text>
+                        <text x="120" y="48" fill="#64748b" font-size="10">INTEGER</text>
+                        <text x="12" y="68" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="68" fill="#cbd5e1" font-size="11">CompanyName</text>
+                        <text x="12" y="88" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="88" fill="#cbd5e1" font-size="11">Phone</text>
+                    </g>
+
+                    <!-- TABLE 2: Customers -->
+                    <g transform="translate(40, 160)">
+                        <rect width="180" height="135" rx="8" fill="#0c1322" stroke="#1e293b" stroke-width="1.5"/>
+                        <path d="M 0 8 Q 0 0 8 0 L 172 0 Q 180 0 180 8 L 180 28 L 0 28 Z" fill="#0e3a47"/>
+                        <text x="12" y="19" fill="#cffafe" font-size="12" font-weight="700">Customers</text>
+                        <text x="12" y="48" fill="#fbbf24" font-size="10" font-weight="700">PK</text>
+                        <text x="36" y="48" fill="#e2e8f0" font-size="11">Id</text>
+                        <text x="120" y="48" fill="#64748b" font-size="10">VARCHAR</text>
+                        <text x="12" y="68" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="68" fill="#cbd5e1" font-size="11">CompanyName</text>
+                        <text x="12" y="88" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="88" fill="#cbd5e1" font-size="11">ContactName</text>
+                        <text x="12" y="108" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="108" fill="#cbd5e1" font-size="11">Country</text>
+                    </g>
+
+                    <!-- TABLE 3: Employees -->
+                    <g transform="translate(40, 320)">
+                        <rect width="180" height="130" rx="8" fill="#0c1322" stroke="#1e293b" stroke-width="1.5"/>
+                        <path d="M 0 8 Q 0 0 8 0 L 172 0 Q 180 0 180 8 L 180 28 L 0 28 Z" fill="#3b0764"/>
+                        <text x="12" y="19" fill="#f3e8ff" font-size="12" font-weight="700">Employees</text>
+                        <text x="12" y="48" fill="#fbbf24" font-size="10" font-weight="700">PK</text>
+                        <text x="36" y="48" fill="#e2e8f0" font-size="11">Id</text>
+                        <text x="120" y="48" fill="#64748b" font-size="10">INTEGER</text>
+                        <text x="12" y="68" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="68" fill="#cbd5e1" font-size="11">LastName / First</text>
+                        <text x="12" y="88" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="88" fill="#cbd5e1" font-size="11">Title</text>
+                        <text x="12" y="108" fill="#00f2fe" font-size="10" font-weight="700">FK</text>
+                        <text x="36" y="108" fill="#cbd5e1" font-size="11">ReportsTo</text>
+                    </g>
+
+                    <!-- TABLE 4: Orders (Header) -->
+                    <g transform="translate(280, 130)">
+                        <rect width="190" height="195" rx="8" fill="#0c1322" stroke="#00f2fe" stroke-width="2"/>
+                        <path d="M 0 8 Q 0 0 8 0 L 182 0 Q 190 0 190 8 L 190 28 L 0 28 Z" fill="#083344"/>
+                        <text x="12" y="19" fill="#67e8f9" font-size="12" font-weight="700">'Order' (Header)</text>
+                        <text x="12" y="48" fill="#fbbf24" font-size="10" font-weight="700">PK</text>
+                        <text x="36" y="48" fill="#ffffff" font-weight="600" font-size="11">Id</text>
+                        <text x="130" y="48" fill="#64748b" font-size="10">INTEGER</text>
+                        <text x="12" y="70" fill="#00f2fe" font-size="10" font-weight="700">FK</text>
+                        <text x="36" y="70" fill="#cbd5e1" font-size="11">CustomerId</text>
+                        <text x="12" y="92" fill="#00f2fe" font-size="10" font-weight="700">FK</text>
+                        <text x="36" y="92" fill="#cbd5e1" font-size="11">EmployeeId</text>
+                        <text x="12" y="114" fill="#00f2fe" font-size="10" font-weight="700">FK</text>
+                        <text x="36" y="114" fill="#cbd5e1" font-size="11">ShipVia</text>
+                        <text x="12" y="136" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="136" fill="#cbd5e1" font-size="11">OrderDate</text>
+                        <text x="12" y="158" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="158" fill="#cbd5e1" font-size="11">ShippedDate</text>
+                        <text x="12" y="180" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="180" fill="#cbd5e1" font-size="11">Freight</text>
+                    </g>
+
+                    <!-- TABLE 5: OrderDetail (Lines) -->
+                    <g transform="translate(520, 130)">
+                        <rect width="180" height="195" rx="8" fill="#0c1322" stroke="#34d399" stroke-width="2"/>
+                        <path d="M 0 8 Q 0 0 8 0 L 172 0 Q 180 0 180 8 L 180 28 L 0 28 Z" fill="#064e3b"/>
+                        <text x="12" y="19" fill="#a7f3d0" font-size="12" font-weight="700">OrderDetail (Lines)</text>
+                        <text x="12" y="48" fill="#fbbf24" font-size="10" font-weight="700">PF</text>
+                        <text x="36" y="48" fill="#ffffff" font-weight="600" font-size="11">OrderId</text>
+                        <text x="120" y="48" fill="#64748b" font-size="10">INTEGER</text>
+                        <text x="12" y="70" fill="#fbbf24" font-size="10" font-weight="700">PF</text>
+                        <text x="36" y="70" fill="#ffffff" font-weight="600" font-size="11">ProductId</text>
+                        <text x="120" y="70" fill="#64748b" font-size="10">INTEGER</text>
+                        <text x="12" y="98" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="98" fill="#cbd5e1" font-size="11">UnitPrice</text>
+                        <text x="120" y="98" fill="#64748b" font-size="10">DECIMAL</text>
+                        <text x="12" y="124" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="124" fill="#cbd5e1" font-size="11">Quantity</text>
+                        <text x="120" y="124" fill="#64748b" font-size="10">INTEGER</text>
+                        <text x="12" y="150" fill="#f87171" font-size="10" font-weight="700">&bull;</text>
+                        <text x="36" y="150" fill="#fca5a5" font-weight="600" font-size="11">Discount</text>
+                        <text x="120" y="150" fill="#64748b" font-size="10">DOUBLE</text>
+                    </g>
+
+                    <!-- TABLE 6: Products -->
+                    <g transform="translate(740, 145)">
+                        <rect width="180" height="185" rx="8" fill="#0c1322" stroke="#1e293b" stroke-width="1.5"/>
+                        <path d="M 0 8 Q 0 0 8 0 L 172 0 Q 180 0 180 8 L 180 28 L 0 28 Z" fill="#143142"/>
+                        <text x="12" y="19" fill="#bae6fd" font-size="12" font-weight="700">Product</text>
+                        <text x="12" y="48" fill="#fbbf24" font-size="10" font-weight="700">PK</text>
+                        <text x="36" y="48" fill="#e2e8f0" font-size="11">Id</text>
+                        <text x="120" y="48" fill="#64748b" font-size="10">INTEGER</text>
+                        <text x="12" y="70" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="70" fill="#cbd5e1" font-size="11">ProductName</text>
+                        <text x="12" y="94" fill="#00f2fe" font-size="10" font-weight="700">FK</text>
+                        <text x="36" y="94" fill="#cbd5e1" font-size="11">SupplierId</text>
+                        <text x="12" y="118" fill="#00f2fe" font-size="10" font-weight="700">FK</text>
+                        <text x="36" y="118" fill="#cbd5e1" font-size="11">CategoryId</text>
+                        <text x="12" y="142" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="142" fill="#cbd5e1" font-size="11">UnitPrice</text>
+                        <text x="12" y="166" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="166" fill="#cbd5e1" font-size="11">UnitsInStock</text>
+                    </g>
+
+                    <!-- TABLE 7: Categories -->
+                    <g transform="translate(740, 20)">
+                        <rect width="180" height="105" rx="8" fill="#0c1322" stroke="#1e293b" stroke-width="1.5"/>
+                        <path d="M 0 8 Q 0 0 8 0 L 172 0 Q 180 0 180 8 L 180 28 L 0 28 Z" fill="#075985"/>
+                        <text x="12" y="19" fill="#e0f2fe" font-size="12" font-weight="700">Categories</text>
+                        <text x="12" y="48" fill="#fbbf24" font-size="10" font-weight="700">PK</text>
+                        <text x="36" y="48" fill="#e2e8f0" font-size="11">Id</text>
+                        <text x="120" y="48" fill="#64748b" font-size="10">INTEGER</text>
+                        <text x="12" y="68" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="68" fill="#cbd5e1" font-size="11">CategoryName</text>
+                        <text x="12" y="88" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="88" fill="#cbd5e1" font-size="11">Description</text>
+                    </g>
+
+                    <!-- TABLE 8: Suppliers -->
+                    <g transform="translate(740, 355)">
+                        <rect width="180" height="105" rx="8" fill="#0c1322" stroke="#1e293b" stroke-width="1.5"/>
+                        <path d="M 0 8 Q 0 0 8 0 L 172 0 Q 180 0 180 8 L 180 28 L 0 28 Z" fill="#713f12"/>
+                        <text x="12" y="19" fill="#fef08a" font-size="12" font-weight="700">Suppliers</text>
+                        <text x="12" y="48" fill="#fbbf24" font-size="10" font-weight="700">PK</text>
+                        <text x="36" y="48" fill="#e2e8f0" font-size="11">Id</text>
+                        <text x="120" y="48" fill="#64748b" font-size="10">INTEGER</text>
+                        <text x="12" y="68" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="68" fill="#cbd5e1" font-size="11">CompanyName</text>
+                        <text x="12" y="88" fill="#94a3b8" font-size="10">&bull;</text>
+                        <text x="36" y="88" fill="#cbd5e1" font-size="11">Country</text>
+                    </g>
+                </svg>
+            </div>
         </div>
     </div>
 
@@ -69,7 +255,7 @@ JOIN Category c ON p.CategoryId = c.Id
 GROUP BY p.Id
 ORDER BY NetRevenue DESC
 LIMIT 5;</code></pre>
-            <p data-i18n-html="sql.q1.desc"><strong>Business Context:</strong> Standard sales reports often calculate gross volume (`UnitPrice * Quantity`). Applying `(1 - od.Discount)` captures the actual realized net cash flow, identifying <em>C&ocirc;te de Blaye</em> and <em>Th&uuml;ringer Rostbratwurst</em> as the primary revenue engines.</p>
+            <p data-i18n-html="sql.q1.desc"><strong>Business Context:</strong> Standard sales reports often calculate gross volume (`UnitPrice * Quantity`). Applying `(1 - od.Discount)` captures the actual realized net cash flow, identifying <em>Côte de Blaye</em> and <em>Thüringer Rostbratwurst</em> as the primary revenue engines.</p>
 
             <!-- Query 2 -->
             <h3 data-i18n="sql.q2.title">2. Top Customers &amp; Order Frequency (Preventing Join Fan-Out)</h3>
@@ -102,7 +288,7 @@ WHERE o.ShippedDate IS NOT NULL
 GROUP BY s.Id
 ORDER BY AvgFulfillmentDays DESC
 LIMIT 5;</code></pre>
-            <p data-i18n="sql.q3.desc"><strong>Business Context:</strong> Analyzes turnaround latency between purchase placement and carrier handover, flagging potential supply chain delays.</p>
+            <p data-i18n-html="sql.q3.desc"><strong>Business Context:</strong> Analyzes turnaround latency between purchase placement and carrier handover, flagging potential supply chain delays.</p>
 
             <!-- Query 4 -->
             <h3 data-i18n="sql.q4.title">4. Inactive Account Identification (Churn Risk Audit)</h3>
@@ -116,7 +302,7 @@ LEFT JOIN 'Order' o ON c.Id = o.CustomerId
 GROUP BY c.Id
 HAVING LastOrderDate &lt; date('now', '-1 year') OR LastOrderDate IS NULL
 ORDER BY LastOrderDate ASC;</code></pre>
-            <p data-i18n="sql.q4.desc"><strong>Bug-Fixed Execution:</strong> Fixes alias translation mismatches (`LastOrderDate`) to correctly filter dormant accounts that have placed zero orders or have been inactive for over twelve months.</p>
+            <p data-i18n-html="sql.q4.desc"><strong>Bug-Fixed Execution:</strong> Fixes alias translation mismatches (`LastOrderDate`) to correctly filter dormant accounts that have placed zero orders or have been inactive for over twelve months.</p>
         </div>
     </div>
 
@@ -382,7 +568,6 @@ GROUP BY c.Id;</code></pre>
             </div>
         </div>
     </footer>
-
 
     <!-- Multilingual i18n Scripts -->
     <script src="translations.js"></script>
