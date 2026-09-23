@@ -1,0 +1,1 @@
+& "$PSScriptRoot\iniciar.ps1"

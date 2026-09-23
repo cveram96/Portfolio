@@ -31,7 +31,7 @@ def init_db():
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         spot_id TEXT NOT NULL,
         vehicle_track_id INTEGER NOT NULL,
-        vehicle_type TEXT NOT NULL DEFAULT 'Automóvil',
+        vehicle_type TEXT NOT NULL DEFAULT 'Car',
         entry_time TEXT NOT NULL,
         exit_time TEXT,
         duration_seconds INTEGER DEFAULT 0,

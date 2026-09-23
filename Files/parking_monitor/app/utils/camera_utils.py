@@ -44,7 +44,7 @@ def get_real_windows_cameras() -> List[Dict[str, Any]]:
                 cap.release()
                 cameras.append({
                     "id": idx,
-                    "name": f"Cámara Web {idx}",
+                    "name": f"Webcam {idx}",
                     "type": "webcam"
                 })
 

@@ -1,17 +1,17 @@
-$Host.UI.RawUI.WindowTitle = "🅿️ Smart Parking Monitor"
+$Host.UI.RawUI.WindowTitle = "Smart Parking Monitor"
 Set-Location $PSScriptRoot
 
 Write-Host "======================================================================" -ForegroundColor Cyan
-Write-Host "  🅿️ INICIANDO SISTEMA INTELIGENTE DE MONITOREO DE PARQUEADERO" -ForegroundColor Green
+Write-Host "  STARTING SMART PARKING MONITOR SYSTEM" -ForegroundColor Green
 Write-Host "======================================================================" -ForegroundColor Cyan
 Write-Host ""
 
 $pythonExe = Join-Path $PSScriptRoot ".venv\Scripts\python.exe"
 
 if (-not (Test-Path $pythonExe)) {
-    Write-Host "[ERROR] No se encontro el entorno virtual .venv en esta carpeta." -ForegroundColor Red
-    Write-Host "Ejecuta: py -3.13 -m venv .venv && .venv\Scripts\pip install -r requirements.txt" -ForegroundColor Yellow
-    Read-Host "Presiona Enter para salir..."
+    Write-Host "[ERROR] Virtual environment .venv not found in this folder." -ForegroundColor Red
+    Write-Host "Run: py -3.13 -m venv .venv && .venv\Scripts\pip install -r requirements.txt" -ForegroundColor Yellow
+    Read-Host "Press Enter to exit..."
     exit 1
 }
 
@@ -26,8 +26,8 @@ Start-Job -ScriptBlock {
     Start-Process "http://localhost:8000"
 } | Out-Null
 
-Write-Host "[*] Iniciando servidor y cargando modelos de vision artificial..." -ForegroundColor Yellow
-Write-Host "[*] Interfaz web disponible en: http://localhost:8000" -ForegroundColor Cyan
+Write-Host "[*] Starting server and loading computer vision models..." -ForegroundColor Yellow
+Write-Host "[*] Web interface available at: http://localhost:8000" -ForegroundColor Cyan
 Write-Host ""
 
 & $pythonExe run.py

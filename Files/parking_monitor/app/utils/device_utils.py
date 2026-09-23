@@ -51,7 +51,7 @@ def get_all_system_gpus() -> List[str]:
 
 def get_system_gpu_info() -> str:
     gpus = get_all_system_gpus()
-    return ", ".join(gpus) if gpus else "GPU No detectada"
+    return ", ".join(gpus) if gpus else "No GPU detected"
 
 def get_system_cpu_info() -> str:
     global _CACHED_CPU
@@ -61,9 +61,9 @@ def get_system_cpu_info() -> str:
         cmd = "Get-CimInstance Win32_Processor | Select-Object -ExpandProperty Name"
         out = subprocess.check_output(["powershell", "-NoProfile", "-Command", cmd], text=True, stderr=subprocess.DEVNULL)
         lines = [line.strip() for line in out.splitlines() if line.strip()]
-        _CACHED_CPU = lines[0] if lines else platform.processor() or "Procesador Estándar"
+        _CACHED_CPU = lines[0] if lines else platform.processor() or "Standard Processor"
     except Exception:
-        _CACHED_CPU = platform.processor() or "Procesador Estándar"
+        _CACHED_CPU = platform.processor() or "Standard Processor"
     return _CACHED_CPU
 
 def resolve_device_config(preference: str = "auto") -> Tuple[str, str, str]:
@@ -75,7 +75,7 @@ def resolve_device_config(preference: str = "auto") -> Tuple[str, str, str]:
     dml_ok = is_directml_available()
     cuda_ok = is_cuda_available()
     gpus = get_all_system_gpus()
-    gpu_desc = ", ".join(gpus) if gpus else "Sin GPU detectada"
+    gpu_desc = ", ".join(gpus) if gpus else "No GPU detected"
     cpu_name = get_system_cpu_info()
 
     has_nvidia_hardware = any("nvidia" in g.lower() or "geforce" in g.lower() or "rtx" in g.lower() or "gtx" in g.lower() for g in gpus)
@@ -89,47 +89,47 @@ def resolve_device_config(preference: str = "auto") -> Tuple[str, str, str]:
     if pref in ["gpu_nvidia", "cuda"]:
         if cuda_ok:
             device_name = torch.cuda.get_device_name(0) if cuda_ok else "NVIDIA"
-            return "gpu_cuda", pt_path, f"GPU NVIDIA activa con CUDA ({device_name})"
+            return "gpu_cuda", pt_path, f"NVIDIA GPU active with CUDA ({device_name})"
         elif has_nvidia_hardware:
-            return "cpu", pt_path, f"GPU NVIDIA detectada físicamente, pero PyTorch CUDA no está compilado. Usando CPU ({cpu_name})"
+            return "cpu", pt_path, f"NVIDIA GPU physically detected, but PyTorch CUDA is not compiled. Using CPU ({cpu_name})"
         else:
-            return "cpu", pt_path, f"CUDA NVIDIA no detectado en este equipo. Usando CPU ({cpu_name})"
+            return "cpu", pt_path, f"NVIDIA CUDA not detected on this system. Using CPU ({cpu_name})"
 
     elif pref in ["gpu_amd", "dml", "directml"]:
         if dml_ok and os.path.exists(onnx_path):
-            return "gpu_dml", model_to_use_for_dml, f"GPU AMD Radeon activa con DirectML ({gpu_desc})"
+            return "gpu_dml", model_to_use_for_dml, f"AMD Radeon GPU active with DirectML ({gpu_desc})"
         elif os.path.exists(onnx_path):
-            return "gpu_dml", model_to_use_for_dml, f"GPU DirectML activa ({gpu_desc})"
+            return "gpu_dml", model_to_use_for_dml, f"DirectML GPU active ({gpu_desc})"
         else:
-            return "cpu", pt_path, f"DirectML no disponible o modelo ONNX faltante. Usando CPU ({cpu_name})"
+            return "cpu", pt_path, f"DirectML not available or ONNX model missing. Using CPU ({cpu_name})"
 
     elif pref in ["cpu"]:
-        return "cpu", pt_path, f"Modo CPU activo ({cpu_name})"
+        return "cpu", pt_path, f"CPU mode active ({cpu_name})"
 
     else:  # "auto"
         # Auto prioritization: NVIDIA CUDA -> AMD DirectML -> CPU
         if cuda_ok:
             device_name = torch.cuda.get_device_name(0)
-            return "gpu_cuda", pt_path, f"Auto: GPU NVIDIA con CUDA activa ({device_name})"
+            return "gpu_cuda", pt_path, f"Auto: NVIDIA GPU with CUDA active ({device_name})"
         elif has_amd_hardware and (dml_ok or os.path.exists(onnx_path)):
-            return "gpu_dml", model_to_use_for_dml, f"Auto: GPU AMD Radeon detectada ({gpu_desc}) con DirectML"
+            return "gpu_dml", model_to_use_for_dml, f"Auto: AMD Radeon GPU detected ({gpu_desc}) with DirectML"
         elif dml_ok and os.path.exists(onnx_path):
             return "gpu_dml", model_to_use_for_dml, f"Auto: DirectML GPU ({gpu_desc})"
         else:
-            return "cpu", pt_path, f"Auto: Ejecutando en CPU ({cpu_name})"
+            return "cpu", pt_path, f"Auto: Running on CPU ({cpu_name})"
 
 def get_hardware_status(active_mode: str = "auto") -> Dict[str, Any]:
     gpus = get_all_system_gpus()
-    gpu_desc = ", ".join(gpus) if gpus else "Sin GPU dedicada"
+    gpu_desc = ", ".join(gpus) if gpus else "No dedicated GPU"
     cpu_name = get_system_cpu_info()
     dml_ok = is_directml_available()
     cuda_ok = is_cuda_available()
 
     options = [
-        {"id": "auto", "label": "⚡ Detección Automática (Óptima)", "active": active_mode == "auto"},
-        {"id": "gpu_amd", "label": f"🔴 GPU AMD Radeon [DirectML] ({'Activo' if dml_ok else 'Disponible'})", "active": active_mode in ["gpu_amd", "dml", "gpu_dml"]},
-        {"id": "gpu_nvidia", "label": f"🟢 GPU NVIDIA [CUDA / TensorRT] ({'CUDA Listo' if cuda_ok else 'PyTorch/CUDA'})", "active": active_mode in ["gpu_nvidia", "cuda", "gpu_cuda"]},
-        {"id": "cpu", "label": f"💻 CPU ({cpu_name})", "active": active_mode == "cpu"}
+        {"id": "auto", "label": "Automatic Detection (Optimal)", "active": active_mode == "auto"},
+        {"id": "gpu_amd", "label": f"AMD Radeon GPU [DirectML] ({'Active' if dml_ok else 'Available'})", "active": active_mode in ["gpu_amd", "dml", "gpu_dml"]},
+        {"id": "gpu_nvidia", "label": f"NVIDIA GPU [CUDA / TensorRT] ({'CUDA Ready' if cuda_ok else 'PyTorch/CUDA'})", "active": active_mode in ["gpu_nvidia", "cuda", "gpu_cuda"]},
+        {"id": "cpu", "label": f"CPU ({cpu_name})", "active": active_mode == "cpu"}
     ]
 
     return {

@@ -1,7 +1,7 @@
 [
   {
     "id": "P-01",
-    "label": "Plaza 1",
+    "label": "Bay 1",
     "spot_type": "car",
     "points": [
       [
@@ -37,7 +37,7 @@
   },
   {
     "id": "P-02",
-    "label": "Plaza 2",
+    "label": "Bay 2",
     "spot_type": "car",
     "points": [
       [
@@ -65,7 +65,7 @@
   },
   {
     "id": "P-03",
-    "label": "Plaza 3",
+    "label": "Bay 3",
     "spot_type": "car",
     "points": [
       [
@@ -93,7 +93,7 @@
   },
   {
     "id": "P-04",
-    "label": "Plaza 4",
+    "label": "Bay 4",
     "spot_type": "car",
     "points": [
       [
@@ -121,7 +121,7 @@
   },
   {
     "id": "P-05",
-    "label": "Plaza 5",
+    "label": "Bay 5",
     "spot_type": "car",
     "points": [
       [
@@ -149,7 +149,7 @@
   },
   {
     "id": "P-06",
-    "label": "Plaza 6",
+    "label": "Bay 6",
     "spot_type": "car",
     "points": [
       [

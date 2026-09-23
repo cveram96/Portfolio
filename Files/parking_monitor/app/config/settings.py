@@ -23,10 +23,10 @@ if not os.path.exists(DEFAULT_ONNX_MODEL):
 # Target vehicle classes (COCO dataset): 2: car, 3: motorcycle, 5: bus, 7: truck
 VEHICLE_CLASSES = [2, 3, 5, 7]
 CLASS_NAMES = {
-    2: "Automóvil",
-    3: "Motocicleta",
-    5: "Autobús",
-    7: "Camión"
+    2: "Car",
+    3: "Motorcycle",
+    5: "Bus",
+    7: "Truck"
 }
 
 # Detection and Tracking thresholds

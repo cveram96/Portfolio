@@ -24,23 +24,23 @@ def generate_csv_report() -> str:
     
     # Headers
     writer.writerow([
-        "ID Sesión", 
-        "Plaza / Espacio", 
-        "ID Vehículo (Tracker)", 
-        "Tipo de Vehículo", 
-        "Fecha y Hora Ingreso", 
-        "Fecha y Hora Salida", 
-        "Duración Segundos", 
-        "Duración Formateada", 
-        "Estado"
+        "Session ID", 
+        "Bay / Spot ID", 
+        "Vehicle ID (Tracker)", 
+        "Vehicle Type", 
+        "Entry Timestamp", 
+        "Exit Timestamp", 
+        "Duration (Seconds)", 
+        "Formatted Duration", 
+        "Status"
     ])
     
     for s in sessions:
         entry = s.get("entry_time", "")
-        exit_t = s.get("exit_time", "") or "En Parqueadero"
+        exit_t = s.get("exit_time", "") or "Currently Parked"
         duration_sec = s.get("duration_seconds", 0)
-        formatted_dur = format_duration(duration_sec) if s.get("status") == "completed" else "En curso"
-        status_label = "Completado" if s.get("status") == "completed" else "Activo (Estacionado)"
+        formatted_dur = format_duration(duration_sec) if s.get("status") == "completed" else "In Progress"
+        status_label = "Completed" if s.get("status") == "completed" else "Active (Parked)"
         
         writer.writerow([
             s.get("id"),
@@ -70,7 +70,7 @@ def get_parking_analytics_summary() -> Dict[str, Any]:
     # Vehicle type breakdown
     type_counts = {}
     for s in sessions:
-        vt = s.get("vehicle_type", "Automóvil")
+        vt = s.get("vehicle_type", "Car")
         type_counts[vt] = type_counts.get(vt, 0) + 1
 
     # Hourly distribution of entries

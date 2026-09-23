@@ -33,7 +33,7 @@ class VideoStreamManager:
 
             # Generate connecting placeholder frame
             ph = np.zeros((540, 960, 3), dtype=np.uint8)
-            cv2.putText(ph, "Conectando fuente de video...", (240, 270),
+            cv2.putText(ph, "Connecting video feed...", (270, 270),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 242, 254), 2, cv2.LINE_AA)
             _, buf = cv2.imencode('.jpg', ph, [cv2.IMWRITE_JPEG_QUALITY, 70])
             self.latest_frame_bytes = buf.tobytes()
@@ -44,7 +44,7 @@ class VideoStreamManager:
             except Exception:
                 pass
 
-        print(f"[VideoStream] Nueva fuente configurada: {source}")
+        print(f"[VideoStream] New video source configured: {source}")
 
     def start(self):
         if self.is_running:
@@ -69,7 +69,7 @@ class VideoStreamManager:
         if isinstance(src, str) and src.isdigit():
             src = int(src)
 
-        print(f"[VideoStream] Abriendo origen de video: {src}")
+        print(f"[VideoStream] Opening video source: {src}")
         try:
             if isinstance(src, int):
                 cap = cv2.VideoCapture(src, cv2.CAP_DSHOW)
@@ -80,11 +80,11 @@ class VideoStreamManager:
                 cap = cv2.VideoCapture(norm_src)
 
             if not cap.isOpened():
-                print(f"[VideoStream] No se pudo abrir la fuente: {src}")
+                print(f"[VideoStream] Could not open video source: {src}")
                 return None
             return cap
         except Exception as e:
-            print(f"[VideoStream] Excepcion abriendo {src}: {e}")
+            print(f"[VideoStream] Exception opening {src}: {e}")
             return None
 
     def _run_loop(self):

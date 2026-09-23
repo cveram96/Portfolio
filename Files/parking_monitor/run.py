@@ -15,7 +15,7 @@ from app.config.settings import HOST, PORT
 
 if __name__ == "__main__":
     print("=" * 65)
-    print("   🅿️  INICIANDO SISTEMA INTELIGENTE DE MONITOREO DE PARQUEADERO")
-    print(f"   🚀  Servidor web listo en: http://localhost:{PORT}")
+    print("   SMART PARKING MONITOR - COMPUTER VISION SYSTEM")
+    print(f"   Web server active at: http://localhost:{PORT}")
     print("=" * 65)
     uvicorn.run("app.main:app", host=HOST, port=PORT, reload=False, workers=1)

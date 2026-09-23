@@ -508,7 +508,7 @@ class SpotManager:
                 badge_text = f"{spot.label} [{veh_info}] {dur_str}"
                 badge_bg = (20, 20, 180)
             else:
-                badge_text = f"{spot.label} LIBRE"
+                badge_text = f"{spot.label} VACANT"
                 badge_bg = (25, 135, 60)
 
             # Draw pill badge

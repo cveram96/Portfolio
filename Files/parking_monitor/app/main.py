@@ -165,7 +165,7 @@ def update_spot(spot_id: str, payload: SpotUpdatePayload):
         new_spot_type=payload.spot_type
     )
     if not updated:
-        raise HTTPException(status_code=404, detail="Plaza no encontrada")
+        raise HTTPException(status_code=404, detail="Spot not found")
     return {"status": "ok", "spot": updated.to_dict()}
 
 @app.post("/api/spots/clear")
@@ -173,7 +173,7 @@ def clear_all_spots():
     if not spot_manager:
         raise HTTPException(status_code=500, detail="Spot manager not initialized")
     spot_manager.clear_all()
-    return {"status": "ok", "message": "Todas las plazas eliminadas"}
+    return {"status": "ok", "message": "All spots cleared"}
 
 @app.post("/api/spots/presets")
 def load_preset_spots():
@@ -197,7 +197,7 @@ def load_preset_spots():
         x1 = start_x + i * (bay_w + gap)
         x2 = x1 + bay_w
         spot_id = f"P-0{i+1}"
-        label = f"Plaza {i+1}"
+        label = f"Bay {i+1}"
         pts = [[x1, y1], [x2, y1], [x2, y2], [x1, y2]]
         spot_manager.add_or_update_spot(spot_id, label, pts, "car")
 
@@ -233,7 +233,7 @@ def clear_all_exclusions():
     if not spot_manager:
         raise HTTPException(status_code=500, detail="Spot manager not ready")
     spot_manager.clear_all_exclusion_zones()
-    return {"status": "ok", "message": "Todas las zonas de exclusión eliminadas"}
+    return {"status": "ok", "message": "All exclusion zones cleared"}
 
 # ----------------- VIDEO SOURCES -----------------
 @app.get("/api/sources")
@@ -265,20 +265,20 @@ def select_source(payload: SourceSelectPayload):
     if stype == "sample":
         file_path = os.path.join(SAMPLES_DIR, sval) if not os.path.isabs(sval) else sval
         if not os.path.exists(file_path):
-            raise HTTPException(status_code=404, detail="Archivo no encontrado")
+            raise HTTPException(status_code=404, detail="File not found")
         stream_manager.set_source(file_path, is_file=True)
     elif stype == "webcam":
         try:
             cam_idx = int(sval)
             stream_manager.set_source(cam_idx, is_file=False)
         except ValueError:
-            raise HTTPException(status_code=400, detail="ID de webcam invalido")
+            raise HTTPException(status_code=400, detail="Invalid webcam ID")
     elif stype == "ip":
         if not (sval.startswith("rtsp://") or sval.startswith("http://") or sval.startswith("https://")):
-            raise HTTPException(status_code=400, detail="URL invalida")
+            raise HTTPException(status_code=400, detail="Invalid stream URL")
         stream_manager.set_source(sval, is_file=False)
     else:
-        raise HTTPException(status_code=400, detail="Tipo de fuente desconocido")
+        raise HTTPException(status_code=400, detail="Unknown source type")
 
     return {"status": "ok", "active": stream_manager.get_info()}
 
@@ -331,7 +331,7 @@ def get_summary():
 @app.get("/api/reports/download-csv")
 def download_csv_report():
     csv_content = generate_csv_report()
-    filename = f"reporte_parqueadero_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+    filename = f"parking_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
     return Response(
         content=csv_content,
         media_type="text/csv",

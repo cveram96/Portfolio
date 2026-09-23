@@ -80,7 +80,7 @@ class TrackerStats:
                     "spot_id": s.id,
                     "spot_label": s.label,
                     "vehicle_id": s.current_vehicle_id,
-                    "vehicle_type": s.current_vehicle_type or "Automóvil",
+                    "vehicle_type": s.current_vehicle_type or "Car",
                     "entry_time": s.entry_time.strftime("%H:%M:%S") if s.entry_time else "",
                     "duration_seconds": dur,
                     "duration_formatted": dur_str

@@ -36,13 +36,13 @@ class TestParkingMonitor(unittest.TestCase):
     def test_database_and_sessions(self):
         spot_id = "TEST-01"
         pts = [[100, 100], [200, 100], [200, 300], [100, 300]]
-        db_save_spot(spot_id, "Plaza Test 1", "car", pts)
+        db_save_spot(spot_id, "Bay Test 1", "car", pts)
         
         spots = db_get_all_spots()
         self.assertTrue(any(s["id"] == spot_id for s in spots))
 
         entry_time = datetime.now() - timedelta(minutes=15)
-        session_id = db_record_entry(spot_id, 99, "Automóvil", entry_time)
+        session_id = db_record_entry(spot_id, 99, "Car", entry_time)
         self.assertIsNotNone(session_id)
 
         exit_time = datetime.now()
@@ -59,11 +59,11 @@ class TestParkingMonitor(unittest.TestCase):
         sm = SpotManager()
         spot_id = "GEO-01"
         pts = [[100, 100], [200, 100], [200, 200], [100, 200]]
-        sm.add_or_update_spot(spot_id, "Plaza Geo", pts, "car")
+        sm.add_or_update_spot(spot_id, "Bay Geo", pts, "car")
 
         vehicle_inside = [{
             "track_id": 5,
-            "class_name": "Automóvil",
+            "class_name": "Car",
             "bbox": [110, 110, 190, 190],
             "center": (150, 150)
         }]
@@ -87,8 +87,8 @@ class TestParkingMonitor(unittest.TestCase):
 
     def test_reports(self):
         csv_data = generate_csv_report()
-        self.assertIn("ID Sesión", csv_data)
-        self.assertIn("Plaza / Espacio", csv_data)
+        self.assertIn("Session ID", csv_data)
+        self.assertIn("Bay / Spot ID", csv_data)
 
         summary = get_parking_analytics_summary()
         self.assertIn("total_spots", summary)
@@ -117,7 +117,7 @@ class TestParkingMonitor(unittest.TestCase):
             # Test create spot
             res_create = client.post("/api/spots", json={
                 "id": "T-PUT-1",
-                "label": "Plaza Inicial",
+                "label": "Initial Bay",
                 "spot_type": "car",
                 "points": [[10, 10], [50, 10], [50, 50], [10, 50]]
             })
@@ -126,11 +126,11 @@ class TestParkingMonitor(unittest.TestCase):
             # Test edit spot (PUT)
             res_edit = client.put("/api/spots/T-PUT-1", json={
                 "new_id": "T-PUT-RENAMED",
-                "label": "Plaza VIP Editada",
+                "label": "VIP Bay Edited",
                 "spot_type": "disabled"
             })
             self.assertEqual(res_edit.status_code, 200)
-            self.assertEqual(res_edit.json()["spot"]["label"], "Plaza VIP Editada")
+            self.assertEqual(res_edit.json()["spot"]["label"], "VIP Bay Edited")
             self.assertEqual(res_edit.json()["spot"]["id"], "T-PUT-RENAMED")
 
             # Cleanup
