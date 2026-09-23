@@ -41,10 +41,10 @@ experimentation-platform/
 │   └── [synthetic and real datasets]
 ├── src/                           # Reusable code
 │   └── [modules and utilities]
-├── experiments/                   # Experiment notebooks
-│   ├── 01_synthetic.ipynb         # ← THEORETICAL PHASE: Synthetic Data (1-3)
-│   ├── 02_retail_ab_test.ipynb    # ← APPLIED PHASE: Real Data (UCI)
-│   └── ...
+├── experiments/                   # Experimentation notebooks
+│   ├── 01_synthetic.ipynb         # A/B testing fundamentals, statistical validation, CUPED, and power sizing
+│   ├── 02_udacity_ab_test.ipynb   # Real-world applied A/B testing on Udacity experiment data (290,584 users)
+│   └── 03_causal_inference.ipynb  # Causal inference beyond traditional A/B testing (ATE estimation)
 ├── app/                           # Web application (Streamlit)
 │   └── [UI code]
 └── README.md                      # This file
@@ -96,17 +96,27 @@ In this notebook, we built a complete experimentation workflow:
 
 ## APPLIED PHASE: A/B Testing with Real Data
 
-### File: `experiments/02_retail_ab_test.ipynb`
+### File: `experiments/02_udacity_ab_test.ipynb`
 
-This notebook takes everything learned in PHASE 1-3 and **applies it to a real e-commerce dataset**.
+This notebook provides an industry-standard, end-to-end evaluation of an A/B test conducted by Udacity across **290,584 users**.
 
 **Business Question:**
-> "Should we launch a UX/UI change that could increase the repeat purchase rate? For all customers or only for some?"
+> "Does updating the landing page increase user conversion rate without compromising user experience or downstream engagement?"
 
-#### **Dataset: Online Retail (UCI Machine Learning Repository)**
+#### **Methodology & Statistical Rigor:**
+- Invariant metric validation (Sanity checks / Chi-Square goodness-of-fit).
+- Two-proportion z-test and independent t-test comparison.
+- 95% Confidence Interval estimation for Average Treatment Effect (ATE).
+- Power and Minimum Detectable Effect (MDE) sizing.
 
-Real data from a UK-based online store:
-- 541,909 transactions
-- 4,372 unique customers  
-- 3,684 products
-- Period: January 2010 - December 2011
+---
+
+## ADVANCED PHASE: Causal Inference Framework
+
+### File: `experiments/03_causal_inference.ipynb`
+
+This notebook extends traditional digital experimentation into **causal inference and observational causal modeling**:
+- Potential Outcomes Framework (Rubin Causal Model).
+- Average Treatment Effect (ATE) estimation.
+- Addressing selection bias and unobserved confounding.
+- Covariate balancing and propensity weighting intuition.
