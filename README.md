@@ -8,8 +8,6 @@
 </p>
 
 [![Portfolio Website](https://img.shields.io/badge/Live_Portfolio-GitHub_Pages-4361EE?style=for-the-badge)](https://cveram96.github.io/Portfolio/)
-[![Descargar CV (ES)](https://img.shields.io/badge/Descargar_CV_(ES)-PDF-10B981?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://github.com/cveram96/Portfolio/raw/main/Files/CV_Christian_Vera_ES.pdf)
-[![Download Resume (EN)](https://img.shields.io/badge/Download_Resume_(EN)-PDF-3B82F6?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://github.com/cveram96/Portfolio/raw/main/Files/CV_Christian_Vera_EN.pdf)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/christianveram/)
 [![Email](https://img.shields.io/badge/Email-verachristian4%40gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:verachristian4@gmail.com)
 [![WhatsApp](https://img.shields.io/badge/WhatsApp-%2B57_321_379_7876-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/573213797876)
