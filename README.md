@@ -112,7 +112,7 @@ Data Scientist con formación en Administración de Empresas y Ciencia de Datos,
 - **Data:** Global Netflix catalog enriched with IMDb audience scores, votes, and production metadata (8,800+ titles).
 - **Method:** Star schema relational model (5 tables), 14 custom DAX business measures, Power Query M ETL, dynamic field parameters, and interactive dashboards.
 - **Result:** Identified catalog distribution patterns (~70% movies vs. higher average audience engagement per title on TV series), clarifying that measuring subscriber retention directly requires longitudinal user streaming data.
-- **Code:** [Interactive Dashboard & DAX Measures](https://cveram96.github.io/Portfolio/netflix.html)
+- **Dashboard / Code:** [Live Power BI Report](https://app.powerbi.com/view?r=eyJrIjoiZjQ3OTI1NTMtZGZkYi00Zjc3LWI1YmItYzBlZDQ3MDRkN2M5IiwidCI6IjE2YWY2YjQ1LTAwYzUtNGJhMy05ZDRjLThiZmExNmU0MzYwMyIsImMiOjR9) | [Project Walkthrough & DAX](https://cveram96.github.io/Portfolio/netflix.html) | [Download .pbix](https://github.com/cveram96/Portfolio/blob/main/Files/Netflix.pbix)
 
 ---
 
