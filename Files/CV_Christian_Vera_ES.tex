@@ -1,0 +1,154 @@
+\documentclass[letterpaper,10pt]{article}
+
+% =======================
+% PAQUETES
+% =======================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{tabularx}
+
+% Desactivar número de página para 1 página perfecta
+\pagestyle{empty}
+
+% =======================
+% CONFIGURACIÓN
+% =======================
+\geometry{
+    top=1.2cm,
+    bottom=1.2cm,
+    left=1.4cm,
+    right=1.4cm
+}
+
+\renewcommand{\familydefault}{\sfdefault}
+
+% Colores
+\definecolor{sectioncolor}{HTML}{003366}
+\definecolor{linkcolor}{HTML}{0055AA}
+
+% Enlaces
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    pdftitle={Christian David Vera Mendivelso - Data Scientist},
+    pdfauthor={Christian David Vera Mendivelso}
+}
+
+% Secciones
+\titleformat{\section}
+    {\large\bfseries\color{sectioncolor}}
+    {}
+    {0em}
+    {}
+
+\titleformat{\subsection}
+    {\normalsize\bfseries\color{sectioncolor}}
+    {}
+    {0em}
+    {}
+
+\titlespacing*{\section}{0pt}{0.42em}{0.15em}
+\titlespacing*{\subsection}{0pt}{0.22em}{0.06em}
+
+% Listas compactas
+\setlist[itemize]{
+    noitemsep,
+    topsep=1.5pt,
+    parsep=0.5pt,
+    leftmargin=1.2em
+}
+
+\begin{document}
+
+% =======================
+% ENCABEZADO
+% =======================
+\begin{center}
+    {\Huge \textbf{Christian David Vera Mendivelso}} \\[2.5pt]
+    {\large \textbf{\color{sectioncolor}Data Scientist | Data Analytics | Business Intelligence}} \\[3.5pt]
+    Bogotá, Colombia \hspace{4pt}$\cdot$\hspace{4pt} \href{mailto:verachristian4@gmail.com}{verachristian4@gmail.com} \hspace{4pt}$\cdot$\hspace{4pt} +57 321 379 7876 \\
+    \href{https://www.linkedin.com/in/christianveram/}{LinkedIn} \hspace{4pt}$\cdot$\hspace{4pt}
+    \href{https://cveram96.github.io/Portfolio/}{Portfolio} \hspace{4pt}$\cdot$\hspace{4pt}
+    \href{https://github.com/cveram96}{GitHub}
+\end{center}
+
+\vspace{-0.15cm}
+
+% =======================
+% PERFIL PROFESIONAL
+% =======================
+\section*{Perfil profesional}
+Data Scientist con formación en Ciencia de Datos y Administración de Empresas, y experiencia en análisis de datos, Business Intelligence y automatización. Desarrollo soluciones con \textbf{Python y SQL} para extracción, transformación, análisis y modelado de datos, complementadas con \textbf{Machine Learning, experimentación y visualización}. Experiencia en construcción de pipelines ETL, dashboards en Power BI y proyectos de visión por computador y A/B Testing orientados a resolver problemas de negocio.
+
+% =======================
+% EXPERIENCIA PROFESIONAL
+% =======================
+\section*{Experiencia profesional}
+
+\subsection*{Consultoría freelance en analítica y Data Science}
+\textit{Consultor de Datos \& BI} \hspace{4pt}$\cdot$\hspace{4pt} Remoto / Bogotá \hfill \small{Abril 2024 -- Actualidad}
+\begin{itemize}
+    \item Desarrollo de soluciones de análisis y modelado de datos utilizando \textbf{Python, SQL y Machine Learning} para apoyar procesos de segmentación, predicción y análisis de negocio.
+    \item Automatización de procesos \textbf{ETL} mediante Python, SQL y consumo de APIs, integrando fuentes de información y reduciendo tareas manuales de extracción y consolidación.
+    \item Diseño de dashboards ejecutivos en \textbf{Power BI}, utilizando DAX y Power Query para transformar información y facilitar el seguimiento de indicadores de negocio.
+\end{itemize}
+
+\vspace{0.08cm}
+\subsection*{Cooperativa de Ahorro y Crédito de Tenjo (Cooptenjo)}
+\textit{Analista de Datos \& BI} \hspace{4pt}$\cdot$\hspace{4pt} Tenjo, Cundinamarca \hfill \small{Febrero 2022 -- Abril 2024}
+\begin{itemize}
+    \item Diseñé y automaticé dashboards financieros y de cartera en \textbf{Power BI}, integrando consultas SQL y procesos de transformación para mejorar la disponibilidad de información para reportería gerencial.
+    \item Implementé procesos de análisis y segmentación de asociados utilizando variables de comportamiento transaccional y crediticio para apoyar el análisis de oportunidades comerciales.
+    \item Analicé resultados de campañas comerciales y de marketing mediante indicadores de desempeño y conversión, generando información para el seguimiento y evaluación de resultados.
+\end{itemize}
+
+% =======================
+% PROYECTOS DESTACADOS
+% =======================
+\section*{Proyectos destacados de Data Science}
+
+\textbf{\href{https://cveram96.github.io/Portfolio/parkvision.html}{Monitoreo de parqueaderos en tiempo real}} \hfill \small{\textit{Python, YOLOv8, FastAPI, WebSockets, OpenCV, SQLite}}
+\begin{itemize}
+    \item Desarrollé una aplicación de visión por computador para detectar ocupación vehicular en tiempo real mediante \textbf{YOLOv8}, seguimiento espacial y procesamiento de video.
+    \item Implementé un backend asíncrono con \textbf{FastAPI y WebSockets} para transmisión de datos en tiempo real, junto con un módulo interactivo para calibración de bahías y persistencia de información en SQLite.
+\end{itemize}
+
+\vspace{0.08cm}
+\textbf{\href{https://cveram96.github.io/Portfolio/ab_testing.html}{Plataforma de experimentación digital y A/B testing}} \hfill \small{\textit{Python, Statsmodels, SciPy, Pandas}}
+\begin{itemize}
+    \item Diseñé un flujo de experimentación A/B incorporando \textbf{CUPED} para reducción de varianza, obteniendo una disminución del \textbf{42.8\%} en la varianza del estimador.
+    \item Implementé controles de calidad experimental, incluyendo \textbf{Sample Ratio Mismatch}, pruebas de hipótesis y análisis del efecto del tratamiento para evaluar experimentos sobre más de \textbf{290.000 observaciones}.
+\end{itemize}
+
+% =======================
+% EDUCACIÓN
+% =======================
+\section*{Educación}
+\textbf{Pontificia Universidad Javeriana} \hfill \small{2024 -- 2026} \\
+\textsl{Maestría en Ciencia de Datos (M.Sc.)} \\[2pt]
+\textbf{Universidad Nacional de Colombia} \hfill \small{2016 -- 2021} \\
+\textsl{Pregrado en Administración de Empresas}
+
+% =======================
+% HABILIDADES TÉCNICAS
+% =======================
+\section*{Habilidades técnicas}
+
+\noindent
+\begin{tabularx}{\linewidth}{@{}X X@{}}
+$\bullet$ \textbf{Programación}: Python, SQL, DAX & $\bullet$ \textbf{Data Engineering}: ETL, modelado relacional, APIs, SQLite \\
+$\bullet$ \textbf{Data Science}: Pandas, NumPy, Scikit-learn, SciPy & $\bullet$ \textbf{Business Intelligence}: Power BI, Power Query, Tableau \\
+$\bullet$ \textbf{Machine Learning}: supervisado, PyTorch, YOLOv8 & $\bullet$ \textbf{Desarrollo}: FastAPI, WebSockets, Git \\
+$\bullet$ \textbf{Computer Vision}: OpenCV, detección de objetos & $\bullet$ \textbf{Idiomas}: inglés B2, español nativo \\
+$\bullet$ \textbf{Experimentación}: A/B testing, CUPED, inferencia causal & \\
+\end{tabularx}
+
+\end{document}
