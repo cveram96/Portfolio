@@ -167,5 +167,5 @@ Data Scientist con formación en Administración de Empresas y Ciencia de Datos,
 - **Email:** [verachristian4@gmail.com](mailto:verachristian4@gmail.com)
 - **LinkedIn:** [Christian David Vera Mendivelso](https://www.linkedin.com/in/christianveram/)
 - **Phone / WhatsApp:** [+57 321 379 7876](https://wa.me/573213797876)
-- **Location:** Bogota, Colombia *(Open to Remote, Hybrid, and Relocation)*
+- **Location:** Bogota, Colombia *(Open to Remote roles)*
 - **Live Portfolio:** [https://cveram96.github.io/Portfolio/](https://cveram96.github.io/Portfolio/)
