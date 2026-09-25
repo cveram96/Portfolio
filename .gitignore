@@ -46,3 +46,7 @@ venv.bak/
 Thumbs.db
 desktop.ini
 *.sqlite
+
+# Private CV / Resume files (excluded from Git repository)
+Files/cv/
+CV_Christian_Vera*
