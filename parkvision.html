@@ -64,10 +64,11 @@
             <h1 data-i18n="pv.intro.title">ParkVision AI</h1>
             <h2 data-i18n="pv.intro.subtitle">End-to-End Real-Time Smart Parking Monitoring System</h2>
             <ul>
-                <li data-i18n-html="pv.intro.li1"><strong>Core Engine:</strong> Ultralytics YOLOv8, ByteTrack &amp; OpenCV</li>
-                <li data-i18n-html="pv.intro.li2"><strong>Application:</strong> High-Performance FastAPI Web Server &amp; Real-Time WebSockets Dashboard</li>
-                <li data-i18n-html="pv.intro.li3"><strong>Data &amp; Storage:</strong> SQLite (parking.db) &amp; CSV Historical Occupancy Logging</li>
-                <li data-i18n-html="pv.intro.li4"><strong>Input Feeds &amp; Hardware:</strong> Video Files, USB Webcams, RTSP IP Streams with DirectML / CUDA Multi-GPU</li>
+                <li data-i18n-html="pv.intro.li1"><strong>Problem:</strong> Inefficient manual parking monitoring causing urban traffic congestion and emissions; physical ground sensors require high hardware and maintenance costs.</li>
+                <li data-i18n-html="pv.intro.li2"><strong>Data:</strong> Real-time optical video feeds (networked RTSP IP cameras, USB webcams, and MP4 video files).</li>
+                <li data-i18n-html="pv.intro.li3"><strong>Method:</strong> End-to-end computer vision pipeline combining Ultralytics YOLOv8 vehicle detection, ByteTrack spatial tracking, vector polygon intersection (Point-in-Polygon &amp; IoU), and a FastAPI WebSockets server with DirectML/CUDA GPU acceleration.</li>
+                <li data-i18n-html="pv.intro.li4"><strong>Result:</strong> Sub-second real-time occupancy detection, automated Available/Occupied state machine, and persistent SQLite (<code>parking.db</code>) audit logging.</li>
+                <li data-i18n-html="pv.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/tree/main/Files/parking_monitor" target="_blank" rel="noopener noreferrer">GitHub Repository (Files/parking_monitor)</a></li>
             </ul>
         </div>
     </div>

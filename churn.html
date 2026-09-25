@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
@@ -63,10 +63,11 @@
             <h1 data-i18n="churn.intro.title">Customer Churn Prediction</h1>
             <h2 data-i18n="churn.intro.subtitle">Comparison between Random Forest and Multilayer Perceptron</h2>
             <ul>
-                <li data-i18n="churn.intro.li1">Dataset: WA_Fn-UseC_-Telco-Customer-Churn (7,043 records)</li>
-                <li data-i18n="churn.intro.li2">Key variables: tenure, Contract, MonthlyCharges, InternetService</li>
-                <li data-i18n="churn.intro.li3">Best F1-Score: 0.634 (MLP with RandomUnderSampler)</li>
-                <li data-i18n="churn.intro.li4">Technologies: Python, scikit-learn, pandas, matplotlib, imblearn</li>
+                <li data-i18n-html="churn.intro.li1"><strong>Problem:</strong> High customer attrition in telecommunications, where acquiring a new subscriber costs 5-7x more than retaining an existing one.</li>
+                <li data-i18n-html="churn.intro.li2"><strong>Data:</strong> Telco Customer Churn dataset (7,043 customer accounts, 21 demographic, service, and contract attributes).</li>
+                <li data-i18n-html="churn.intro.li3"><strong>Method:</strong> Supervised classification comparing Random Forest and Multi-Layer Perceptrons (MLP) with class rebalancing (SMOTE, SMOTEENN, ADASYN, RandomUnderSampler), RandomizedSearchCV hyperparameter tuning with stratified CV, and SHAP explainability.</li>
+                <li data-i18n-html="churn.intro.li4"><strong>Result:</strong> Champion Random Forest + SMOTEENN model achieved 77.7% Recall and 0.633 F1-score, prioritizing at-risk subscribers within an illustrative retention scenario.</li>
+                <li data-i18n-html="churn.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/blob/main/Files/Proyecto%20Churn.ipynb" target="_blank" rel="noopener noreferrer">Jupyter Notebook</a></li>
             </ul>
         </div>
     </div>

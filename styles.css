@@ -315,6 +315,18 @@ nav ul li a:active {
   font-size: 0.9rem;
 }
 
+.intro ul li a {
+  color: var(--secondary-light);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: color var(--transition-fast);
+}
+
+.intro ul li a:hover {
+  color: #ffffff;
+}
+
 /* ===== PROJECT CARDS GRID ===== */
 .projects {
   max-width: 1240px;

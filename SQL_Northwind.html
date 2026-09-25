@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
@@ -63,10 +63,11 @@
             <h1 data-i18n="sql.intro.title">Enterprise SQL Analytics</h1>
             <h2 data-i18n-html="sql.intro.subtitle">Northwind Relational Database &bull; Advanced Window Functions &amp; Customer Intelligence</h2>
             <ul>
-                <li data-i18n="sql.intro.li1">Dataset: Northwind Relational Database (13 Normalized Tables, SQLite)</li>
-                <li data-i18n="sql.intro.li2">Methodologies: CTEs (Common Table Expressions), Window Functions, RFM Segmentation, Cohort Retention</li>
-                <li data-i18n="sql.intro.li3">Data Hygiene: Fan-Out Prevention (Distinct Counts), Accounting Discount Integration, Performance Optimization</li>
-                <li data-i18n="sql.intro.li4">Technologies: SQL (SQLite), Python, Pandas, Matplotlib, Plotly</li>
+                <li data-i18n-html="sql.intro.li1"><strong>Problem:</strong> Extracting commercial KPIs, logistics latency, and customer purchase behavior directly from transactional ERP database tables.</li>
+                <li data-i18n-html="sql.intro.li2"><strong>Data:</strong> Northwind relational database (13 normalized tables: orders, order details, customers, products, and shippers).</li>
+                <li data-i18n-html="sql.intro.li3"><strong>Method:</strong> Advanced analytical SQL: multi-table JOINs, Common Table Expressions (CTEs), Window Functions (<code>DENSE_RANK()</code>, <code>LAG()</code>, running totals via <code>SUM() OVER</code>), pure-SQL RFM segmentation (<code>NTILE(4)</code>), and cohort repeat-purchase matrices.</li>
+                <li data-i18n-html="sql.intro.li4"><strong>Result:</strong> 10 production-grade analytical queries computing net revenue adjusted for item discounts, shipper delivery latency distributions, and an in-database customer segmentation engine.</li>
+                <li data-i18n-html="sql.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/blob/main/Files/SQL_Northwind.ipynb" target="_blank" rel="noopener noreferrer">Jupyter Notebook &amp; SQL Queries</a></li>
             </ul>
         </div>
     </div>

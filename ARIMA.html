@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
@@ -63,10 +63,11 @@
             <h1 data-i18n="arima.intro.title">Time Series Forecasting (ARIMA)</h1>
             <h2 data-i18n="arima.intro.subtitle">Modeling monthly airline passengers (1949-1960)</h2>
             <ul>
-                <li data-i18n="arima.intro.li1">Dataset: Airline Passengers (144 monthly records)</li>
-                <li data-i18n="arima.intro.li2">Key features: Trend, Seasonality, Autocorrelation</li>
-                <li data-i18n="arima.intro.li3">Comparative Study: Baseline ARIMA(2,1,2) vs. Seasonal SARIMA(1,1,1)(1,1,1)₁₂ (MAPE: 3.68% | -61% MAE)</li>
-                <li data-i18n="arima.intro.li4">Technologies: Python, statsmodels, pandas, matplotlib</li>
+                <li data-i18n-html="arima.intro.li1"><strong>Problem:</strong> Forecasting passenger travel demand to optimize fleet capacity planning, scheduling, and commercial revenue management.</li>
+                <li data-i18n-html="arima.intro.li2"><strong>Data:</strong> Monthly international airline passenger time series (144 historical observations, 1949–1960).</li>
+                <li data-i18n-html="arima.intro.li3"><strong>Method:</strong> Box-Jenkins workflow: seasonal decomposition, Augmented Dickey-Fuller (ADF) stationarity testing, ACF/PACF autocorrelation analysis, seasonal differencing, and baseline ARIMA vs. SARIMA fitting.</li>
+                <li data-i18n-html="arima.intro.li4"><strong>Result:</strong> Seasonal SARIMA model captured annual seasonality and upward trend with an out-of-sample Mean Absolute Percentage Error (MAPE) of 3.68% (-61% MAE over non-seasonal baseline).</li>
+                <li data-i18n-html="arima.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/blob/main/Files/Series%20de%20tiempo.ipynb" target="_blank" rel="noopener noreferrer">Jupyter Notebook</a></li>
             </ul>
         </div>
     </div>
