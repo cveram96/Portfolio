@@ -703,7 +703,12 @@ const translations = {
     "rlm.concl.rec3": "Consider spatial models for location",
     "rlm.concl.rec4": "Explore techniques to handle heteroscedasticity",
     "rlm.repo.title": "Project Files",
-    "rlm.repo.p": "You can explore all files, datasets and source code for this project:"
+    "rlm.repo.p": "You can explore all files, datasets and source code for this project:",
+    "error.badge": "HTTP 404 — Coordinate Not Found",
+    "error.title": "Model Output Not Found",
+    "error.desc": "The coordinates or route you requested do not exist in this data warehouse or have been migrated. Let's redirect you back to active production systems.",
+    "error.btn.home": "← Return to Homepage",
+    "error.btn.projects": "Explore Featured Projects",
   },
   "es": {
     "nav.home": "Inicio",
@@ -1403,7 +1408,12 @@ const translations = {
     "rlm.concl.rec3": "Considerar modelos espaciales para capturar la ubicación geográfica",
     "rlm.concl.rec4": "Explorar técnicas para corregir la heterocedasticidad",
     "rlm.repo.title": "Archivos del Proyecto",
-    "rlm.repo.p": "Puedes explorar todos los archivos, datasets y código fuente en el repositorio:"
+    "rlm.repo.p": "Puedes explorar todos los archivos, datasets y código fuente en el repositorio:",
+    "error.badge": "HTTP 404 — Coordenada no Encontrada",
+    "error.title": "Ruta no Encontrada en el Modelo",
+    "error.desc": "Las coordenadas o la ruta solicitada no existen en este repositorio de datos o fueron migradas. Regresemos a los sistemas analíticos activos.",
+    "error.btn.home": "← Volver al Inicio",
+    "error.btn.projects": "Explorar Proyectos Destacados",
   }
 };
 
