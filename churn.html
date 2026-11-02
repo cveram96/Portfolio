@@ -60,13 +60,14 @@
     <!-- Intro Section -->
     <div class="container">
         <div class="intro">
+            <span class="hero-title-badge" data-i18n="common.summary_badge" style="margin-bottom: 0.8rem; display: inline-block;">Executive Summary</span>
             <h1 data-i18n="churn.intro.title">Customer Churn Prediction</h1>
             <h2 data-i18n="churn.intro.subtitle">Comparison between Random Forest and Multilayer Perceptron</h2>
             <ul>
-                <li data-i18n-html="churn.intro.li1"><strong>Problem:</strong> High customer attrition in telecommunications, where acquiring a new subscriber costs 5-7x more than retaining an existing one.</li>
+                <li data-i18n-html="churn.intro.li1"><strong>Objective:</strong> Identify telecommunication subscribers with a high probability of cancelling their service, enabling targeted and cost-effective retention initiatives.</li>
                 <li data-i18n-html="churn.intro.li2"><strong>Data:</strong> Telco Customer Churn dataset (7,043 customer accounts, 21 demographic, service, and contract attributes).</li>
-                <li data-i18n-html="churn.intro.li3"><strong>Method:</strong> Supervised classification comparing Random Forest and Multi-Layer Perceptrons (MLP) with class rebalancing (SMOTE, SMOTEENN, ADASYN, RandomUnderSampler), RandomizedSearchCV hyperparameter tuning with stratified CV, and SHAP explainability.</li>
-                <li data-i18n-html="churn.intro.li4"><strong>Result:</strong> Champion Random Forest + SMOTEENN model achieved 77.7% Recall and 0.633 F1-score, prioritizing at-risk subscribers within an illustrative retention scenario.</li>
+                <li data-i18n-html="churn.intro.li3"><strong>Method:</strong> Supervised classification comparing Random Forest and Multi-Layer Perceptrons with class balancing (SMOTEENN), accompanied by a financial cost-benefit model to determine the classification threshold.</li>
+                <li data-i18n-html="churn.intro.li4"><strong>Result &amp; Decision:</strong> Random Forest with SMOTEENN captured 77.7% of churn-prone accounts. The financial simulation demonstrated that calibrating the decision threshold below default 0.50 improved net retention profit.</li>
                 <li data-i18n-html="churn.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/blob/main/Files/Proyecto%20Churn.ipynb" target="_blank" rel="noopener noreferrer">Jupyter Notebook</a></li>
             </ul>
         </div>

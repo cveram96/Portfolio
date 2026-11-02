@@ -60,13 +60,14 @@
     <!-- Intro Section -->
     <div class="container">
         <div class="intro">
+            <span class="hero-title-badge" data-i18n="common.summary_badge" style="margin-bottom: 0.8rem; display: inline-block;">Executive Summary</span>
             <h1 data-i18n="abt.intro.title">A/B Testing Project</h1>
             <h2 data-i18n-html="abt.intro.subtitle">Landing Page Performance Analysis &amp; Decision Science</h2>
             <ul>
-                <li data-i18n-html="abt.intro.li1"><strong>Problem:</strong> Product teams risk deploying unvalidated UI changes that could drag conversion rates, often relying on noisy metrics or underpowered experiments.</li>
+                <li data-i18n-html="abt.intro.li1"><strong>Objective:</strong> Evaluate whether a proposed landing page design measurably improves enrollment rates compared to the current baseline, avoiding decisions based on sample noise.</li>
                 <li data-i18n-html="abt.intro.li2"><strong>Data:</strong> Udacity e-commerce landing page experiment dataset (290,584 unique users).</li>
-                <li data-i18n-html="abt.intro.li3"><strong>Method:</strong> Statistical quality gates (I.I.D. deduplication), Chi-Square (&chi;&sup2;) Sample Ratio Mismatch (SRM) test, two-sample Z-test hypothesis testing, power sizing (MDE), and CUPED variance reduction using pre-experiment covariates.</li>
-                <li data-i18n-html="abt.intro.li4"><strong>Result:</strong> -42.8% metric variance reduction, -24.4% narrower 95% Confidence Interval for ATE, -42.7% sample size reduction for 80% power, and executive NO-GO verdict (Z = -1.31, p = 0.1899) protecting business downside under an illustrative scenario.</li>
+                <li data-i18n-html="abt.intro.li3"><strong>Method:</strong> Two-sample hypothesis testing (Z-test) and traffic allocation checks (SRM), combined with CUPED variance reduction using pre-experiment baseline activity.</li>
+                <li data-i18n-html="abt.intro.li4"><strong>Result &amp; Decision:</strong> The new landing page showed no statistically significant lift (p = 0.1899), supporting a recommendation to retain the current page. CUPED reduced metric variance by 42.8%, lowering required sample size.</li>
                 <li data-i18n-html="abt.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/tree/main/experimentation-platform/experiments" target="_blank" rel="noopener noreferrer">GitHub Codebase</a></li>
             </ul>
         </div>

@@ -61,13 +61,14 @@
     <!-- Intro Section -->
     <div class="container">
         <div class="intro">
+            <span class="hero-title-badge" data-i18n="common.summary_badge" style="margin-bottom: 0.8rem; display: inline-block;">Executive Summary</span>
             <h1 data-i18n="pv.intro.title">ParkVision AI</h1>
             <h2 data-i18n="pv.intro.subtitle">End-to-End Real-Time Smart Parking Monitoring System</h2>
             <ul>
-                <li data-i18n-html="pv.intro.li1"><strong>Problem:</strong> Inefficient manual parking monitoring causing urban traffic congestion and emissions; physical ground sensors require high hardware and maintenance costs.</li>
+                <li data-i18n-html="pv.intro.li1"><strong>Objective:</strong> Automate parking bay occupancy monitoring using existing optical video feeds (CCTV and RTSP streams) as an alternative to installing physical pavement sensors.</li>
                 <li data-i18n-html="pv.intro.li2"><strong>Data:</strong> Real-time optical video feeds (networked RTSP IP cameras, USB webcams, and MP4 video files).</li>
                 <li data-i18n-html="pv.intro.li3"><strong>Method:</strong> End-to-end computer vision pipeline combining Ultralytics YOLOv8 vehicle detection, ByteTrack spatial tracking, vector polygon intersection (Point-in-Polygon &amp; IoU), and a FastAPI WebSockets server with DirectML/CUDA GPU acceleration.</li>
-                <li data-i18n-html="pv.intro.li4"><strong>Result:</strong> Sub-second real-time occupancy detection, automated Available/Occupied state machine, and persistent SQLite (<code>parking.db</code>) audit logging.</li>
+                <li data-i18n-html="pv.intro.li4"><strong>Result:</strong> Real-time slot status detection, automatic Available/Occupied state tracking, and persistent SQLite database logging for operational reports.</li>
                 <li data-i18n-html="pv.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/tree/main/Files/parking_monitor" target="_blank" rel="noopener noreferrer">GitHub Repository (Files/parking_monitor)</a></li>
             </ul>
         </div>
