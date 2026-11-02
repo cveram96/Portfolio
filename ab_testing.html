@@ -203,6 +203,96 @@
             <p style="font-size: 0.9rem; color: var(--gray-muted); line-height: 1.6;" data-i18n-html="abt.cuped.fig_caption">
                 <strong>Figure 1:</strong> Four-panel experimentation diagnostic suite. (A) Distribution narrowing via covariate adjustment (-42.8% variance). (B) Shrinking 95% Confidence Interval for Average Treatment Effect (ATE). (C) Statistical power curves reaching 80% power with 42.7% fewer users. (D) Real-world benchmark: Udacity landing page conversion rate (Z = -1.31, p = 0.1899).
             </p>
+
+            <!-- Interactive CUPED Simulator Playground -->
+            <div class="interactive-widget" id="cupedSimulator">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+                    <div>
+                        <span class="hero-title-badge" data-i18n="abt.sim.badge">Interactive Engine</span>
+                        <h3 style="margin: 0.3rem 0 0 0; color: #ffffff; font-size: 1.25rem;" data-i18n="abt.sim.title">Live CUPED Variance Reduction &amp; Velocity Simulator</h3>
+                    </div>
+                    <span style="font-family: var(--font-mono); font-size: 0.78rem; color: #10b981; background: rgba(16, 185, 129, 0.1); padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.3);" data-i18n="abt.sim.pill">
+                        ● Reactive Client-Side Model
+                    </span>
+                </div>
+                <p style="font-size: 0.92rem; color: var(--gray); margin-bottom: 1.5rem;" data-i18n="abt.sim.desc">
+                    Adjust the pre-experiment covariate correlation (&rho;) and sample size to observe real-time variance contraction, sample size savings, and experiment duration compression:
+                </p>
+
+                <!-- Slider Controls -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
+                            <label for="cupedRho" style="color: var(--light); font-weight: 600;" data-i18n="abt.sim.lbl_rho">Covariate Correlation (&rho;):</label>
+                            <span id="cupedRhoVal" style="font-family: var(--font-mono); color: var(--secondary-light); font-weight: 700;">0.65</span>
+                        </div>
+                        <input type="range" id="cupedRho" class="range-slider" min="0.00" max="0.90" step="0.01" value="0.65">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--gray-muted); margin-top: 0.2rem;">
+                            <span>0.0 (No adjustment)</span>
+                            <span>0.90 (Strong signal)</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
+                            <label for="cupedSample" style="color: var(--light); font-weight: 600;" data-i18n="abt.sim.lbl_sample">Baseline Sample Size (N per group):</label>
+                            <span id="cupedSampleVal" style="font-family: var(--font-mono); color: #a78bfa; font-weight: 700;">100,000</span>
+                        </div>
+                        <input type="range" id="cupedSample" class="range-slider" min="10000" max="300000" step="5000" value="100000">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--gray-muted); margin-top: 0.2rem;">
+                            <span>10,000</span>
+                            <span>300,000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Dynamic KPI Cards -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                    <div style="background: rgba(2, 132, 199, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--secondary); text-align: center;">
+                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;" data-i18n="abt.sim.kpi_var">Variance Contraction</div>
+                        <div id="simVarDrop" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #38bdf8; margin-top: 0.2rem;">-42.3%</div>
+                        <div style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">&Delta;Var = -(&rho;&sup2;)</div>
+                    </div>
+
+                    <div style="background: rgba(16, 185, 129, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid #10b981; text-align: center;">
+                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;" data-i18n="abt.sim.kpi_users">Users Saved / Group</div>
+                        <div id="simUsersSaved" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #34d399; margin-top: 0.2rem;">42,250 users</div>
+                        <div id="simNewSample" style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">Target N: 57,750</div>
+                    </div>
+
+                    <div style="background: rgba(245, 158, 11, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid #f59e0b; text-align: center;">
+                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;" data-i18n="abt.sim.kpi_duration">Runtime Saved (4 wk baseline)</div>
+                        <div id="simDaysSaved" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #fbbf24; margin-top: 0.2rem;">11.8 days</div>
+                        <div id="simNewDuration" style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">New runtime: 2.3 weeks</div>
+                    </div>
+
+                    <div style="background: rgba(168, 85, 247, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid #a855f7; text-align: center;">
+                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;" data-i18n="abt.sim.kpi_ci">95% CI Margin Shrink</div>
+                        <div id="simCIShrink" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #c084fc; margin-top: 0.2rem;">-24.0%</div>
+                        <div style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">Factor: &radic;(1 - &rho;&sup2;)</div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Comparison Visual Gauge -->
+                <div style="background: rgba(0, 0, 0, 0.35); border-radius: 8px; padding: 1.2rem; border: 1px solid rgba(255, 255, 255, 0.06);">
+                    <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--gray); margin-bottom: 0.5rem;">
+                        <span data-i18n="abt.sim.base_dur">Standard A/B Test Duration (100%):</span>
+                        <span style="font-family: var(--font-mono); color: #f87171;">28.0 days</span>
+                    </div>
+                    <div style="width: 100%; height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 4px; overflow: hidden; margin-bottom: 1rem;">
+                        <div style="width: 100%; height: 100%; background: #f87171;"></div>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--gray); margin-bottom: 0.5rem;">
+                        <span data-i18n="abt.sim.cuped_dur">CUPED-Accelerated Runtime:</span>
+                        <span id="simGaugeText" style="font-family: var(--font-mono); color: #34d399; font-weight: 700;">16.2 days (57.7% of original)</span>
+                    </div>
+                    <div style="width: 100%; height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 4px; overflow: hidden;">
+                        <div id="simGaugeBar" style="width: 57.7%; height: 100%; background: linear-gradient(90deg, #10b981, #0284c7); transition: width 0.2s ease;"></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -330,6 +420,52 @@
     <!-- Multilingual i18n Scripts -->
     <script src="translations.js"></script>
     <script src="i18n.js"></script>
+
+    <!-- CUPED Reactive Simulator Script -->
+    <script>
+      (function initCUPEDSimulator() {
+        const rhoInput = document.getElementById('cupedRho');
+        const sampleInput = document.getElementById('cupedSample');
+        if (!rhoInput || !sampleInput) return;
+
+        function update() {
+          const rho = parseFloat(rhoInput.value);
+          const sample = parseInt(sampleInput.value, 10);
+          
+          document.getElementById('cupedRhoVal').textContent = rho.toFixed(2);
+          document.getElementById('cupedSampleVal').textContent = sample.toLocaleString('en-US');
+
+          const varDropPct = (rho * rho) * 100;
+          const factor = Math.sqrt(Math.max(0, 1 - rho * rho));
+          const ciShrinkPct = (1 - factor) * 100;
+
+          const newSample = Math.round(sample * (1 - rho * rho));
+          const usersSaved = sample - newSample;
+
+          const baseDays = 28;
+          const newDays = baseDays * (1 - rho * rho);
+          const daysSaved = baseDays - newDays;
+          const newWeeks = (newDays / 7).toFixed(1);
+
+          document.getElementById('simVarDrop').textContent = '-' + varDropPct.toFixed(1) + '%';
+          document.getElementById('simUsersSaved').textContent = usersSaved.toLocaleString('en-US') + ' users';
+          document.getElementById('simNewSample').textContent = 'Target N: ' + newSample.toLocaleString('en-US');
+
+          document.getElementById('simDaysSaved').textContent = daysSaved.toFixed(1) + ' days';
+          document.getElementById('simNewDuration').textContent = 'New runtime: ' + newWeeks + ' weeks';
+          document.getElementById('simCIShrink').textContent = '-' + ciShrinkPct.toFixed(1) + '%';
+
+          const pctOfOriginal = ((1 - rho * rho) * 100).toFixed(1);
+          document.getElementById('simGaugeText').textContent = newDays.toFixed(1) + ' days (' + pctOfOriginal + '% of original)';
+          document.getElementById('simGaugeBar').style.width = pctOfOriginal + '%';
+        }
+
+        rhoInput.addEventListener('input', update);
+        sampleInput.addEventListener('input', update);
+        update();
+      })();
+    </script>
+
 </body>
 </html>
 
