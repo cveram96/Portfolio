@@ -1,612 +1,1236 @@
 <!DOCTYPE html>
 
+
+
 <html lang="en">
+
+
 
 <head>
 
+
+
     <!-- Google tag (gtag.js) -->
+
+
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0NCSQ1FW3J"></script>
 
+
+
     <script>
+
+
 
       window.dataLayer = window.dataLayer || [];
 
+
+
       function gtag(){dataLayer.push(arguments);}
+
+
 
       gtag('js', new Date());
 
 
 
+
+
+
+
       gtag('config', 'G-0NCSQ1FW3J');
+
+
 
     </script>
 
+
+
     <meta charset="UTF-8">
+
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+
     <!-- Primary Meta Tags -->
+
+
 
     <title>California Housing Price Prediction — Multiple Linear Regression</title>
 
+
+
     <meta name="title" content="California Housing Price Prediction — Multiple Linear Regression">
+
+
 
     <meta name="description" content="Econometric housing valuation (R² = 0.6364, RMSE: 0.6574), domain feature engineering, and Gauss-Markov assumption validation.">
 
+
+
     <meta name="author" content="Christian David Vera Mendivelso">
 
+
+
     <meta name="robots" content="index, follow">
+
+
 
     <meta name="theme-color" content="#0d1117">
 
 
 
+
+
+
+
     <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+
+
 
     <meta property="og:type" content="article">
 
+
+
     <meta property="og:url" content="https://cveram96.github.io/Portfolio/RLM.html">
+
+
 
     <meta property="og:site_name" content="Christian David Vera | Portfolio">
 
+
+
     <meta property="og:title" content="California Housing Price Prediction — Multiple Linear Regression">
+
+
 
     <meta property="og:description" content="Econometric housing valuation (R² = 0.6364, RMSE: 0.6574), domain feature engineering, and Gauss-Markov assumption validation.">
 
+
+
     <meta property="og:image" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/RLM/california_housing_geo.png">
+
+
 
     <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/RLM/california_housing_geo.png">
 
+
+
     <meta property="og:image:type" content="image/png">
+
+
 
     <meta property="og:image:width" content="1200">
 
+
+
     <meta property="og:image:height" content="630">
+
+
 
     <meta property="og:image:alt" content="California Housing Price Prediction — Multiple Linear Regression">
 
+
+
     <meta property="og:locale" content="en_US">
+
+
 
     <meta property="og:locale:alternate" content="es_ES">
 
 
 
+
+
+
+
     <!-- Twitter / X Cards -->
+
+
 
     <meta name="twitter:card" content="summary_large_image">
 
+
+
     <meta name="twitter:url" content="https://cveram96.github.io/Portfolio/RLM.html">
+
+
 
     <meta name="twitter:title" content="California Housing Price Prediction — Multiple Linear Regression">
 
+
+
     <meta name="twitter:description" content="Econometric housing valuation (R² = 0.6364, RMSE: 0.6574), domain feature engineering, and Gauss-Markov assumption validation.">
+
+
 
     <meta name="twitter:image" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/RLM/california_housing_geo.png">
 
+
+
     <meta name="twitter:image:alt" content="California Housing Price Prediction — Multiple Linear Regression">
+
+
 
         <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-    <link rel="stylesheet" href="styles.css?v=2.5">
+
+
+    <link rel="stylesheet" href="styles.css?v=2.6">
+
+
 
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+
+
 </head>
+
+
 
 <body>
 
+
+
         <!-- Navigation bar -->
+
+
 
     <nav>
 
+
+
         <ul>
+
+
 
             <li><a href="index.html" data-i18n="nav.home">Home</a></li>
 
+
+
             <li><a href="index.html#featured" data-i18n="nav.featured">Featured Projects</a></li>
+
+
 
             <li><a href="index.html#analytics" data-i18n="nav.analytics">Analytics &amp; BI</a></li>
 
+
+
             <li><a href="contacto.html" data-i18n="nav.contact">Contact</a></li>
 
+
+
         </ul>
+
+
 
     </nav>
 
 
 
+
+
+
+
     <!-- Intro Section -->
+
+
 
     <div class="container">
 
+
+
         <div class="intro">
+
+            <span class="hero-title-badge" data-i18n="common.summary_badge">Executive Summary</span>
 
             <h1 data-i18n="rlm.intro.title">Median House Value Prediction in California</h1>
 
             <h2 data-i18n="rlm.intro.subtitle">Analysis with Multiple Linear Regression</h2>
 
-            <ul>
+            <ul class="summary-list">
 
-                <li data-i18n-html="rlm.intro.li1"><strong>Problem:</strong> Estimating median residential property values and quantifying the elasticity of socioeconomic and spatial variables.</li>
+                <li class="summary-item">
 
-                <li data-i18n-html="rlm.intro.li2"><strong>Data:</strong> California 1990 Census housing dataset (20,640 census block group observations).</li>
+                    <span class="summary-icon-box" aria-hidden="true">🎯</span>
 
-                <li data-i18n-html="rlm.intro.li3"><strong>Method:</strong> Multivariate OLS linear regression, log-transformed target, elasticity analysis, and Gauss-Markov diagnostics (Jarque-Bera, Breusch-Pagan, Variance Inflation Factor).</li>
+                    <div class="summary-text" data-i18n-html="rlm.intro.li1"><strong>Problem:</strong> Estimating median residential property values and quantifying the elasticity of socioeconomic and spatial variables.</div>
 
-                <li data-i18n-html="rlm.intro.li4"><strong>Result:</strong> Linear model explaining 63.6% of price variance (R² = 0.6364, RMSE: 0.6574), establishing median income elasticity (+0.68) and ocean proximity as primary valuation drivers.</li>
+                </li>
 
-                <li data-i18n-html="rlm.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/blob/main/Files/RLM.ipynb" target="_blank" rel="noopener noreferrer">Jupyter Notebook</a></li>
+                <li class="summary-item">
+
+                    <span class="summary-icon-box" aria-hidden="true">🗄️</span>
+
+                    <div class="summary-text" data-i18n-html="rlm.intro.li2"><strong>Data:</strong> California 1990 Census housing dataset (20,640 census block group observations).</div>
+
+                </li>
+
+                <li class="summary-item">
+
+                    <span class="summary-icon-box" aria-hidden="true">⚙️</span>
+
+                    <div class="summary-text" data-i18n-html="rlm.intro.li3"><strong>Method:</strong> Multivariate OLS linear regression, log-transformed target, elasticity analysis, and Gauss-Markov diagnostics (Jarque-Bera, Breusch-Pagan, Variance Inflation Factor).</div>
+
+                </li>
+
+                <li class="summary-item">
+
+                    <span class="summary-icon-box" aria-hidden="true">📈</span>
+
+                    <div class="summary-text" data-i18n-html="rlm.intro.li4"><strong>Result:</strong> Linear model explaining 63.6% of price variance (R² = 0.6364, RMSE: 0.6574), establishing median income elasticity (+0.68) and ocean proximity as primary valuation drivers.</div>
+
+                </li>
+
+                <li class="summary-item">
+
+                    <span class="summary-icon-box" aria-hidden="true">💻</span>
+
+                    <div class="summary-text" data-i18n-html="rlm.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/blob/main/Files/RLM.ipynb" target="_blank" rel="noopener noreferrer">Jupyter Notebook</a></div>
+
+                </li>
 
             </ul>
 
+
+
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- Project Context Section -->
 
+
+
     <div class="container">
+
+
 
         <div class="section-block">
 
+
+
             <h2 data-i18n="rlm.context.title">Project Context</h2>
+
+
 
             <p data-i18n="rlm.context.p">Analysis of the California housing market using 1990 census data to predict median house value across districts.</p>
 
+
+
             
+
+
 
             <h3 data-i18n="rlm.context.vars_title">Main variables:</h3>
 
+
+
             <ul class="two-columns">
+
+
 
                 <li data-i18n-html="rlm.var.medinc"><strong>MedInc:</strong> Median household income</li>
 
+
+
                 <li data-i18n-html="rlm.var.houseage"><strong>HouseAge:</strong> Median house age</li>
+
+
 
                 <li data-i18n-html="rlm.var.averooms"><strong>AveRooms:</strong> Average rooms</li>
 
+
+
                 <li data-i18n-html="rlm.var.avebedrms"><strong>AveBedrms:</strong> Average bedrooms</li>
+
+
 
                 <li data-i18n-html="rlm.var.population"><strong>Population:</strong> Population in the block</li>
 
+
+
                 <li data-i18n-html="rlm.var.aveoccup"><strong>AveOccup:</strong> Average occupancy</li>
+
+
 
                 <li data-i18n-html="rlm.var.latitude"><strong>Latitude:</strong> Geographic latitude</li>
 
+
+
                 <li data-i18n-html="rlm.var.longitude"><strong>Longitude:</strong> Geographic longitude</li>
+
+
 
             </ul>
 
+
+
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- Detailed Methodology Section -->
 
+
+
     <div class="container">
+
+
 
         <div class="section-block">
 
+
+
             <h2 data-i18n="rlm.method.title">Detailed Methodology</h2>
 
+
+
             
+
+
 
             <h3 data-i18n="rlm.method.step1_title">1. Exploratory Data Analysis (EDA)</h3>
 
+
+
             <ul>
+
+
 
                 <li data-i18n="rlm.method.step1_li1">Variable distributions and outlier detection</li>
 
+
+
                 <li data-i18n="rlm.method.step1_li2">Correlation matrix between features</li>
+
+
 
                 <li data-i18n="rlm.method.step1_li3">Visualization of geographic patterns</li>
 
+
+
             </ul>
 
+
+
             
+
+
 
             <h3 data-i18n="rlm.method.step2_title">2. Preprocessing</h3>
 
+
+
             <ul>
+
+
 
                 <li><span data-i18n="rlm.method.step2_fe">Feature engineering:</span>
 
+
+
                     <ul>
+
+
 
                         <li data-i18n-html="rlm.method.step2_fe1"><code>Rooms_per_Population</code>: Rooms per person</li>
 
+
+
                         <li data-i18n-html="rlm.method.step2_fe2"><code>Bedroom_Ratio</code>: Bedroom ratio</li>
+
+
 
                         <li data-i18n-html="rlm.method.step2_fe3"><code>People_per_House</code>: Occupants per house</li>
 
+
+
                     </ul>
 
+
+
                 </li>
+
+
 
                 <li data-i18n="rlm.method.step2_outliers">Outlier removal using the IQR method</li>
 
+
+
                 <li data-i18n="rlm.method.step2_std">Standardization of numeric variables</li>
 
+
+
             </ul>
+
+
 
             
 
+
+
             <h3 data-i18n="rlm.method.step3_title">3. Modeling</h3>
+
+
 
             <ul>
 
+
+
                 <li><span data-i18n="rlm.method.step3_pipe">Pipeline components:</span>
+
+
 
                     <ul>
 
+
+
                         <li data-i18n-html="rlm.method.step3_pipe1"><code>StandardScaler</code> for normalization</li>
+
+
 
                         <li data-i18n-html="rlm.method.step3_pipe2"><code>PolynomialFeatures</code> for non-linear relationships</li>
 
+
+
                         <li data-i18n-html="rlm.method.step3_pipe3"><code>SelectKBest</code> for feature selection</li>
+
+
 
                         <li data-i18n-html="rlm.method.step3_pipe4"><code>LinearRegression</code> as final model</li>
 
+
+
                     </ul>
+
+
 
                 </li>
 
+
+
                 <li data-i18n-html="rlm.method.step3_opt">Optimization with <code>RandomizedSearchCV</code></li>
+
+
 
             </ul>
 
+
+
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- Geographic Distribution Visualization -->
 
+
+
     <div class="container">
+
+
 
         <div class="section-block">
 
+
+
             <h2 data-i18n="rlm.geo.title">Geographic Price Distribution in California</h2>
+
+
 
             <p data-i18n="rlm.geo.desc">Geospatial visualization of 20,640 census block groups mapping median home values across California. Distinct high-density clusters are evident along coastal metropolitan areas (San Francisco Bay Area, Los Angeles, San Diego) compared to lower-cost agricultural zones in the Central Valley.</p>
 
+
+
             <div style="margin-top: 1.5rem; text-align: center;">
+
+
 
                 <img src="Files/images/RLM/california_housing_geo.png" 
 
+
+
                      alt="California Housing Geospatial Price Distribution" 
+
+
 
                      style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,0.5);" 
 
+
+
                      loading="lazy">
+
+
 
             </div>
 
+
+
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- Results and Findings Section -->
 
+
+
     <div class="container">
+
+
 
         <div class="section-block">
 
+
+
             <h2 data-i18n="rlm.results.title">Results and Findings</h2>
 
+
+
             
+
+
 
             <div class="results-container">
 
+
+
                 <!-- Metrics card -->
+
+
 
                 <div class="metric-card">
 
+
+
                     <div class="metric-card-header">
+
+
 
                         <h4 data-i18n="rlm.results.metrics_header">Model Metrics</h4>
 
+
+
                     </div>
+
+
 
                     <div class="metric-card-content">
 
+
+
                         <div class="metric-item">
+
+
 
                             <div class="metric-title"><span data-i18n="rlm.results.r2_title">R² coefficient</span><span class="help-pill" data-i18n-tooltip="tip.r2" tabindex="0">?</span></div>
 
+
+
                             <div class="metric-value">0.6364</div>
+
+
 
                             <div class="metric-description" data-i18n-html="rlm.results.r2_desc">Explains <strong>63.64%</strong> of the variance</div>
 
+
+
                             <div class="progress-container">
+
+
 
                                 <div class="progress-bar" style="width: 63.64%"></div>
 
+
+
                             </div>
 
+
+
                         </div>
+
+
 
                         <div class="metric-item">
 
+
+
                             <div class="metric-title"><span data-i18n="rlm.results.rmse_title">RMSE</span><span class="help-pill" data-i18n-tooltip="tip.rmse" tabindex="0">?</span></div>
+
+
 
                             <div class="metric-value">0.6574</div>
 
+
+
                             <div class="metric-description" data-i18n="rlm.results.rmse_desc">Root mean squared error</div>
+
+
 
                         </div>
 
+
+
                     </div>
 
+
+
                 </div>
+
+
 
                 
 
+
+
                 <!-- Feature importance card -->
+
+
 
                 <div class="influence-card">
 
+
+
                     <div class="metric-card-header">
+
+
 
                         <h4 data-i18n="rlm.results.influence_header">Most Influential Features</h4>
 
+
+
                     </div>
+
+
 
                     <div class="influence-list">
 
+
+
                         <div class="influence-item">
+
+
 
                             <div class="var-name"><span>MedInc</span><span class="help-pill" data-i18n-tooltip="tip.feat_medinc" tabindex="0">?</span></div>
 
+
+
                             <div class="var-coef positive">+0.956</div>
 
+
+
                             <div class="var-bar-container">
+
+
 
                                 <div class="var-bar" style="width: 100%"></div>
 
+
+
                             </div>
+
+
 
                         </div>
 
+
+
                         <div class="influence-item">
+
+
 
                             <div class="var-name"><span>Bedroom_Ratio</span><span class="help-pill" data-i18n-tooltip="tip.feat_bedroom" tabindex="0">?</span></div>
 
+
+
                             <div class="var-coef positive">+0.354</div>
 
+
+
                             <div class="var-bar-container">
+
+
 
                                 <div class="var-bar" style="width: 37%"></div>
 
+
+
                             </div>
+
+
 
                         </div>
 
+
+
                         <div class="influence-item">
+
+
 
                             <div class="var-name"><span>AveOccup</span><span class="help-pill" data-i18n-tooltip="tip.feat_aveoccup" tabindex="0">?</span></div>
 
+
+
                             <div class="var-coef negative">-0.286</div>
 
+
+
                             <div class="var-bar-container">
+
+
 
                                 <div class="var-bar negative" style="width: 30%"></div>
 
+
+
                             </div>
 
+
+
                         </div>
+
+
 
                         <div class="influence-item">
 
+
+
                             <div class="var-name"><span>HouseAge</span><span class="help-pill" data-i18n-tooltip="tip.feat_houseage" tabindex="0">?</span></div>
+
+
 
                             <div class="var-coef positive">+0.208</div>
 
+
+
                             <div class="var-bar-container">
+
+
 
                                 <div class="var-bar" style="width: 22%"></div>
 
+
+
                             </div>
+
+
 
                         </div>
 
+
+
                     </div>
+
+
 
                 </div>
 
+
+
             </div>
+
+
 
             
 
+
+
             <h3 data-i18n="rlm.results.assumptions_title">Assumption Validation</h3>
+
+
 
             <ul>
 
+
+
                 <li data-i18n-html="rlm.results.assump1"><strong>Residual normality:</strong> Not satisfied (p &lt; 0.05)</li>
+
+
 
                 <li data-i18n-html="rlm.results.assump2"><strong>Homoscedasticity:</strong> Not satisfied (p &lt; 0.05)</li>
 
+
+
                 <li data-i18n-html="rlm.results.assump3"><strong>Independence:</strong> Satisfied (Durbin-Watson ≈ 2)</li>
+
+
 
             </ul>
 
+
+
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- Residual Diagnostics Suite -->
 
+
+
     <div class="container">
+
+
 
         <div class="section-block">
 
+
+
             <h2 data-i18n="rlm.diag.title">Econometric Residual Diagnostics Suite</h2>
+
+
 
             <p data-i18n="rlm.diag.desc">Four-panel diagnostic analysis validating linear regression Gauss-Markov assumptions: Residuals vs Fitted (non-constant variance), Normal Q-Q plot (heavy tails rejecting normality with Shapiro-Wilk p &lt; 0.001), Scale-Location (heteroscedasticity confirmed by Breusch-Pagan p &lt; 0.001), and Residual Density confirming zero autocorrelation (Durbin-Watson ≈ 2.0).</p>
 
+
+
             <div style="margin-top: 1.5rem; text-align: center;">
+
+
 
                 <img src="Files/images/RLM/rlm_residuals_diagnostics.png" 
 
+
+
                      alt="Multiple Linear Regression Residual Diagnostics Suite" 
+
+
 
                      style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,0.5);" 
 
+
+
                      loading="lazy">
+
+
 
             </div>
 
+
+
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- Conclusions Section -->
 
+
+
     <div class="container">
+
+
 
         <div class="section-block">
 
+
+
             <h2 data-i18n="rlm.concl.title">Conclusions and Recommendations</h2>
 
+
+
             
+
+
 
             <h3 data-i18n="rlm.concl.findings_title">Key Findings</h3>
 
+
+
             <ul>
+
+
 
                 <li data-i18n="rlm.concl.f1">Median income is the strongest predictor of house value</li>
 
+
+
                 <li data-i18n="rlm.concl.f2">Geographic location shows clear spatial patterns</li>
+
+
 
                 <li data-i18n="rlm.concl.f3">More occupied houses tend to be worth less</li>
 
+
+
                 <li data-i18n="rlm.concl.f4">Engineered features improved predictive power</li>
+
+
 
             </ul>
 
+
+
             
+
+
 
             <h3 data-i18n="rlm.concl.lim_title">Limitations</h3>
 
+
+
             <ul>
+
+
 
                 <li data-i18n="rlm.concl.lim1">The model does not satisfy residual normality</li>
 
+
+
                 <li data-i18n="rlm.concl.lim2">Presence of heteroscedasticity</li>
+
+
 
                 <li data-i18n="rlm.concl.lim3">Complex relationships not captured by linear regression</li>
 
+
+
             </ul>
+
+
 
             
 
+
+
             <h3 data-i18n="rlm.concl.rec_title">Recommendations</h3>
+
+
 
             <ul>
 
+
+
                 <li data-i18n="rlm.concl.rec1">Try non-linear models (Random Forest, XGBoost)</li>
+
+
 
                 <li data-i18n="rlm.concl.rec2">Apply transformations to improve normality</li>
 
+
+
                 <li data-i18n="rlm.concl.rec3">Consider spatial models for location</li>
+
+
 
                 <li data-i18n="rlm.concl.rec4">Explore techniques to handle heteroscedasticity</li>
 
+
+
             </ul>
+
+
 
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- Project Files Section -->
 
+
+
     <div class="container">
+
+
 
         <div class="section-block">
 
+
+
             <h2 data-i18n="rlm.repo.title">Project Files</h2>
+
+
 
             <p data-i18n="rlm.repo.p">You can explore all files, datasets and source code for this project:</p>
 
+
+
             
+
+
 
             <div class="files-link-container">
 
+
+
                 <a href="https://github.com/cveram96/Portfolio/blob/main/Files/RLM.ipynb" 
+
+
 
                    class="project-files-link" 
 
+
+
                    target="_blank"
+
+
 
                    rel="noopener noreferrer">
 
+
+
                     View full project files
+
+
 
                 </a>
 
+
+
                 
+
+
 
                 <div class="file-types">
 
+
+
                     <span class="file-badge">Jupyter Notebook</span>
+
+
 
                 </div>
 
+
+
             </div>
 
+
+
         </div>
+
+
 
     </div>
 
 
 
+
+
+
+
         <!-- Standardized Accessible Footer -->
+
+
 
     <footer>
 
+
+
         <div class="footer-content">
+
+
 
             <p class="footer-credit" data-i18n-html="footer.credit">Designed &amp; Developed by <strong style="color: #ffffff;">Christian David Vera Mendivelso</strong> &bull; 2025&ndash;2026</p>
 
+
+
             <p class="footer-status" data-i18n-html="footer.status">Bogot&aacute;, Colombia &bull; Open to Remote &amp; Hybrid roles</p>
+
+
 
             <div class="footer-actions">
 
+
+
                 <a href="https://www.linkedin.com/in/christianveram/" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-linkedin">
+
+
 
                     LinkedIn
 
+
+
                 </a>
+
+
 
                 <a href="https://github.com/cveram96" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-github">
 
+
+
                     GitHub
 
+
+
                 </a>
+
+
 
                 <a href="contacto.html" class="footer-btn footer-btn-contact" data-i18n="footer.contact">
 
+
+
                     Contact
+
+
 
                 </a>
 
+
+
             </div>
 
+
+
         </div>
+
+
 
     </footer>
 
@@ -614,15 +1238,33 @@
 
 
 
+
+
+
+
+
+
     <!-- Multilingual i18n Scripts -->
 
-    <script src="translations.js?v=2.5"></script>
 
-    <script src="i18n.js?v=2.5"></script>
+
+    <script src="translations.js?v=2.6"></script>
+
+
+
+    <script src="i18n.js?v=2.6"></script>
+
+
 
 </body>
 
+
+
 </html>
+
+
+
+
 
 
 

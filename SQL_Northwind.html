@@ -1,2040 +1,4098 @@
 <!DOCTYPE html>
 
+
+
 <html lang="en">
+
+
 
 <head>
 
+
+
     <!-- Google tag (gtag.js) -->
+
+
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0NCSQ1FW3J"></script>
 
+
+
     <script>
+
+
 
       window.dataLayer = window.dataLayer || [];
 
+
+
       function gtag(){dataLayer.push(arguments);}
+
+
 
       gtag('js', new Date());
 
 
 
+
+
+
+
       gtag('config', 'G-0NCSQ1FW3J');
+
+
 
     </script>
 
+
+
     <meta charset="UTF-8">
+
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+
     <!-- Primary Meta Tags -->
+
+
 
     <title>Enterprise SQL Analytics & Relational Modeling — Northwind</title>
 
+
+
     <meta name="title" content="Enterprise SQL Analytics & Relational Modeling — Northwind">
+
+
 
     <meta name="description" content="13 normalized relational tables, window functions (DENSE_RANK, LAG), net revenue accounting, join fan-out prevention, and pure SQL RFM.">
 
+
+
     <meta name="author" content="Christian David Vera Mendivelso">
 
+
+
     <meta name="robots" content="index, follow">
+
+
 
     <meta name="theme-color" content="#0d1117">
 
 
 
+
+
+
+
     <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+
+
 
     <meta property="og:type" content="article">
 
+
+
     <meta property="og:url" content="https://cveram96.github.io/Portfolio/SQL_Northwind.html">
+
+
 
     <meta property="og:site_name" content="Christian David Vera | Portfolio">
 
+
+
     <meta property="og:title" content="Enterprise SQL Analytics & Relational Modeling — Northwind">
+
+
 
     <meta property="og:description" content="13 normalized relational tables, window functions (DENSE_RANK, LAG), net revenue accounting, join fan-out prevention, and pure SQL RFM.">
 
+
+
     <meta property="og:image" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/portfolio_og_preview.png">
+
+
 
     <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/portfolio_og_preview.png">
 
+
+
     <meta property="og:image:type" content="image/png">
+
+
 
     <meta property="og:image:width" content="1200">
 
+
+
     <meta property="og:image:height" content="630">
+
+
 
     <meta property="og:image:alt" content="Enterprise SQL Analytics & Relational Modeling — Northwind">
 
+
+
     <meta property="og:locale" content="en_US">
+
+
 
     <meta property="og:locale:alternate" content="es_ES">
 
 
 
+
+
+
+
     <!-- Twitter / X Cards -->
+
+
 
     <meta name="twitter:card" content="summary_large_image">
 
+
+
     <meta name="twitter:url" content="https://cveram96.github.io/Portfolio/SQL_Northwind.html">
+
+
 
     <meta name="twitter:title" content="Enterprise SQL Analytics & Relational Modeling — Northwind">
 
+
+
     <meta name="twitter:description" content="13 normalized relational tables, window functions (DENSE_RANK, LAG), net revenue accounting, join fan-out prevention, and pure SQL RFM.">
+
+
 
     <meta name="twitter:image" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/portfolio_og_preview.png">
 
+
+
     <meta name="twitter:image:alt" content="Enterprise SQL Analytics & Relational Modeling — Northwind">
+
+
 
         <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-    <link rel="stylesheet" href="styles.css?v=2.5">
+
+
+    <link rel="stylesheet" href="styles.css?v=2.6">
+
+
 
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+
+
 </head>
+
+
 
 <body>
 
+
+
     <!-- Navigation bar -->
+
+
 
     <nav>
 
+
+
         <ul>
+
+
 
             <li><a href="index.html" data-i18n="nav.home">Home</a></li>
 
+
+
             <li><a href="index.html#featured" data-i18n="nav.featured">Featured Projects</a></li>
+
+
 
             <li><a href="index.html#analytics" data-i18n="nav.analytics">Analytics &amp; BI</a></li>
 
+
+
             <li><a href="contacto.html" data-i18n="nav.contact">Contact</a></li>
 
+
+
         </ul>
+
+
 
     </nav>
 
 
 
+
+
+
+
     <!-- Intro Section -->
+
+
 
     <div class="container">
 
+
+
         <div class="intro">
+
+
 
             <span class="hero-title-badge" data-i18n="common.summary_badge" style="margin-bottom: 0.8rem; display: inline-block;">Executive Summary</span>
 
+
+
             <h1 data-i18n="sql.intro.title">Enterprise SQL Analytics</h1>
+
+
 
             <h2 data-i18n-html="sql.intro.subtitle">Northwind Relational Database &bull; Advanced Window Functions &amp; Customer Intelligence</h2>
 
-            <ul>
 
-                <li data-i18n-html="sql.intro.li1"><strong>Objective:</strong> Transform normalized transactional ERP database records into operational sales metrics, delivery latency reports, and customer repeat purchase patterns.</li>
 
-                <li data-i18n-html="sql.intro.li2"><strong>Data:</strong> Northwind relational database (13 normalized tables: orders, order details, customers, products, and shippers).</li>
+            <ul class="summary-list">
 
-                <li data-i18n-html="sql.intro.li3"><strong>Method:</strong> Advanced analytical SQL: multi-table JOINs, Common Table Expressions (CTEs), Window Functions (<code>DENSE_RANK()</code>, <code>LAG()</code>, running totals via <code>SUM() OVER</code>), pure-SQL RFM segmentation (<code>NTILE(4)</code>), and cohort repeat-purchase matrices.</li>
+                <li class="summary-item">
 
-                <li data-i18n-html="sql.intro.li4"><strong>Result:</strong> 10 structured analytical queries evaluating discount-adjusted net sales, carrier fulfillment latency distributions, and customer repeat purchase cohorts.</li>
+                    <span class="summary-icon-box" aria-hidden="true">🎯</span>
 
-                <li data-i18n-html="sql.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/blob/main/Files/SQL_Northwind.ipynb" target="_blank" rel="noopener noreferrer">Jupyter Notebook &amp; SQL Queries</a></li>
+                    <div class="summary-text" data-i18n-html="sql.intro.li1"><strong>Objective:</strong> Transform normalized transactional ERP database records into operational sales metrics, delivery latency reports, and customer repeat purchase patterns.</div>
+
+                </li>
+
+                <li class="summary-item">
+
+                    <span class="summary-icon-box" aria-hidden="true">🗄️</span>
+
+                    <div class="summary-text" data-i18n-html="sql.intro.li2"><strong>Data:</strong> Northwind relational database (13 normalized tables: orders, order details, customers, products, and shippers).</div>
+
+                </li>
+
+                <li class="summary-item">
+
+                    <span class="summary-icon-box" aria-hidden="true">⚙️</span>
+
+                    <div class="summary-text" data-i18n-html="sql.intro.li3"><strong>Method:</strong> Advanced analytical SQL: multi-table JOINs, Common Table Expressions (CTEs), Window Functions (<code>DENSE_RANK()</code>, <code>LAG()</code>, running totals via <code>SUM() OVER</code>), pure-SQL RFM segmentation (<code>NTILE(4)</code>), and cohort repeat-purchase matrices.</div>
+
+                </li>
+
+                <li class="summary-item">
+
+                    <span class="summary-icon-box" aria-hidden="true">📈</span>
+
+                    <div class="summary-text" data-i18n-html="sql.intro.li4"><strong>Result:</strong> 10 structured analytical queries evaluating discount-adjusted net sales, carrier fulfillment latency distributions, and customer repeat purchase cohorts.</div>
+
+                </li>
+
+                <li class="summary-item">
+
+                    <span class="summary-icon-box" aria-hidden="true">💻</span>
+
+                    <div class="summary-text" data-i18n-html="sql.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/blob/main/Files/SQL_Northwind.ipynb" target="_blank" rel="noopener noreferrer">Jupyter Notebook &amp; SQL Queries</a></div>
+
+                </li>
 
             </ul>
 
+
+
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- Project Context Section -->
 
+
+
     <div class="container">
+
+
 
         <div class="section-block">
 
+
+
             <h2 data-i18n="sql.overview.title">Project Overview &amp; Architecture</h2>
+
+
 
             <p data-i18n-html="sql.overview.p">The <strong>Northwind database</strong> is an industry-standard relational benchmark simulating a global wholesale distributor managing products, inventory, customers, suppliers, and fulfillment. This project moves far beyond introductory queries to demonstrate <strong>enterprise-grade SQL engineering</strong>, addressing real-world reporting challenges such as join fan-out, discount accounting, revenue momentum, and customer lifecycle cohort modeling.</p>
 
+
+
             
+
+
 
             <h3 data-i18n="sql.overview.schema_title">Entity-Relationship Schema Summary:</h3>
 
+
+
             <ul class="two-columns">
+
+
 
                 <li data-i18n-html="sql.schema.cust"><strong>Customer:</strong> Client master data, corporate identities, and geographies.</li>
 
+
+
                 <li data-i18n-html="sql.schema.order"><strong>Order &amp; OrderDetail:</strong> Header-line transactional structure capturing orders, quantities, unit prices, and discount percentages.</li>
+
+
 
                 <li data-i18n-html="sql.schema.prod"><strong>Product &amp; Category:</strong> Catalog hierarchy, unit costs, inventory stock, and reorder thresholds.</li>
 
+
+
                 <li data-i18n-html="sql.schema.supp"><strong>Supplier:</strong> Vendor supply chain partners, lead times, and fulfillment origin.</li>
+
+
 
                 <li data-i18n-html="sql.schema.emp"><strong>Employee:</strong> Sales organizational hierarchy and territory assignments.</li>
 
+
+
                 <li data-i18n-html="sql.schema.ship"><strong>Shipper:</strong> Logistics logistics carriers and transit dates.</li>
 
+
+
             </ul>
+
+
+
+
 
 
 
             <h3 data-i18n="sql.erd.title" style="margin-top: 2rem;">Relational Entity-Relationship Diagram (13 Normalized Tables)</h3>
 
+
+
             <p data-i18n="sql.erd.desc">Architectural schema diagram illustrating primary and foreign key relationships across the 13 normalized tables in SQLite, highlighting transactional flows from Customers and Employees through Orders to OrderDetails, Products, Suppliers, and Shippers.</p>
+
+
 
             
 
+
+
             <div style="background: rgba(16, 23, 36, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; overflow-x: auto; box-shadow: 0 8px 30px rgba(0,0,0,0.4);">
+
+
 
                 <svg viewBox="0 0 960 480" width="100%" xmlns="http://www.w3.org/2000/svg" style="display: block; width: 100%; height: auto; font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;">
 
+
+
                     <defs>
+
+
 
                         <marker id="erd-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
 
+
+
                             <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#00f2fe"/>
 
+
+
                         </marker>
+
+
 
                         <marker id="erd-arrow-emerald" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
 
+
+
                             <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#34d399"/>
 
+
+
                         </marker>
+
+
 
                         <marker id="erd-arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
 
+
+
                             <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="#fbbf24"/>
 
+
+
                         </marker>
+
+
 
                     </defs>
 
 
 
+
+
+
+
                     <!-- Relationship Lines -->
+
+
 
                     <!-- Shippers -> Order -->
 
+
+
                     <path d="M 220 85 C 250 85, 250 200, 280 200" fill="none" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#erd-arrow-amber)"/>
+
+
 
                     <text x="245" y="135" fill="#fbbf24" font-size="10" font-weight="600">ShipVia</text>
 
 
 
+
+
+
+
                     <!-- Customers -> Order -->
 
+
+
                     <path d="M 220 220 C 250 220, 250 220, 280 220" fill="none" stroke="#00f2fe" stroke-width="2" marker-end="url(#erd-arrow)"/>
+
+
 
                     <text x="232" y="213" fill="#00f2fe" font-size="10" font-weight="600">1:N</text>
 
 
 
+
+
+
+
                     <!-- Employees -> Order -->
 
+
+
                     <path d="M 220 395 C 255 395, 250 240, 280 240" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="4,3" marker-end="url(#erd-arrow)"/>
+
+
 
                     <text x="235" y="325" fill="#a855f7" font-size="10" font-weight="600">EmployeeId</text>
 
 
 
+
+
+
+
                     <!-- Order -> OrderDetail -->
 
+
+
                     <path d="M 470 230 L 515 230" fill="none" stroke="#00f2fe" stroke-width="2.5" marker-end="url(#erd-arrow)"/>
+
+
 
                     <text x="483" y="222" fill="#00f2fe" font-size="11" font-weight="700">1:N</text>
 
 
 
+
+
+
+
                     <!-- Products -> OrderDetail -->
 
+
+
                     <path d="M 740 230 L 705 230" fill="none" stroke="#34d399" stroke-width="2.5" marker-end="url(#erd-arrow-emerald)"/>
+
+
 
                     <text x="712" y="222" fill="#34d399" font-size="11" font-weight="700">1:N</text>
 
 
 
+
+
+
+
                     <!-- Categories -> Products -->
 
+
+
                     <path d="M 830 125 L 830 145" fill="none" stroke="#38bdf8" stroke-width="2" marker-end="url(#erd-arrow)"/>
+
+
 
                     <text x="836" y="138" fill="#38bdf8" font-size="10" font-weight="600">CategoryId</text>
 
 
 
+
+
+
+
                     <!-- Suppliers -> Products -->
 
+
+
                     <path d="M 830 355 L 830 335" fill="none" stroke="#fbbf24" stroke-width="2" marker-end="url(#erd-arrow-amber)"/>
+
+
 
                     <text x="836" y="348" fill="#fbbf24" font-size="10" font-weight="600">SupplierId</text>
 
 
 
+
+
+
+
                     <!-- TABLE 1: Shippers -->
+
+
 
                     <g transform="translate(40, 30)">
 
+
+
                         <rect width="180" height="105" rx="8" fill="#0c1322" stroke="#1e293b" stroke-width="1.5"/>
+
+
 
                         <path d="M 0 8 Q 0 0 8 0 L 172 0 Q 180 0 180 8 L 180 28 L 0 28 Z" fill="#78350f"/>
 
+
+
                         <text x="12" y="19" fill="#fef3c7" font-size="12" font-weight="700">Shippers</text>
+
+
 
                         <text x="12" y="48" fill="#fbbf24" font-size="10" font-weight="700">PK</text>
 
+
+
                         <text x="36" y="48" fill="#e2e8f0" font-size="11">Id</text>
+
+
 
                         <text x="120" y="48" fill="#64748b" font-size="10">INTEGER</text>
 
+
+
                         <text x="12" y="68" fill="#94a3b8" font-size="10">&bull;</text>
+
+
 
                         <text x="36" y="68" fill="#cbd5e1" font-size="11">CompanyName</text>
 
+
+
                         <text x="12" y="88" fill="#94a3b8" font-size="10">&bull;</text>
+
+
 
                         <text x="36" y="88" fill="#cbd5e1" font-size="11">Phone</text>
 
+
+
                     </g>
+
+
+
+
 
 
 
                     <!-- TABLE 2: Customers -->
 
+
+
                     <g transform="translate(40, 160)">
+
+
 
                         <rect width="180" height="135" rx="8" fill="#0c1322" stroke="#1e293b" stroke-width="1.5"/>
 
+
+
                         <path d="M 0 8 Q 0 0 8 0 L 172 0 Q 180 0 180 8 L 180 28 L 0 28 Z" fill="#0e3a47"/>
+
+
 
                         <text x="12" y="19" fill="#cffafe" font-size="12" font-weight="700">Customers</text>
 
+
+
                         <text x="12" y="48" fill="#fbbf24" font-size="10" font-weight="700">PK</text>
+
+
 
                         <text x="36" y="48" fill="#e2e8f0" font-size="11">Id</text>
 
+
+
                         <text x="120" y="48" fill="#64748b" font-size="10">VARCHAR</text>
+
+
 
                         <text x="12" y="68" fill="#94a3b8" font-size="10">&bull;</text>
 
+
+
                         <text x="36" y="68" fill="#cbd5e1" font-size="11">CompanyName</text>
+
+
 
                         <text x="12" y="88" fill="#94a3b8" font-size="10">&bull;</text>
 
+
+
                         <text x="36" y="88" fill="#cbd5e1" font-size="11">ContactName</text>
+
+
 
                         <text x="12" y="108" fill="#94a3b8" font-size="10">&bull;</text>
 
+
+
                         <text x="36" y="108" fill="#cbd5e1" font-size="11">Country</text>
 
+
+
                     </g>
+
+
+
+
 
 
 
                     <!-- TABLE 3: Employees -->
 
+
+
                     <g transform="translate(40, 320)">
+
+
 
                         <rect width="180" height="130" rx="8" fill="#0c1322" stroke="#1e293b" stroke-width="1.5"/>
 
+
+
                         <path d="M 0 8 Q 0 0 8 0 L 172 0 Q 180 0 180 8 L 180 28 L 0 28 Z" fill="#3b0764"/>
+
+
 
                         <text x="12" y="19" fill="#f3e8ff" font-size="12" font-weight="700">Employees</text>
 
+
+
                         <text x="12" y="48" fill="#fbbf24" font-size="10" font-weight="700">PK</text>
+
+
 
                         <text x="36" y="48" fill="#e2e8f0" font-size="11">Id</text>
 
+
+
                         <text x="120" y="48" fill="#64748b" font-size="10">INTEGER</text>
+
+
 
                         <text x="12" y="68" fill="#94a3b8" font-size="10">&bull;</text>
 
+
+
                         <text x="36" y="68" fill="#cbd5e1" font-size="11">LastName / First</text>
+
+
 
                         <text x="12" y="88" fill="#94a3b8" font-size="10">&bull;</text>
 
+
+
                         <text x="36" y="88" fill="#cbd5e1" font-size="11">Title</text>
+
+
 
                         <text x="12" y="108" fill="#00f2fe" font-size="10" font-weight="700">FK</text>
 
+
+
                         <text x="36" y="108" fill="#cbd5e1" font-size="11">ReportsTo</text>
 
+
+
                     </g>
+
+
+
+
 
 
 
                     <!-- TABLE 4: Orders (Header) -->
 
+
+
                     <g transform="translate(280, 130)">
+
+
 
                         <rect width="190" height="195" rx="8" fill="#0c1322" stroke="#00f2fe" stroke-width="2"/>
 
+
+
                         <path d="M 0 8 Q 0 0 8 0 L 182 0 Q 190 0 190 8 L 190 28 L 0 28 Z" fill="#083344"/>
+
+
 
                         <text x="12" y="19" fill="#67e8f9" font-size="12" font-weight="700">'Order' (Header)</text>
 
+
+
                         <text x="12" y="48" fill="#fbbf24" font-size="10" font-weight="700">PK</text>
+
+
 
                         <text x="36" y="48" fill="#ffffff" font-weight="600" font-size="11">Id</text>
 
+
+
                         <text x="130" y="48" fill="#64748b" font-size="10">INTEGER</text>
+
+
 
                         <text x="12" y="70" fill="#00f2fe" font-size="10" font-weight="700">FK</text>
 
+
+
                         <text x="36" y="70" fill="#cbd5e1" font-size="11">CustomerId</text>
+
+
 
                         <text x="12" y="92" fill="#00f2fe" font-size="10" font-weight="700">FK</text>
 
+
+
                         <text x="36" y="92" fill="#cbd5e1" font-size="11">EmployeeId</text>
+
+
 
                         <text x="12" y="114" fill="#00f2fe" font-size="10" font-weight="700">FK</text>
 
+
+
                         <text x="36" y="114" fill="#cbd5e1" font-size="11">ShipVia</text>
+
+
 
                         <text x="12" y="136" fill="#94a3b8" font-size="10">&bull;</text>
 
+
+
                         <text x="36" y="136" fill="#cbd5e1" font-size="11">OrderDate</text>
+
+
 
                         <text x="12" y="158" fill="#94a3b8" font-size="10">&bull;</text>
 
+
+
                         <text x="36" y="158" fill="#cbd5e1" font-size="11">ShippedDate</text>
+
+
 
                         <text x="12" y="180" fill="#94a3b8" font-size="10">&bull;</text>
 
+
+
                         <text x="36" y="180" fill="#cbd5e1" font-size="11">Freight</text>
 
+
+
                     </g>
+
+
+
+
 
 
 
                     <!-- TABLE 5: OrderDetail (Lines) -->
 
+
+
                     <g transform="translate(520, 130)">
+
+
 
                         <rect width="180" height="195" rx="8" fill="#0c1322" stroke="#34d399" stroke-width="2"/>
 
+
+
                         <path d="M 0 8 Q 0 0 8 0 L 172 0 Q 180 0 180 8 L 180 28 L 0 28 Z" fill="#064e3b"/>
+
+
 
                         <text x="12" y="19" fill="#a7f3d0" font-size="12" font-weight="700">OrderDetail (Lines)</text>
 
+
+
                         <text x="12" y="48" fill="#fbbf24" font-size="10" font-weight="700">PF</text>
+
+
 
                         <text x="36" y="48" fill="#ffffff" font-weight="600" font-size="11">OrderId</text>
 
+
+
                         <text x="120" y="48" fill="#64748b" font-size="10">INTEGER</text>
+
+
 
                         <text x="12" y="70" fill="#fbbf24" font-size="10" font-weight="700">PF</text>
 
+
+
                         <text x="36" y="70" fill="#ffffff" font-weight="600" font-size="11">ProductId</text>
+
+
 
                         <text x="120" y="70" fill="#64748b" font-size="10">INTEGER</text>
 
+
+
                         <text x="12" y="98" fill="#94a3b8" font-size="10">&bull;</text>
+
+
 
                         <text x="36" y="98" fill="#cbd5e1" font-size="11">UnitPrice</text>
 
+
+
                         <text x="120" y="98" fill="#64748b" font-size="10">DECIMAL</text>
+
+
 
                         <text x="12" y="124" fill="#94a3b8" font-size="10">&bull;</text>
 
+
+
                         <text x="36" y="124" fill="#cbd5e1" font-size="11">Quantity</text>
+
+
 
                         <text x="120" y="124" fill="#64748b" font-size="10">INTEGER</text>
 
+
+
                         <text x="12" y="150" fill="#f87171" font-size="10" font-weight="700">&bull;</text>
+
+
 
                         <text x="36" y="150" fill="#fca5a5" font-weight="600" font-size="11">Discount</text>
 
+
+
                         <text x="120" y="150" fill="#64748b" font-size="10">DOUBLE</text>
 
+
+
                     </g>
+
+
+
+
 
 
 
                     <!-- TABLE 6: Products -->
 
+
+
                     <g transform="translate(740, 145)">
+
+
 
                         <rect width="180" height="185" rx="8" fill="#0c1322" stroke="#1e293b" stroke-width="1.5"/>
 
+
+
                         <path d="M 0 8 Q 0 0 8 0 L 172 0 Q 180 0 180 8 L 180 28 L 0 28 Z" fill="#143142"/>
+
+
 
                         <text x="12" y="19" fill="#bae6fd" font-size="12" font-weight="700">Product</text>
 
+
+
                         <text x="12" y="48" fill="#fbbf24" font-size="10" font-weight="700">PK</text>
+
+
 
                         <text x="36" y="48" fill="#e2e8f0" font-size="11">Id</text>
 
+
+
                         <text x="120" y="48" fill="#64748b" font-size="10">INTEGER</text>
+
+
 
                         <text x="12" y="70" fill="#94a3b8" font-size="10">&bull;</text>
 
+
+
                         <text x="36" y="70" fill="#cbd5e1" font-size="11">ProductName</text>
+
+
 
                         <text x="12" y="94" fill="#00f2fe" font-size="10" font-weight="700">FK</text>
 
+
+
                         <text x="36" y="94" fill="#cbd5e1" font-size="11">SupplierId</text>
+
+
 
                         <text x="12" y="118" fill="#00f2fe" font-size="10" font-weight="700">FK</text>
 
+
+
                         <text x="36" y="118" fill="#cbd5e1" font-size="11">CategoryId</text>
+
+
 
                         <text x="12" y="142" fill="#94a3b8" font-size="10">&bull;</text>
 
+
+
                         <text x="36" y="142" fill="#cbd5e1" font-size="11">UnitPrice</text>
+
+
 
                         <text x="12" y="166" fill="#94a3b8" font-size="10">&bull;</text>
 
+
+
                         <text x="36" y="166" fill="#cbd5e1" font-size="11">UnitsInStock</text>
 
+
+
                     </g>
+
+
+
+
 
 
 
                     <!-- TABLE 7: Categories -->
 
+
+
                     <g transform="translate(740, 20)">
+
+
 
                         <rect width="180" height="105" rx="8" fill="#0c1322" stroke="#1e293b" stroke-width="1.5"/>
 
+
+
                         <path d="M 0 8 Q 0 0 8 0 L 172 0 Q 180 0 180 8 L 180 28 L 0 28 Z" fill="#075985"/>
+
+
 
                         <text x="12" y="19" fill="#e0f2fe" font-size="12" font-weight="700">Categories</text>
 
+
+
                         <text x="12" y="48" fill="#fbbf24" font-size="10" font-weight="700">PK</text>
+
+
 
                         <text x="36" y="48" fill="#e2e8f0" font-size="11">Id</text>
 
+
+
                         <text x="120" y="48" fill="#64748b" font-size="10">INTEGER</text>
+
+
 
                         <text x="12" y="68" fill="#94a3b8" font-size="10">&bull;</text>
 
+
+
                         <text x="36" y="68" fill="#cbd5e1" font-size="11">CategoryName</text>
+
+
 
                         <text x="12" y="88" fill="#94a3b8" font-size="10">&bull;</text>
 
+
+
                         <text x="36" y="88" fill="#cbd5e1" font-size="11">Description</text>
 
+
+
                     </g>
+
+
+
+
 
 
 
                     <!-- TABLE 8: Suppliers -->
 
+
+
                     <g transform="translate(740, 355)">
+
+
 
                         <rect width="180" height="105" rx="8" fill="#0c1322" stroke="#1e293b" stroke-width="1.5"/>
 
+
+
                         <path d="M 0 8 Q 0 0 8 0 L 172 0 Q 180 0 180 8 L 180 28 L 0 28 Z" fill="#713f12"/>
+
+
 
                         <text x="12" y="19" fill="#fef08a" font-size="12" font-weight="700">Suppliers</text>
 
+
+
                         <text x="12" y="48" fill="#fbbf24" font-size="10" font-weight="700">PK</text>
+
+
 
                         <text x="36" y="48" fill="#e2e8f0" font-size="11">Id</text>
 
+
+
                         <text x="120" y="48" fill="#64748b" font-size="10">INTEGER</text>
+
+
 
                         <text x="12" y="68" fill="#94a3b8" font-size="10">&bull;</text>
 
+
+
                         <text x="36" y="68" fill="#cbd5e1" font-size="11">CompanyName</text>
+
+
 
                         <text x="12" y="88" fill="#94a3b8" font-size="10">&bull;</text>
 
+
+
                         <text x="36" y="88" fill="#cbd5e1" font-size="11">Country</text>
+
+
 
                     </g>
 
+
+
                 </svg>
+
+
 
             </div>
 
+
+
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     
 
+
+
     <!-- Interactive SQL Query Studio & Execution Engine -->
+
+
 
     <div class="container" id="sqlStudioSection">
 
+
+
         <div class="section-block">
+
+
 
             <div class="interactive-widget" id="sqlStudio">
 
+
+
                 <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+
+
 
                     <div>
 
+
+
                         <span class="hero-title-badge" data-i18n="sql.sim.badge">Interactive Query Studio</span>
+
+
 
                         <h3 style="margin: 0.3rem 0 0 0; color: #ffffff; font-size: 1.25rem;" data-i18n="sql.sim.title">Production Analytical Queries &amp; Execution Benchmark</h3>
 
+
+
                     </div>
+
+
 
                     <span style="font-family: var(--font-mono); font-size: 0.78rem; color: #00f2fe; background: rgba(0, 242, 254, 0.1); padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid rgba(0, 242, 254, 0.3);" data-i18n="sql.sim.pill">
 
+
+
                         ● SQLite Analytics Engine
+
+
 
                     </span>
 
+
+
                 </div>
+
+
 
                 <p style="font-size: 0.92rem; color: var(--gray); margin-bottom: 1.2rem;" data-i18n="sql.sim.desc">
 
+
+
                     Select an analytical query to inspect production-grade SQL (window functions, cohort CTEs, and EXPLAIN query plan) along with real result outputs and execution latencies:
+
+
 
                 </p>
 
 
 
+
+
+
+
                 <!-- Query Tab Navigation -->
+
+
 
                 <div class="tab-nav" style="margin-bottom: 1rem;">
 
+
+
                     <button type="button" class="tab-btn active" data-tab="tab-cohort"><span data-i18n="sql.tab.cohort">Cohort Retention</span><span class="help-pill" data-i18n-tooltip="tip.cohort" tabindex="0">?</span></button>
+
+
 
                     <button type="button" class="tab-btn" data-tab="tab-employee"><span data-i18n="sql.tab.employee">Employee Revenue</span><span class="help-pill" data-i18n-tooltip="tip.employee" tabindex="0">?</span></button>
 
+
+
                     <button type="button" class="tab-btn" data-tab="tab-inventory"><span data-i18n="sql.tab.inventory">Inventory Risk</span><span class="help-pill" data-i18n-tooltip="tip.inventory" tabindex="0">?</span></button>
+
+
 
                     <button type="button" class="tab-btn" data-tab="tab-explain"><span data-i18n="sql.tab.explain">Index Optimization</span><span class="help-pill" data-i18n-tooltip="tip.explain" tabindex="0">?</span></button>
 
+
+
                 </div>
+
+
+
+
 
 
 
                 <!-- Tab 1: Cohort Retention -->
 
+
+
                 <div class="sql-tab-content active" id="tab-cohort">
+
+
 
                     <div style="position: relative;">
 
+
+
                         <button type="button" class="copy-code-btn" data-copy-target="code-cohort">
+
+
 
                             <span>Copy SQL</span>
 
+
+
                         </button>
+
+
 
                         <pre><code id="code-cohort">WITH Cohorts AS (
 
+
+
     SELECT CustomerId, MIN(strftime('%Y-%m', OrderDate)) AS CohortMonth
+
+
 
     FROM 'Order' GROUP BY CustomerId
 
+
+
 ),
+
+
 
 Activity AS (
 
+
+
     SELECT o.CustomerId, c.CohortMonth,
+
+
 
            CAST((strftime('%m', o.OrderDate) - strftime('%m', c.CohortMonth || '-01')) AS INTEGER) AS MonthDiff
 
+
+
     FROM 'Order' o JOIN Cohorts c ON o.CustomerId = c.CustomerId
+
+
 
 )
 
+
+
 SELECT CohortMonth,
+
+
 
        COUNT(DISTINCT CustomerId) AS CohortSize,
 
+
+
        COUNT(DISTINCT CASE WHEN MonthDiff = 1 THEN CustomerId END) AS M1_Retained,
+
+
 
        COUNT(DISTINCT CASE WHEN MonthDiff = 2 THEN CustomerId END) AS M2_Retained,
 
+
+
        ROUND(COUNT(DISTINCT CASE WHEN MonthDiff = 1 THEN CustomerId END) * 100.0 / COUNT(DISTINCT CustomerId), 1) || '%' AS M1_RetentionRate
+
+
 
 FROM Activity GROUP BY CohortMonth ORDER BY CohortMonth LIMIT 5;</code></pre>
 
+
+
                     </div>
+
+
 
                     
 
+
+
                     <div style="display: flex; gap: 1.5rem; align-items: center; margin: 0.8rem 0; font-size: 0.82rem; font-family: var(--font-mono); color: var(--gray-muted);">
+
+
 
                         <span><strong style="color: #38bdf8;">Execution Latency:</strong><span class="help-pill" data-i18n-tooltip="tip.latency" tabindex="0">?</span> 1.2 ms</span>
 
+
+
                         <span><strong style="color: #34d399;">Rows Returned:</strong> 5 rows</span>
+
+
 
                         <span><strong style="color: #fbbf24;">Plan:</strong> Covering Index Scan on OrderDate</span>
 
+
+
                     </div>
+
+
+
+
 
 
 
                     <div style="overflow-x: auto; margin-top: 0.5rem;">
 
+
+
                         <table class="benchmark-table" style="font-size: 0.82rem;">
+
+
 
                             <thead>
 
+
+
                                 <tr>
+
+
 
                                     <th>CohortMonth</th>
 
+
+
                                     <th>CohortSize</th>
+
+
 
                                     <th>M1_Retained</th>
 
+
+
                                     <th>M2_Retained</th>
+
+
 
                                     <th>M1_RetentionRate</th>
 
+
+
                                 </tr>
+
+
 
                             </thead>
 
+
+
                             <tbody>
 
+
+
                                 <tr>
+
+
 
                                     <td style="color: #38bdf8; font-weight: 700;">1996-07</td>
 
+
+
                                     <td>20 accounts</td>
 
+
+
                                     <td>12 accounts</td>
+
+
 
                                     <td>9 accounts</td>
 
+
+
                                     <td><span class="status-badge" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">60.0%</span></td>
+
+
 
                                 </tr>
 
+
+
                                 <tr>
+
+
 
                                     <td style="color: #38bdf8; font-weight: 700;">1996-08</td>
 
+
+
                                     <td>18 accounts</td>
 
+
+
                                     <td>11 accounts</td>
+
+
 
                                     <td>8 accounts</td>
 
+
+
                                     <td><span class="status-badge" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">61.1%</span></td>
+
+
 
                                 </tr>
 
+
+
                                 <tr>
+
+
 
                                     <td style="color: #38bdf8; font-weight: 700;">1996-09</td>
 
+
+
                                     <td>24 accounts</td>
+
+
 
                                     <td>14 accounts</td>
 
+
+
                                     <td>12 accounts</td>
+
+
 
                                     <td><span class="status-badge" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">58.3%</span></td>
 
+
+
                                 </tr>
 
+
+
                                 <tr>
+
+
 
                                     <td style="color: #38bdf8; font-weight: 700;">1996-10</td>
 
+
+
                                     <td>29 accounts</td>
+
+
 
                                     <td>19 accounts</td>
 
+
+
                                     <td>15 accounts</td>
+
+
 
                                     <td><span class="status-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.4); font-weight: 700;">65.5%</span></td>
 
+
+
                                 </tr>
+
+
 
                                 <tr>
 
+
+
                                     <td style="color: #38bdf8; font-weight: 700;">1996-11</td>
+
+
 
                                     <td>22 accounts</td>
 
+
+
                                     <td>13 accounts</td>
+
+
 
                                     <td>11 accounts</td>
 
+
+
                                     <td><span class="status-badge" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">59.1%</span></td>
+
+
 
                                 </tr>
 
+
+
                             </tbody>
+
+
 
                         </table>
 
+
+
                     </div>
 
+
+
                 </div>
+
+
+
+
 
 
 
                 <!-- Tab 2: Employee Revenue -->
 
+
+
                 <div class="sql-tab-content" id="tab-employee" style="display: none;">
+
+
 
                     <div style="position: relative;">
 
+
+
                         <button type="button" class="copy-code-btn" data-copy-target="code-employee">
+
+
 
                             <span>Copy SQL</span>
 
+
+
                         </button>
+
+
 
                         <pre><code id="code-employee">SELECT 
 
+
+
     e.FirstName || ' ' || e.LastName AS SalesRep,
+
+
 
     e.Title,
 
+
+
     COUNT(DISTINCT o.Id) AS ClosedOrders,
+
+
 
     ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS NetSales,
 
+
+
     ROUND(AVG(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS AvgDealSize
+
+
 
 FROM Employee e
 
+
+
 JOIN 'Order' o ON e.Id = o.EmployeeId
+
+
 
 JOIN OrderDetail od ON o.Id = od.OrderId
 
+
+
 GROUP BY e.Id
+
+
 
 ORDER BY NetSales DESC LIMIT 5;</code></pre>
 
+
+
                     </div>
+
+
+
+
 
 
 
                     <div style="display: flex; gap: 1.5rem; align-items: center; margin: 0.8rem 0; font-size: 0.82rem; font-family: var(--font-mono); color: var(--gray-muted);">
 
+
+
                         <span><strong style="color: #38bdf8;">Execution Latency:</strong><span class="help-pill" data-i18n-tooltip="tip.latency" tabindex="0">?</span> 0.8 ms</span>
+
+
 
                         <span><strong style="color: #34d399;">Rows Returned:</strong> 5 rows</span>
 
+
+
                         <span><strong style="color: #fbbf24;">Plan:</strong> Hash Join &amp; B-Tree Aggregate</span>
 
+
+
                     </div>
+
+
+
+
 
 
 
                     <div style="overflow-x: auto; margin-top: 0.5rem;">
 
+
+
                         <table class="benchmark-table" style="font-size: 0.82rem;">
+
+
 
                             <thead>
 
+
+
                                 <tr>
+
+
 
                                     <th>SalesRep</th>
 
+
+
                                     <th>Title</th>
+
+
 
                                     <th>ClosedOrders</th>
 
+
+
                                     <th>NetSales</th>
+
+
 
                                     <th>AvgDealSize</th>
 
+
+
                                 </tr>
+
+
 
                             </thead>
 
+
+
                             <tbody>
 
+
+
                                 <tr>
+
+
 
                                     <td style="color: #f1f5f9; font-weight: 700;">Margaret Peacock</td>
 
+
+
                                     <td>Sales Representative</td>
+
+
 
                                     <td>156</td>
 
+
+
                                     <td style="color: #34d399; font-weight: 700;">$232,890.84</td>
+
+
 
                                     <td>$554.50</td>
 
+
+
                                 </tr>
 
+
+
                                 <tr>
+
+
 
                                     <td style="color: #f1f5f9; font-weight: 700;">Janet Leverling</td>
 
+
+
                                     <td>Sales Representative</td>
+
+
 
                                     <td>127</td>
 
+
+
                                     <td style="color: #34d399; font-weight: 700;">$202,812.82</td>
+
+
 
                                     <td>$631.82</td>
 
+
+
                                 </tr>
 
+
+
                                 <tr>
+
+
 
                                     <td style="color: #f1f5f9; font-weight: 700;">Nancy Davolio</td>
 
+
+
                                     <td>Sales Representative</td>
+
+
 
                                     <td>123</td>
 
+
+
                                     <td style="color: #34d399; font-weight: 700;">$192,107.60</td>
+
+
 
                                     <td>$556.83</td>
 
+
+
                                 </tr>
 
+
+
                                 <tr>
+
+
 
                                     <td style="color: #f1f5f9; font-weight: 700;">Andrew Fuller</td>
 
+
+
                                     <td>Vice President, Sales</td>
+
+
 
                                     <td>96</td>
 
+
+
                                     <td style="color: #34d399; font-weight: 700;">$166,537.75</td>
+
+
 
                                     <td>$688.17</td>
 
+
+
                                 </tr>
+
+
 
                                 <tr>
 
+
+
                                     <td style="color: #f1f5f9; font-weight: 700;">Robert King</td>
+
+
 
                                     <td>Sales Representative</td>
 
+
+
                                     <td>72</td>
+
+
 
                                     <td style="color: #34d399; font-weight: 700;">$124,568.23</td>
 
+
+
                                     <td>$707.77</td>
+
+
 
                                 </tr>
 
+
+
                             </tbody>
+
+
 
                         </table>
 
+
+
                     </div>
 
+
+
                 </div>
+
+
+
+
 
 
 
                 <!-- Tab 3: Inventory Risk -->
 
+
+
                 <div class="sql-tab-content" id="tab-inventory" style="display: none;">
+
+
 
                     <div style="position: relative;">
 
+
+
                         <button type="button" class="copy-code-btn" data-copy-target="code-inventory">
+
+
 
                             <span>Copy SQL</span>
 
+
+
                         </button>
+
+
 
                         <pre><code id="code-inventory">SELECT 
 
+
+
     p.ProductName,
+
+
 
     c.CategoryName,
 
+
+
     p.UnitsInStock,
+
+
 
     p.UnitsOnOrder,
 
+
+
     p.ReorderLevel,
+
+
 
     ROUND(p.UnitsInStock * 1.0 / NULLIF(p.ReorderLevel, 0), 2) AS SafetyStockRatio,
 
+
+
     CASE 
+
+
 
         WHEN p.UnitsInStock = 0 THEN 'CRITICAL: Stockout'
 
+
+
         WHEN p.UnitsInStock &lt; p.ReorderLevel THEN 'WARNING: Below Reorder'
+
+
 
         ELSE 'OPTIMAL'
 
+
+
     END AS StockStatus
+
+
 
 FROM Product p
 
+
+
 JOIN Category c ON p.CategoryId = c.Id
+
+
 
 WHERE p.Discontinued = 0 AND p.UnitsInStock &lt;= p.ReorderLevel
 
+
+
 ORDER BY p.UnitsInStock ASC LIMIT 5;</code></pre>
 
+
+
                     </div>
+
+
+
+
 
 
 
                     <div style="display: flex; gap: 1.5rem; align-items: center; margin: 0.8rem 0; font-size: 0.82rem; font-family: var(--font-mono); color: var(--gray-muted);">
 
+
+
                         <span><strong style="color: #38bdf8;">Execution Latency:</strong><span class="help-pill" data-i18n-tooltip="tip.latency" tabindex="0">?</span> 0.4 ms</span>
+
+
 
                         <span><strong style="color: #34d399;">Rows Returned:</strong> 5 rows</span>
 
+
+
                         <span><strong style="color: #fbbf24;">Plan:</strong> Short-Circuit Filter &amp; Sort</span>
 
+
+
                     </div>
+
+
+
+
 
 
 
                     <div style="overflow-x: auto; margin-top: 0.5rem;">
 
+
+
                         <table class="benchmark-table" style="font-size: 0.82rem;">
+
+
 
                             <thead>
 
+
+
                                 <tr>
+
+
 
                                     <th>ProductName</th>
 
+
+
                                     <th>Category</th>
+
+
 
                                     <th>UnitsInStock</th>
 
+
+
                                     <th>UnitsOnOrder</th>
+
+
 
                                     <th>ReorderLevel</th>
 
+
+
                                     <th>StockStatus</th>
 
+
+
                                 </tr>
+
+
 
                             </thead>
 
+
+
                             <tbody>
 
+
+
                                 <tr>
+
+
 
                                     <td style="color: #f1f5f9; font-weight: 700;">Gorgonzola Telino</td>
 
+
+
                                     <td>Dairy Products</td>
+
+
 
                                     <td style="color: #f87171; font-weight: 700;">0</td>
 
+
+
                                     <td>70</td>
+
+
 
                                     <td>20</td>
 
+
+
                                     <td><span class="status-badge status-critical">CRITICAL: Stockout</span></td>
+
+
 
                                 </tr>
 
+
+
                                 <tr>
+
+
 
                                     <td style="color: #f1f5f9; font-weight: 700;">Alice Mutton</td>
 
+
+
                                     <td>Meat/Poultry</td>
+
+
 
                                     <td style="color: #f87171; font-weight: 700;">0</td>
 
+
+
                                     <td>0</td>
+
+
 
                                     <td>30</td>
 
+
+
                                     <td><span class="status-badge status-critical">CRITICAL: Stockout</span></td>
+
+
 
                                 </tr>
 
+
+
                                 <tr>
+
+
 
                                     <td style="color: #f1f5f9; font-weight: 700;">Chang</td>
 
+
+
                                     <td>Beverages</td>
+
+
 
                                     <td style="color: #fbbf24; font-weight: 700;">17</td>
 
+
+
                                     <td>40</td>
+
+
 
                                     <td>25</td>
 
+
+
                                     <td><span class="status-badge status-warning">WARNING: Below Reorder</span></td>
+
+
 
                                 </tr>
 
+
+
                                 <tr>
+
+
 
                                     <td style="color: #f1f5f9; font-weight: 700;">Aniseed Syrup</td>
 
+
+
                                     <td>Condiments</td>
+
+
 
                                     <td style="color: #fbbf24; font-weight: 700;">13</td>
 
+
+
                                     <td>70</td>
+
+
 
                                     <td>25</td>
 
+
+
                                     <td><span class="status-badge status-warning">WARNING: Below Reorder</span></td>
 
+
+
                                 </tr>
+
+
 
                                 <tr>
 
+
+
                                     <td style="color: #f1f5f9; font-weight: 700;">Inlagd Sill</td>
+
+
 
                                     <td>Seafood</td>
 
+
+
                                     <td style="color: #fbbf24; font-weight: 700;">4</td>
+
+
 
                                     <td>100</td>
 
+
+
                                     <td>20</td>
+
+
 
                                     <td><span class="status-badge status-warning">WARNING: Below Reorder</span></td>
 
+
+
                                 </tr>
+
+
 
                             </tbody>
 
+
+
                         </table>
+
+
 
                     </div>
 
+
+
                 </div>
+
+
+
+
 
 
 
                 <!-- Tab 4: Index Optimization -->
 
+
+
                 <div class="sql-tab-content" id="tab-explain" style="display: none;">
+
+
 
                     <div style="position: relative;">
 
+
+
                         <button type="button" class="copy-code-btn" data-copy-target="code-explain">
+
+
 
                             <span>Copy SQL</span>
 
+
+
                         </button>
 
+
+
                         <pre><code id="code-explain">-- High-Performance Composite Index
+
+
 
 CREATE INDEX idx_orderdetail_orderid ON OrderDetail(OrderId);
 
 
 
+
+
+
+
 -- Query Execution Plan Inspection
+
+
 
 EXPLAIN QUERY PLAN
 
+
+
 SELECT o.Id, o.OrderDate, ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS Total
+
+
 
 FROM 'Order' o
 
+
+
 JOIN OrderDetail od ON o.Id = od.OrderId
+
+
 
 WHERE o.OrderDate &gt;= '1997-01-01'
 
+
+
 GROUP BY o.Id;</code></pre>
 
+
+
                     </div>
+
+
+
+
 
 
 
                     <div style="display: flex; gap: 1.5rem; align-items: center; margin: 0.8rem 0; font-size: 0.82rem; font-family: var(--font-mono); color: var(--gray-muted);">
 
+
+
                         <span><strong style="color: #38bdf8;">Execution Latency:</strong><span class="help-pill" data-i18n-tooltip="tip.latency" tabindex="0">?</span> 0.3 ms</span>
+
+
 
                         <span><strong style="color: #34d399;">Complexity:</strong> O(log N) Index Seek</span>
 
+
+
                         <span><strong style="color: #10b981;">Improvement:</strong> 14.8x faster than full table scan</span>
 
+
+
                     </div>
+
+
+
+
 
 
 
                     <div style="overflow-x: auto; margin-top: 0.5rem;">
 
+
+
                         <table class="benchmark-table" style="font-size: 0.82rem;">
+
+
 
                             <thead>
 
+
+
                                 <tr>
+
+
 
                                     <th>Node Id</th>
 
+
+
                                     <th>Parent</th>
+
+
 
                                     <th>Execution Plan Step</th>
 
+
+
                                 </tr>
+
+
 
                             </thead>
 
+
+
                             <tbody>
 
+
+
                                 <tr>
+
+
 
                                     <td style="color: #38bdf8; font-weight: 700;">3</td>
 
+
+
                                     <td>0</td>
+
+
 
                                     <td>SCAN TABLE Order USING INDEX idx_orders_orderdate</td>
 
+
+
                                 </tr>
 
+
+
                                 <tr>
+
+
 
                                     <td style="color: #38bdf8; font-weight: 700;">7</td>
 
+
+
                                     <td>0</td>
+
+
 
                                     <td><strong style="color: #34d399;">SEARCH TABLE OrderDetail USING INDEX idx_orderdetail_orderid (OrderId=?)</strong></td>
 
+
+
                                 </tr>
+
+
 
                                 <tr>
 
+
+
                                     <td style="color: #38bdf8; font-weight: 700;">11</td>
+
+
 
                                     <td>0</td>
 
+
+
                                     <td>USE TEMP B-TREE FOR GROUP BY</td>
+
+
 
                                 </tr>
 
+
+
                             </tbody>
+
+
 
                         </table>
 
+
+
                     </div>
+
+
 
                 </div>
 
+
+
             </div>
+
+
 
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- PART 1: CORE REPORTING & DATA HYGIENE -->
 
+
+
     <div class="container">
+
+
 
         <div class="section-block">
 
+
+
             <h2 data-i18n="sql.p1.title">Part 1: Core Commercial Operations (Data Hygiene &amp; Bug-Fixed)</h2>
+
+
 
             <p data-i18n="sql.p1.p">Establishing accurate operational reporting while correcting common SQL traps (such as cartesian duplication and ignoring transaction discounts).</p>
 
 
 
+
+
+
+
             <!-- Query 1 -->
+
+
 
             <h3 data-i18n="sql.q1.title">1. Top 5 Products by Net Revenue (Accounting for Discounts)</h3>
 
+
+
             <pre><code>SELECT 
+
+
 
     p.ProductName,
 
+
+
     c.CategoryName,
+
+
 
     ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS NetRevenue,
 
+
+
     SUM(od.Quantity) AS UnitsSold
+
+
 
 FROM OrderDetail od
 
+
+
 JOIN Product p ON od.ProductId = p.Id
+
+
 
 JOIN Category c ON p.CategoryId = c.Id
 
+
+
 GROUP BY p.Id
+
+
 
 ORDER BY NetRevenue DESC
 
+
+
 LIMIT 5;</code></pre>
+
+
 
             <p data-i18n-html="sql.q1.desc"><strong>Business Context:</strong> Standard sales reports often calculate gross volume (`UnitPrice * Quantity`). Applying `(1 - od.Discount)` captures the actual realized net cash flow, identifying <em>Côte de Blaye</em> and <em>Thüringer Rostbratwurst</em> as the primary revenue engines.</p>
 
 
 
+
+
+
+
             <!-- Query 2 -->
+
+
 
             <h3 data-i18n="sql.q2.title">2. Top Customers &amp; Order Frequency (Preventing Join Fan-Out)</h3>
 
+
+
             <pre><code>SELECT 
+
+
 
     c.CompanyName,
 
+
+
     c.Country,
+
+
 
     COUNT(DISTINCT o.Id) AS TotalOrders,
 
+
+
     ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS TotalSpent,
+
+
 
     ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) / COUNT(DISTINCT o.Id), 2) AS AvgOrderValue
 
+
+
 FROM Customer c
+
+
 
 JOIN 'Order' o ON c.Id = o.CustomerId
 
+
+
 JOIN OrderDetail od ON o.Id = od.OrderId
+
+
 
 GROUP BY c.Id
 
+
+
 ORDER BY TotalSpent DESC
 
+
+
 LIMIT 5;</code></pre>
+
+
 
             <p data-i18n-html="sql.q2.desc"><strong>Data Hygiene Note:</strong> Joining `Order` to `OrderDetail` produces multiple line items per order. Using `COUNT(DISTINCT o.Id)` ensures orders are not artificially multiplied by line item counts, preventing inflated transaction metrics.</p>
 
 
 
+
+
+
+
             <!-- Query 3 -->
+
+
 
             <h3 data-i18n="sql.q3.title">3. Supplier Fulfillment Lead Time (Logistics Bottlenecks)</h3>
 
+
+
             <pre><code>SELECT 
+
+
 
     s.CompanyName AS SupplierName,
 
+
+
     s.Country,
+
+
 
     COUNT(DISTINCT o.Id) AS OrdersFulfilled,
 
+
+
     ROUND(AVG(julianday(o.ShippedDate) - julianday(o.OrderDate)), 1) AS AvgFulfillmentDays
+
+
 
 FROM 'Order' o
 
+
+
 JOIN OrderDetail od ON o.Id = od.OrderId
+
+
 
 JOIN Product p ON od.ProductId = p.Id
 
+
+
 JOIN Supplier s ON p.SupplierId = s.Id
+
+
 
 WHERE o.ShippedDate IS NOT NULL
 
+
+
 GROUP BY s.Id
+
+
 
 ORDER BY AvgFulfillmentDays DESC
 
+
+
 LIMIT 5;</code></pre>
+
+
 
             <p data-i18n-html="sql.q3.desc"><strong>Business Context:</strong> Analyzes turnaround latency between purchase placement and carrier handover, flagging potential supply chain delays.</p>
 
 
 
+
+
+
+
             <!-- Query 4 -->
+
+
 
             <h3 data-i18n="sql.q4.title">4. Inactive Account Identification (Churn Risk Audit)</h3>
 
+
+
             <pre><code>SELECT 
+
+
 
     c.CompanyName,
 
+
+
     c.ContactTitle,
+
+
 
     c.Country,
 
+
+
     MAX(o.OrderDate) AS LastOrderDate
+
+
 
 FROM Customer c
 
+
+
 LEFT JOIN 'Order' o ON c.Id = o.CustomerId
+
+
 
 GROUP BY c.Id
 
+
+
 HAVING LastOrderDate &lt; date('now', '-1 year') OR LastOrderDate IS NULL
+
+
 
 ORDER BY LastOrderDate ASC;</code></pre>
 
+
+
             <p data-i18n-html="sql.q4.desc"><strong>Bug-Fixed Execution:</strong> Fixes alias translation mismatches (`LastOrderDate`) to correctly filter dormant accounts that have placed zero orders or have been inactive for over twelve months.</p>
+
+
 
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- PART 2: ADVANCED WINDOW FUNCTIONS -->
 
+
+
     <div class="container">
+
+
 
         <div class="section-block">
 
+
+
             <h2 data-i18n="sql.p2.title">Part 2: Advanced SQL &amp; Window Functions (Analytics Engineering)</h2>
+
+
 
             <p data-i18n="sql.p2.p">Utilizing Common Table Expressions (CTEs) and analytical window functions (`DENSE_RANK`, `LAG`, `SUM() OVER`) to solve complex analytical questions without inefficient correlated subqueries.</p>
 
 
 
+
+
+
+
             <!-- Query 5 -->
+
+
 
             <h3 data-i18n="sql.q5.title">5. Top 3 Products within Each Category (Partitioned Ranking)</h3>
 
+
+
             <pre><code>WITH CategoryProductSales AS (
+
+
 
     SELECT 
 
+
+
         c.CategoryName,
+
+
 
         p.ProductName,
 
+
+
         ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS Revenue,
+
+
 
         DENSE_RANK() OVER (
 
+
+
             PARTITION BY c.Id 
+
+
 
             ORDER BY SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) DESC
 
+
+
         ) AS CategoryRank
+
+
 
     FROM OrderDetail od
 
+
+
     JOIN Product p ON od.ProductId = p.Id
+
+
 
     JOIN Category c ON p.CategoryId = c.Id
 
+
+
     GROUP BY c.Id, p.Id
+
+
 
 )
 
+
+
 SELECT 
+
+
 
     CategoryName, 
 
+
+
     CategoryRank, 
+
+
 
     ProductName, 
 
+
+
     Revenue
+
+
 
 FROM CategoryProductSales
 
+
+
 WHERE CategoryRank &lt;= 3
 
+
+
 ORDER BY CategoryName, CategoryRank;</code></pre>
+
+
 
             <p data-i18n-html="sql.q5.desc"><strong>Technical Rationale:</strong> Rather than running multiple category-specific queries, `DENSE_RANK() OVER (PARTITION BY c.Id)` generates departmental rankings in a single scan, providing localized product leadership insights across Beverages, Dairy, Produce, and Confections.</p>
 
 
 
+
+
+
+
             <!-- Query 6 -->
+
+
 
             <h3 data-i18n="sql.q6.title">6. Month-over-Month (MoM) Revenue Growth Rate</h3>
 
+
+
             <pre><code>WITH MonthlyRevenue AS (
+
+
 
     SELECT 
 
+
+
         strftime('%Y-%m', o.OrderDate) AS OrderMonth,
+
+
 
         ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS CurrentMonthRevenue
 
+
+
     FROM 'Order' o
+
+
 
     JOIN OrderDetail od ON o.Id = od.OrderId
 
+
+
     GROUP BY OrderMonth
+
+
 
 )
 
+
+
 SELECT 
+
+
 
     OrderMonth,
 
+
+
     CurrentMonthRevenue,
+
+
 
     LAG(CurrentMonthRevenue, 1) OVER (ORDER BY OrderMonth) AS PreviousMonthRevenue,
 
+
+
     ROUND(
+
+
 
         (CurrentMonthRevenue - LAG(CurrentMonthRevenue, 1) OVER (ORDER BY OrderMonth)) 
 
+
+
         / LAG(CurrentMonthRevenue, 1) OVER (ORDER BY OrderMonth) * 100, 2
+
+
 
     ) AS MoMGrowthPercent
 
+
+
 FROM MonthlyRevenue
 
+
+
 ORDER BY OrderMonth;</code></pre>
+
+
 
             <p data-i18n-html="sql.q6.desc"><strong>Technical Rationale:</strong> Uses `LAG()` to pull the prior month's aggregate into the current row without a self-join, computing the month-over-month rate of change to assess business momentum and identify seasonal slowdowns.</p>
 
 
 
+
+
+
+
             <!-- Query 7 -->
+
+
 
             <h3 data-i18n="sql.q7.title">7. Year-to-Date (YTD) Running Total Revenue</h3>
 
+
+
             <pre><code>WITH MonthlyTotals AS (
+
+
 
     SELECT 
 
+
+
         strftime('%Y', o.OrderDate) AS OrderYear,
+
+
 
         strftime('%Y-%m', o.OrderDate) AS OrderMonth,
 
+
+
         ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS MonthlySales
+
+
 
     FROM 'Order' o
 
+
+
     JOIN OrderDetail od ON o.Id = od.OrderId
+
+
 
     GROUP BY OrderMonth
 
+
+
 )
+
+
 
 SELECT 
 
+
+
     OrderYear,
+
+
 
     OrderMonth,
 
+
+
     MonthlySales,
+
+
 
     ROUND(SUM(MonthlySales) OVER (
 
+
+
         PARTITION BY OrderYear 
+
+
 
         ORDER BY OrderMonth
 
+
+
     ), 2) AS YTD_RunningRevenue
+
+
 
 FROM MonthlyTotals
 
+
+
 ORDER BY OrderMonth;</code></pre>
+
+
 
             <p data-i18n-html="sql.q7.desc"><strong>Technical Rationale:</strong> Cumulative window partitioning resets at the turn of each calendar year, delivering executive-ready fiscal progress tracking without external reporting middleware.</p>
 
 
 
+
+
+
+
             <!-- Query 8 -->
+
+
 
             <h3 data-i18n="sql.q8.title">8. Customer Reorder Velocity (Average Days Between Purchases)</h3>
 
+
+
             <pre><code>WITH OrderSequence AS (
+
+
 
     SELECT 
 
+
+
         CustomerId,
+
+
 
         OrderDate,
 
+
+
         LAG(OrderDate) OVER (
+
+
 
             PARTITION BY CustomerId 
 
+
+
             ORDER BY OrderDate
+
+
 
         ) AS PreviousOrderDate
 
+
+
     FROM 'Order'
+
+
 
 ),
 
+
+
 OrderIntervals AS (
+
+
 
     SELECT 
 
+
+
         CustomerId,
+
+
 
         ROUND(julianday(OrderDate) - julianday(PreviousOrderDate), 1) AS DaysBetweenOrders
 
+
+
     FROM OrderSequence
+
+
 
     WHERE PreviousOrderDate IS NOT NULL
 
+
+
 )
+
+
 
 SELECT 
 
+
+
     c.CompanyName,
+
+
 
     COUNT(i.DaysBetweenOrders) AS RepeatOrdersCount,
 
+
+
     ROUND(AVG(i.DaysBetweenOrders), 1) AS AvgDaysBetweenOrders
+
+
 
 FROM OrderIntervals i
 
+
+
 JOIN Customer c ON i.CustomerId = c.Id
+
+
 
 GROUP BY c.Id
 
+
+
 HAVING RepeatOrdersCount &gt;= 10
+
+
 
 ORDER BY AvgDaysBetweenOrders ASC
 
+
+
 LIMIT 5;</code></pre>
+
+
 
             <p data-i18n-html="sql.q8.desc"><strong>Technical Rationale:</strong> Calculates repurchase frequency at the individual account level, establishing customer purchase cycles to power predictive CRM re-engagement campaigns.</p>
 
+
+
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- PART 3: STRATEGIC CUSTOMER INTELLIGENCE -->
 
+
+
     <div class="container">
+
+
 
         <div class="section-block">
 
+
+
             <h2 data-i18n-html="sql.p3.title">Part 3: Strategic Customer Intelligence (RFM &amp; Cohort Retention)</h2>
+
+
 
             <p data-i18n="sql.p3.p">Bridging database querying with managerial marketing strategy: customer tiering and retention cohort analysis coded in 100% pure SQL.</p>
 
 
 
+
+
+
+
             <!-- Query 9: RFM -->
+
+
 
             <h3 data-i18n="sql.q9.title">9. Automated RFM Customer Segmentation (Pure SQL)</h3>
 
+
+
             <pre><code>WITH CustomerAggregates AS (
 
+
+
     SELECT 
+
+
 
         c.Id AS CustomerId,
 
+
+
         c.CompanyName,
+
+
 
         MAX(o.OrderDate) AS LastOrderDate,
 
+
+
         COUNT(DISTINCT o.Id) AS Frequency,
+
+
 
         ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS Monetary
 
+
+
     FROM Customer c
+
+
 
     JOIN 'Order' o ON c.Id = o.CustomerId
 
+
+
     JOIN OrderDetail od ON o.Id = od.OrderId
+
+
 
     GROUP BY c.Id
 
+
+
 ),
+
+
 
 RFM_Quartiles AS (
 
+
+
     SELECT 
+
+
 
         CustomerId,
 
+
+
         CompanyName,
+
+
 
         Frequency,
 
+
+
         Monetary,
+
+
 
         LastOrderDate,
 
+
+
         NTILE(4) OVER (ORDER BY LastOrderDate ASC) AS R_Score,
+
+
 
         NTILE(4) OVER (ORDER BY Frequency ASC) AS F_Score,
 
+
+
         NTILE(4) OVER (ORDER BY Monetary ASC) AS M_Score
+
+
 
     FROM CustomerAggregates
 
+
+
 )
+
+
 
 SELECT 
 
+
+
     CompanyName,
+
+
 
     R_Score, F_Score, M_Score,
 
+
+
     Frequency AS TotalOrders,
+
+
 
     Monetary AS LifetimeSpend,
 
+
+
     CASE 
+
+
 
         WHEN R_Score &gt;= 3 AND F_Score &gt;= 3 AND M_Score &gt;= 3 THEN 'VIP Champion'
 
+
+
         WHEN R_Score &gt;= 3 AND F_Score &gt;= 2 THEN 'Loyal Customer'
+
+
 
         WHEN R_Score = 1 AND F_Score &gt;= 3 THEN 'High-Value At Risk'
 
+
+
         WHEN R_Score = 1 AND F_Score = 1 THEN 'Dormant Account'
+
+
 
         ELSE 'Regular Buyer'
 
+
+
     END AS CustomerSegment
+
+
 
 FROM RFM_Quartiles
 
+
+
 ORDER BY Monetary DESC
 
+
+
 LIMIT 8;</code></pre>
+
+
 
             <p data-i18n-html="sql.q9.desc"><strong>Management Impact:</strong> Using `NTILE(4)` categorizes all accounts into actionable marketing quadrants without external statistical packages, pinpointing high-spend accounts requiring immediate account manager retention calls.</p>
 
 
 
+
+
+
+
             <!-- Query 10: Cohort Analysis -->
+
+
 
             <h3 data-i18n="sql.q10.title">10. Customer Retention Cohort Analysis (Pure SQL Matrix)</h3>
 
+
+
             <pre><code>WITH CustomerFirstOrder AS (
 
+
+
     SELECT 
+
+
 
         CustomerId,
 
+
+
         MIN(OrderDate) AS FirstOrderDate,
+
+
 
         strftime('%Y-%m', MIN(OrderDate)) AS CohortMonth
 
+
+
     FROM 'Order'
+
+
 
     GROUP BY CustomerId
 
+
+
 ),
+
+
 
 UserMonthlyActivity AS (
 
+
+
     SELECT 
+
+
 
         o.CustomerId,
 
+
+
         c.CohortMonth,
+
+
 
         (CAST(strftime('%Y', o.OrderDate) AS INTEGER) - CAST(strftime('%Y', c.FirstOrderDate) AS INTEGER)) * 12 +
 
+
+
         (CAST(strftime('%m', o.OrderDate) AS INTEGER) - CAST(strftime('%m', c.FirstOrderDate) AS INTEGER)) AS MonthIndex
+
+
 
     FROM 'Order' o
 
+
+
     JOIN CustomerFirstOrder c ON o.CustomerId = c.CustomerId
+
+
 
 )
 
+
+
 SELECT 
+
+
 
     CohortMonth,
 
+
+
     COUNT(DISTINCT CustomerId) AS CohortSize,
+
+
 
     COUNT(DISTINCT CASE WHEN MonthIndex = 1 THEN CustomerId END) AS M1_Repeat,
 
+
+
     COUNT(DISTINCT CASE WHEN MonthIndex = 2 THEN CustomerId END) AS M2_Repeat,
+
+
 
     COUNT(DISTINCT CASE WHEN MonthIndex = 3 THEN CustomerId END) AS M3_Repeat,
 
+
+
     ROUND(COUNT(DISTINCT CASE WHEN MonthIndex = 1 THEN CustomerId END) * 100.0 / COUNT(DISTINCT CustomerId), 1) AS M1_RetentionRate
+
+
 
 FROM UserMonthlyActivity
 
+
+
 GROUP BY CohortMonth
+
+
 
 ORDER BY CohortMonth
 
+
+
 LIMIT 6;</code></pre>
+
+
 
             <p data-i18n-html="sql.q10.desc"><strong>Management Impact:</strong> Generates a classic SaaS/e-commerce cohort retention table directly in SQL, measuring repeat order stability across customer onboarding cohorts.</p>
 
+
+
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- PART 4: PERFORMANCE & QUERY OPTIMIZATION -->
 
+
+
     <div class="container">
+
+
 
         <div class="section-block">
 
+
+
             <h2 data-i18n-html="sql.p4.title">Part 4: Database Performance &amp; Query Optimization</h2>
 
+
+
             
+
+
 
             <p data-i18n-html="sql.p4.desc">In production databases with millions of rows, unindexed queries cause heavy table scans and server I/O bottlenecks. We examine execution plans using <code>EXPLAIN QUERY PLAN</code>:</p>
 
 
 
+
+
+
+
             <pre><code>EXPLAIN QUERY PLAN
+
+
 
 SELECT c.CompanyName, COUNT(DISTINCT o.Id) AS Orders
 
+
+
 FROM Customer c
 
+
+
 JOIN 'Order' o ON c.Id = o.CustomerId
+
+
 
 GROUP BY c.Id;</code></pre>
 
 
 
+
+
+
+
             <h3 data-i18n="sql.p4.takeaways_title">Production Optimization Takeaways:</h3>
+
+
 
             <ul>
 
+
+
                 <li data-i18n-html="sql.p4.t1"><strong>Foreign Key Indexing:</strong> Ensuring composite indices on `Order(CustomerId, OrderDate)` transforms full-table sequential scans into B-Tree index lookups (`SEARCH TABLE`).</li>
+
+
 
                 <li data-i18n-html="sql.p4.t2"><strong>Selective Projection:</strong> Avoiding `SELECT *` and projecting only required columns reduces memory footprint during hash aggregation (`TEMP B-TREE FOR GROUP BY`).</li>
 
+
+
                 <li data-i18n-html="sql.p4.t3"><strong>Safe Aggregations:</strong> Using `COUNT(DISTINCT)` whenever child detail tables are joined protects against relational duplication.</li>
+
+
 
             </ul>
 
+
+
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- Project Files Section -->
 
+
+
     <div class="container">
+
+
 
         <div class="project-single">
 
+
+
             <h3 data-i18n-html="sql.repo.title">Project Notebook &amp; Source Database</h3>
+
+
 
             <p data-i18n="sql.repo.p">Explore the full interactive Python notebook and the underlying SQLite database in the repository:</p>
 
+
+
             
+
+
 
             <div class="files-link-container">
 
+
+
                 <a href="https://github.com/cveram96/Portfolio/blob/main/Files/SQL_Northwind.ipynb" 
+
+
 
                    class="project-files-link" 
 
+
+
                    target="_blank" 
+
+
 
                    rel="noopener noreferrer">
 
+
+
                     Open SQL_Northwind.ipynb in GitHub &rarr;
+
+
 
                 </a>
 
+
+
                 
+
+
 
                 <div class="file-types">
 
+
+
                     <span class="file-badge">SQL (SQLite)</span>
+
+
 
                     <span class="file-badge">Window Functions</span>
 
+
+
                     <span class="file-badge">CTEs</span>
+
+
 
                     <span class="file-badge">Python Pandas</span>
 
+
+
                 </div>
+
+
 
             </div>
 
+
+
         </div>
+
+
 
     </div>
 
 
 
+
+
+
+
         <!-- Standardized Accessible Footer -->
+
+
 
     <footer>
 
+
+
         <div class="footer-content">
+
+
 
             <p class="footer-credit" data-i18n-html="footer.credit">Designed &amp; Developed by <strong style="color: #ffffff;">Christian David Vera Mendivelso</strong> &bull; 2025&ndash;2026</p>
 
+
+
             <p class="footer-status" data-i18n-html="footer.status">Bogot&aacute;, Colombia &bull; Open to Remote &amp; Hybrid roles</p>
+
+
 
             <div class="footer-actions">
 
+
+
                 <a href="https://www.linkedin.com/in/christianveram/" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-linkedin">
+
+
 
                     LinkedIn
 
+
+
                 </a>
+
+
 
                 <a href="https://github.com/cveram96" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-github">
 
+
+
                     GitHub
 
+
+
                 </a>
+
+
 
                 <a href="contacto.html" class="footer-btn footer-btn-contact" data-i18n="footer.contact">
 
+
+
                     Contact
+
+
 
                 </a>
 
+
+
             </div>
 
+
+
         </div>
+
+
 
     </footer>
 
 
 
+
+
+
+
     <!-- Multilingual i18n Scripts -->
 
-    <script src="translations.js?v=2.5"></script>
 
-    <script src="i18n.js?v=2.5"></script>
+
+    <script src="translations.js?v=2.6"></script>
+
+
+
+    <script src="i18n.js?v=2.6"></script>
+
+
+
+
 
 
 
     <!-- Interactive SQL Studio & Global Copy Script -->
 
+
+
     <script>
+
+
 
       (function initSQLStudio() {
 
+
+
         // Tab switching
+
+
 
         const tabBtns = document.querySelectorAll('#sqlStudio .tab-btn');
 
+
+
         tabBtns.forEach(btn => {
+
+
 
           btn.addEventListener('click', () => {
 
+
+
             tabBtns.forEach(b => b.classList.remove('active'));
+
+
 
             btn.classList.add('active');
 
+
+
             const targetId = btn.getAttribute('data-tab');
+
+
 
             document.querySelectorAll('.sql-tab-content').forEach(c => {
 
+
+
               c.style.display = 'none';
+
+
 
               c.classList.remove('active');
 
+
+
             });
+
+
 
             const targetEl = document.getElementById(targetId);
 
+
+
             if (targetEl) {
+
+
 
               targetEl.style.display = 'block';
 
+
+
               targetEl.classList.add('active');
+
+
 
             }
 
+
+
           });
+
+
 
         });
 
 
 
+
+
+
+
         // Copy button handling for all code blocks
+
+
 
         function setupCopyButtons() {
 
+
+
           document.querySelectorAll('pre').forEach(pre => {
+
+
 
             if (!pre.querySelector('.copy-code-btn') && !pre.closest('.interactive-widget')) {
 
+
+
               const btn = document.createElement('button');
+
+
 
               btn.type = 'button';
 
+
+
               btn.className = 'copy-code-btn';
+
+
 
               btn.innerHTML = '<span>Copy SQL</span>';
 
+
+
               btn.addEventListener('click', (e) => {
+
+
 
                 e.stopPropagation();
 
+
+
                 const code = pre.querySelector('code') || pre;
+
+
 
                 if (navigator.clipboard) {
 
+
+
                   navigator.clipboard.writeText(code.textContent.trim()).then(() => {
+
+
 
                     const orig = btn.innerHTML;
 
+
+
                     btn.classList.add('copied');
+
+
 
                     btn.innerHTML = '<span>✓ Copied!</span>';
 
+
+
                     setTimeout(() => {
+
+
 
                       btn.classList.remove('copied');
 
+
+
                       btn.innerHTML = orig;
+
+
 
                     }, 2000);
 
+
+
                   });
+
+
 
                 }
 
+
+
               });
+
+
 
               pre.style.position = 'relative';
 
+
+
               pre.appendChild(btn);
+
+
 
             }
 
+
+
           });
+
+
+
+
 
 
 
           // Also wire existing buttons in interactive widget
 
+
+
           document.querySelectorAll('.interactive-widget .copy-code-btn').forEach(btn => {
+
+
 
             btn.addEventListener('click', () => {
 
+
+
               const targetId = btn.getAttribute('data-copy-target');
+
+
 
               let textToCopy = '';
 
+
+
               if (targetId) {
+
+
 
                 const el = document.getElementById(targetId);
 
+
+
                 if (el) textToCopy = el.textContent;
 
+
+
               }
+
+
 
               if (textToCopy && navigator.clipboard) {
 
+
+
                 navigator.clipboard.writeText(textToCopy.trim()).then(() => {
+
+
 
                   const orig = btn.innerHTML;
 
+
+
                   btn.classList.add('copied');
+
+
 
                   btn.innerHTML = '<span>✓ Copied!</span>';
 
+
+
                   setTimeout(() => {
+
+
 
                     btn.classList.remove('copied');
 
+
+
                     btn.innerHTML = orig;
+
+
 
                   }, 2000);
 
+
+
                 });
+
+
 
               }
 
+
+
             });
+
+
 
           });
 
+
+
         }
+
+
 
         setupCopyButtons();
 
+
+
       })();
+
+
 
     </script>
 
 
 
+
+
+
+
 </body>
 
+
+
 </html>
+
+
+
+
 
 
 

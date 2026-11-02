@@ -1,736 +1,1490 @@
 <!DOCTYPE html>
 
+
+
 <html lang="en">
+
+
 
 <head>
 
+
+
     <!-- Google tag (gtag.js) -->
+
+
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0NCSQ1FW3J"></script>
 
+
+
     <script>
+
+
 
       window.dataLayer = window.dataLayer || [];
 
+
+
       function gtag(){dataLayer.push(arguments);}
+
+
 
       gtag('js', new Date());
 
 
 
+
+
+
+
       gtag('config', 'G-0NCSQ1FW3J');
+
+
 
     </script>
 
+
+
     <meta charset="UTF-8">
+
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+
     <!-- Primary Meta Tags -->
+
+
 
     <title>ParkVision AI — Smart Parking Occupancy & Computer Vision</title>
 
+
+
     <meta name="title" content="ParkVision AI — Smart Parking Occupancy & Computer Vision">
+
+
 
     <meta name="description" content="Real-time intelligent parking occupancy monitoring with YOLOv8, ByteTrack, DirectML multi-GPU acceleration, FastAPI, WebSockets, and SQLite analytics.">
 
+
+
     <meta name="author" content="Christian David Vera Mendivelso">
 
+
+
     <meta name="robots" content="index, follow">
+
+
 
     <meta name="theme-color" content="#0d1117">
 
 
 
+
+
+
+
     <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+
+
 
     <meta property="og:type" content="article">
 
+
+
     <meta property="og:url" content="https://cveram96.github.io/Portfolio/parkvision.html">
+
+
 
     <meta property="og:site_name" content="Christian David Vera | Portfolio">
 
+
+
     <meta property="og:title" content="ParkVision AI — Smart Parking Occupancy & Computer Vision">
+
+
 
     <meta property="og:description" content="Real-time intelligent parking occupancy monitoring with YOLOv8, ByteTrack, DirectML multi-GPU acceleration, FastAPI, WebSockets, and SQLite analytics.">
 
+
+
     <meta property="og:image" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/parkvision/parkvision_live_monitor.png">
+
+
 
     <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/parkvision/parkvision_live_monitor.png">
 
+
+
     <meta property="og:image:type" content="image/png">
+
+
 
     <meta property="og:image:width" content="1200">
 
+
+
     <meta property="og:image:height" content="630">
+
+
 
     <meta property="og:image:alt" content="ParkVision AI — Smart Parking Occupancy & Computer Vision">
 
+
+
     <meta property="og:locale" content="en_US">
+
+
 
     <meta property="og:locale:alternate" content="es_ES">
 
 
 
+
+
+
+
     <!-- Twitter / X Cards -->
+
+
 
     <meta name="twitter:card" content="summary_large_image">
 
+
+
     <meta name="twitter:url" content="https://cveram96.github.io/Portfolio/parkvision.html">
+
+
 
     <meta name="twitter:title" content="ParkVision AI — Smart Parking Occupancy & Computer Vision">
 
+
+
     <meta name="twitter:description" content="Real-time intelligent parking occupancy monitoring with YOLOv8, ByteTrack, DirectML multi-GPU acceleration, FastAPI, WebSockets, and SQLite analytics.">
+
+
 
     <meta name="twitter:image" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/parkvision/parkvision_live_monitor.png">
 
+
+
     <meta name="twitter:image:alt" content="ParkVision AI — Smart Parking Occupancy & Computer Vision">
+
+
 
     <title data-i18n="pv.page_title">ParkVision AI — Real-Time Smart Parking Monitoring</title>
 
+
+
         <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-    <link rel="stylesheet" href="styles.css?v=2.5">
+
+
+    <link rel="stylesheet" href="styles.css?v=2.6">
+
+
 
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+
+
 </head>
+
+
 
 <body>
 
+
+
     <!-- Navigation bar -->
+
+
 
     <nav>
 
+
+
         <ul>
+
+
 
             <li><a href="index.html" data-i18n="nav.home">Home</a></li>
 
+
+
             <li><a href="index.html#featured" data-i18n="nav.featured">Featured Projects</a></li>
+
+
 
             <li><a href="index.html#analytics" data-i18n="nav.analytics">Analytics &amp; BI</a></li>
 
+
+
             <li><a href="contacto.html" data-i18n="nav.contact">Contact</a></li>
 
+
+
         </ul>
+
+
 
     </nav>
 
 
 
+
+
+
+
     <!-- Intro Section -->
+
+
 
     <div class="container">
 
+
+
         <div class="intro">
+
+
 
             <span class="hero-title-badge" data-i18n="common.summary_badge" style="margin-bottom: 0.8rem; display: inline-block;">Executive Summary</span>
 
+
+
             <h1 data-i18n="pv.intro.title">ParkVision AI</h1>
+
+
 
             <h2 data-i18n="pv.intro.subtitle">End-to-End Real-Time Smart Parking Monitoring System</h2>
 
-            <ul>
 
-                <li data-i18n-html="pv.intro.li1"><strong>Objective:</strong> Automate parking bay occupancy monitoring using existing optical video feeds (CCTV and RTSP streams) as an alternative to installing physical pavement sensors.</li>
 
-                <li data-i18n-html="pv.intro.li2"><strong>Data:</strong> Real-time optical video feeds (networked RTSP IP cameras, USB webcams, and MP4 video files).</li>
+            <ul class="summary-list">
 
-                <li data-i18n-html="pv.intro.li3"><strong>Method:</strong> End-to-end computer vision pipeline combining Ultralytics YOLOv8 vehicle detection, ByteTrack spatial tracking, vector polygon intersection (Point-in-Polygon &amp; IoU), and a FastAPI WebSockets server with DirectML/CUDA GPU acceleration.</li>
+                <li class="summary-item">
 
-                <li data-i18n-html="pv.intro.li4"><strong>Result:</strong> Real-time slot status detection, automatic Available/Occupied state tracking, and persistent SQLite database logging for operational reports.</li>
+                    <span class="summary-icon-box" aria-hidden="true">🎯</span>
 
-                <li data-i18n-html="pv.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/tree/main/Files/parking_monitor" target="_blank" rel="noopener noreferrer">GitHub Repository (Files/parking_monitor)</a></li>
+                    <div class="summary-text" data-i18n-html="pv.intro.li1"><strong>Objective:</strong> Automate parking bay occupancy monitoring using existing optical video feeds (CCTV and RTSP streams) as an alternative to installing physical pavement sensors.</div>
+
+                </li>
+
+                <li class="summary-item">
+
+                    <span class="summary-icon-box" aria-hidden="true">🗄️</span>
+
+                    <div class="summary-text" data-i18n-html="pv.intro.li2"><strong>Data:</strong> Real-time optical video feeds (networked RTSP IP cameras, USB webcams, and MP4 video files).</div>
+
+                </li>
+
+                <li class="summary-item">
+
+                    <span class="summary-icon-box" aria-hidden="true">⚙️</span>
+
+                    <div class="summary-text" data-i18n-html="pv.intro.li3"><strong>Method:</strong> End-to-end computer vision pipeline combining Ultralytics YOLOv8 vehicle detection, ByteTrack spatial tracking, vector polygon intersection (Point-in-Polygon &amp; IoU), and a FastAPI WebSockets server with DirectML/CUDA GPU acceleration.</div>
+
+                </li>
+
+                <li class="summary-item">
+
+                    <span class="summary-icon-box" aria-hidden="true">📈</span>
+
+                    <div class="summary-text" data-i18n-html="pv.intro.li4"><strong>Result:</strong> Real-time slot status detection, automatic Available/Occupied state tracking, and persistent SQLite database logging for operational reports.</div>
+
+                </li>
+
+                <li class="summary-item">
+
+                    <span class="summary-icon-box" aria-hidden="true">💻</span>
+
+                    <div class="summary-text" data-i18n-html="pv.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/tree/main/Files/parking_monitor" target="_blank" rel="noopener noreferrer">GitHub Repository (Files/parking_monitor)</a></div>
+
+                </li>
 
             </ul>
 
+
+
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- Business Context Section -->
 
+
+
     <div class="container">
+
+
 
         <div class="section-block">
 
+
+
             <h2 data-i18n="pv.overview.title">Project Overview &amp; Business Impact</h2>
+
+
 
             <p data-i18n="pv.overview.p1">Urban parking management is a major operational bottleneck in smart cities and commercial hubs. Drivers spending 15–20 minutes searching for vacant spots generates traffic congestion, increases carbon emissions, and creates customer friction in commercial facilities.</p>
 
+
+
             <p data-i18n-html="pv.overview.p2"><strong>ParkVision AI</strong> was designed and engineered as an end-to-end Computer Vision web application that transforms conventional video streams (CCTV, webcams, or IP cameras) into an automated intelligent occupancy monitoring system without requiring expensive ground sensors.</p>
+
+
 
             
 
+
+
             <h3 data-i18n="pv.overview.drivers_title">Key Value Drivers:</h3>
+
+
 
             <ul class="two-columns">
 
+
+
                 <li data-i18n-html="pv.overview.driver1"><strong>Hardware Agnostic:</strong> Integrates seamlessly with existing optical camera infrastructure via RTSP or USB, accelerated by DirectML (AMD/Intel) and CUDA (NVIDIA).</li>
+
+
 
                 <li data-i18n-html="pv.overview.driver2"><strong>Operational Cost Reduction:</strong> Eliminates the need for physical ultrasonic/magnetic ground sensors.</li>
 
+
+
                 <li data-i18n-html="pv.overview.driver3"><strong>Real-Time Auditing:</strong> Instant availability tracking with sub-second latency and visual alerts.</li>
+
+
 
                 <li data-i18n-html="pv.overview.driver4"><strong>Historical Insights:</strong> Continuous persistence of occupancy timestamps to analyze peak demand and parking turnover.</li>
 
+
+
             </ul>
+
+
 
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- Technical Architecture Section -->
 
+
+
     <div class="container">
+
+
 
         <div class="section-block">
 
+
+
             <h2 data-i18n="pv.arch.title">System Architecture &amp; Workflow</h2>
+
+
 
             
 
+
+
             <h3 data-i18n="pv.arch.step1_title">1. Multi-Source Video Stream Ingestion</h3>
+
+
 
             <p data-i18n="pv.arch.step1_p">An asynchronous capture pipeline handles video inputs (local MP4 recordings, live USB webcams, or networked RTSP CCTV cameras) in dedicated asynchronous background tasks with OpenCV and FastAPI WebSockets, ensuring the responsive web interface delivers smooth live streaming at 30 FPS.</p>
 
 
 
+
+
+
+
             <h3 data-i18n="pv.arch.step2_title">2. Deep Learning Detection &amp; Tracking Pipeline</h3>
+
+
 
             <ul>
 
+
+
                 <li data-i18n-html="pv.arch.step2_li1"><strong>Model:</strong> Ultralytics YOLOv8 nano/medium segmentation weights (optimized for real-time edge inference).</li>
+
+
 
                 <li data-i18n-html="pv.arch.step2_li2"><strong>Target Classes:</strong> Multi-class vehicle detection (cars, vans, trucks, buses, motorcycles).</li>
 
+
+
                 <li data-i18n-html="pv.arch.step2_li3"><strong>Inference Strategies:</strong> Flexible inference modes including direct YOLO bounding box detection, background subtraction, and hybrid thresholding for low-contrast lighting conditions.</li>
 
+
+
             </ul>
+
+
+
+
 
 
 
             <h3 data-i18n="pv.arch.step3_title">3. Interactive Spatial Slot Management</h3>
 
+
+
             <p data-i18n="pv.arch.step3_p">The application includes an integrated polygon management tool where operators can draw, calibrate, and save individual parking bay coordinates directly over the camera feed. Each spot is stored as a vector polygon in the database.</p>
+
+
+
+
 
 
 
             <h3 data-i18n="pv.arch.step4_title">4. Occupancy Logic &amp; State Machine</h3>
 
+
+
             <p data-i18n="pv.arch.step4_p">For each frame, detected vehicle centroids and bounding polygons are computed against the calibrated parking spots using geometric intersection algorithms (Point-in-Polygon &amp; IoU). Spaces are color-coded in real time:</p>
+
+
 
             <ul>
 
+
+
                 <li data-i18n-html="pv.arch.step4_li1"><strong style="color: #4ade80;">Green Zone:</strong> Available parking slot.</li>
 
+
+
                 <li data-i18n-html="pv.arch.step4_li2"><strong style="color: #f87171;">Red Zone:</strong> Occupied slot with detected vehicle.</li>
+
+
 
             </ul>
 
 
 
+
+
+
+
             <h3 data-i18n="pv.arch.step5_title">5. Data Persistence &amp; Analytics Layer</h3>
+
+
 
             <p data-i18n-html="pv.arch.step5_p">Every occupancy change triggers an event logged to a local SQLite database (<code>parking.db</code>) and continuous CSV logs, recording spot IDs, status timestamps, and session durations for downstream business analytics.</p>
 
+
+
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     
 
+
+
     <!-- Hardware Latency Benchmark & Production Deployment Section -->
+
+
 
     <div class="container" id="pvBenchmarkSection">
 
+
+
         <div class="section-block">
+
+
 
             <div class="interactive-widget" id="pvBenchmark">
 
+
+
                 <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+
+
 
                     <div>
 
+
+
                         <span class="hero-title-badge" data-i18n="pv.deploy.badge">Inference &amp; MLOps Benchmark</span>
+
+
 
                         <h3 style="margin: 0.3rem 0 0 0; color: #ffffff; font-size: 1.25rem;" data-i18n="pv.bench.title">Production Inference &amp; Hardware Latency Benchmark</h3>
 
+
+
                     </div>
+
+
 
                     <span style="font-family: var(--font-mono); font-size: 0.78rem; color: #34d399; background: rgba(52, 211, 153, 0.1); padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid rgba(52, 211, 153, 0.3);">
 
+
+
                         ● Multi-Target Telemetry
+
+
 
                     </span>
 
+
+
                 </div>
+
+
 
                 <p style="font-size: 0.92rem; color: var(--gray); margin-bottom: 1.2rem;" data-i18n="pv.bench.subtitle">
 
+
+
                     Empirical benchmarks across hardware architectures processing 1080p video streams at edge:
+
+
 
                 </p>
 
 
 
+
+
+
+
                 <!-- Benchmark Table -->
+
+
 
                 <div style="overflow-x: auto; margin-bottom: 1.8rem;">
 
+
+
                     <table class="benchmark-table">
+
+
 
                         <thead>
 
+
+
                             <tr>
+
+
 
                                 <th data-i18n="pv.bench.col_hw">Hardware &amp; Architecture</th>
 
+
+
                                 <th data-i18n="pv.bench.col_device">Device / Target</th>
+
+
 
                                 <th><span data-i18n="pv.bench.col_latency">Latency / Frame</span><span class="help-pill" data-i18n-tooltip="tip.latency" tabindex="0">?</span></th>
 
+
+
                                 <th><span data-i18n="pv.bench.col_fps">Effective FPS</span><span class="help-pill" data-i18n-tooltip="tip.fps" tabindex="0">?</span></th>
+
+
 
                                 <th><span data-i18n="pv.bench.col_vram">VRAM Footprint</span><span class="help-pill tooltip-right" data-i18n-tooltip="tip.vram" tabindex="0">?</span></th>
 
+
+
                                 <th data-i18n="pv.bench.col_status">Execution Mode</th>
 
+
+
                             </tr>
+
+
 
                         </thead>
 
+
+
                         <tbody>
 
+
+
                             <tr>
+
+
 
                                 <td style="color: #ffffff; font-weight: 700;">NVIDIA RTX 3060 Laptop (6GB)</td>
 
+
+
                                 <td>CUDA 12.x / TensorRT FP16<span class="help-pill" data-i18n-tooltip="tip.tensorrt" tabindex="0">?</span></td>
+
+
 
                                 <td style="font-family: var(--font-mono); color: #38bdf8;">12.4 ms</td>
 
+
+
                                 <td style="font-family: var(--font-mono); color: #34d399; font-weight: 700;">80.6 FPS</td>
+
+
 
                                 <td style="font-family: var(--font-mono);">1.2 GB VRAM</td>
 
+
+
                                 <td><span class="status-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.4); font-weight: 700;">Ultra Real-Time</span></td>
+
+
 
                             </tr>
 
+
+
                             <tr>
+
+
 
                                 <td style="color: #ffffff; font-weight: 700;">AMD Radeon 680M / Intel Iris Xe</td>
 
+
+
                                 <td>DirectML / ONNX Runtime (D3D12)<span class="help-pill" data-i18n-tooltip="tip.directml" tabindex="0">?</span></td>
+
+
 
                                 <td style="font-family: var(--font-mono); color: #38bdf8;">24.8 ms</td>
 
+
+
                                 <td style="font-family: var(--font-mono); color: #34d399; font-weight: 700;">40.3 FPS</td>
+
+
 
                                 <td style="font-family: var(--font-mono);">850 MB Shared</td>
 
+
+
                                 <td><span class="status-badge" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3);">Real-Time 30+ FPS</span></td>
+
+
 
                             </tr>
 
+
+
                             <tr>
+
+
 
                                 <td style="color: #ffffff; font-weight: 700;">Intel Core i7-11800H (8C/16T)</td>
 
+
+
                                 <td>CPU AVX-512 / OpenVINO<span class="help-pill" data-i18n-tooltip="tip.openvino" tabindex="0">?</span></td>
+
+
 
                                 <td style="font-family: var(--font-mono); color: #fbbf24;">38.2 ms</td>
 
+
+
                                 <td style="font-family: var(--font-mono); color: #fbbf24; font-weight: 700;">26.2 FPS</td>
+
+
 
                                 <td style="font-family: var(--font-mono);">420 MB RAM</td>
 
+
+
                                 <td><span class="status-badge status-warning">Near Real-Time</span></td>
 
+
+
                             </tr>
+
+
 
                             <tr>
 
+
+
                                 <td style="color: #ffffff; font-weight: 700;">NVIDIA Jetson Nano (4GB)</td>
+
+
 
                                 <td>Edge IoT / PyTorch FP16</td>
 
+
+
                                 <td style="font-family: var(--font-mono); color: #fbbf24;">48.5 ms</td>
+
+
 
                                 <td style="font-family: var(--font-mono); color: #fbbf24; font-weight: 700;">20.6 FPS</td>
 
+
+
                                 <td style="font-family: var(--font-mono);">1.1 GB Unified</td>
+
+
 
                                 <td><span class="status-badge status-warning">Edge Deployed</span></td>
 
+
+
                             </tr>
+
+
 
                         </tbody>
 
+
+
                     </table>
 
+
+
                 </div>
+
+
+
+
 
 
 
                 <!-- Docker Quick-Deploy Terminal Card -->
 
+
+
                 <div style="background: rgba(0, 0, 0, 0.35); border-radius: 8px; padding: 1.2rem; border: 1px solid rgba(255, 255, 255, 0.06);">
+
+
 
                     <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.8rem;">
 
+
+
                         <div>
+
+
 
                             <span class="hero-title-badge" data-i18n="pv.deploy.pill">Docker Production</span>
 
+
+
                             <h4 style="margin: 0.3rem 0 0 0; color: #ffffff; font-size: 1.05rem;" data-i18n="pv.deploy.title">Docker Containerization &amp; Edge Deployment</h4>
+
+
 
                         </div>
 
+
+
                     </div>
+
+
 
                     <p style="font-size: 0.88rem; color: var(--gray); margin-bottom: 1rem;" data-i18n="pv.deploy.desc">
 
+
+
                         ParkVision is fully containerized with Docker and Docker Compose, supporting automated GPU passthrough for NVIDIA CUDA and host DirectML acceleration for Intel/AMD chips:
+
+
 
                     </p>
 
 
 
+
+
+
+
                     <!-- Command 1 -->
+
+
 
                     <div style="position: relative; margin-bottom: 0.8rem;">
 
+
+
                         <button type="button" class="copy-code-btn" data-copy-target="cmd-docker">
+
+
 
                             <span>Copy</span>
 
+
+
                         </button>
+
+
 
                         <pre style="margin: 0; padding: 0.9rem 1rem;"><code id="cmd-docker"># Build &amp; launch headless inference server with WebSocket streaming
 
+
+
 docker-compose -f docker/docker-compose.yml up --build -d</code></pre>
 
+
+
                     </div>
+
+
+
+
 
 
 
                     <!-- Command 2 -->
 
+
+
                     <div style="position: relative;">
+
+
 
                         <button type="button" class="copy-code-btn" data-copy-target="cmd-run">
 
+
+
                             <span>Copy</span>
+
+
 
                         </button>
 
+
+
                         <pre style="margin: 0; padding: 0.9rem 1rem;"><code id="cmd-run"># Run DirectML accelerated inference against networked RTSP CCTV stream
+
+
 
 python app/main.py --source "rtsp://admin:pass@192.168.1.100:554/stream1" --device directml --conf 0.45</code></pre>
 
+
+
                     </div>
+
+
 
                 </div>
 
+
+
             </div>
+
+
 
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- Key Features & GUI Section -->
 
+
+
     <div class="container">
+
+
 
         <div class="section-block">
 
+
+
             <h2 data-i18n="pv.features.title">Application Features</h2>
+
+
 
             
 
+
+
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
 
+
+
                 <div class="metric-card" style="padding: 1.2rem; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border-left: 4px solid var(--primary);">
+
+
 
                     <h4 style="color: var(--secondary); margin-bottom: 0.5rem;" data-i18n="pv.feat1.title">Live Monitoring Dashboard</h4>
 
+
+
                     <p style="font-size: 0.95rem;" data-i18n="pv.feat1.desc">Real-time video rendering with overlayed status polygons, live occupancy counter (Occupied / Total), and instant visual alerts.</p>
 
+
+
                 </div>
+
+
 
                 
 
+
+
                 <div class="metric-card" style="padding: 1.2rem; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border-left: 4px solid var(--primary);">
+
+
 
                     <h4 style="color: var(--secondary); margin-bottom: 0.5rem;" data-i18n="pv.feat2.title">Interactive Slot Calibrator</h4>
 
+
+
                     <p style="font-size: 0.95rem;" data-i18n="pv.feat2.desc">Intuitive vector point-and-click slot editor allowing administrators to adapt the system to any parking lot layout.</p>
+
+
 
                 </div>
 
 
 
+
+
+
+
                 <div class="metric-card" style="padding: 1.2rem; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border-left: 4px solid var(--primary);">
+
+
 
                     <h4 style="color: var(--secondary); margin-bottom: 0.5rem;" data-i18n="pv.feat3.title">RTSP &amp; Network IP Ready</h4>
 
+
+
                     <p style="font-size: 0.95rem;" data-i18n="pv.feat3.desc">Native RTSP protocol support for streaming commercial IP surveillance cameras over local or wide-area networks.</p>
 
+
+
                 </div>
+
+
+
+
 
 
 
                 <div class="metric-card" style="padding: 1.2rem; background: rgba(255, 255, 255, 0.03); border-radius: 8px; border-left: 4px solid var(--primary);">
 
+
+
                     <h4 style="color: var(--secondary); margin-bottom: 0.5rem;" data-i18n="pv.feat4.title">Data Persistence &amp; Audit Trail</h4>
+
+
 
                     <p style="font-size: 0.95rem;" data-i18n="pv.feat4.desc">Automated transaction storage in SQLite with schema migrations and exportable CSV reports for operational audits.</p>
 
+
+
                 </div>
+
+
 
             </div>
 
+
+
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- Interface & Real-Time Detection Showcase -->
 
+
+
     <div class="container">
+
+
 
         <div class="section-block">
 
+
+
             <h2 data-i18n="pv.shots.title">Interface &amp; Real-Time Detection Showcase</h2>
+
+
 
             
 
+
+
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
 
+
+
                 <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; padding: 1.2rem;">
+
+
 
                     <h4 style="color: var(--secondary); margin-bottom: 0.5rem;" data-i18n="pv.shots.live_title">Live Monitoring &amp; Spatial HUD</h4>
 
+
+
                     <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1rem;" data-i18n="pv.shots.live_desc">Real-time edge detection overlay showing available spaces in green, occupied spaces in red, bounding boxes, and telemetry metrics (FPS &amp; latency).</p>
+
+
 
                     <img src="Files/images/parkvision/parkvision_live_monitor.png" alt="ParkVision Live Monitoring Dashboard" style="width: 100%; height: auto; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);" loading="lazy">
 
+
+
                 </div>
+
+
 
                 
 
+
+
                 <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; padding: 1.2rem;">
+
+
 
                     <h4 style="color: var(--secondary); margin-bottom: 0.5rem;" data-i18n="pv.shots.calib_title">Vector Slot Calibrator</h4>
 
+
+
                     <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1rem;" data-i18n="pv.shots.calib_desc">Interactive vector calibration mode allowing operators to define, adjust anchor vertices, and persist slot polygons directly over the video stream.</p>
+
+
 
                     <img src="Files/images/parkvision/parkvision_slot_calibration.png" alt="ParkVision Vector Slot Calibrator" style="width: 100%; height: auto; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);" loading="lazy">
 
+
+
                 </div>
+
+
 
             </div>
 
+
+
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- Technical Implementation Section -->
 
+
+
     <div class="container">
+
+
 
         <div class="section-block">
 
+
+
             <h2 data-i18n="pv.tech.title">Technologies &amp; Libraries Used</h2>
+
+
 
             
 
+
+
             <div class="files-link-container" style="margin: 20px 0; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+
+
 
                 <span class="file-badge">Python 3.10+</span>
 
+
+
                 <span class="file-badge">FastAPI &amp; WebSockets</span>
+
+
 
                 <span class="file-badge">Ultralytics YOLOv8</span>
 
+
+
                 <span class="file-badge">ByteTrack Tracking</span>
+
+
 
                 <span class="file-badge">OpenCV (cv2)</span>
 
+
+
                 <span class="file-badge">DirectML &amp; CUDA Multi-GPU</span>
+
+
 
                 <span class="file-badge">SQLite3 &amp; CSV Analytics</span>
 
+
+
                 <span class="file-badge">Shapely Geometry</span>
+
+
 
                 <span class="file-badge">HTML5 / Vanilla JS Dashboard</span>
 
+
+
             </div>
+
+
 
         </div>
 
+
+
     </div>
+
+
+
+
 
 
 
     <!-- Project Files Section -->
 
+
+
     <div class="container">
+
+
 
         <div class="project-single">
 
+
+
             <h3 data-i18n="pv.repo.title">Project Repository &amp; Source Code</h3>
+
+
 
             <p data-i18n="pv.repo.p">Explore the full application source code, modules, GUI views, and database schemas in the GitHub repository:</p>
 
+
+
             
+
+
 
             <div class="files-link-container">
 
+
+
                 <a href="https://github.com/cveram96/Portfolio/tree/main/Files/parking_monitor" 
+
+
 
                    class="project-files-link" 
 
+
+
                    target="_blank" 
+
+
 
                    rel="noopener noreferrer"
 
+
+
                    data-i18n="pv.repo.link">
+
+
 
                     Explore ParkVision AI Codebase
 
+
+
                 </a>
+
+
 
                 
 
+
+
                 <div class="file-types">
+
+
 
                     <span class="file-badge">Python</span>
 
+
+
                     <span class="file-badge">FastAPI Web App</span>
+
+
 
                     <span class="file-badge">YOLOv8 Weights</span>
 
+
+
                     <span class="file-badge">SQLite &amp; Reports</span>
+
+
 
                 </div>
 
+
+
             </div>
 
+
+
         </div>
+
+
 
     </div>
 
 
 
+
+
+
+
         <!-- Standardized Accessible Footer -->
+
+
 
     <footer>
 
+
+
         <div class="footer-content">
+
+
 
             <p class="footer-credit" data-i18n-html="footer.credit">Designed &amp; Developed by <strong style="color: #ffffff;">Christian David Vera Mendivelso</strong> &bull; 2025&ndash;2026</p>
 
+
+
             <p class="footer-status" data-i18n-html="footer.status">Bogot&aacute;, Colombia &bull; Open to Remote &amp; Hybrid roles</p>
+
+
 
             <div class="footer-actions">
 
+
+
                 <a href="https://www.linkedin.com/in/christianveram/" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-linkedin">
+
+
 
                     LinkedIn
 
+
+
                 </a>
+
+
 
                 <a href="https://github.com/cveram96" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-github">
 
+
+
                     GitHub
 
+
+
                 </a>
+
+
 
                 <a href="contacto.html" class="footer-btn footer-btn-contact" data-i18n="footer.contact">
 
+
+
                     Contact
+
+
 
                 </a>
 
+
+
             </div>
 
+
+
         </div>
+
+
 
     </footer>
 
 
 
+
+
+
+
     <!-- Multilingual i18n Scripts -->
 
-    <script src="translations.js?v=2.5"></script>
 
-    <script src="i18n.js?v=2.5"></script>
+
+    <script src="translations.js?v=2.6"></script>
+
+
+
+    <script src="i18n.js?v=2.6"></script>
+
+
+
+
 
 
 
     <!-- ParkVision Copy Script -->
 
+
+
     <script>
+
+
 
       (function initParkVisionCopy() {
 
+
+
         document.querySelectorAll('.copy-code-btn').forEach(btn => {
+
+
 
           btn.addEventListener('click', () => {
 
+
+
             const targetId = btn.getAttribute('data-copy-target');
+
+
 
             if (!targetId) return;
 
+
+
             const el = document.getElementById(targetId);
+
+
 
             if (el && navigator.clipboard) {
 
+
+
               navigator.clipboard.writeText(el.textContent.trim()).then(() => {
+
+
 
                 const orig = btn.innerHTML;
 
+
+
                 btn.classList.add('copied');
+
+
 
                 btn.innerHTML = '<span>✓ Copied!</span>';
 
+
+
                 setTimeout(() => {
+
+
 
                   btn.classList.remove('copied');
 
+
+
                   btn.innerHTML = orig;
+
+
 
                 }, 2000);
 
+
+
               });
+
+
 
             }
 
+
+
           });
+
+
 
         });
 
+
+
       })();
+
+
 
     </script>
 
 
 
+
+
+
+
 </body>
 
+
+
 </html>
+
+
 

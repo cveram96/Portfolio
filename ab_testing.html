@@ -1,487 +1,1004 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <!-- Google tag (gtag.js) -->
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0NCSQ1FW3J"></script>
+
     <script>
+
       window.dataLayer = window.dataLayer || [];
+
       function gtag(){dataLayer.push(arguments);}
+
       gtag('js', new Date());
 
+
+
       gtag('config', 'G-0NCSQ1FW3J');
+
     </script>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- Primary Meta Tags -->
+
     <title>Digital Experimentation Platform & CUPED Variance Reduction</title>
+
     <meta name="title" content="Digital Experimentation Platform & CUPED Variance Reduction">
+
     <meta name="description" content="Production A/B testing suite with CUPED variance reduction (-42.8% variance, -42.7% sample size), sequential testing, and statistical power sizing.">
+
     <meta name="author" content="Christian David Vera Mendivelso">
+
     <meta name="robots" content="index, follow">
+
     <meta name="theme-color" content="#0d1117">
 
+
+
     <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+
     <meta property="og:type" content="article">
+
     <meta property="og:url" content="https://cveram96.github.io/Portfolio/ab_testing.html">
+
     <meta property="og:site_name" content="Christian David Vera | Portfolio">
+
     <meta property="og:title" content="Digital Experimentation Platform & CUPED Variance Reduction">
+
     <meta property="og:description" content="Production A/B testing suite with CUPED variance reduction (-42.8% variance, -42.7% sample size), sequential testing, and statistical power sizing.">
+
     <meta property="og:image" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/ab_testing/cuped_variance_reduction_and_ci.png">
+
     <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/ab_testing/cuped_variance_reduction_and_ci.png">
+
     <meta property="og:image:type" content="image/png">
+
     <meta property="og:image:width" content="1200">
+
     <meta property="og:image:height" content="630">
+
     <meta property="og:image:alt" content="Digital Experimentation Platform & CUPED Variance Reduction">
+
     <meta property="og:locale" content="en_US">
+
     <meta property="og:locale:alternate" content="es_ES">
 
+
+
     <!-- Twitter / X Cards -->
+
     <meta name="twitter:card" content="summary_large_image">
+
     <meta name="twitter:url" content="https://cveram96.github.io/Portfolio/ab_testing.html">
+
     <meta name="twitter:title" content="Digital Experimentation Platform & CUPED Variance Reduction">
+
     <meta name="twitter:description" content="Production A/B testing suite with CUPED variance reduction (-42.8% variance, -42.7% sample size), sequential testing, and statistical power sizing.">
+
     <meta name="twitter:image" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/ab_testing/cuped_variance_reduction_and_ci.png">
+
     <meta name="twitter:image:alt" content="Digital Experimentation Platform & CUPED Variance Reduction">
+
         <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="styles.css?v=2.5">
+
+    <link rel="stylesheet" href="styles.css?v=2.6">
+
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
+
     <!-- Navigation bar -->
+
     <nav>
+
         <ul>
+
             <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+
             <li><a href="index.html#featured" data-i18n="nav.featured">Featured Projects</a></li>
+
             <li><a href="index.html#analytics" data-i18n="nav.analytics">Analytics &amp; BI</a></li>
+
             <li><a href="contacto.html" data-i18n="nav.contact">Contact</a></li>
+
         </ul>
+
     </nav>
 
+
+
     <!-- Intro Section -->
+
     <div class="container">
+
         <div class="intro">
+
             <span class="hero-title-badge" data-i18n="common.summary_badge" style="margin-bottom: 0.8rem; display: inline-block;">Executive Summary</span>
+
             <h1 data-i18n="abt.intro.title">A/B Testing Project</h1>
+
             <h2 data-i18n-html="abt.intro.subtitle">Landing Page Performance Analysis &amp; Decision Science</h2>
-            <ul>
-                <li data-i18n-html="abt.intro.li1"><strong>Objective:</strong> Evaluate whether a proposed landing page design measurably improves enrollment rates compared to the current baseline, avoiding decisions based on sample noise.</li>
-                <li data-i18n-html="abt.intro.li2"><strong>Data:</strong> Udacity e-commerce landing page experiment dataset (290,584 unique users).</li>
-                <li data-i18n-html="abt.intro.li3"><strong>Method:</strong> Two-sample hypothesis testing (Z-test) and traffic allocation checks (SRM), combined with CUPED variance reduction using pre-experiment baseline activity.</li>
-                <li data-i18n-html="abt.intro.li4"><strong>Result &amp; Decision:</strong> The new landing page showed no statistically significant lift (p = 0.1899), supporting a recommendation to retain the current page. CUPED reduced metric variance by 42.8%, lowering required sample size.</li>
-                <li data-i18n-html="abt.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/tree/main/experimentation-platform/experiments" target="_blank" rel="noopener noreferrer">GitHub Codebase</a></li>
+
+            <ul class="summary-list">
+
+                <li class="summary-item">
+
+                    <span class="summary-icon-box" aria-hidden="true">🎯</span>
+
+                    <div class="summary-text" data-i18n-html="abt.intro.li1"><strong>Objective:</strong> Evaluate whether a proposed landing page design measurably improves enrollment rates compared to the current baseline, avoiding decisions based on sample noise.</div>
+
+                </li>
+
+                <li class="summary-item">
+
+                    <span class="summary-icon-box" aria-hidden="true">🗄️</span>
+
+                    <div class="summary-text" data-i18n-html="abt.intro.li2"><strong>Data:</strong> Udacity e-commerce landing page experiment dataset (290,584 unique users).</div>
+
+                </li>
+
+                <li class="summary-item">
+
+                    <span class="summary-icon-box" aria-hidden="true">⚙️</span>
+
+                    <div class="summary-text" data-i18n-html="abt.intro.li3"><strong>Method:</strong> Two-sample hypothesis testing (Z-test) and traffic allocation checks (SRM), combined with CUPED variance reduction using pre-experiment baseline activity.</div>
+
+                </li>
+
+                <li class="summary-item">
+
+                    <span class="summary-icon-box" aria-hidden="true">📈</span>
+
+                    <div class="summary-text" data-i18n-html="abt.intro.li4"><strong>Result &amp; Decision:</strong> The new landing page showed no statistically significant lift (p = 0.1899), supporting a recommendation to retain the current page. CUPED reduced metric variance by 42.8%, lowering required sample size.</div>
+
+                </li>
+
+                <li class="summary-item">
+
+                    <span class="summary-icon-box" aria-hidden="true">💻</span>
+
+                    <div class="summary-text" data-i18n-html="abt.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/tree/main/experimentation-platform/experiments" target="_blank" rel="noopener noreferrer">GitHub Codebase</a></div>
+
+                </li>
+
             </ul>
+
         </div>
+
     </div>
+
+
 
     <!-- Project Context Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n-html="abt.context.title">Project Context &amp; Business Dilemma</h2>
+
             <p data-i18n-html="abt.context.p1">An online education platform designed and implemented a new landing page aiming to boost course enrollment rates. The core product question was straightforward yet commercially high-stakes: <strong>should the company deploy the new landing page to 100% of incoming traffic, or retain the existing baseline design?</strong></p>
+
             
+
             <h3 data-i18n="abt.context.challenge_title">The Analytical Challenge</h3>
+
             <p data-i18n="abt.context.challenge_p">Real-world experimentation is not about manufacturing statistical significance. It is about establishing reliable causal attribution and guarding the business against regressions. With a population of nearly 300,000 users, our analysis applied strict methodological quality gates to deliver a statistically sound and commercially actionable verdict.</p>
+
         </div>
+
     </div>
+
+
 
     <!-- Methodology Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n-html="abt.method.title">Statistical Methodology &amp; Quality Gates</h2>
+
             
+
             <p data-i18n="abt.method.p">Rather than relying on basic metric summaries, we executed a 4-step statistical validation workflow designed to eliminate bias and verify experimental integrity.</p>
 
+
+
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+
                 <div style="background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 10px; border-left: 3px solid var(--secondary); text-align: center;">
+
                     <div style="font-size: 1.4rem; font-weight: 800; color: #ffffff;">290,584</div>
+
                     <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;" data-i18n="abt.card.pop">Clean Population</div>
+
                 </div>
+
                 <div style="background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 10px; border-left: 3px solid var(--success); text-align: center;">
+
                     <div style="font-size: 1.4rem; font-weight: 800; color: #34d399;">Passed</div>
+
                     <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;" data-i18n-html="abt.card.srm">SRM Check (&chi;&sup2;)</div>
+
                 </div>
+
                 <div style="background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 10px; border-left: 3px solid var(--primary); text-align: center;">
+
                     <div style="font-size: 1.4rem; font-weight: 800; color: #ffffff;">Z-Test</div>
+
                     <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;" data-i18n="abt.card.model">Inference Model</div>
+
                 </div>
+
                 <div style="background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 10px; border-left: 3px solid var(--accent); text-align: center;">
+
                     <div style="font-size: 1.4rem; font-weight: 800; color: #fbbf24;">&gt; 90%</div>
+
                     <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;" data-i18n="abt.card.power">Statistical Power</div>
+
                 </div>
+
             </div>
+
+
 
             <h3 data-i18n-html="abt.method.s1_title">1. Data Cleaning &amp; User Deduplication</h3>
+
             <p data-i18n="abt.method.s1_p">We filtered out records with technical delivery mismatches (e.g., treatment users served old pages) and deduplicated repeated user IDs to ensure that observations satisfied the Independent and Identically Distributed (I.I.D.) condition, yielding 290,584 distinct users.</p>
+
             
+
             <h3 data-i18n-html="abt.method.s2_title">2. Sample Ratio Mismatch (SRM) Test</h3>
+
             <p data-i18n-html="abt.method.s2_p">Prior to evaluating conversion metrics, we performed a <strong>Chi-Square (&chi;&sup2;) Goodness-of-Fit Test</strong> to confirm that traffic allocation operated at an unbiased 50:50 ratio. The test confirmed no allocation distortion (&chi;&sup2; = 0.0045, p = 0.947), validating that the experimental randomization was untainted.</p>
 
+
+
             <h3 data-i18n-html="abt.method.s3_title">3. Inferential Model: Two-Sample Z-Test for Proportions</h3>
+
             <p data-i18n="abt.method.s3_p">For independent binary conversion events across large populations, the Two-Sample Z-Test is the mathematically appropriate model (superior to a standard Student's t-test). We computed both group-level confidence intervals and the 95% Confidence Interval for the difference between proportions.</p>
+
             
+
             <h3 data-i18n-html="abt.method.s4_title">4. Heterogeneity Analysis (CATE)</h3>
+
             <p data-i18n="abt.method.s4_p">We evaluated Conditional Average Treatment Effects across visit segments (Day vs. Night) to verify whether specific audience cohorts benefited from the redesign despite global neutral performance.</p>
+
         </div>
+
     </div>
+
+
 
     <!-- Results Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n-html="abt.results.title">Experimental Findings &amp; Uncertainty Quantification</h2>
+
             
+
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+
                 <div style="background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); text-align: center;">
+
                     <div style="font-size: 0.8rem; color: var(--secondary-light); text-transform: uppercase; font-weight: 600;" data-i18n="abt.res.control_cr">Control CR</div>
+
                     <div style="font-size: 1.5rem; font-weight: 800; color: #ffffff; margin-top: 0.3rem;">12.04%</div>
+
                     <div style="font-size: 0.78rem; color: var(--gray-muted);">95% CI: [11.87%, 12.21%]</div>
+
                 </div>
+
                 <div style="background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); text-align: center;">
+
                     <div style="font-size: 0.8rem; color: var(--secondary-light); text-transform: uppercase; font-weight: 600;" data-i18n="abt.res.treat_cr">Treatment CR</div>
+
                     <div style="font-size: 1.5rem; font-weight: 800; color: #ffffff; margin-top: 0.3rem;">11.88%</div>
+
                     <div style="font-size: 0.78rem; color: var(--gray-muted);">95% CI: [11.71%, 12.05%]</div>
+
                 </div>
+
                 <div style="background: rgba(239, 68, 68, 0.08); padding: 1.2rem; border-radius: 10px; border: 1px solid rgba(239, 68, 68, 0.3); text-align: center;">
+
                     <div style="font-size: 0.8rem; color: #f87171; text-transform: uppercase; font-weight: 600;" data-i18n="abt.res.uplift">Relative Uplift</div>
+
                     <div style="font-size: 1.5rem; font-weight: 800; color: #f87171; margin-top: 0.3rem;">-1.31%</div>
+
                     <div style="font-size: 0.78rem; color: #fca5a5;">Absolute: -0.158%</div>
+
                 </div>
+
                 <div style="background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); text-align: center;">
+
                     <div style="font-size: 0.8rem; color: var(--secondary-light); text-transform: uppercase; font-weight: 600;" data-i18n-html="abt.res.pvalue">Z-Score &bull; P-Value</div>
+
                     <div style="font-size: 1.5rem; font-weight: 800; color: #ffffff; margin-top: 0.3rem;">p = 0.1899</div>
+
                     <div style="font-size: 0.78rem; color: var(--gray-muted);">z = -1.3109 (Fail to reject H0)</div>
+
                 </div>
+
             </div>
+
+
 
             <h3 data-i18n-html="abt.res.ci_title">Difference Confidence Interval (&Delta; = p_treat &minus; p_control)</h3>
+
             <p data-i18n-html="abt.res.ci_p_full">The 95% Confidence Interval for the true difference in proportions is <strong>[-0.3938%, +0.0781%]</strong>. Because this interval contains zero (0%), we fail to reject the null hypothesis. There is no empirical evidence that the redesign provides an improvement; on the contrary, the point estimate indicates a slight conversion drag.</p>
 
+
+
             <h3 data-i18n="abt.res.seg_title">Segment Consistency Check</h3>
+
             <div class="two-columns">
+
                 <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); padding: 1.2rem; border-radius: 8px; margin-bottom: 1rem;">
+
                     <strong style="color: #ffffff;">Daytime Traffic (08:00&ndash;20:00)</strong>
+
                     <p style="margin: 0.5rem 0 0 0; color: var(--gray); font-size: 0.95rem;" data-i18n-html="abt.res.seg_day_content">Control CR: 12.09% &bull; Treatment CR: 11.89% &bull; p = 0.16<br><span style="color: var(--gray-muted);">Consistent negative trend observed during peak business hours.</span></p>
+
                 </div>
+
                 <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.06); padding: 1.2rem; border-radius: 8px; margin-bottom: 1rem;">
+
                     <strong style="color: #ffffff;">Nighttime Traffic (20:00&ndash;08:00)</strong>
+
                     <p style="margin: 0.5rem 0 0 0; color: var(--gray); font-size: 0.95rem;" data-i18n-html="abt.res.seg_night_content">Control CR: 11.98% &bull; Treatment CR: 11.87% &bull; p = 0.22<br><span style="color: var(--gray-muted);">No compensatory uplift detected in off-peak hours.</span></p>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
+
 
     <!-- Digital Experimentation & CUPED Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n-html="abt.cuped.title">Digital Experimentation Framework: Variance Reduction (CUPED) &amp; Power Sizing</h2>
+
             <p data-i18n-html="abt.cuped.p1">In digital product experimentation, statistical sensitivity and business velocity are constrained by natural metric variance. By integrating <strong>CUPED (Controlled-experiment Using Pre-Experiment Data)</strong>, we leverage pre-experiment user baseline behavior as an orthogonal covariate to strip out unexplained variance without introducing bias.</p>
 
+
+
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+
                 <div style="background: rgba(0, 242, 254, 0.05); padding: 1.2rem; border-radius: 10px; border-left: 3px solid var(--secondary); text-align: center;">
+
                     <div style="font-size: 1.4rem; font-weight: 800; color: #00f2fe;">-42.8%</div>
+
                     <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;" data-i18n="abt.cuped.card_var">Variance Reduction</div>
+
                 </div>
+
                 <div style="background: rgba(52, 211, 153, 0.05); padding: 1.2rem; border-radius: 10px; border-left: 3px solid #34d399; text-align: center;">
+
                     <div style="font-size: 1.4rem; font-weight: 800; color: #34d399;">-24.4%</div>
+
                     <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;" data-i18n="abt.cuped.card_ci">CI Width Narrowed</div>
+
                 </div>
+
                 <div style="background: rgba(251, 191, 36, 0.05); padding: 1.2rem; border-radius: 10px; border-left: 3px solid #fbbf24; text-align: center;">
+
                     <div style="font-size: 1.4rem; font-weight: 800; color: #fbbf24;">-42.7%</div>
+
                     <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;" data-i18n="abt.cuped.card_sample">Sample Size Saved</div>
+
                 </div>
+
                 <div style="background: rgba(255, 255, 255, 0.03); padding: 1.2rem; border-radius: 10px; border-left: 3px solid #a855f7; text-align: center;">
+
                     <div style="font-size: 1.4rem; font-weight: 800; color: #ffffff;">290,584</div>
+
                     <div style="font-size: 0.8rem; color: var(--gray-muted); text-transform: uppercase; margin-top: 0.2rem;" data-i18n="abt.cuped.card_benchmark">Real Benchmark</div>
+
                 </div>
+
             </div>
+
+
 
             <h3 data-i18n-html="abt.cuped.math_title">Mathematical Formulation &amp; Covariate Adjustment</h3>
+
             <p data-i18n-html="abt.cuped.math_p">For a key metric <em>Y</em> and pre-experiment baseline covariate <em>X</em> (prior user behavior), the variance-minimizing linear adjustment is formulated as:</p>
 
+
+
             <div data-i18n-html="abt.cuped.math_box">
+
                 <div class="math-card">
+
                     <div class="math-main-formula">Y<sub>CUPED</sub> = Y − θ · (X − X̄)</div>
+
                     <div class="math-meta">
+
                         <span class="math-param"><strong>θ</strong> = Cov(Y, X) / Var(X)</span>
+
                         <span class="math-divider">•</span>
+
                         <span class="math-param"><strong>Residual Variance:</strong> Var(Y<sub>CUPED</sub>) = Var(Y) · (1 − ρ²)</span>
+
                     </div>
+
                 </div>
+
             </div>
+
+
 
             <div class="chart-container-showcase">
+
                 <img src="Files/images/ab_testing/cuped_variance_reduction_and_ci.png" 
+
                      alt="CUPED Variance Reduction, Confidence Interval Shrinking, and Power Sizing" 
+
                      class="chart-img-responsive"
+
                      loading="lazy">
+
                 <div class="chart-zoom-hint" data-i18n="abt.cuped.zoom_hint">📊 High-Resolution Diagnostic Suite (2,260 × 1,220) — 4-Panel Empirical Evaluation</div>
+
             </div>
+
+
 
             <p style="font-size: 0.9rem; color: var(--gray-muted); line-height: 1.6;" data-i18n-html="abt.cuped.fig_caption">
+
                 <strong>Figure 1:</strong> Four-panel experimentation diagnostic suite. (A) Distribution narrowing via covariate adjustment (-42.8% variance). (B) Shrinking 95% Confidence Interval for Average Treatment Effect (ATE). (C) Statistical power curves reaching 80% power with 42.7% fewer users. (D) Real-world benchmark: Udacity landing page conversion rate (Z = -1.31, p = 0.1899).
+
             </p>
 
+
+
             <!-- Interactive CUPED Simulator Playground -->
+
             <div class="interactive-widget" id="cupedSimulator">
+
                 <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+
                     <div>
+
                         <span class="hero-title-badge" data-i18n="abt.sim.badge">Interactive Engine</span>
+
                         <h3 style="margin: 0.3rem 0 0 0; color: #ffffff; font-size: 1.25rem;" data-i18n="abt.sim.title">Live CUPED Variance Reduction &amp; Velocity Simulator</h3>
+
                     </div>
+
                     <span style="font-family: var(--font-mono); font-size: 0.78rem; color: #10b981; background: rgba(16, 185, 129, 0.1); padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid rgba(16, 185, 129, 0.3);" data-i18n="abt.sim.pill">
+
                         ● Reactive Client-Side Model
+
                     </span>
+
                 </div>
+
                 <p style="font-size: 0.92rem; color: var(--gray); margin-bottom: 1.5rem;" data-i18n="abt.sim.desc">
+
                     Adjust the pre-experiment covariate correlation (&rho;) and sample size to observe real-time variance contraction, sample size savings, and experiment duration compression:
+
                 </p>
 
+
+
                 <!-- Slider Controls -->
+
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
-                    <div>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
-                            <label for="cupedRho" style="color: var(--light); font-weight: 600;"><span data-i18n="abt.sim.lbl_rho">Covariate Correlation (&rho;):</span><span class="help-pill" data-i18n-tooltip="tip.rho" tabindex="0">?</span></label>
-                            <span id="cupedRhoVal" style="font-family: var(--font-mono); color: var(--secondary-light); font-weight: 700;">0.65</span>
-                        </div>
-                        <input type="range" id="cupedRho" class="range-slider" min="0.00" max="0.90" step="0.01" value="0.65">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--gray-muted); margin-top: 0.2rem;">
-                            <span>0.0 (No adjustment)</span>
-                            <span>0.90 (Strong signal)</span>
-                        </div>
-                    </div>
 
                     <div>
+
                         <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
-                            <label for="cupedSample" style="color: var(--light); font-weight: 600;"><span data-i18n="abt.sim.lbl_sample">Baseline Sample Size (N per group):</span><span class="help-pill" data-i18n-tooltip="tip.sample_size" tabindex="0">?</span></label>
-                            <span id="cupedSampleVal" style="font-family: var(--font-mono); color: #a78bfa; font-weight: 700;">100,000</span>
+
+                            <label for="cupedRho" style="color: var(--light); font-weight: 600;"><span data-i18n="abt.sim.lbl_rho">Covariate Correlation (&rho;):</span><span class="help-pill" data-i18n-tooltip="tip.rho" tabindex="0">?</span></label>
+
+                            <span id="cupedRhoVal" style="font-family: var(--font-mono); color: var(--secondary-light); font-weight: 700;">0.65</span>
+
                         </div>
-                        <input type="range" id="cupedSample" class="range-slider" min="10000" max="300000" step="5000" value="100000">
+
+                        <input type="range" id="cupedRho" class="range-slider" min="0.00" max="0.90" step="0.01" value="0.65">
+
                         <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--gray-muted); margin-top: 0.2rem;">
-                            <span>10,000</span>
-                            <span>300,000</span>
+
+                            <span>0.0 (No adjustment)</span>
+
+                            <span>0.90 (Strong signal)</span>
+
                         </div>
+
                     </div>
+
+
+
+                    <div>
+
+                        <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
+
+                            <label for="cupedSample" style="color: var(--light); font-weight: 600;"><span data-i18n="abt.sim.lbl_sample">Baseline Sample Size (N per group):</span><span class="help-pill" data-i18n-tooltip="tip.sample_size" tabindex="0">?</span></label>
+
+                            <span id="cupedSampleVal" style="font-family: var(--font-mono); color: #a78bfa; font-weight: 700;">100,000</span>
+
+                        </div>
+
+                        <input type="range" id="cupedSample" class="range-slider" min="10000" max="300000" step="5000" value="100000">
+
+                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--gray-muted); margin-top: 0.2rem;">
+
+                            <span>10,000</span>
+
+                            <span>300,000</span>
+
+                        </div>
+
+                    </div>
+
                 </div>
+
+
 
                 <!-- Live Dynamic KPI Cards -->
+
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+
                     <div style="background: rgba(2, 132, 199, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--secondary); text-align: center;">
+
                         <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;"><span data-i18n="abt.sim.kpi_var">Variance Contraction</span><span class="help-pill" data-i18n-tooltip="tip.var_drop" tabindex="0">?</span></div>
+
                         <div id="simVarDrop" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #38bdf8; margin-top: 0.2rem;">-42.3%</div>
+
                         <div style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">&Delta;Var = -(&rho;&sup2;)</div>
+
                     </div>
+
+
 
                     <div style="background: rgba(16, 185, 129, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid #10b981; text-align: center;">
+
                         <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;"><span data-i18n="abt.sim.kpi_users">Users Saved / Group</span><span class="help-pill" data-i18n-tooltip="tip.sample_size" tabindex="0">?</span></div>
+
                         <div id="simUsersSaved" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #34d399; margin-top: 0.2rem;">42,250 users</div>
+
                         <div id="simNewSample" style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">Target N: 57,750</div>
+
                     </div>
+
+
 
                     <div style="background: rgba(245, 158, 11, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid #f59e0b; text-align: center;">
+
                         <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;"><span data-i18n="abt.sim.kpi_duration">Runtime Saved (4 wk baseline)</span><span class="help-pill" data-i18n-tooltip="tip.cuped" tabindex="0">?</span></div>
+
                         <div id="simDaysSaved" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #fbbf24; margin-top: 0.2rem;">11.8 days</div>
+
                         <div id="simNewDuration" style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">New runtime: 2.3 weeks</div>
+
                     </div>
+
+
 
                     <div style="background: rgba(168, 85, 247, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid #a855f7; text-align: center;">
+
                         <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;"><span data-i18n="abt.sim.kpi_ci">95% CI Margin Shrink</span><span class="help-pill tooltip-right" data-i18n-tooltip="tip.ci_shrink" tabindex="0">?</span></div>
+
                         <div id="simCIShrink" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #c084fc; margin-top: 0.2rem;">-24.0%</div>
+
                         <div style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">Factor: &radic;(1 - &rho;&sup2;)</div>
+
                     </div>
+
                 </div>
+
+
 
                 <!-- Dynamic Comparison Visual Gauge -->
+
                 <div style="background: rgba(0, 0, 0, 0.35); border-radius: 8px; padding: 1.2rem; border: 1px solid rgba(255, 255, 255, 0.06);">
-                    <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--gray); margin-bottom: 0.5rem;">
-                        <span data-i18n="abt.sim.base_dur">Standard A/B Test Duration (100%):</span>
-                        <span style="font-family: var(--font-mono); color: #f87171;">28.0 days</span>
-                    </div>
-                    <div style="width: 100%; height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 4px; overflow: hidden; margin-bottom: 1rem;">
-                        <div style="width: 100%; height: 100%; background: #f87171;"></div>
-                    </div>
 
                     <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--gray); margin-bottom: 0.5rem;">
+
+                        <span data-i18n="abt.sim.base_dur">Standard A/B Test Duration (100%):</span>
+
+                        <span style="font-family: var(--font-mono); color: #f87171;">28.0 days</span>
+
+                    </div>
+
+                    <div style="width: 100%; height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 4px; overflow: hidden; margin-bottom: 1rem;">
+
+                        <div style="width: 100%; height: 100%; background: #f87171;"></div>
+
+                    </div>
+
+
+
+                    <div style="display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--gray); margin-bottom: 0.5rem;">
+
                         <span data-i18n="abt.sim.cuped_dur">CUPED-Accelerated Runtime:</span>
+
                         <span id="simGaugeText" style="font-family: var(--font-mono); color: #34d399; font-weight: 700;">16.2 days (57.7% of original)</span>
+
                     </div>
+
                     <div style="width: 100%; height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 4px; overflow: hidden;">
+
                         <div id="simGaugeBar" style="width: 57.7%; height: 100%; background: linear-gradient(90deg, #10b981, #0284c7); transition: width 0.2s ease;"></div>
+
                     </div>
+
                 </div>
+
             </div>
 
+
+
         </div>
+
     </div>
+
+
 
     <!-- Business Impact & Recommendations Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n-html="abt.verdict.title">Business Verdict &amp; Financial Risk Mitigation</h2>
+
             
+
             <div style="background: rgba(239, 68, 68, 0.08); border-left: 4px solid #ef4444; padding: 1.4rem; border-radius: 8px; margin-bottom: 2rem;">
+
                 <div style="font-size: 1.15rem; font-weight: 700; color: #f87171;" data-i18n="abt.verdict.badge">EXECUTIVE DECISION: NO-GO</div>
+
                 <p style="margin: 0.4rem 0 0 0; color: #fecaca; font-size: 0.95rem;" data-i18n="abt.verdict.badge_p">Do not deploy the redesigned landing page to production. Maintain the current baseline version.</p>
+
             </div>
+
             
+
             <h3 data-i18n="abt.verdict.fin_title">Financial Opportunity Cost Analysis (Illustrative Business Scenario)</h3>
+
             <p data-i18n-html="abt.verdict.fin_p_full">A failed experiment is an invaluable risk prevention mechanism. To illustrate potential financial impact under defined assumptions, consider an <strong>illustrative scenario</strong> with a monthly scale of <strong>1,000,000 visitors</strong> and an <strong>Average Order Value (AOV) of $50 USD</strong>:</p>
+
             
+
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+
                 <div class="contact-card">
+
                     <div class="contact-label" data-i18n="abt.verdict.card1_lbl">Monthly Conversions Preserved</div>
+
                     <div class="contact-value" style="color: #34d399;">+1,578 orders / month</div>
+
                     <div style="font-size: 0.8rem; color: var(--gray-muted); margin-top: 0.2rem;">Loss avoided by rejecting treatment</div>
+
                 </div>
+
                 <div class="contact-card">
+
                     <div class="contact-label" data-i18n="abt.verdict.card2_lbl">Monthly Revenue Protected</div>
+
                     <div class="contact-value" style="color: #34d399;">$78,900 USD / month</div>
+
                     <div style="font-size: 0.8rem; color: var(--gray-muted); margin-top: 0.2rem;">Calculated at $50 AOV</div>
+
                 </div>
+
                 <div class="contact-card">
+
                     <div class="contact-label" data-i18n="abt.verdict.card3_lbl">Annualized Decision Value</div>
+
                     <div class="contact-value" style="color: #34d399;">~$946,800 USD / year</div>
+
                     <div style="font-size: 0.8rem; color: var(--gray-muted); margin-top: 0.2rem;">Cumulative commercial downside averted</div>
+
                 </div>
+
             </div>
+
+
 
             <h3 data-i18n="abt.rec.title">Strategic Recommendations for the Product Team:</h3>
+
             <div class="two-columns">
+
                 <div class="contact-card" style="margin-bottom: 1rem;">
+
                     <div class="contact-label" data-i18n="abt.rec.s1_title">1. Maintain Status Quo</div>
+
                     <p style="margin: 0; font-size: 0.92rem; color: var(--gray);" data-i18n="abt.rec.s1_p">Keep the original page live. It delivers a proven baseline of 12.04% conversion without friction.</p>
+
                 </div>
+
                 <div class="contact-card" style="margin-bottom: 1rem;">
+
                     <div class="contact-label" data-i18n="abt.rec.s2_title">2. Qualitative Post-Mortem</div>
+
                     <p style="margin: 0; font-size: 0.92rem; color: var(--gray);" data-i18n="abt.rec.s2_p">Inspect heatmaps, session recordings, and user survey feedback to pinpoint where the redesign added cognitive friction.</p>
+
                 </div>
+
                 <div class="contact-card" style="margin-bottom: 1rem;">
+
                     <div class="contact-label" data-i18n="abt.rec.s3_title">3. Component-Level Iteration</div>
+
                     <p style="margin: 0; font-size: 0.92rem; color: var(--gray);" data-i18n="abt.rec.s3_p">Avoid full-page overhauls. Test isolated elements (CTA copy, social proof badges, hero messaging) in subsequent sprints.</p>
+
                 </div>
+
                 <div class="contact-card" style="margin-bottom: 1rem;">
+
                     <div class="contact-label" data-i18n="abt.rec.s4_title">4. Pre-Experiment Sizing</div>
+
                     <p style="margin: 0; font-size: 0.92rem; color: var(--gray);" data-i18n="abt.rec.s4_p">Ensure future test designs calculate required MDE in advance using statistical power analysis.</p>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
+
 
     <!-- Technical Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n-html="abt.tech.title">Technical Implementation &amp; Stack</h2>
+
             
+
             <div class="files-link-container" style="margin: 20px 0;">
+
                 <span class="file-badge">Python 3.10+</span>
+
                 <span class="file-badge">Pandas</span>
+
                 <span class="file-badge">NumPy</span>
+
                 <span class="file-badge">SciPy.stats</span>
+
                 <span class="file-badge">Statsmodels</span>
+
                 <span class="file-badge">Matplotlib</span>
+
                 <span class="file-badge">Jupyter Notebooks</span>
+
             </div>
+
             
+
             <h3 data-i18n-html="abt.tech.subtitle">Statistical Tools &amp; Methods</h3>
+
             <ul>
+
                 <li data-i18n-html="abt.tech.li1"><code>scipy.stats.chisquare</code>: Formal validation of the 50/50 Sample Ratio Mismatch (SRM).</li>
+
                 <li data-i18n-html="abt.tech.li2"><code>statsmodels.stats.proportion.proportions_ztest</code>: Large-sample two-proportion Z-Test.</li>
+
                 <li data-i18n-html="abt.tech.li3"><code>statsmodels.stats.proportion.proportion_confint</code>: Binomial proportion confidence intervals.</li>
+
                 <li data-i18n-html="abt.tech.li4"><code>statsmodels.stats.power.NormalIndPower</code>: Power analysis tailored to normal-approximation proportion testing.</li>
+
             </ul>
+
         </div>
+
     </div>
+
+
 
     <!-- Project Files Section -->
+
     <div class="container">
+
         <div class="project-single">
+
             <h3 data-i18n-html="abt.repo.title">Project Notebooks &amp; Source Code</h3>
+
             <p data-i18n="abt.repo.p">Access the reproducible Jupyter notebooks directly in the GitHub repository:</p>
+
             
+
             <div class="files-link-container">
+
                 <a href="https://github.com/cveram96/Portfolio/tree/main/experimentation-platform/experiments" 
+
                    class="project-files-link" 
+
                    target="_blank" 
+
                    rel="noopener noreferrer">
+
                     View Experimentation Platform Notebooks &rarr;
+
                 </a>
+
                 
+
                 <div class="file-types">
+
                     <span class="file-badge">.IPYNB</span>
+
                     <span class="file-badge">Python</span>
+
                     <span class="file-badge">SciPy</span>
+
                     <span class="file-badge">Statsmodels</span>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
 
+
+
         <!-- Standardized Accessible Footer -->
+
     <footer>
+
         <div class="footer-content">
+
             <p class="footer-credit" data-i18n-html="footer.credit">Designed &amp; Developed by <strong style="color: #ffffff;">Christian David Vera Mendivelso</strong> &bull; 2025&ndash;2026</p>
+
             <p class="footer-status" data-i18n-html="footer.status">Bogot&aacute;, Colombia &bull; Open to Remote &amp; Hybrid roles</p>
+
             <div class="footer-actions">
+
                 <a href="https://www.linkedin.com/in/christianveram/" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-linkedin">
+
                     LinkedIn
+
                 </a>
+
                 <a href="https://github.com/cveram96" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-github">
+
                     GitHub
+
                 </a>
+
                 <a href="contacto.html" class="footer-btn footer-btn-contact" data-i18n="footer.contact">
+
                     Contact
+
                 </a>
+
             </div>
+
         </div>
+
     </footer>
 
+
+
     <!-- Multilingual i18n Scripts -->
-    <script src="translations.js?v=2.5"></script>
-    <script src="i18n.js?v=2.5"></script>
+
+    <script src="translations.js?v=2.6"></script>
+
+    <script src="i18n.js?v=2.6"></script>
+
+
 
     <!-- CUPED Reactive Simulator Script -->
+
     <script>
+
       (function initCUPEDSimulator() {
+
         const rhoInput = document.getElementById('cupedRho');
+
         const sampleInput = document.getElementById('cupedSample');
+
         if (!rhoInput || !sampleInput) return;
 
+
+
         function update() {
+
           const rho = parseFloat(rhoInput.value);
+
           const sample = parseInt(sampleInput.value, 10);
+
           
+
           document.getElementById('cupedRhoVal').textContent = rho.toFixed(2);
+
           document.getElementById('cupedSampleVal').textContent = sample.toLocaleString('en-US');
 
+
+
           const varDropPct = (rho * rho) * 100;
+
           const factor = Math.sqrt(Math.max(0, 1 - rho * rho));
+
           const ciShrinkPct = (1 - factor) * 100;
 
+
+
           const newSample = Math.round(sample * (1 - rho * rho));
+
           const usersSaved = sample - newSample;
 
+
+
           const baseDays = 28;
+
           const newDays = baseDays * (1 - rho * rho);
+
           const daysSaved = baseDays - newDays;
+
           const newWeeks = (newDays / 7).toFixed(1);
 
+
+
           document.getElementById('simVarDrop').textContent = '-' + varDropPct.toFixed(1) + '%';
+
           document.getElementById('simUsersSaved').textContent = usersSaved.toLocaleString('en-US') + ' users';
+
           document.getElementById('simNewSample').textContent = 'Target N: ' + newSample.toLocaleString('en-US');
 
+
+
           document.getElementById('simDaysSaved').textContent = daysSaved.toFixed(1) + ' days';
+
           document.getElementById('simNewDuration').textContent = 'New runtime: ' + newWeeks + ' weeks';
+
           document.getElementById('simCIShrink').textContent = '-' + ciShrinkPct.toFixed(1) + '%';
 
+
+
           const pctOfOriginal = ((1 - rho * rho) * 100).toFixed(1);
+
           document.getElementById('simGaugeText').textContent = newDays.toFixed(1) + ' days (' + pctOfOriginal + '% of original)';
+
           document.getElementById('simGaugeBar').style.width = pctOfOriginal + '%';
+
         }
 
+
+
         rhoInput.addEventListener('input', update);
+
         sampleInput.addEventListener('input', update);
+
         update();
+
       })();
+
     </script>
 
+
+
 </body>
+
 </html>
+
+
 
