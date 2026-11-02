@@ -251,7 +251,7 @@
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
                     <div>
                         <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
-                            <label for="churnThresh" style="color: var(--light); font-weight: 600;" data-i18n="churn.sim.lbl_thresh">Decision Cutoff (&theta;):</label>
+                            <label for="churnThresh" class="tech-hint" style="color: var(--light); font-weight: 600;" data-i18n="churn.sim.lbl_thresh" data-i18n-tooltip="tip.theta" tabindex="0">Decision Cutoff (&theta;): <span class="hint-icon">ⓘ</span></label>
                             <span id="churnThreshVal" style="font-family: var(--font-mono); color: #38bdf8; font-weight: 700;">0.35</span>
                         </div>
                         <input type="range" id="churnThresh" class="range-slider" min="0.10" max="0.85" step="0.05" value="0.35">
@@ -263,7 +263,7 @@
 
                     <div>
                         <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
-                            <label for="churnCost" style="color: var(--light); font-weight: 600;" data-i18n="churn.sim.lbl_cost">Retention Offer / Customer ($):</label>
+                            <label for="churnCost" class="tech-hint" style="color: var(--light); font-weight: 600;" data-i18n="churn.sim.lbl_cost" data-i18n-tooltip="tip.retention_cost" tabindex="0">Retention Offer / Customer ($): <span class="hint-icon">ⓘ</span></label>
                             <span id="churnCostVal" style="font-family: var(--font-mono); color: #fbbf24; font-weight: 700;">$25</span>
                         </div>
                         <input type="range" id="churnCost" class="range-slider" min="10" max="60" step="5" value="25">
@@ -275,7 +275,7 @@
 
                     <div>
                         <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
-                            <label for="churnLTV" style="color: var(--light); font-weight: 600;" data-i18n="churn.sim.lbl_ltv">Customer Lifetime Value / LTV ($):</label>
+                            <label for="churnLTV" class="tech-hint" style="color: var(--light); font-weight: 600;" data-i18n="churn.sim.lbl_ltv" data-i18n-tooltip="tip.ltv" tabindex="0">Customer Lifetime Value / LTV ($): <span class="hint-icon">ⓘ</span></label>
                             <span id="churnLTVVal" style="font-family: var(--font-mono); color: #34d399; font-weight: 700;">$250</span>
                         </div>
                         <input type="range" id="churnLTV" class="range-slider" min="100" max="500" step="25" value="250">
@@ -341,21 +341,21 @@
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; align-items: center;">
                         <div style="font-size: 0.8rem;">
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; text-align: center;">
-                                <div style="background: rgba(16, 185, 129, 0.15); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.3);">
+                                <div class="tech-hint" data-i18n-tooltip="tip.tp" tabindex="0" style="background: rgba(16, 185, 129, 0.15); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.3); display: block; border-bottom: 1px solid rgba(16, 185, 129, 0.3);">
                                     <div style="color: #34d399; font-weight: 700; font-size: 0.95rem;" id="matTP">1,030</div>
-                                    <div style="color: var(--gray-muted); font-size: 0.7rem;">True Positives (Targeted Churners)</div>
+                                    <div style="color: var(--gray-muted); font-size: 0.7rem;">True Positives (Targeted Churners) <span class="hint-icon">ⓘ</span></div>
                                 </div>
-                                <div style="background: rgba(239, 68, 68, 0.12); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.3);">
+                                <div class="tech-hint tooltip-right" data-i18n-tooltip="tip.fp" tabindex="0" style="background: rgba(239, 68, 68, 0.12); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.3); display: block; border-bottom: 1px solid rgba(239, 68, 68, 0.3);">
                                     <div style="color: #f87171; font-weight: 700; font-size: 0.95rem;" id="matFP">810</div>
-                                    <div style="color: var(--gray-muted); font-size: 0.7rem;">False Positives (Wasted Promo)</div>
+                                    <div style="color: var(--gray-muted); font-size: 0.7rem;">False Positives (Wasted Promo) <span class="hint-icon">ⓘ</span></div>
                                 </div>
-                                <div style="background: rgba(245, 158, 11, 0.12); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(245, 158, 11, 0.3);">
+                                <div class="tech-hint" data-i18n-tooltip="tip.fn" tabindex="0" style="background: rgba(245, 158, 11, 0.12); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(245, 158, 11, 0.3); display: block; border-bottom: 1px solid rgba(245, 158, 11, 0.3);">
                                     <div style="color: #fbbf24; font-weight: 700; font-size: 0.95rem;" id="matFN">295</div>
-                                    <div style="color: var(--gray-muted); font-size: 0.7rem;">False Negatives (Missed Churners)</div>
+                                    <div style="color: var(--gray-muted); font-size: 0.7rem;">False Negatives (Missed Churners) <span class="hint-icon">ⓘ</span></div>
                                 </div>
-                                <div style="background: rgba(255, 255, 255, 0.04); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div class="tech-hint tooltip-right" data-i18n-tooltip="tip.tn" tabindex="0" style="background: rgba(255, 255, 255, 0.04); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1); display: block; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
                                     <div style="color: var(--light); font-weight: 700; font-size: 0.95rem;" id="matTN">2,865</div>
-                                    <div style="color: var(--gray-muted); font-size: 0.7rem;">True Negatives (Correctly Untargeted)</div>
+                                    <div style="color: var(--gray-muted); font-size: 0.7rem;">True Negatives (Correctly Untargeted) <span class="hint-icon">ⓘ</span></div>
                                 </div>
                             </div>
                         </div>
@@ -486,8 +486,8 @@
 
 
     <!-- Multilingual i18n Scripts -->
-    <script src="translations.js"></script>
-    <script src="i18n.js"></script>
+    <script src="translations.js?v=2.1"></script>
+    <script src="i18n.js?v=2.1"></script>
 
     
 

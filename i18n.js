@@ -41,6 +41,15 @@
       }
     });
 
+    // Update data-tooltip and title for elements with data-i18n-tooltip
+    document.querySelectorAll('[data-i18n-tooltip]').forEach((el) => {
+      const key = el.getAttribute('data-i18n-tooltip');
+      if (dict[key] !== undefined) {
+        el.setAttribute('data-tooltip', dict[key]);
+        el.setAttribute('title', dict[key]);
+      }
+    });
+
     // Update html lang attribute
     document.documentElement.setAttribute('lang', lang);
 
@@ -101,12 +110,7 @@
   function init() {
     injectFloatingToggle();
     const currentLang = getCurrentLang();
-    // Only apply if translations exist and language is different or to ensure synced DOM
-    if (currentLang !== 'en') {
-      setLanguage(currentLang);
-    } else {
-      updateToggleUI('en');
-    }
+    setLanguage(currentLang);
   }
 
   if (document.readyState === 'loading') {

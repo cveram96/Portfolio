@@ -146,9 +146,9 @@
                             <tr>
                                 <th data-i18n="pv.bench.col_hw">Hardware &amp; Architecture</th>
                                 <th data-i18n="pv.bench.col_device">Device / Target</th>
-                                <th data-i18n="pv.bench.col_latency">Latency / Frame</th>
-                                <th data-i18n="pv.bench.col_fps">Effective FPS</th>
-                                <th data-i18n="pv.bench.col_vram">VRAM Footprint</th>
+                                <th data-i18n="pv.bench.col_latency" class="tech-hint" data-i18n-tooltip="tip.latency" tabindex="0">Latency / Frame <span class="hint-icon">ⓘ</span></th>
+                                <th data-i18n="pv.bench.col_fps" class="tech-hint" data-i18n-tooltip="tip.fps" tabindex="0">Effective FPS <span class="hint-icon">ⓘ</span></th>
+                                <th data-i18n="pv.bench.col_vram" class="tech-hint" data-i18n-tooltip="tip.vram" tabindex="0">VRAM Footprint <span class="hint-icon">ⓘ</span></th>
                                 <th data-i18n="pv.bench.col_status">Execution Mode</th>
                             </tr>
                         </thead>
@@ -337,8 +337,8 @@ python app/main.py --source "rtsp://admin:pass@192.168.1.100:554/stream1" --devi
     </footer>
 
     <!-- Multilingual i18n Scripts -->
-    <script src="translations.js"></script>
-    <script src="i18n.js"></script>
+    <script src="translations.js?v=2.1"></script>
+    <script src="i18n.js?v=2.1"></script>
 
     <!-- ParkVision Copy Script -->
     <script>

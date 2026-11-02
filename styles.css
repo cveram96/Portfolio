@@ -1551,3 +1551,124 @@ footer {
 .project.filtered-out {
   display: none !important;
 }
+
+/* ===== TECHNICAL TOOLTIPS & HOVER HELPERS ===== */
+.tech-hint {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border-bottom: 1px dashed rgba(56, 189, 248, 0.6);
+  cursor: help;
+  color: inherit;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.tech-hint:hover,
+.tech-hint:focus-visible {
+  color: #38bdf8;
+  border-bottom-color: #38bdf8;
+  outline: none;
+}
+
+.tech-hint .hint-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* Tooltip popup bubble */
+.tech-hint::after,
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: rgba(15, 23, 42, 0.97);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #f1f5f9;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 0 14px rgba(56, 189, 248, 0.2);
+  padding: 0.6rem 0.85rem;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.45;
+  white-space: normal;
+  width: max-content;
+  max-width: 290px;
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+  z-index: 1000;
+}
+
+/* Tooltip arrow */
+.tech-hint::before,
+[data-tooltip]::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px 6px 0 6px;
+  border-style: solid;
+  border-color: rgba(56, 189, 248, 0.4) transparent transparent transparent;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 1000;
+}
+
+/* Show on hover and keyboard/touch focus */
+.tech-hint:hover::after,
+.tech-hint:focus-visible::after,
+[data-tooltip]:hover::after,
+[data-tooltip]:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+.tech-hint:hover::before,
+.tech-hint:focus-visible::before,
+[data-tooltip]:hover::before,
+[data-tooltip]:focus-visible::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Right-aligned tooltips when near viewport edges */
+.tech-hint.tooltip-right::after,
+[data-tooltip].tooltip-right::after {
+  left: auto;
+  right: 0;
+  transform: translateY(4px);
+}
+.tech-hint.tooltip-right:hover::after,
+.tech-hint.tooltip-right:focus-visible::after,
+[data-tooltip].tooltip-right:hover::after,
+[data-tooltip].tooltip-right:focus-visible::after {
+  transform: translateY(0);
+}
+.tech-hint.tooltip-right::before,
+[data-tooltip].tooltip-right::before {
+  left: auto;
+  right: 15px;
+}
