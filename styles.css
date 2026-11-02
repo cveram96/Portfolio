@@ -584,13 +584,13 @@ nav ul li a:active {
 .hero-profile {
   max-width: 1040px;
   margin: 2rem auto;
-  padding: 3.2rem 2.2rem;
-  background: linear-gradient(165deg, rgba(10, 15, 29, 0.92) 0%, rgba(6, 10, 20, 0.96) 100%);
+  padding: 3.5rem 2.2rem;
+  background: linear-gradient(165deg, rgba(10, 15, 29, 0.94) 0%, rgba(6, 10, 20, 0.98) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-radius: var(--border-radius);
-  border: 1px solid rgba(56, 189, 248, 0.16);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(2, 132, 199, 0.12);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(56, 189, 248, 0.18);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(2, 132, 199, 0.15);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -604,6 +604,134 @@ nav ul li a:active {
   width: 100%;
   height: 3px;
   background: linear-gradient(90deg, #f59e0b, #0284c7, #4f46e5);
+}
+
+.hero-profile::after {
+  content: '';
+  position: absolute;
+  top: -90px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 580px;
+  height: 380px;
+  background: radial-gradient(ellipse 65% 55% at 50% 50%, rgba(2, 132, 199, 0.24) 0%, rgba(99, 102, 241, 0.14) 50%, transparent 75%);
+  filter: blur(45px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-profile > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ===== HERO AVATAR WITH TECH HALO ===== */
+.hero-avatar-wrapper {
+  position: relative;
+  width: 108px;
+  height: 108px;
+  margin: 0 auto 1.4rem auto;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, var(--secondary), var(--primary-light));
+  box-shadow: 0 0 28px rgba(2, 132, 199, 0.35);
+  transition: var(--transition);
+}
+
+.hero-avatar-wrapper:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 35px rgba(56, 189, 248, 0.5);
+}
+
+.hero-avatar-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #0a0f1d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-avatar-initials {
+  font-family: var(--font-mono);
+  font-size: 2.1rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  user-select: none;
+}
+
+.avatar-status-badge {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 3px solid #050811;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.85);
+}
+
+/* ===== PROJECT CARD THUMBNAIL (SHOWCASE) ===== */
+.project-thumb {
+  width: 100%;
+  height: 185px;
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #080d1a;
+}
+
+.project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project:hover .project-thumb img {
+  transform: scale(1.05);
+}
+
+.project-thumb::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 45%;
+  background: linear-gradient(to top, rgba(10, 15, 29, 0.85) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero-title-badge {
+  display: inline-block;
+  background: rgba(2, 132, 199, 0.12);
+  color: var(--secondary-light);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
 }
 
 .availability-badge {
@@ -642,7 +770,7 @@ nav ul li a:active {
   font-weight: 800;
   margin-bottom: 0.6rem;
   letter-spacing: -0.5px;
-  background: linear-gradient(135deg, #ffffff 35%, #bae6fd 100%);
+  background: linear-gradient(180deg, #ffffff 25%, #e2e8f0 65%, #94a3b8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
