@@ -41,13 +41,18 @@
       }
     });
 
-    // Update data-tooltip and title for elements with data-i18n-tooltip
+    // Update data-tooltip for elements with data-i18n-tooltip (strip title to avoid native double tooltip)
     document.querySelectorAll('[data-i18n-tooltip]').forEach((el) => {
       const key = el.getAttribute('data-i18n-tooltip');
       if (dict[key] !== undefined) {
         el.setAttribute('data-tooltip', dict[key]);
-        el.setAttribute('title', dict[key]);
       }
+      el.removeAttribute('title');
+    });
+
+    // Strip title from all interactive and tooltip targets to permanently prevent native double tooltips
+    document.querySelectorAll('.help-pill, [data-tooltip], [data-i18n-tooltip], input[type="range"]').forEach((el) => {
+      el.removeAttribute('title');
     });
 
     // Update html lang attribute
@@ -107,8 +112,122 @@
     updateToggleUI(getCurrentLang());
   }
 
+    // ===== GLOBAL FLOATING TOOLTIP PORTAL =====
+  function initTooltipPortal() {
+    let portal = document.getElementById('globalTooltipPortal');
+    if (!portal) {
+      portal = document.createElement('div');
+      portal.id = 'globalTooltipPortal';
+      portal.className = 'global-tooltip-portal';
+      portal.setAttribute('role', 'tooltip');
+      portal.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(portal);
+    }
+
+    let activeTarget = null;
+
+    function showTooltip(target) {
+      let curr = target;
+      while (curr && curr !== document.body) {
+        curr.removeAttribute('title');
+        curr = curr.parentElement;
+      }
+      const text = target.getAttribute('data-tooltip');
+      if (!text) return;
+
+      activeTarget = target;
+      portal.textContent = text;
+      portal.classList.add('visible');
+      portal.setAttribute('aria-hidden', 'false');
+
+      positionTooltip(target);
+    }
+
+    function hideTooltip(target) {
+      if (activeTarget === target || !target) {
+        portal.classList.remove('visible');
+        portal.setAttribute('aria-hidden', 'true');
+        if (target) target.removeAttribute('title');
+        activeTarget = null;
+      }
+    }
+
+    function positionTooltip(target) {
+      if (!target || !portal.classList.contains('visible')) return;
+
+      const rect = target.getBoundingClientRect();
+      const tipRect = portal.getBoundingClientRect();
+      const margin = 8;
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
+
+      // Clamped horizontal position
+      let left = rect.left + (rect.width / 2) - (tipRect.width / 2);
+      const minLeft = 12;
+      const maxLeft = viewportWidth - tipRect.width - 12;
+      left = Math.max(minLeft, Math.min(maxLeft, left));
+
+      // Smart vertical flip
+      let top;
+      let placement = 'top';
+      const spaceAbove = rect.top;
+      const spaceBelow = viewportHeight - rect.bottom;
+
+      if (spaceAbove >= tipRect.height + margin + 10) {
+        top = rect.top - tipRect.height - margin;
+        placement = 'top';
+      } else if (spaceBelow >= tipRect.height + margin + 10) {
+        top = rect.bottom + margin;
+        placement = 'bottom';
+      } else {
+        if (spaceAbove >= spaceBelow) {
+          top = Math.max(10, rect.top - tipRect.height - margin);
+          placement = 'top';
+        } else {
+          top = Math.min(viewportHeight - tipRect.height - 10, rect.bottom + margin);
+          placement = 'bottom';
+        }
+      }
+
+      portal.style.left = Math.round(left) + 'px';
+      portal.style.top = Math.round(top) + 'px';
+      portal.setAttribute('data-placement', placement);
+      const arrowX = Math.max(12, Math.min(tipRect.width - 12, rect.left + (rect.width / 2) - left));
+      portal.style.setProperty('--arrow-left', Math.round(arrowX) + 'px');
+    }
+
+    document.body.addEventListener('mouseenter', (e) => {
+      const target = e.target.closest ? e.target.closest('.help-pill, [data-tooltip]') : null;
+      if (target) showTooltip(target);
+    }, true);
+
+    document.body.addEventListener('mouseleave', (e) => {
+      const target = e.target.closest ? e.target.closest('.help-pill, [data-tooltip]') : null;
+      if (target) hideTooltip(target);
+    }, true);
+
+    document.body.addEventListener('focusin', (e) => {
+      const target = e.target.closest ? e.target.closest('.help-pill, [data-tooltip]') : null;
+      if (target) showTooltip(target);
+    }, true);
+
+    document.body.addEventListener('focusout', (e) => {
+      const target = e.target.closest ? e.target.closest('.help-pill, [data-tooltip]') : null;
+      if (target) hideTooltip(target);
+    }, true);
+
+    window.addEventListener('scroll', () => {
+      if (activeTarget) positionTooltip(activeTarget);
+    }, { passive: true });
+
+    window.addEventListener('resize', () => {
+      if (activeTarget) positionTooltip(activeTarget);
+    }, { passive: true });
+  }
+
   function init() {
     injectFloatingToggle();
+    initTooltipPortal();
     const currentLang = getCurrentLang();
     setLanguage(currentLang);
   }

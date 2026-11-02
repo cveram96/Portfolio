@@ -43,7 +43,7 @@
     <meta name="twitter:image" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/ab_testing/cuped_variance_reduction_and_ci.png">
     <meta name="twitter:image:alt" content="Digital Experimentation Platform & CUPED Variance Reduction">
         <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2.4">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -195,11 +195,26 @@
             </div>
 
             <h3 data-i18n-html="abt.cuped.math_title">Mathematical Formulation &amp; Covariate Adjustment</h3>
-            <p data-i18n-html="abt.cuped.math_p">For metric $Y$ and pre-experiment covariate $X$, the variance-minimizing adjustment is $Y_{CUPED} = Y - \theta (X - \bar{X})$, with $\theta = \frac{\text{Cov}(Y, X)}{\text{Var}(X)}$. The resulting metric variance contracts by a factor of $(1 - \rho^2)$, dramatically accelerating experimentation velocity:</p>
+            <p data-i18n-html="abt.cuped.math_p">For a key metric <em>Y</em> and pre-experiment baseline covariate <em>X</em> (prior user behavior), the variance-minimizing linear adjustment is formulated as:</p>
 
-            <img src="Files/images/ab_testing/cuped_variance_reduction_and_ci.png" 
-                 alt="CUPED Variance Reduction, Confidence Interval Shrinking, and Power Sizing" 
-                 style="max-width: 100%; height: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); margin: 20px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <div data-i18n-html="abt.cuped.math_box">
+                <div class="math-card">
+                    <div class="math-main-formula">Y<sub>CUPED</sub> = Y − θ · (X − X̄)</div>
+                    <div class="math-meta">
+                        <span class="math-param"><strong>θ</strong> = Cov(Y, X) / Var(X)</span>
+                        <span class="math-divider">•</span>
+                        <span class="math-param"><strong>Residual Variance:</strong> Var(Y<sub>CUPED</sub>) = Var(Y) · (1 − ρ²)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container-showcase">
+                <img src="Files/images/ab_testing/cuped_variance_reduction_and_ci.png" 
+                     alt="CUPED Variance Reduction, Confidence Interval Shrinking, and Power Sizing" 
+                     class="chart-img-responsive"
+                     loading="lazy">
+                <div class="chart-zoom-hint" data-i18n="abt.cuped.zoom_hint">📊 High-Resolution Diagnostic Suite (2,260 × 1,960) — 4-Panel Empirical Evaluation</div>
+            </div>
 
             <p style="font-size: 0.9rem; color: var(--gray-muted); line-height: 1.6;" data-i18n-html="abt.cuped.fig_caption">
                 <strong>Figure 1:</strong> Four-panel experimentation diagnostic suite. (A) Distribution narrowing via covariate adjustment (-42.8% variance). (B) Shrinking 95% Confidence Interval for Average Treatment Effect (ATE). (C) Statistical power curves reaching 80% power with 42.7% fewer users. (D) Real-world benchmark: Udacity landing page conversion rate (Z = -1.31, p = 0.1899).
@@ -419,8 +434,8 @@
     </footer>
 
     <!-- Multilingual i18n Scripts -->
-    <script src="translations.js?v=2.1"></script>
-    <script src="i18n.js?v=2.1"></script>
+    <script src="translations.js?v=2.4"></script>
+    <script src="i18n.js?v=2.4"></script>
 
     <!-- CUPED Reactive Simulator Script -->
     <script>

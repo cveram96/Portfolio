@@ -1,366 +1,732 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <!-- Google tag (gtag.js) -->
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0NCSQ1FW3J"></script>
+
     <script>
+
       window.dataLayer = window.dataLayer || [];
+
       function gtag(){dataLayer.push(arguments);}
+
       gtag('js', new Date());
 
+
+
       gtag('config', 'G-0NCSQ1FW3J');
+
     </script>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- Primary Meta Tags -->
+
     <title>Time Series Forecasting — ARIMA vs. SARIMA</title>
+
     <meta name="title" content="Time Series Forecasting — ARIMA vs. SARIMA">
+
     <meta name="description" content="Airline passenger demand forecasting with seasonal differencing, achieving 3.68% MAPE and 61% reduction in MAE over standard ARIMA.">
+
     <meta name="author" content="Christian David Vera Mendivelso">
+
     <meta name="robots" content="index, follow">
+
     <meta name="theme-color" content="#0d1117">
 
+
+
     <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+
     <meta property="og:type" content="article">
+
     <meta property="og:url" content="https://cveram96.github.io/Portfolio/ARIMA.html">
+
     <meta property="og:site_name" content="Christian David Vera | Portfolio">
+
     <meta property="og:title" content="Time Series Forecasting — ARIMA vs. SARIMA">
+
     <meta property="og:description" content="Airline passenger demand forecasting with seasonal differencing, achieving 3.68% MAPE and 61% reduction in MAE over standard ARIMA.">
+
     <meta property="og:image" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/ARIMA/sarima_vs_arima_comparison.png">
+
     <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/ARIMA/sarima_vs_arima_comparison.png">
+
     <meta property="og:image:type" content="image/png">
+
     <meta property="og:image:width" content="1200">
+
     <meta property="og:image:height" content="630">
+
     <meta property="og:image:alt" content="Time Series Forecasting — ARIMA vs. SARIMA">
+
     <meta property="og:locale" content="en_US">
+
     <meta property="og:locale:alternate" content="es_ES">
 
+
+
     <!-- Twitter / X Cards -->
+
     <meta name="twitter:card" content="summary_large_image">
+
     <meta name="twitter:url" content="https://cveram96.github.io/Portfolio/ARIMA.html">
+
     <meta name="twitter:title" content="Time Series Forecasting — ARIMA vs. SARIMA">
+
     <meta name="twitter:description" content="Airline passenger demand forecasting with seasonal differencing, achieving 3.68% MAPE and 61% reduction in MAE over standard ARIMA.">
+
     <meta name="twitter:image" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/ARIMA/sarima_vs_arima_comparison.png">
+
     <meta name="twitter:image:alt" content="Time Series Forecasting — ARIMA vs. SARIMA">
+
         <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="styles.css?v=2.4">
+
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
+
         <!-- Navigation bar -->
+
     <nav>
+
         <ul>
+
             <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+
             <li><a href="index.html#featured" data-i18n="nav.featured">Featured Projects</a></li>
+
             <li><a href="index.html#analytics" data-i18n="nav.analytics">Analytics &amp; BI</a></li>
+
             <li><a href="contacto.html" data-i18n="nav.contact">Contact</a></li>
+
         </ul>
+
     </nav>
 
+
+
     <!-- Intro Section -->
+
     <div class="container">
+
         <div class="intro">
+
             <h1 data-i18n="arima.intro.title">Time Series Forecasting (ARIMA)</h1>
+
             <h2 data-i18n="arima.intro.subtitle">Modeling monthly airline passengers (1949-1960)</h2>
+
             <ul>
+
                 <li data-i18n-html="arima.intro.li1"><strong>Problem:</strong> Forecasting passenger travel demand to optimize fleet capacity planning, scheduling, and commercial revenue management.</li>
+
                 <li data-i18n-html="arima.intro.li2"><strong>Data:</strong> Monthly international airline passenger time series (144 historical observations, 1949–1960).</li>
+
                 <li data-i18n-html="arima.intro.li3"><strong>Method:</strong> Box-Jenkins workflow: seasonal decomposition, Augmented Dickey-Fuller (ADF) stationarity testing, ACF/PACF autocorrelation analysis, seasonal differencing, and baseline ARIMA vs. SARIMA fitting.</li>
+
                 <li data-i18n-html="arima.intro.li4"><strong>Result:</strong> Seasonal SARIMA model captured annual seasonality and upward trend with an out-of-sample Mean Absolute Percentage Error (MAPE) of 3.68% (-61% MAE over non-seasonal baseline).</li>
+
                 <li data-i18n-html="arima.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/blob/main/Files/Series%20de%20tiempo.ipynb" target="_blank" rel="noopener noreferrer">Jupyter Notebook</a></li>
+
             </ul>
+
         </div>
+
     </div>
+
+
 
     <!-- Project Context Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="arima.context.title">Project Context</h2>
+
             <p data-i18n="arima.context.p">Analysis of the classic airline passengers time series (1949-1960) using ARIMA models for forecasting, evaluating stationarity, autocorrelation and optimal parameters.</p>
+
             
+
             <h3 data-i18n="arima.context.chars_title">Main characteristics:</h3>
+
             <ul class="two-columns">
+
                 <li data-i18n-html="arima.char.trend"><strong>Clear trend:</strong> Steady increase in passenger counts</li>
+
                 <li data-i18n-html="arima.char.season"><strong>Annual seasonality:</strong> Repeating pattern every 12 months</li>
+
                 <li data-i18n-html="arima.char.nonstat"><strong>Non-stationarity:</strong> Required differencing (d=1)</li>
+
                 <li data-i18n-html="arima.char.autocorr"><strong>Autocorrelation:</strong> Strong patterns in ACF/PACF</li>
+
             </ul>
+
         </div>
+
     </div>
+
+
 
     <!-- Detailed Methodology Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="arima.method.title">Detailed Methodology</h2>
+
             
+
             <h3 data-i18n="arima.method.step1_title">1. Exploratory Data Analysis (EDA)</h3>
+
             <ul>
+
                 <li data-i18n="arima.method.step1_li1">Visualization of trend and seasonality</li>
+
                 <li data-i18n="arima.method.step1_li2">Augmented Dickey-Fuller (ADF) test for stationarity</li>
+
                 <li data-i18n="arima.method.step1_li3">ACF and PACF plots to identify AR/MA parameters</li>
+
                 <li data-i18n="arima.method.step1_li4">Differencing to achieve stationarity</li>
+
             </ul>
+
             
+
             <h3 data-i18n="arima.method.step2_title">2. ARIMA modeling</h3>
+
             <ul>
+
                 <li data-i18n="arima.method.step2_li1">Parameter selection (p,d,q) based on ACF/PACF</li>
+
                 <li data-i18n="arima.method.step2_li2">Fitting ARIMA(2,1,2) model</li>
+
                 <li data-i18n="arima.method.step2_li3">Validation of residual assumptions</li>
+
                 <li data-i18n="arima.method.step2_li4">Evaluation with metrics: MAE, RMSE, MAPE</li>
+
             </ul>
+
         </div>
+
     </div>
+
+
 
     <!-- Results and Findings Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="arima.results.title">Results and Findings</h2>
+
             
+
             <div class="results-container">
+
                 <!-- Metrics card -->
+
                 <div class="metric-card">
+
                     <div class="metric-card-header">
+
                         <h4 data-i18n="arima.results.metrics_header">ARIMA(2,1,2) Model Metrics</h4>
+
                     </div>
+
                     <div class="metric-card-content">
+
                         <div class="metric-item">
-                            <div class="metric-title" data-i18n="arima.results.mae_title">Mean Absolute Error (MAE)</div>
+
+                            <div class="metric-title"><span data-i18n="arima.results.mae_title">Mean Absolute Error (MAE)</span><span class="help-pill" data-i18n-tooltip="tip.mae" tabindex="0">?</span></div>
+
                             <div class="metric-value" data-i18n="arima.results.mae_val">41.83 passengers</div>
+
                             <div class="progress-container">
+
                                 <div class="progress-bar" style="width: 85%"></div>
+
                             </div>
+
                         </div>
+
                         <div class="metric-item">
-                            <div class="metric-title" data-i18n="arima.results.rmse_title">Root Mean Squared Error (RMSE)</div>
+
+                            <div class="metric-title"><span data-i18n="arima.results.rmse_title">Root Mean Squared Error (RMSE)</span><span class="help-pill" data-i18n-tooltip="tip.rmse" tabindex="0">?</span></div>
+
                             <div class="metric-value" data-i18n="arima.results.rmse_val">55.22 passengers</div>
+
                             <div class="progress-container">
+
                                 <div class="progress-bar" style="width: 75%"></div>
+
                             </div>
+
                         </div>
+
                         <div class="metric-item">
-                            <div class="metric-title" data-i18n="arima.results.mape_title">Mean Absolute Percentage Error (MAPE)</div>
+
+                            <div class="metric-title"><span data-i18n="arima.results.mape_title">Mean Absolute Percentage Error (MAPE)</span><span class="help-pill" data-i18n-tooltip="tip.mape" tabindex="0">?</span></div>
+
                             <div class="metric-value">8.22%</div>
+
                             <div class="progress-container">
+
                                 <div class="progress-bar" style="width: 92%"></div>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
                 
+
                 <!-- Parameters card -->
+
                 <div class="influence-card">
+
                     <div class="metric-card-header">
+
                         <h4 data-i18n="arima.results.params_header">Model Parameters</h4>
+
                     </div>
+
                     <div class="influence-list">
+
                         <div class="influence-item">
-                            <div class="var-name">AR.L1 (1.6850)</div>
+
+                            <div class="var-name"><span>AR.L1 (1.6850)</span><span class="help-pill" data-i18n-tooltip="tip.ar" tabindex="0">?</span></div>
+
                             <div class="var-coef positive">p &lt; 0.001</div>
+
                             <div class="var-bar-container">
+
                                 <div class="var-bar" style="width: 100%"></div>
+
                             </div>
+
                         </div>
+
                         <div class="influence-item">
-                            <div class="var-name">AR.L2 (-0.9548)</div>
+
+                            <div class="var-name"><span>AR.L2 (-0.9548)</span><span class="help-pill" data-i18n-tooltip="tip.ar" tabindex="0">?</span></div>
+
                             <div class="var-coef negative">p &lt; 0.001</div>
+
                             <div class="var-bar-container">
+
                                 <div class="var-bar" style="width: 85%"></div>
+
                             </div>
+
                         </div>
+
                         <div class="influence-item">
-                            <div class="var-name">MA.L1 (-1.8432)</div>
+
+                            <div class="var-name"><span>MA.L1 (-1.8432)</span><span class="help-pill" data-i18n-tooltip="tip.ma" tabindex="0">?</span></div>
+
                             <div class="var-coef negative">p &lt; 0.001</div>
+
                             <div class="var-bar-container">
+
                                 <div class="var-bar" style="width: 90%"></div>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
+
 
     <!-- Model Benchmarking Section: ARIMA vs SARIMA -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="arima.bench.title">Model Benchmarking: Baseline ARIMA vs. Seasonal SARIMA</h2>
+
             <p data-i18n="arima.bench.desc">Comparative evaluation on the 12-month held-out test horizon (1960). While non-seasonal ARIMA(2,1,2) captures local autoregression, it fails to forecast the recurring summer travel surge. Integrating a 12-month seasonal difference and SAR/SMA terms reduces MAE from 41.83 to 16.32 (-61.0%), reduces RMSE from 55.22 to 21.19 (-61.6%), cuts MAPE to 3.68%, and improves AIC by 324.2 points.</p>
+
             
+
             <div style="margin-top: 1.5rem; text-align: center;">
+
                 <img src="Files/images/ARIMA/sarima_vs_arima_comparison.png" 
+
                      alt="Airline Passengers Demand: Baseline ARIMA vs Seasonal SARIMA Benchmark" 
+
                      style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,0.5);" 
+
                      loading="lazy">
+
             </div>
+
+
 
             <!-- Comparison Table -->
+
             <div style="overflow-x: auto; margin-top: 1.5rem;">
+
                 <table style="width: 100%; border-collapse: collapse; text-align: center; background: rgba(255,255,255,0.02); border-radius: 8px; overflow: hidden;">
+
                     <thead>
+
                         <tr style="background: rgba(255,255,255,0.06); border-bottom: 2px solid var(--border-color);">
+
                             <th style="padding: 12px; text-align: left;" data-i18n="arima.table.metric">Metric</th>
-                            <th style="padding: 12px; color: #fdba74;" data-i18n="arima.table.arima">Baseline ARIMA(2,1,2)</th>
-                            <th style="padding: 12px; color: #7dd3fc;" data-i18n="arima.table.sarima">Seasonal SARIMA(1,1,1)(1,1,1)₁₂</th>
+
+                            <th style="padding: 12px; color: #fdba74;"><span data-i18n="arima.table.arima">Baseline ARIMA(2,1,2)</span><span class="help-pill" data-i18n-tooltip="tip.arima" tabindex="0">?</span></th>
+
+                            <th style="padding: 12px; color: #7dd3fc;"><span data-i18n="arima.table.sarima">Seasonal SARIMA(1,1,1)(1,1,1)₁₂</span><span class="help-pill tooltip-right" data-i18n-tooltip="tip.sarima" tabindex="0">?</span></th>
+
                             <th style="padding: 12px; color: #34d399;" data-i18n="arima.table.gain">Impact / Improvement</th>
+
                         </tr>
+
                     </thead>
+
                     <tbody>
+
                         <tr style="border-bottom: 1px solid var(--border-color);">
-                            <td style="padding: 10px 12px; text-align: left; font-weight: 600;">AIC (Akaike Info Criterion)</td>
+
+                            <td style="padding: 10px 12px; text-align: left; font-weight: 600;"><span data-i18n="arima.table.aic">AIC (Akaike Info Criterion)</span><span class="help-pill" data-i18n-tooltip="tip.aic" tabindex="0">?</span></td>
+
                             <td style="padding: 10px 12px;">1225.56</td>
+
                             <td style="padding: 10px 12px; font-weight: 600; color: #7dd3fc;">901.40</td>
+
                             <td style="padding: 10px 12px; color: #34d399; font-weight: 600;" data-i18n="arima.table.aic_gain">-324.2 pts (Superior Goodness-of-Fit)</td>
+
                         </tr>
+
                         <tr style="border-bottom: 1px solid var(--border-color);">
-                            <td style="padding: 10px 12px; text-align: left; font-weight: 600;">MAE (Mean Absolute Error)</td>
+
+                            <td style="padding: 10px 12px; text-align: left; font-weight: 600;"><span data-i18n="arima.table.mae">MAE (Mean Absolute Error)</span><span class="help-pill" data-i18n-tooltip="tip.mae" tabindex="0">?</span></td>
+
                             <td style="padding: 10px 12px;">41.83 pass.</td>
+
                             <td style="padding: 10px 12px; font-weight: 600; color: #7dd3fc;">16.32 pass.</td>
+
                             <td style="padding: 10px 12px; color: #34d399; font-weight: 600;" data-i18n="arima.table.mae_gain">-61.0% Error Reduction</td>
+
                         </tr>
+
                         <tr style="border-bottom: 1px solid var(--border-color);">
-                            <td style="padding: 10px 12px; text-align: left; font-weight: 600;">RMSE (Root Mean Sq. Error)</td>
+
+                            <td style="padding: 10px 12px; text-align: left; font-weight: 600;"><span data-i18n="arima.table.rmse">RMSE (Root Mean Sq. Error)</span><span class="help-pill" data-i18n-tooltip="tip.rmse" tabindex="0">?</span></td>
+
                             <td style="padding: 10px 12px;">55.22 pass.</td>
+
                             <td style="padding: 10px 12px; font-weight: 600; color: #7dd3fc;">21.19 pass.</td>
+
                             <td style="padding: 10px 12px; color: #34d399; font-weight: 600;" data-i18n="arima.table.rmse_gain">-61.6% Variance Reduction</td>
+
                         </tr>
+
                         <tr style="border-bottom: 1px solid var(--border-color);">
-                            <td style="padding: 10px 12px; text-align: left; font-weight: 600;">MAPE (Mean Abs. % Error)</td>
+
+                            <td style="padding: 10px 12px; text-align: left; font-weight: 600;"><span data-i18n="arima.table.mape">MAPE (Mean Abs. % Error)</span><span class="help-pill" data-i18n-tooltip="tip.mape" tabindex="0">?</span></td>
+
                             <td style="padding: 10px 12px;">8.22%</td>
+
                             <td style="padding: 10px 12px; font-weight: 600; color: #7dd3fc;">3.68%</td>
+
                             <td style="padding: 10px 12px; color: #34d399; font-weight: 600;" data-i18n="arima.table.mape_gain">-55.2% Relative Accuracy Gain</td>
+
                         </tr>
+
                         <tr>
+
                             <td style="padding: 10px 12px; text-align: left; font-weight: 600;" data-i18n="arima.table.season_row">Seasonality Modeled?</td>
+
                             <td style="padding: 10px 12px; color: #f87171;" data-i18n="arima.table.season_no">No (1–2 month lags only)</td>
+
                             <td style="padding: 10px 12px; color: #4ade80;" data-i18n="arima.table.season_yes">Yes (P=1, D=1, Q=1, s=12)</td>
+
                             <td style="padding: 10px 12px; color: #34d399; font-weight: 600;" data-i18n="arima.table.season_gain">Eliminates Summer Peak Phase Lag</td>
+
                         </tr>
+
                     </tbody>
+
                 </table>
+
             </div>
+
         </div>
+
     </div>
+
+
 
     <!-- Key Visualizations Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="arima.viz.title">Key Visualizations</h2>
+
             
+
             <h3 data-i18n="arima.viz.acf_title">Autocorrelation (ACF and PACF):</h3>
+
             <img src="https://github.com/cveram96/Portfolio/blob/main/Files/images/ARIMA/ARIMA.png?raw=true" 
+
                  alt="ACF and PACF plots"
+
                  style="max-width: 100%; height: auto; margin: 20px 0;">
+
             
+
             <h3 data-i18n="arima.viz.acf_interp_title">ACF interpretation:</h3>
+
             <ul>
+
                 <li data-i18n="arima.viz.acf_li1">Shows significant correlations when bars exceed the shaded area</li>
+
                 <li data-i18n="arima.viz.acf_li2">Nearby time points exhibit strong relation (first lags highlighted)</li>
+
                 <li data-i18n="arima.viz.acf_li3">Repeating pattern every 12 months indicates annual seasonality</li>
+
                 <li data-i18n="arima.viz.acf_li4">Gradual decay in bars indicates decreasing influence of older observations</li>
+
             </ul>
+
+
 
             <h3 data-i18n="arima.viz.pacf_interp_title">PACF interpretation:</h3>
+
             <ul>
+
                 <li data-i18n="arima.viz.pacf_li1">Isolates direct relationships between values by removing intermediate effects</li>
+
                 <li data-i18n="arima.viz.pacf_li2">Significant peaks at lag 1 (previous month) and lag 12 (same month previous year)</li>
+
                 <li data-i18n="arima.viz.pacf_li3">Other bars inside the shaded area indicate non-significant correlations</li>
+
                 <li data-i18n="arima.viz.pacf_li4">Confirms the strongest dependence is with the immediate prior observation and the annual equivalent</li>
+
             </ul>
+
+
 
             <iframe src="https://cveram96.github.io/Portfolio/arima_animation.html" 
+
                 style="width:100%; height:520px; border:none; margin-top: 20px;"></iframe>
+
         </div>
+
     </div>
+
+
 
     <!-- Key Findings Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="arima.findings.title">Key Findings</h2>
+
             <ul>
+
                 <li data-i18n="arima.findings.li1">The series required differencing (d=1) to achieve stationarity</li>
+
                 <li data-i18n="arima.findings.li2">Clear seasonal pattern with annual periodicity (12 months)</li>
+
                 <li data-i18n="arima.findings.li3">AR(2) and MA(2) parameters were significant</li>
+
                 <li data-i18n="arima.findings.li4">Residuals without autocorrelation but slight heteroscedasticity</li>
+
                 <li data-i18n="arima.findings.li5">Good predictive performance (MAPE 8.22%)</li>
+
             </ul>
+
         </div>
+
     </div>
+
+
 
     <!-- Conclusions and Recommendations Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="arima.concl.title">Conclusions and Recommendations</h2>
+
             
+
             <h3 data-i18n="arima.concl.res_title">Model results</h3>
+
             <ul>
+
                 <li data-i18n-html="arima.concl.r1"><strong>ARIMA(2,1,2)</strong> showed a good fit to the data</li>
+
                 <li data-i18n-html="arima.concl.r2">Significant AR and MA coefficients (p &lt; 0.05)</li>
+
                 <li data-i18n-html="arima.concl.r3">Residuals approximately normally distributed (Shapiro-Wilk p=0.065)</li>
+
                 <li data-i18n-html="arima.concl.r4">Acceptable prediction accuracy (MAPE 8.22%)</li>
+
             </ul>
+
             
+
             <h3 data-i18n="arima.concl.lim_title">Limitations</h3>
+
             <ul>
+
                 <li data-i18n="arima.concl.lim1">Heteroscedasticity in residuals (non-constant variance)</li>
+
                 <li data-i18n="arima.concl.lim2">Seasonal pattern not fully modeled</li>
+
             </ul>
+
             
+
             <h3 data-i18n="arima.concl.fut_title">Future improvements</h3>
+
             <ul>
+
                 <li data-i18n="arima.concl.fut1">Try SARIMA models to capture seasonality</li>
+
                 <li data-i18n="arima.concl.fut2">Experiment with logarithmic transformations</li>
+
                 <li data-i18n="arima.concl.fut3">Validate using walk-forward validation techniques</li>
+
                 <li data-i18n="arima.concl.fut4">Compare with other models (ETS, Neural Networks)</li>
+
             </ul>
+
         </div>
+
     </div>
 
 
 
+
+
+
+
         </div>
+
+
 
     <!-- Project files section -->
+
     <div class="container">
+
         <div class="project-single">
+
             <h3 data-i18n="arima.repo.title">Project Files</h3>
+
             <p data-i18n="arima.repo.p">You can explore the full analysis:</p>
+
             
+
             <div class="files-link-container">
+
                 <a href="https://github.com/cveram96/Portfolio/blob/main/Files/ARIMA.ipynb" 
+
                    class="project-files-link" 
+
                    target="_blank"
+
                    rel="noopener noreferrer">
+
                     View project source code
+
                 </a>
+
                 
+
                 <div class="file-types">
+
                     <span class="file-badge">Jupyter Notebook</span>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
 
+
+
         <!-- Standardized Accessible Footer -->
+
     <footer>
+
         <div class="footer-content">
+
             <p class="footer-credit" data-i18n-html="footer.credit">Designed &amp; Developed by <strong style="color: #ffffff;">Christian David Vera Mendivelso</strong> &bull; 2025&ndash;2026</p>
+
             <p class="footer-status" data-i18n-html="footer.status">Bogot&aacute;, Colombia &bull; Open to Remote &amp; Hybrid roles</p>
+
             <div class="footer-actions">
+
                 <a href="https://www.linkedin.com/in/christianveram/" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-linkedin">
+
                     LinkedIn
+
                 </a>
+
                 <a href="https://github.com/cveram96" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-github">
+
                     GitHub
+
                 </a>
+
                 <a href="contacto.html" class="footer-btn footer-btn-contact" data-i18n="footer.contact">
+
                     Contact
+
                 </a>
+
             </div>
+
         </div>
+
     </footer>
+
     <!-- Multilingual i18n Scripts -->
-    <script src="translations.js?v=2.1"></script>
-    <script src="i18n.js?v=2.1"></script>
+
+    <script src="translations.js?v=2.4"></script>
+
+    <script src="i18n.js?v=2.4"></script>
+
 </body>
+
 </html>
+
+
 

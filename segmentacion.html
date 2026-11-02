@@ -1,312 +1,624 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <!-- Google tag (gtag.js) -->
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0NCSQ1FW3J"></script>
+
     <script>
+
       window.dataLayer = window.dataLayer || [];
+
       function gtag(){dataLayer.push(arguments);}
+
       gtag('js', new Date());
 
+
+
       gtag('config', 'G-0NCSQ1FW3J');
+
     </script>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- Primary Meta Tags -->
+
     <title>Customer Segmentation with K-Means & RFM Modeling</title>
+
     <meta name="title" content="Customer Segmentation with K-Means & RFM Modeling">
+
     <meta name="description" content="E-commerce customer lifecycle clustering on 4,338 accounts. Log-transformed RFM pipeline and unsupervised validation (Silhouette: 0.6458).">
+
     <meta name="author" content="Christian David Vera Mendivelso">
+
     <meta name="robots" content="index, follow">
+
     <meta name="theme-color" content="#0d1117">
 
+
+
     <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+
     <meta property="og:type" content="article">
+
     <meta property="og:url" content="https://cveram96.github.io/Portfolio/segmentacion.html">
+
     <meta property="og:site_name" content="Christian David Vera | Portfolio">
+
     <meta property="og:title" content="Customer Segmentation with K-Means & RFM Modeling">
+
     <meta property="og:description" content="E-commerce customer lifecycle clustering on 4,338 accounts. Log-transformed RFM pipeline and unsupervised validation (Silhouette: 0.6458).">
+
     <meta property="og:image" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/Kmeans/Clusters_Kmeans.png">
+
     <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/Kmeans/Clusters_Kmeans.png">
+
     <meta property="og:image:type" content="image/png">
+
     <meta property="og:image:width" content="1200">
+
     <meta property="og:image:height" content="630">
+
     <meta property="og:image:alt" content="Customer Segmentation with K-Means & RFM Modeling">
+
     <meta property="og:locale" content="en_US">
+
     <meta property="og:locale:alternate" content="es_ES">
 
+
+
     <!-- Twitter / X Cards -->
+
     <meta name="twitter:card" content="summary_large_image">
+
     <meta name="twitter:url" content="https://cveram96.github.io/Portfolio/segmentacion.html">
+
     <meta name="twitter:title" content="Customer Segmentation with K-Means & RFM Modeling">
+
     <meta name="twitter:description" content="E-commerce customer lifecycle clustering on 4,338 accounts. Log-transformed RFM pipeline and unsupervised validation (Silhouette: 0.6458).">
+
     <meta name="twitter:image" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/Kmeans/Clusters_Kmeans.png">
+
     <meta name="twitter:image:alt" content="Customer Segmentation with K-Means & RFM Modeling">
+
         <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="styles.css?v=2.4">
+
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
+
     <!-- Navigation bar -->
+
     <nav>
+
         <ul>
+
             <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+
             <li><a href="index.html#featured" data-i18n="nav.featured">Featured Projects</a></li>
+
             <li><a href="index.html#analytics" data-i18n="nav.analytics">Analytics &amp; BI</a></li>
+
             <li><a href="contacto.html" data-i18n="nav.contact">Contact</a></li>
+
         </ul>
+
     </nav>
 
+
+
     <!-- Intro Section -->
+
     <div class="container">
+
         <div class="intro">
+
             <h1 data-i18n="seg.intro.title">Customer Segmentation with K-Means</h1>
+
             <h2 data-i18n="seg.intro.subtitle">RFM analysis for marketing strategies</h2>
+
             <ul>
+
                 <li data-i18n-html="seg.intro.li1"><strong>Problem:</strong> Inefficient blanket marketing campaigns and customer fatigue caused by lack of behavioral differentiation.</li>
+
                 <li data-i18n-html="seg.intro.li2"><strong>Data:</strong> Transactional e-commerce purchase history (Recency, Frequency, Monetary value metrics across 541k records).</li>
+
                 <li data-i18n-html="seg.intro.li3"><strong>Method:</strong> Unsupervised clustering pipeline: np.log1p transformation for positive skewness, MinMaxScaler normalization, Elbow method and Silhouette score evaluation, and K-Means clustering.</li>
+
                 <li data-i18n-html="seg.intro.li4"><strong>Result:</strong> Discovered 3 actionable customer archetypes (Champions, Loyal Regulars, and Dormant/At-Risk buyers) with a Silhouette score of 0.6458, enabling targeted lifecycle marketing.</li>
+
                 <li data-i18n-html="seg.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/blob/main/Files/kmeans.ipynb" target="_blank" rel="noopener noreferrer">Jupyter Notebook</a></li>
+
             </ul>
+
         </div>
+
     </div>
+
+
 
     <!-- Project Context Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="seg.context.title">Project Context</h2>
+
             <p data-i18n="seg.context.p">Sales transactions analysis to segment customers using unsupervised techniques (K-Means) based on RFM metrics (Recency, Frequency, Monetary).</p>
+
             
+
             <h3 data-i18n="seg.context.vars_title">Main Variables:</h3>
+
             <ul class="two-columns">
+
                 <li data-i18n-html="seg.var.invoiceno"><strong>InvoiceNo:</strong> Transaction number (canceled transactions filtered)</li>
+
                 <li data-i18n-html="seg.var.stockcode"><strong>StockCode:</strong> Product identifier</li>
+
                 <li data-i18n-html="seg.var.quantity"><strong>Quantity:</strong> Quantity sold per transaction</li>
+
                 <li data-i18n-html="seg.var.invoicedate"><strong>InvoiceDate:</strong> Transaction date and time</li>
+
                 <li data-i18n-html="seg.var.unitprice"><strong>UnitPrice:</strong> Unit price of the product</li>
+
                 <li data-i18n-html="seg.var.customerid"><strong>CustomerID:</strong> Customer identifier (25% missing)</li>
+
                 <li data-i18n-html="seg.var.country"><strong>Country:</strong> Country of the transaction</li>
+
             </ul>
+
         </div>
+
     </div>
+
+
 
     <!-- Detailed Methodology Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="seg.method.title">Detailed Methodology</h2>
+
             
+
             <h3 data-i18n="seg.method.step1_title">1. Exploratory Data Analysis (EDA)</h3>
+
             <ul>
+
                 <li data-i18n="seg.method.step1_li1">Filtering canceled transactions and invalid values</li>
+
                 <li data-i18n="seg.method.step1_li2">Identification of outliers in quantities and prices</li>
+
                 <li data-i18n="seg.method.step1_li3">Geographic distribution of sales (73% United Kingdom)</li>
+
                 <li data-i18n="seg.method.step1_li4">Pareto analysis: 25.6% of customers account for 80% of purchases</li>
+
             </ul>
+
             
+
             <h3 data-i18n="seg.method.step2_title">2. Preprocessing</h3>
+
             <ul>
+
                 <li><span data-i18n="seg.prep.rfm_title">Calculation of RFM metrics:</span>
+
                     <ul>
+
                         <li data-i18n-html="seg.prep.rfm_recency"><strong>Recency:</strong> Days since last purchase</li>
+
                         <li data-i18n-html="seg.prep.rfm_freq"><strong>Frequency:</strong> Number of unique purchases</li>
+
                         <li data-i18n-html="seg.prep.rfm_mon"><strong>Monetary:</strong> Total spend per customer</li>
+
                     </ul>
+
                 </li>
+
                 <li data-i18n="seg.method.step2_norm">Feature normalization with MinMaxScaler</li>
+
                 <li data-i18n="seg.method.step2_filter">Filtered out 25% of transactions without CustomerID</li>
+
                 <li data-i18n-html="seg.prep.skew_desc"><strong>Methodological Insight:</strong> Frequency and Monetary variables in e-commerce exhibit severe positive skewness (heavy right tails and extreme outliers). In contrast, Recency is bounded. When applying <code>MinMaxScaler</code> directly without a log transform (e.g., <code>np.log1p</code>), extreme spenders compress the 0–1 range for typical buyers, causing Recency to dominate Euclidean distance calculations. In production customer analytics, applying a logarithmic transformation prior to scaling normalizes variances and yields more balanced, behaviourally distinct clusters.</li>
+
             </ul>
+
             
+
             <h3 data-i18n="seg.method.step3_title">3. Modeling with K-Means</h3>
+
             <ul>
+
                 <li data-i18n="seg.method.step3_elbow">Optimal number of clusters determined with elbow method (K=3)</li>
+
                 <li><span data-i18n="seg.mod.cfg_title">Configuration:</span>
+
                     <ul>
+
                         <li data-i18n="seg.mod.c1">Initialization: k-means++</li>
+
                         <li data-i18n="seg.mod.c2">Maximum 300 iterations</li>
+
                         <li data-i18n="seg.mod.c3">Convergence tolerance: 1e-4</li>
+
                     </ul>
+
                 </li>
+
                 <li data-i18n="seg.mod.c4">Evaluation with multiple validation metrics</li>
+
             </ul>
+
         </div>
+
     </div>
+
+
 
     <!-- Results and Findings Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="seg.results.title">Results and Findings</h2>
+
             
+
             <div class="results-container">
-                <div class="metric-card">
-                    <div class="metric-card-header">
-                        <h4 data-i18n="seg.results.metrics_header">Model Metrics</h4>
-                    </div>
-                    <div class="metric-card-content">
-                        <div class="metric-item">
-                            <div class="metric-title" data-i18n="seg.results.sil_title">Silhouette Score</div>
-                            <div class="metric-value">0.6458</div>
-                            <div class="metric-description" data-i18n="seg.results.sil_desc">Indicates well-defined and well-separated clusters</div>
-                            <div class="progress-container">
-                                <div class="progress-bar" style="width: 64.58%"></div>
-                            </div>
-                        </div>
-                        <div class="metric-item">
-                            <div class="metric-title" data-i18n="seg.results.db_title">Davies-Bouldin</div>
-                            <div class="metric-value">0.5043</div>
-                            <div class="metric-description" data-i18n-html="seg.results.db_desc">Low similarity between clusters (better &lt;1)</div>
-                        </div>
-                        <div class="metric-item">
-                            <div class="metric-title" data-i18n="seg.results.ch_title">Calinski-Harabasz</div>
-                            <div class="metric-value">15465.7</div>
-                            <div class="metric-description" data-i18n="seg.results.ch_desc">Excellent separation between clusters</div>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="metric-card">
+
                     <div class="metric-card-header">
-                        <h4 data-i18n="seg.results.segments_header">Customer Segments</h4>
+
+                        <h4 data-i18n="seg.results.metrics_header">Model Metrics</h4>
+
                     </div>
+
                     <div class="metric-card-content">
+
                         <div class="metric-item">
-                            <div class="metric-title" data-i18n="seg.results.c0_title">Cluster 0: Valuable</div>
-                            <ul>
-                                <li data-i18n="seg.res.c0_li1">67% of customers</li>
-                                <li data-i18n="seg.res.c0_li2">Recency: 31 days</li>
-                                <li data-i18n="seg.res.c0_li3">Frequency: 5.5 purchases</li>
-                                <li data-i18n="seg.res.c0_li4">Monetary: £370</li>
-                            </ul>
+
+                            <div class="metric-title"><span data-i18n="seg.results.sil_title">Silhouette Score</span><span class="help-pill" data-i18n-tooltip="tip.silhouette" tabindex="0">?</span></div>
+
+                            <div class="metric-value">0.6458</div>
+
+                            <div class="metric-description" data-i18n="seg.results.sil_desc">Indicates well-defined and well-separated clusters</div>
+
+                            <div class="progress-container">
+
+                                <div class="progress-bar" style="width: 64.58%"></div>
+
+                            </div>
+
                         </div>
+
                         <div class="metric-item">
-                            <div class="metric-title" data-i18n="seg.results.c1_title">Cluster 1: Inactive</div>
-                            <ul>
-                                <li data-i18n="seg.res.c1_li1">Recency: 293 days</li>
-                                <li data-i18n="seg.res.c1_li2">Frequency: 1.4 purchases</li>
-                                <li data-i18n="seg.res.c1_li3">Monetary: £83</li>
-                            </ul>
+
+                            <div class="metric-title"><span data-i18n="seg.results.db_title">Davies-Bouldin</span><span class="help-pill" data-i18n-tooltip="tip.davies_bouldin" tabindex="0">?</span></div>
+
+                            <div class="metric-value">0.5043</div>
+
+                            <div class="metric-description" data-i18n-html="seg.results.db_desc">Low similarity between clusters (better &lt;1)</div>
+
                         </div>
+
                         <div class="metric-item">
-                            <div class="metric-title" data-i18n="seg.results.c2_title">Cluster 2: Occasional</div>
-                            <ul>
-                                <li data-i18n="seg.res.c2_li1">18.6% of customers</li>
-                                <li data-i18n="seg.res.c2_li2">Recency: 152 days</li>
-                                <li data-i18n="seg.res.c2_li3">Frequency: 2.2 purchases</li>
-                                <li data-i18n="seg.res.c2_li4">Monetary: £139</li>
-                            </ul>
+
+                            <div class="metric-title"><span data-i18n="seg.results.ch_title">Calinski-Harabasz</span><span class="help-pill" data-i18n-tooltip="tip.calinski" tabindex="0">?</span></div>
+
+                            <div class="metric-value">15465.7</div>
+
+                            <div class="metric-description" data-i18n="seg.results.ch_desc">Excellent separation between clusters</div>
+
                         </div>
+
                     </div>
+
                 </div>
+
+
+
+                <div class="metric-card">
+
+                    <div class="metric-card-header">
+
+                        <h4 data-i18n="seg.results.segments_header">Customer Segments</h4>
+
+                    </div>
+
+                    <div class="metric-card-content">
+
+                        <div class="metric-item">
+
+                            <div class="metric-title"><span data-i18n="seg.results.c0_title">Cluster 0: Valuable</span><span class="help-pill" data-i18n-tooltip="tip.c0" tabindex="0">?</span></div>
+
+                            <ul>
+
+                                <li data-i18n="seg.res.c0_li1">67% of customers</li>
+
+                                <li data-i18n="seg.res.c0_li2">Recency: 31 days</li>
+
+                                <li data-i18n="seg.res.c0_li3">Frequency: 5.5 purchases</li>
+
+                                <li data-i18n="seg.res.c0_li4">Monetary: £370</li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="metric-item">
+
+                            <div class="metric-title"><span data-i18n="seg.results.c1_title">Cluster 1: Inactive</span><span class="help-pill" data-i18n-tooltip="tip.c1" tabindex="0">?</span></div>
+
+                            <ul>
+
+                                <li data-i18n="seg.res.c1_li1">Recency: 293 days</li>
+
+                                <li data-i18n="seg.res.c1_li2">Frequency: 1.4 purchases</li>
+
+                                <li data-i18n="seg.res.c1_li3">Monetary: £83</li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="metric-item">
+
+                            <div class="metric-title"><span data-i18n="seg.results.c2_title">Cluster 2: Occasional</span><span class="help-pill" data-i18n-tooltip="tip.c2" tabindex="0">?</span></div>
+
+                            <ul>
+
+                                <li data-i18n="seg.res.c2_li1">18.6% of customers</li>
+
+                                <li data-i18n="seg.res.c2_li2">Recency: 152 days</li>
+
+                                <li data-i18n="seg.res.c2_li3">Frequency: 2.2 purchases</li>
+
+                                <li data-i18n="seg.res.c2_li4">Monetary: £139</li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
+
         </div>
+
     </div>
+
+
 
     <!-- Cluster Visualization Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="seg.viz.title">Cluster Visualization and Analysis</h2>
+
             
+
             <h3 data-i18n="seg.viz.segments_title">Identified Segments:</h3>
+
             <img src="Files/images/Kmeans/Clusters_Kmeans.png" 
+
                  alt="Identified RFM clusters"
+
                  style="max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+
             
+
             <h3 data-i18n="seg.viz.elbow_title">Elbow Method:</h3>
+
             <img src="Files/images/Kmeans/Codo_Kmeans.png" 
+
                  alt="Optimal number of K"
+
                  style="max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+
         </div>
+
     </div>
+
+
 
     <!-- Conclusions and Recommendations Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="seg.concl.title">Conclusions and Recommendations</h2>
+
             
+
             <h3 data-i18n="seg.concl.find_title">Key Findings</h3>
+
             <ul>
+
                 <li data-i18n="seg.concl.f1">67% of customers are valuable (recent purchases, high frequency and spending)</li>
+
                 <li data-i18n="seg.concl.f2">14.4% of customers are inactive and require reactivation strategies</li>
+
                 <li data-i18n="seg.concl.f3">Occasional customers (18.6%) represent opportunities to increase frequency</li>
+
                 <li data-i18n="seg.concl.f4">The model shows excellent quality according to validation metrics</li>
+
             </ul>
+
             
+
             <h3 data-i18n="seg.concl.rec_seg_title">Recommendations by Segment</h3>
 
+
+
             <h4 data-i18n="seg.concl.c0_name">Cluster 0: Valuable Customers</h4>
+
             <ul>
+
                 <li data-i18n="seg.concl.c0_r1">Exclusive benefits programs (free shipping)</li>
+
                 <li data-i18n="seg.concl.c0_r2">Upselling premium products</li>
+
                 <li data-i18n="seg.concl.c0_r3">Bundles of complementary products</li>
+
             </ul>
+
+
 
             <h4 data-i18n="seg.concl.c1_name">Cluster 1: Inactive Customers</h4>
+
             <ul>
+
                 <li data-i18n="seg.concl.c1_r1">Reactivation campaigns with discounts</li>
+
                 <li data-i18n="seg.concl.c1_r2">Satisfaction surveys</li>
+
                 <li data-i18n="seg.concl.c1_r3">Cost-benefit evaluation of retention</li>
+
             </ul>
+
+
 
             <h4 data-i18n="seg.concl.c2_name">Cluster 2: Occasional Customers</h4>
+
             <ul>
+
                 <li data-i18n="seg.concl.c2_r1">Frequency-based loyalty programs</li>
+
                 <li data-i18n="seg.concl.c2_r2">Cross-selling with related products</li>
+
                 <li data-i18n="seg.concl.c2_r3">Personalized offers based on history</li>
+
             </ul>
+
+
 
             <h4 data-i18n="seg.concl.fut_title">Future Improvements</h4>
+
             <ul>
+
                 <li data-i18n="seg.concl.fut1">Categorize products into broader groups for better analysis</li>
+
                 <li data-i18n="seg.concl.fut2">Include price and discount data for sensitivity analysis</li>
+
                 <li data-i18n="seg.concl.fut3">Integrate demographic variables for more precise segmentation</li>
+
             </ul>
+
         </div>
+
     </div>
+
+
 
     <!-- Project Files Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="seg.repo.title">Project Files</h2>
+
             <p data-i18n="seg.repo.p">You can explore all files, datasets and source code for this project:</p>
+
             
+
             <div class="files-link-container">
+
                 <a href="https://github.com/cveram96/Portfolio/blob/main/Files/kmeans.ipynb" 
+
                    class="project-files-link" 
+
                    target="_blank" 
+
                    rel="noopener noreferrer">
+
                     View full project files
+
                 </a>
+
                 
+
                 <div class="file-types">
+
                     <span class="file-badge">Jupyter Notebook</span>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
 
+
+
         <!-- Standardized Accessible Footer -->
+
     <footer>
+
         <div class="footer-content">
+
             <p class="footer-credit" data-i18n-html="footer.credit">Designed &amp; Developed by <strong style="color: #ffffff;">Christian David Vera Mendivelso</strong> &bull; 2025&ndash;2026</p>
+
             <p class="footer-status" data-i18n-html="footer.status">Bogot&aacute;, Colombia &bull; Open to Remote &amp; Hybrid roles</p>
+
             <div class="footer-actions">
+
                 <a href="https://www.linkedin.com/in/christianveram/" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-linkedin">
+
                     LinkedIn
+
                 </a>
+
                 <a href="https://github.com/cveram96" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-github">
+
                     GitHub
+
                 </a>
+
                 <a href="contacto.html" class="footer-btn footer-btn-contact" data-i18n="footer.contact">
+
                     Contact
+
                 </a>
+
             </div>
+
         </div>
+
     </footer>
 
+
+
     <!-- Multilingual i18n Scripts -->
-    <script src="translations.js?v=2.1"></script>
-    <script src="i18n.js?v=2.1"></script>
+
+    <script src="translations.js?v=2.4"></script>
+
+    <script src="i18n.js?v=2.4"></script>
+
 </body>
+
 </html>
+
+
 

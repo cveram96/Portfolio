@@ -1,596 +1,1268 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <!-- Google tag (gtag.js) -->
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0NCSQ1FW3J"></script>
+
     <script>
+
       window.dataLayer = window.dataLayer || [];
+
       function gtag(){dataLayer.push(arguments);}
+
       gtag('js', new Date());
 
+
+
       gtag('config', 'G-0NCSQ1FW3J');
+
     </script>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <!-- Primary Meta Tags -->
+
     <title>Customer Churn Prediction & Retention Optimization</title>
+
     <meta name="title" content="Customer Churn Prediction & Retention Optimization">
+
     <meta name="description" content="Supervised churn classification with SMOTEENN, Random Forest (77.7% Recall), SHAP game-theoretic explainability, and Gradient Boosting benchmarks.">
+
     <meta name="author" content="Christian David Vera Mendivelso">
+
     <meta name="robots" content="index, follow">
+
     <meta name="theme-color" content="#0d1117">
 
+
+
     <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+
     <meta property="og:type" content="article">
+
     <meta property="og:url" content="https://cveram96.github.io/Portfolio/churn.html">
+
     <meta property="og:site_name" content="Christian David Vera | Portfolio">
+
     <meta property="og:title" content="Customer Churn Prediction & Retention Optimization">
+
     <meta property="og:description" content="Supervised churn classification with SMOTEENN, Random Forest (77.7% Recall), SHAP game-theoretic explainability, and Gradient Boosting benchmarks.">
+
     <meta property="og:image" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/churn/RF_Smoteen.png">
+
     <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/churn/RF_Smoteen.png">
+
     <meta property="og:image:type" content="image/png">
+
     <meta property="og:image:width" content="1200">
+
     <meta property="og:image:height" content="630">
+
     <meta property="og:image:alt" content="Customer Churn Prediction & Retention Optimization">
+
     <meta property="og:locale" content="en_US">
+
     <meta property="og:locale:alternate" content="es_ES">
 
+
+
     <!-- Twitter / X Cards -->
+
     <meta name="twitter:card" content="summary_large_image">
+
     <meta name="twitter:url" content="https://cveram96.github.io/Portfolio/churn.html">
+
     <meta name="twitter:title" content="Customer Churn Prediction & Retention Optimization">
+
     <meta name="twitter:description" content="Supervised churn classification with SMOTEENN, Random Forest (77.7% Recall), SHAP game-theoretic explainability, and Gradient Boosting benchmarks.">
+
     <meta name="twitter:image" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/churn/RF_Smoteen.png">
+
     <meta name="twitter:image:alt" content="Customer Churn Prediction & Retention Optimization">
+
         <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="styles.css">
+
+    <link rel="stylesheet" href="styles.css?v=2.4">
+
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
+
         <!-- Navigation bar -->
+
     <nav>
+
         <ul>
+
             <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+
             <li><a href="index.html#featured" data-i18n="nav.featured">Featured Projects</a></li>
+
             <li><a href="index.html#analytics" data-i18n="nav.analytics">Analytics &amp; BI</a></li>
+
             <li><a href="contacto.html" data-i18n="nav.contact">Contact</a></li>
+
         </ul>
+
     </nav>
 
+
+
     <!-- Intro Section -->
+
     <div class="container">
+
         <div class="intro">
+
             <span class="hero-title-badge" data-i18n="common.summary_badge" style="margin-bottom: 0.8rem; display: inline-block;">Executive Summary</span>
+
             <h1 data-i18n="churn.intro.title">Customer Churn Prediction</h1>
+
             <h2 data-i18n="churn.intro.subtitle">Comparison between Random Forest and Multilayer Perceptron</h2>
+
             <ul>
+
                 <li data-i18n-html="churn.intro.li1"><strong>Objective:</strong> Identify telecommunication subscribers with a high probability of cancelling their service, enabling targeted and cost-effective retention initiatives.</li>
+
                 <li data-i18n-html="churn.intro.li2"><strong>Data:</strong> Telco Customer Churn dataset (7,043 customer accounts, 21 demographic, service, and contract attributes).</li>
+
                 <li data-i18n-html="churn.intro.li3"><strong>Method:</strong> Supervised classification comparing Random Forest and Multi-Layer Perceptrons with class balancing (SMOTEENN), accompanied by a financial cost-benefit model to determine the classification threshold.</li>
+
                 <li data-i18n-html="churn.intro.li4"><strong>Result &amp; Decision:</strong> Random Forest with SMOTEENN captured 77.7% of churn-prone accounts. The financial simulation demonstrated that calibrating the decision threshold below default 0.50 improved net retention profit.</li>
+
                 <li data-i18n-html="churn.intro.li5"><strong>Code:</strong> <a href="https://github.com/cveram96/Portfolio/blob/main/Files/Proyecto%20Churn.ipynb" target="_blank" rel="noopener noreferrer">Jupyter Notebook</a></li>
+
             </ul>
+
         </div>
+
     </div>
+
+
 
     <!-- Project Context Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="churn.context.title">Project Context</h2>
+
             <p data-i18n="churn.context.p">Analysis of service cancellation (churn) in telecommunications to identify customers with high probability of leaving and enable preventive retention strategies.</p>
+
             
+
             <h3 data-i18n="churn.context.vars_title">Main Variables:</h3>
+
             <ul class="two-columns">
+
                 <li data-i18n-html="churn.var.tenure"><strong>tenure:</strong> Number of months as a customer</li>
+
                 <li data-i18n-html="churn.var.contract"><strong>Contract:</strong> Contract type (Month-to-month, 1 year, 2 years)</li>
+
                 <li data-i18n-html="churn.var.monthly"><strong>MonthlyCharges:</strong> Monthly charges</li>
+
                 <li data-i18n-html="churn.var.total"><strong>TotalCharges:</strong> Total accumulated charges</li>
+
                 <li data-i18n-html="churn.var.internet"><strong>InternetService:</strong> Type of internet service</li>
+
                 <li data-i18n-html="churn.var.security"><strong>OnlineSecurity:</strong> Has online security</li>
+
                 <li data-i18n-html="churn.var.support"><strong>TechSupport:</strong> Has technical support</li>
+
                 <li data-i18n-html="churn.var.payment"><strong>PaymentMethod:</strong> Payment method</li>
+
             </ul>
+
         </div>
+
     </div>
+
+
 
     <!-- Detailed Methodology Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="churn.method.title">Detailed Methodology</h2>
+
             
+
             <h3 data-i18n="churn.method.s1_title">1. Exploratory Data Analysis (EDA)</h3>
+
             <ul>
+
                 <li data-i18n="churn.method.s1_li1">Imbalanced class distribution (73.5% No Churn vs 26.5% Churn)</li>
+
                 <li data-i18n="churn.method.s1_li2">Association analysis using Cramér's V for categorical variables</li>
+
                 <li data-i18n="churn.method.s1_li3">Levene's test and Welch's t-test for numerical variables</li>
+
                 <li data-i18n="churn.method.s1_li4">Visualization of relationships between variables and Churn</li>
+
             </ul>
+
             
+
             <h3 data-i18n="churn.method.s2_title">2. Preprocessing</h3>
+
             <ul>
+
                 <li><span data-i18n="churn.prep.clean_title">Data cleaning:</span>
+
                     <ul>
+
                         <li data-i18n="churn.prep.c1">Data type conversion</li>
+
                         <li data-i18n="churn.prep.c2">Imputation of missing values using the median</li>
+
                         <li data-i18n="churn.prep.c3">Removal of unique ID column (customerID)</li>
+
                     </ul>
+
                 </li>
+
                 <li><span data-i18n="churn.prep.trans_title">Feature transformation:</span>
+
                     <ul>
+
                         <li data-i18n="churn.prep.t1">Standardization with StandardScaler for numeric features</li>
+
                         <li data-i18n="churn.prep.t2">Encoding with OneHotEncoder for categorical features</li>
+
                     </ul>
+
                 </li>
+
                 <li><span data-i18n="churn.prep.bal_title">Balancing techniques:</span>
+
                     <ul>
+
                         <li data-i18n="churn.prep.b1">SMOTE</li>
+
                         <li data-i18n="churn.prep.b2">RandomUnderSampler</li>
+
                         <li data-i18n="churn.prep.b3">ADASYN</li>
+
                         <li data-i18n="churn.prep.b4">SMOTEENN</li>
+
                     </ul>
+
                 </li>
+
             </ul>
+
             
+
             <h3 data-i18n="churn.method.s3_title">3. Modeling</h3>
+
             <ul>
+
                 <li><span data-i18n="churn.mod.rf_title">Random Forest:</span>
+
                     <ul>
+
                         <li data-i18n="churn.mod.rf1">Optimization with RandomizedSearchCV</li>
+
                         <li data-i18n="churn.mod.rf2">Stratified cross-validation</li>
+
                         <li data-i18n="churn.mod.rf3">Hyperparameters: n_estimators, max_depth, min_samples_split</li>
+
                     </ul>
+
                 </li>
+
                 <li><span data-i18n="churn.mod.mlp_title">Multi-Layer Perceptron (MLP):</span>
+
                     <ul>
+
                         <li data-i18n="churn.mod.mlp1">Optimization with RandomizedSearchCV</li>
+
                         <li data-i18n="churn.mod.mlp2">Hyperparameters: hidden_layer_sizes, activation, solver</li>
+
                     </ul>
+
                 </li>
+
             </ul>
+
         </div>
+
     </div>
+
+
 
     <!-- Results and Findings Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="churn.results.title">Results and Findings</h2>
+
             
+
             <div class="results-container">
+
                 <!-- Metrics card -->
+
                 <div class="metric-card">
+
                     <div class="metric-card-header">
+
                         <h4 data-i18n="churn.results.metrics_header">Top Metrics by Model</h4>
+
                     </div>
+
                     <div class="metric-card-content">
+
                         <div class="metric-item">
-                            <div class="metric-title" data-i18n="churn.results.rf_title">Random Forest (SMOTEENN)</div>
-                            <div class="metric-value" data-i18n="churn.results.rf_val">F1-Score: 0.633</div>
-                            <div class="metric-description" data-i18n="churn.results.rf_desc">Recall: 0.777 | Precision: 0.534</div>
+
+                            <div class="metric-title">
+
+                                <span data-i18n="churn.results.rf_title">Random Forest (SMOTEENN)</span>
+
+                                <span class="help-pill" data-i18n-tooltip="tip.smoteenn" tabindex="0">?</span>
+
+                            </div>
+
+                            <div class="metric-value">
+
+                                <span>F1-Score: 0.633</span>
+
+                                <span class="help-pill" data-i18n-tooltip="tip.f1" tabindex="0">?</span>
+
+                            </div>
+
+                            <div class="metric-description">
+
+                                <span>Recall: 0.777</span>
+
+                                <span class="help-pill" data-i18n-tooltip="tip.recall" tabindex="0">?</span>
+
+                                <span style="opacity: 0.4; margin: 0 0.25rem;">|</span>
+
+                                <span>Precision: 0.534</span>
+
+                                <span class="help-pill" data-i18n-tooltip="tip.precision" tabindex="0">?</span>
+
+                            </div>
+
                             <div class="progress-container">
+
                                 <div class="progress-bar" style="width: 63.3%"></div>
+
                             </div>
+
                         </div>
+
                         <div class="metric-item">
-                            <div class="metric-title" data-i18n="churn.results.mlp_title">MLP (RandomUnderSampler)</div>
-                            <div class="metric-value" data-i18n="churn.results.mlp_val">F1-Score: 0.634</div>
-                            <div class="metric-description" data-i18n="churn.results.mlp_desc">Recall: 0.763 | Precision: 0.542</div>
+
+                            <div class="metric-title">
+
+                                <span data-i18n="churn.results.mlp_title">MLP (RandomUnderSampler)</span>
+
+                                <span class="help-pill" data-i18n-tooltip="tip.rus" tabindex="0">?</span>
+
+                            </div>
+
+                            <div class="metric-value">
+
+                                <span>F1-Score: 0.634</span>
+
+                                <span class="help-pill" data-i18n-tooltip="tip.f1" tabindex="0">?</span>
+
+                            </div>
+
+                            <div class="metric-description">
+
+                                <span>Recall: 0.763</span>
+
+                                <span class="help-pill" data-i18n-tooltip="tip.recall" tabindex="0">?</span>
+
+                                <span style="opacity: 0.4; margin: 0 0.25rem;">|</span>
+
+                                <span>Precision: 0.542</span>
+
+                                <span class="help-pill" data-i18n-tooltip="tip.precision" tabindex="0">?</span>
+
+                            </div>
+
                             <div class="progress-container">
+
                                 <div class="progress-bar" style="width: 63.4%"></div>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
                 
+
                 <!-- Feature importance card -->
+
                 <div class="influence-card">
+
                     <div class="metric-card-header">
+
                         <h4 data-i18n="churn.results.influence_header">Most Influential Features (Random Forest)</h4>
+
                     </div>
+
                     <div class="influence-list">
+
                         <div class="influence-item">
-                            <div class="var-name">tenure</div>
+
+                            <div class="var-name">
+
+                                <span>tenure</span>
+
+                                <span class="help-pill" data-i18n-tooltip="tip.feat_tenure" tabindex="0">?</span>
+
+                            </div>
+
                             <div class="var-coef positive">+0.13</div>
+
                             <div class="var-bar-container">
+
                                 <div class="var-bar" style="width: 100%"></div>
+
                             </div>
-                        </div>
-                        <div class="influence-item">
-                            <div class="var-name">Internet_Fiber</div>
-                            <div class="var-coef positive">+0.12</div>
-                            <div class="var-bar-container">
-                                <div class="var-bar" style="width: 94%"></div>
-                            </div>
-                        </div>
-                        <div class="influence-item">
-                            <div class="var-name">Contract_2_Years</div>
-                            <div class="var-coef positive">+0.10</div>
-                            <div class="var-bar-container">
-                                <div class="var-bar" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="influence-item">
-                            <div class="var-name">MonthlyCharges</div>
-                            <div class="var-coef positive">+0.09</div>
-                            <div class="var-bar-container">
-                                <div class="var-bar" style="width: 80%"></div>
-                            </div>
+
                         </div>
 
                         <div class="influence-item">
-                            <div class="var-name">TotalCharges</div>
-                            <div class="var-coef positive">+0.08</div>
-                            <div class="var-bar-container">
-                                <div class="var-bar" style="width: 75%"></div>
+
+                            <div class="var-name">
+
+                                <span>Internet_Fiber</span>
+
+                                <span class="help-pill" data-i18n-tooltip="tip.feat_fiber" tabindex="0">?</span>
+
                             </div>
+
+                            <div class="var-coef positive">+0.12</div>
+
+                            <div class="var-bar-container">
+
+                                <div class="var-bar" style="width: 94%"></div>
+
+                            </div>
+
                         </div>
+
+                        <div class="influence-item">
+
+                            <div class="var-name">
+
+                                <span>Contract_2_Years</span>
+
+                                <span class="help-pill" data-i18n-tooltip="tip.feat_contract" tabindex="0">?</span>
+
+                            </div>
+
+                            <div class="var-coef positive">+0.10</div>
+
+                            <div class="var-bar-container">
+
+                                <div class="var-bar" style="width: 85%"></div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="influence-item">
+
+                            <div class="var-name">
+
+                                <span>MonthlyCharges</span>
+
+                                <span class="help-pill" data-i18n-tooltip="tip.feat_charges" tabindex="0">?</span>
+
+                            </div>
+
+                            <div class="var-coef positive">+0.09</div>
+
+                            <div class="var-bar-container">
+
+                                <div class="var-bar" style="width: 80%"></div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="influence-item">
+
+                            <div class="var-name">
+
+                                <span>TotalCharges</span>
+
+                                <span class="help-pill" data-i18n-tooltip="tip.feat_total_charges" tabindex="0">?</span>
+
+                            </div>
+
+                            <div class="var-coef positive">+0.08</div>
+
+                            <div class="var-bar-container">
+
+                                <div class="var-bar" style="width: 75%"></div>
+
+                            </div>
+
+                        </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
+
 
     
+
     <!-- Interactive Churn Retention Economics & Optimal Threshold Engine -->
+
     <div class="container" id="churnOptimizerSection">
+
         <div class="section-block">
+
             <div class="interactive-widget" id="churnSimulator">
+
                 <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+
                     <div>
+
                         <span class="hero-title-badge" data-i18n="churn.sim.badge">Executive Business Engine</span>
+
                         <h3 style="margin: 0.3rem 0 0 0; color: #ffffff; font-size: 1.25rem;" data-i18n="churn.sim.title">Interactive Retention Economics &amp; Profit-Maximizing Threshold</h3>
+
                     </div>
+
                     <span style="font-family: var(--font-mono); font-size: 0.78rem; color: #38bdf8; background: rgba(56, 189, 248, 0.1); padding: 0.25rem 0.65rem; border-radius: 20px; border: 1px solid rgba(56, 189, 248, 0.3);" data-i18n="churn.sim.pill">
+
                         ● Financial Decision Model
+
                     </span>
+
                 </div>
+
                 <p style="font-size: 0.92rem; color: var(--gray); margin-bottom: 1.5rem;" data-i18n="churn.sim.desc">
+
                     Standard machine learning defaults to a 0.50 threshold, ignoring business economics. Adjust campaign retention incentive cost ($) and Customer Lifetime Value ($) to compute the profit-maximizing classification cutoff in real time:
+
                 </p>
 
+
+
                 <!-- Slider Controls -->
+
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
+
                     <div>
+
                         <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
+
                             <label for="churnThresh" style="color: var(--light); font-weight: 600;"><span data-i18n="churn.sim.lbl_thresh">Decision Cutoff (&theta;):</span><span class="help-pill" data-i18n-tooltip="tip.theta" tabindex="0">?</span></label>
+
                             <span id="churnThreshVal" style="font-family: var(--font-mono); color: #38bdf8; font-weight: 700;">0.35</span>
+
                         </div>
+
                         <input type="range" id="churnThresh" class="range-slider" min="0.10" max="0.85" step="0.05" value="0.35">
+
                         <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--gray-muted); margin-top: 0.2rem;">
+
                             <span>0.10 (High Recall)</span>
+
                             <span>0.85 (High Precision)</span>
+
                         </div>
+
                     </div>
 
+
+
                     <div>
+
                         <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
+
                             <label for="churnCost" style="color: var(--light); font-weight: 600;"><span data-i18n="churn.sim.lbl_cost">Retention Offer / Customer ($):</span><span class="help-pill" data-i18n-tooltip="tip.retention_cost" tabindex="0">?</span></label>
+
                             <span id="churnCostVal" style="font-family: var(--font-mono); color: #fbbf24; font-weight: 700;">$25</span>
+
                         </div>
+
                         <input type="range" id="churnCost" class="range-slider" min="10" max="60" step="5" value="25">
+
                         <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--gray-muted); margin-top: 0.2rem;">
+
                             <span>$10</span>
+
                             <span>$60</span>
+
                         </div>
+
                     </div>
 
+
+
                     <div>
+
                         <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
+
                             <label for="churnLTV" style="color: var(--light); font-weight: 600;"><span data-i18n="churn.sim.lbl_ltv">Customer Lifetime Value / LTV ($):</span><span class="help-pill" data-i18n-tooltip="tip.ltv" tabindex="0">?</span></label>
+
                             <span id="churnLTVVal" style="font-family: var(--font-mono); color: #34d399; font-weight: 700;">$250</span>
+
                         </div>
+
                         <input type="range" id="churnLTV" class="range-slider" min="100" max="500" step="25" value="250">
+
                         <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--gray-muted); margin-top: 0.2rem;">
+
                             <span>$100</span>
+
                             <span>$500</span>
+
                         </div>
+
                     </div>
 
+
+
                     <div>
+
                         <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
+
                             <label for="churnCohort" style="color: var(--light); font-weight: 600;"><span>Cohort Size (N):</span><span class="help-pill tooltip-right" data-i18n-tooltip="tip.cohort_size" tabindex="0">?</span></label>
+
                             <span id="churnCohortVal" style="font-family: var(--font-mono); color: #c084fc; font-weight: 700;">5,000</span>
+
                         </div>
+
                         <input type="range" id="churnCohort" class="range-slider" min="1000" max="20000" step="1000" value="5000">
+
                         <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--gray-muted); margin-top: 0.2rem;">
+
                             <span>1,000</span>
+
                             <span>20,000</span>
+
                         </div>
+
                     </div>
+
                 </div>
+
+
 
                 <!-- Live Financial KPI Cards -->
+
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+
                     <div style="background: rgba(2, 132, 199, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--secondary); text-align: center;">
+
                         <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;"><span data-i18n="churn.sim.kpi_targeted">Customers Targeted</span><span class="help-pill" data-i18n-tooltip="tip.kpi_targeted" tabindex="0">?</span></div>
+
                         <div id="churnKpiTargeted" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #38bdf8; margin-top: 0.2rem;">1,840</div>
+
                         <div id="churnKpiTargetedPct" style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">36.8% of cohort</div>
+
                     </div>
+
+
 
                     <div style="background: rgba(245, 158, 11, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid #f59e0b; text-align: center;">
+
                         <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;"><span data-i18n="churn.sim.kpi_cost">Campaign Investment</span><span class="help-pill" data-i18n-tooltip="tip.kpi_cost" tabindex="0">?</span></div>
+
                         <div id="churnKpiCost" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #fbbf24; margin-top: 0.2rem;">$46,000</div>
+
                         <div style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">Cost of incentives</div>
+
                     </div>
+
+
 
                     <div style="background: rgba(52, 211, 153, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid #10b981; text-align: center;">
+
                         <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;"><span data-i18n="churn.sim.kpi_revenue">Gross Revenue Saved</span><span class="help-pill" data-i18n-tooltip="tip.kpi_rev" tabindex="0">?</span></div>
+
                         <div id="churnKpiRev" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #34d399; margin-top: 0.2rem;">$141,625</div>
+
                         <div id="churnKpiSavedUsers" style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">566 saved (55% rate)</div>
+
                     </div>
+
+
 
                     <div style="background: rgba(16, 185, 129, 0.15); padding: 1rem; border-radius: 8px; border-left: 3px solid #059669; text-align: center;">
+
                         <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;"><span data-i18n="churn.sim.kpi_profit">Net Business Profit</span><span class="help-pill tooltip-right" data-i18n-tooltip="tip.kpi_profit" tabindex="0">?</span></div>
+
                         <div id="churnKpiProfit" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #10b981; margin-top: 0.2rem;">+$95,625</div>
+
                         <div id="churnKpiROI" style="font-size: 0.72rem; color: #34d399; font-weight: 700; font-family: var(--font-mono);">207.9% Campaign ROI</div>
+
                     </div>
+
                 </div>
+
+
 
                 <!-- Optimal Recommendation Banner & Decision Matrix -->
+
                 <div style="background: rgba(0, 0, 0, 0.35); border-radius: 8px; padding: 1.2rem; border: 1px solid rgba(255, 255, 255, 0.06); margin-bottom: 1rem;">
+
                     <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1rem;">
+
                         <div>
+
                             <span style="font-size: 0.85rem; color: var(--gray);" data-i18n="churn.sim.rec_opt">Empirical Profit-Maximizing Threshold:</span>
+
                             <span id="churnOptVal" style="font-family: var(--font-mono); font-size: 1.15rem; font-weight: 800; color: #38bdf8; margin-left: 0.5rem;">&theta;* = 0.30</span>
+
                         </div>
+
                         <span id="churnProfitLift" style="font-family: var(--font-mono); font-size: 0.82rem; color: #10b981; background: rgba(16, 185, 129, 0.12); padding: 0.25rem 0.6rem; border-radius: 4px; border: 1px solid rgba(16, 185, 129, 0.3);">
+
                             +$18,400 net lift vs default 0.50
+
                         </span>
+
                     </div>
+
+
 
                     <!-- Mini Confusion Matrix & Dynamic Bar -->
+
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; align-items: center;">
+
                         <div style="font-size: 0.8rem;">
+
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; text-align: center;">
+
                                 <div style="background: rgba(16, 185, 129, 0.15); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.3);">
+
                                     <div style="color: #34d399; font-weight: 700; font-size: 0.95rem;" id="matTP">1,030</div>
+
                                     <div style="color: var(--gray-muted); font-size: 0.7rem;"><span>True Positives (Targeted Churners)</span><span class="help-pill" data-i18n-tooltip="tip.tp" tabindex="0">?</span></div>
+
                                 </div>
+
                                 <div style="background: rgba(239, 68, 68, 0.12); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.3);">
+
                                     <div style="color: #f87171; font-weight: 700; font-size: 0.95rem;" id="matFP">810</div>
+
                                     <div style="color: var(--gray-muted); font-size: 0.7rem;"><span>False Positives (Wasted Promo)</span><span class="help-pill tooltip-right" data-i18n-tooltip="tip.fp" tabindex="0">?</span></div>
+
                                 </div>
+
                                 <div style="background: rgba(245, 158, 11, 0.12); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(245, 158, 11, 0.3);">
+
                                     <div style="color: #fbbf24; font-weight: 700; font-size: 0.95rem;" id="matFN">295</div>
+
                                     <div style="color: var(--gray-muted); font-size: 0.7rem;"><span>False Negatives (Missed Churners)</span><span class="help-pill" data-i18n-tooltip="tip.fn" tabindex="0">?</span></div>
+
                                 </div>
+
                                 <div style="background: rgba(255, 255, 255, 0.04); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
+
                                     <div style="color: var(--light); font-weight: 700; font-size: 0.95rem;" id="matTN">2,865</div>
+
                                     <div style="color: var(--gray-muted); font-size: 0.7rem;"><span>True Negatives (Correctly Untargeted)</span><span class="help-pill tooltip-right" data-i18n-tooltip="tip.tn" tabindex="0">?</span></div>
+
                                 </div>
+
                             </div>
+
                         </div>
+
+
 
                         <div>
+
                             <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--gray); margin-bottom: 0.3rem;">
+
                                 <span>Profit vs Default (0.50 Cutoff):</span>
+
                                 <span id="barProfitLabel" style="font-family: var(--font-mono); color: #38bdf8; font-weight: 600;">122.5%</span>
+
                             </div>
+
                             <div style="width: 100%; height: 10px; background: rgba(255, 255, 255, 0.08); border-radius: 5px; overflow: hidden;">
+
                                 <div id="barProfitFill" style="width: 85%; height: 100%; background: linear-gradient(90deg, #0284c7, #10b981); transition: width 0.2s ease;"></div>
+
                             </div>
+
                             <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--gray-muted); margin-top: 0.4rem;">
+
                                 <span>$0 (Break-even)</span>
+
                                 <span>Maximizes Business Profit</span>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
+
 
     <!-- Result Charts Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="churn.charts.title">Result Charts</h2>
+
             
+
             <h3 data-i18n="churn.charts.rf_title">Most Important Features - Random Forest with SMOTEENN:</h3>
+
             <img src="Files/images/churn/RF_Smoteen.png" 
+
                  alt="Random Forest feature importance"
+
                  style="max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+
             
+
             <h3 data-i18n="churn.charts.roc_rf_title">ROC Curve - Random Forest with SMOTEENN:</h3>
+
             <img src="Files/images/churn/Roc_Smoteen_RF.png" 
+
                  alt="Random Forest ROC curve"
+
                  style="max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+
             
+
             <h3 data-i18n="churn.charts.roc_mlp_title">ROC Curve - Multi-Layer Perceptron with RandomUnderSampler:</h3>
+
             <img src="Files/images/churn/Perceptron_ROC%20RandomUnderSampler.png" 
+
                  alt="MLP ROC curve"
+
                  style="max-width: 100%; height: auto; margin: 20px 0; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+
         </div>
+
     </div>
+
+
 
     <!-- Key Findings Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="churn.findings.title">Key Findings</h2>
+
             <ul>
+
                 <li data-i18n="churn.findings.li1">Customer tenure is the most influential factor</li>
+
                 <li data-i18n="churn.findings.li2">Long-term contracts significantly reduce churn</li>
+
                 <li data-i18n="churn.findings.li3">Fiber internet service increases churn probability</li>
+
                 <li data-i18n="churn.findings.li4">Payment by electronic check is associated with higher churn</li>
+
                 <li data-i18n="churn.findings.li5">Lack of add-on services (security, tech support) increases churn</li>
+
             </ul>
+
         </div>
+
     </div>
+
+
 
     <!-- Conclusions Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="churn.concl.title">Conclusions and Recommendations</h2>
+
             
+
             <h3 data-i18n="churn.concl.comp_title">Model Comparison</h3>
+
             <ul>
+
                 <li data-i18n-html="churn.concl.c1"><strong>Random Forest (SMOTEENN)</strong> maximizes churn detection with higher recall (77.7%), capturing more customers at risk with minimal false negatives.</li>
+
                 <li data-i18n-html="churn.concl.c2"><strong>MLP (RandomUnderSampler)</strong> achieves slightly higher precision (54.2%), resulting in a lower false alarm rate with a competitive 76.3% recall.</li>
+
                 <li data-i18n="churn.concl.c3">SMOTEENN and RandomUnderSampler are the best balancing techniques</li>
+
             </ul>
+
             
+
             <h3 data-i18n="churn.concl.lim_title">Limitations</h3>
+
             <ul>
+
                 <li data-i18n="churn.concl.lim1">Imbalanced dataset (26.5% positive cases)</li>
+
                 <li data-i18n="churn.concl.lim2">Potential overfitting with oversampling techniques</li>
+
             </ul>
+
             
+
             <h3 data-i18n="churn.concl.rec_title">Recommendations</h3>
+
             <ul>
+
                 <li data-i18n="churn.concl.rec1">Implement Random Forest with SMOTEENN for retention strategies</li>
+
                 <li data-i18n="churn.concl.rec2">Prioritize customers with month-to-month contracts and fiber internet</li>
+
                 <li data-i18n="churn.concl.rec3">Offer incentives to migrate to long-term contracts</li>
+
                 <li data-i18n="churn.concl.rec4">Improve add-on services (security, tech support)</li>
+
                 <li data-i18n="churn.concl.rec5">Explore alternative models such as XGBoost or deeper neural networks</li>
+
             </ul>
+
         </div>
+
     </div>
+
+
 
     <!-- Project Files Section -->
+
     <div class="container">
+
         <div class="section-block">
+
             <h2 data-i18n="churn.repo.title">Project Files</h2>
+
             <p data-i18n="churn.repo.p">You can explore the source code for this project:</p>
+
             
+
             <div class="files-link-container">
+
                 <a href="https://github.com/cveram96/Portfolio/blob/main/Files/Proyecto%20Churn.ipynb" 
+
                    class="project-files-link" 
+
                    target="_blank"
+
                    rel="noopener noreferrer">
+
                     View full project files
+
                 </a>
+
                 
+
                 <div class="file-types">
+
                     <span class="file-badge">Jupyter Notebook</span>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
 
+
+
         <!-- Standardized Accessible Footer -->
+
     <footer>
+
         <div class="footer-content">
+
             <p class="footer-credit" data-i18n-html="footer.credit">Designed &amp; Developed by <strong style="color: #ffffff;">Christian David Vera Mendivelso</strong> &bull; 2025&ndash;2026</p>
+
             <p class="footer-status" data-i18n-html="footer.status">Bogot&aacute;, Colombia &bull; Open to Remote &amp; Hybrid roles</p>
+
             <div class="footer-actions">
+
                 <a href="https://www.linkedin.com/in/christianveram/" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-linkedin">
+
                     LinkedIn
+
                 </a>
+
                 <a href="https://github.com/cveram96" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-github">
+
                     GitHub
+
                 </a>
+
                 <a href="contacto.html" class="footer-btn footer-btn-contact" data-i18n="footer.contact">
+
                     Contact
+
                 </a>
+
             </div>
+
         </div>
+
     </footer>
 
 
+
+
+
     <!-- Multilingual i18n Scripts -->
-    <script src="translations.js?v=2.1"></script>
-    <script src="i18n.js?v=2.1"></script>
+
+    <script src="translations.js?v=2.4"></script>
+
+    <script src="i18n.js?v=2.4"></script>
+
+
 
     
 
+
+
     <!-- Churn Retention Economics Reactive Script -->
+
     <script>
+
       (function initChurnSimulator() {
+
         const threshInput = document.getElementById('churnThresh');
+
         const costInput = document.getElementById('churnCost');
+
         const ltvInput = document.getElementById('churnLTV');
+
         const cohortInput = document.getElementById('churnCohort');
+
         if (!threshInput || !costInput || !ltvInput || !cohortInput) return;
 
+
+
         // Calibrated empirical ROC curve for Random Forest SMOTEENN (AUC ~ 0.844, Base Churn ~ 26.5%)
+
         function getRates(theta) {
+
           const tpr = 1 / (1 + Math.exp(5.8 * (theta - 0.40)));
+
           const fpr = 1 / (1 + Math.exp(6.4 * (theta - 0.27)));
+
           return { tpr: Math.min(0.98, Math.max(0.05, tpr)), fpr: Math.min(0.95, Math.max(0.02, fpr)) };
+
         }
+
+
 
         function calculateProfit(theta, cost, ltv, n) {
+
           const churnRate = 0.265;
+
           const totalChurners = n * churnRate;
+
           const totalNonChurners = n * (1 - churnRate);
+
           const { tpr, fpr } = getRates(theta);
 
+
+
           const tp = Math.round(totalChurners * tpr);
+
           const fp = Math.round(totalNonChurners * fpr);
+
           const fn = totalChurners - tp;
+
           const tn = totalNonChurners - fp;
+
           const targeted = tp + fp;
 
+
+
           const campaignCost = targeted * cost;
+
           const savedChurners = tp * 0.55; // 55% retention success
+
           const grossRevenue = savedChurners * ltv;
+
           const netProfit = grossRevenue - campaignCost;
+
           const roi = campaignCost > 0 ? (netProfit / campaignCost) * 100 : 0;
 
+
+
           return { tp, fp, fn, tn, targeted, campaignCost, savedChurners, grossRevenue, netProfit, roi };
+
         }
 
+
+
         function update() {
+
           const theta = parseFloat(threshInput.value);
+
           const cost = parseFloat(costInput.value);
+
           const ltv = parseFloat(ltvInput.value);
+
           const n = parseInt(cohortInput.value, 10);
 
+
+
           document.getElementById('churnThreshVal').textContent = theta.toFixed(2);
+
           document.getElementById('churnCostVal').textContent = '$' + cost;
+
           document.getElementById('churnLTVVal').textContent = '$' + ltv;
+
           document.getElementById('churnCohortVal').textContent = n.toLocaleString('en-US');
 
+
+
           const current = calculateProfit(theta, cost, ltv, n);
+
           const defaultRef = calculateProfit(0.50, cost, ltv, n);
 
+
+
           // Find optimal theta
+
           let bestTheta = 0.10;
+
           let maxProfit = -Infinity;
+
           for (let t = 0.10; t <= 0.85; t += 0.05) {
+
             const p = calculateProfit(t, cost, ltv, n).netProfit;
+
             if (p > maxProfit) {
+
               maxProfit = p;
+
               bestTheta = t;
+
             }
+
           }
 
+
+
           document.getElementById('churnKpiTargeted').textContent = current.targeted.toLocaleString('en-US');
+
           document.getElementById('churnKpiTargetedPct').textContent = ((current.targeted / n) * 100).toFixed(1) + '% of cohort';
+
           document.getElementById('churnKpiCost').textContent = '$' + Math.round(current.campaignCost).toLocaleString('en-US');
+
           document.getElementById('churnKpiRev').textContent = '$' + Math.round(current.grossRevenue).toLocaleString('en-US');
+
           document.getElementById('churnKpiSavedUsers').textContent = Math.round(current.savedChurners).toLocaleString('en-US') + ' saved (55% rate)';
 
+
+
           const profitPrefix = current.netProfit >= 0 ? '+$' : '-$';
+
           document.getElementById('churnKpiProfit').textContent = profitPrefix + Math.abs(Math.round(current.netProfit)).toLocaleString('en-US');
+
           document.getElementById('churnKpiProfit').style.color = current.netProfit >= 0 ? '#10b981' : '#f87171';
+
           document.getElementById('churnKpiROI').textContent = current.roi.toFixed(1) + '% Campaign ROI';
+
+
 
           document.getElementById('churnOptVal').textContent = '\u03B8* = ' + bestTheta.toFixed(2);
 
+
+
           const lift = current.netProfit - defaultRef.netProfit;
+
           const liftText = (lift >= 0 ? '+$' : '-$') + Math.abs(Math.round(lift)).toLocaleString('en-US') + ' vs default (0.50)';
+
           document.getElementById('churnProfitLift').textContent = liftText;
+
           document.getElementById('churnProfitLift').style.color = lift >= 0 ? '#10b981' : '#f87171';
 
+
+
           // Confusion matrix
+
           document.getElementById('matTP').textContent = current.tp.toLocaleString('en-US');
+
           document.getElementById('matFP').textContent = current.fp.toLocaleString('en-US');
+
           document.getElementById('matFN').textContent = current.fn.toLocaleString('en-US');
+
           document.getElementById('matTN').textContent = current.tn.toLocaleString('en-US');
 
+
+
           // Fill gauge
+
           const profitRatio = defaultRef.netProfit > 0 ? (current.netProfit / defaultRef.netProfit) * 100 : 100;
+
           document.getElementById('barProfitLabel').textContent = Math.round(profitRatio) + '%';
+
           const fillWidth = Math.min(100, Math.max(5, (profitRatio / 1.5)));
+
           document.getElementById('barProfitFill').style.width = fillWidth + '%';
+
         }
 
+
+
         threshInput.addEventListener('input', update);
+
         costInput.addEventListener('input', update);
+
         ltvInput.addEventListener('input', update);
+
         cohortInput.addEventListener('input', update);
+
         update();
+
       })();
+
     </script>
+
 </body>
+
 </html>
+
+
 
