@@ -224,7 +224,7 @@
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
                     <div>
                         <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
-                            <label for="cupedRho" class="tech-hint" style="color: var(--light); font-weight: 600;" data-i18n="abt.sim.lbl_rho" data-i18n-tooltip="tip.rho" tabindex="0">Covariate Correlation (&rho;): <span class="hint-icon">ⓘ</span></label>
+                            <label for="cupedRho" style="color: var(--light); font-weight: 600;"><span data-i18n="abt.sim.lbl_rho">Covariate Correlation (&rho;):</span><span class="help-pill" data-i18n-tooltip="tip.rho" tabindex="0">?</span></label>
                             <span id="cupedRhoVal" style="font-family: var(--font-mono); color: var(--secondary-light); font-weight: 700;">0.65</span>
                         </div>
                         <input type="range" id="cupedRho" class="range-slider" min="0.00" max="0.90" step="0.01" value="0.65">
@@ -236,7 +236,7 @@
 
                     <div>
                         <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
-                            <label for="cupedSample" class="tech-hint" style="color: var(--light); font-weight: 600;" data-i18n="abt.sim.lbl_sample" data-i18n-tooltip="tip.sample_size" tabindex="0">Baseline Sample Size (N per group): <span class="hint-icon">ⓘ</span></label>
+                            <label for="cupedSample" style="color: var(--light); font-weight: 600;"><span data-i18n="abt.sim.lbl_sample">Baseline Sample Size (N per group):</span><span class="help-pill" data-i18n-tooltip="tip.sample_size" tabindex="0">?</span></label>
                             <span id="cupedSampleVal" style="font-family: var(--font-mono); color: #a78bfa; font-weight: 700;">100,000</span>
                         </div>
                         <input type="range" id="cupedSample" class="range-slider" min="10000" max="300000" step="5000" value="100000">
@@ -249,26 +249,26 @@
 
                 <!-- Live Dynamic KPI Cards -->
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-                    <div class="tech-hint tooltip-right" data-i18n-tooltip="tip.var_drop" tabindex="0" style="background: rgba(2, 132, 199, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--secondary); text-align: center; display: block; border-bottom: none;">
-                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;" data-i18n="abt.sim.kpi_var">Variance Contraction <span class="hint-icon">ⓘ</span></div>
+                    <div style="background: rgba(2, 132, 199, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--secondary); text-align: center;">
+                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;"><span data-i18n="abt.sim.kpi_var">Variance Contraction</span><span class="help-pill" data-i18n-tooltip="tip.var_drop" tabindex="0">?</span></div>
                         <div id="simVarDrop" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #38bdf8; margin-top: 0.2rem;">-42.3%</div>
                         <div style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">&Delta;Var = -(&rho;&sup2;)</div>
                     </div>
 
-                    <div class="tech-hint" data-i18n-tooltip="tip.sample_size" tabindex="0" style="background: rgba(16, 185, 129, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid #10b981; text-align: center; display: block; border-bottom: none;">
-                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;" data-i18n="abt.sim.kpi_users">Users Saved / Group <span class="hint-icon">ⓘ</span></div>
+                    <div style="background: rgba(16, 185, 129, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid #10b981; text-align: center;">
+                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;"><span data-i18n="abt.sim.kpi_users">Users Saved / Group</span><span class="help-pill" data-i18n-tooltip="tip.sample_size" tabindex="0">?</span></div>
                         <div id="simUsersSaved" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #34d399; margin-top: 0.2rem;">42,250 users</div>
                         <div id="simNewSample" style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">Target N: 57,750</div>
                     </div>
 
-                    <div class="tech-hint" data-i18n-tooltip="tip.cuped" tabindex="0" style="background: rgba(245, 158, 11, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid #f59e0b; text-align: center; display: block; border-bottom: none;">
-                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;" data-i18n="abt.sim.kpi_duration">Runtime Saved (4 wk baseline) <span class="hint-icon">ⓘ</span></div>
+                    <div style="background: rgba(245, 158, 11, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid #f59e0b; text-align: center;">
+                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;"><span data-i18n="abt.sim.kpi_duration">Runtime Saved (4 wk baseline)</span><span class="help-pill" data-i18n-tooltip="tip.cuped" tabindex="0">?</span></div>
                         <div id="simDaysSaved" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #fbbf24; margin-top: 0.2rem;">11.8 days</div>
                         <div id="simNewDuration" style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">New runtime: 2.3 weeks</div>
                     </div>
 
-                    <div class="tech-hint tooltip-right" data-i18n-tooltip="tip.ci_shrink" tabindex="0" style="background: rgba(168, 85, 247, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid #a855f7; text-align: center; display: block; border-bottom: none;">
-                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;" data-i18n="abt.sim.kpi_ci">95% CI Margin Shrink <span class="hint-icon">ⓘ</span></div>
+                    <div style="background: rgba(168, 85, 247, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid #a855f7; text-align: center;">
+                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;"><span data-i18n="abt.sim.kpi_ci">95% CI Margin Shrink</span><span class="help-pill tooltip-right" data-i18n-tooltip="tip.ci_shrink" tabindex="0">?</span></div>
                         <div id="simCIShrink" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #c084fc; margin-top: 0.2rem;">-24.0%</div>
                         <div style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">Factor: &radic;(1 - &rho;&sup2;)</div>
                     </div>

@@ -300,7 +300,7 @@
                     <button type="button" class="tab-btn active" data-tab="tab-cohort" data-i18n="sql.tab.cohort">Cohort Retention</button>
                     <button type="button" class="tab-btn" data-tab="tab-employee" data-i18n="sql.tab.employee">Employee Revenue</button>
                     <button type="button" class="tab-btn" data-tab="tab-inventory" data-i18n="sql.tab.inventory">Inventory Risk</button>
-                    <button type="button" class="tab-btn tech-hint" data-tab="tab-explain" data-i18n="sql.tab.explain" data-i18n-tooltip="tip.explain" tabindex="0">Index Optimization <span class="hint-icon">ⓘ</span></button>
+                    <button type="button" class="tab-btn" data-tab="tab-explain"><span data-i18n="sql.tab.explain">Index Optimization</span><span class="help-pill" data-i18n-tooltip="tip.explain" tabindex="0">?</span></button>
                 </div>
 
                 <!-- Tab 1: Cohort Retention -->
@@ -327,7 +327,7 @@ FROM Activity GROUP BY CohortMonth ORDER BY CohortMonth LIMIT 5;</code></pre>
                     </div>
                     
                     <div style="display: flex; gap: 1.5rem; align-items: center; margin: 0.8rem 0; font-size: 0.82rem; font-family: var(--font-mono); color: var(--gray-muted);">
-                        <span><strong style="color: #38bdf8;" class="tech-hint" data-i18n-tooltip="tip.latency" tabindex="0">Execution Latency: <span class="hint-icon">ⓘ</span></strong> 1.2 ms</span>
+                        <span><strong style="color: #38bdf8;">Execution Latency:</strong><span class="help-pill" data-i18n-tooltip="tip.latency" tabindex="0">?</span> 1.2 ms</span>
                         <span><strong style="color: #34d399;">Rows Returned:</strong> 5 rows</span>
                         <span><strong style="color: #fbbf24;">Plan:</strong> Covering Index Scan on OrderDate</span>
                     </div>
@@ -404,7 +404,7 @@ ORDER BY NetSales DESC LIMIT 5;</code></pre>
                     </div>
 
                     <div style="display: flex; gap: 1.5rem; align-items: center; margin: 0.8rem 0; font-size: 0.82rem; font-family: var(--font-mono); color: var(--gray-muted);">
-                        <span><strong style="color: #38bdf8;" class="tech-hint" data-i18n-tooltip="tip.latency" tabindex="0">Execution Latency: <span class="hint-icon">ⓘ</span></strong> 0.8 ms</span>
+                        <span><strong style="color: #38bdf8;">Execution Latency:</strong><span class="help-pill" data-i18n-tooltip="tip.latency" tabindex="0">?</span> 0.8 ms</span>
                         <span><strong style="color: #34d399;">Rows Returned:</strong> 5 rows</span>
                         <span><strong style="color: #fbbf24;">Plan:</strong> Hash Join &amp; B-Tree Aggregate</span>
                     </div>
@@ -486,7 +486,7 @@ ORDER BY p.UnitsInStock ASC LIMIT 5;</code></pre>
                     </div>
 
                     <div style="display: flex; gap: 1.5rem; align-items: center; margin: 0.8rem 0; font-size: 0.82rem; font-family: var(--font-mono); color: var(--gray-muted);">
-                        <span><strong style="color: #38bdf8;" class="tech-hint" data-i18n-tooltip="tip.latency" tabindex="0">Execution Latency: <span class="hint-icon">ⓘ</span></strong> 0.4 ms</span>
+                        <span><strong style="color: #38bdf8;">Execution Latency:</strong><span class="help-pill" data-i18n-tooltip="tip.latency" tabindex="0">?</span> 0.4 ms</span>
                         <span><strong style="color: #34d399;">Rows Returned:</strong> 5 rows</span>
                         <span><strong style="color: #fbbf24;">Plan:</strong> Short-Circuit Filter &amp; Sort</span>
                     </div>
@@ -568,7 +568,7 @@ GROUP BY o.Id;</code></pre>
                     </div>
 
                     <div style="display: flex; gap: 1.5rem; align-items: center; margin: 0.8rem 0; font-size: 0.82rem; font-family: var(--font-mono); color: var(--gray-muted);">
-                        <span><strong style="color: #38bdf8;" class="tech-hint" data-i18n-tooltip="tip.latency" tabindex="0">Execution Latency: <span class="hint-icon">ⓘ</span></strong> 0.3 ms</span>
+                        <span><strong style="color: #38bdf8;">Execution Latency:</strong><span class="help-pill" data-i18n-tooltip="tip.latency" tabindex="0">?</span> 0.3 ms</span>
                         <span><strong style="color: #34d399;">Complexity:</strong> O(log N) Index Seek</span>
                         <span><strong style="color: #10b981;">Improvement:</strong> 14.8x faster than full table scan</span>
                     </div>

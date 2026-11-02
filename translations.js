@@ -6,6 +6,11 @@
 
 const translations = {
   "en": {
+    "tip.cohort_size": "Cohort Size (N): Total subscriber base analyzed within this evaluation period.",
+    "tip.kpi_targeted": "Customers Targeted: Total accounts predicted as churners that will receive the promotional retention offer.",
+    "tip.kpi_cost": "Campaign Investment: Total expense computed as Contacted Customers × Cost per Retention Offer.",
+    "tip.kpi_rev": "Gross Revenue Saved: Value of retained customer accounts (assumes 55% retention campaign success rate).",
+    "tip.kpi_profit": "Net Business Profit: Gross revenue saved minus total campaign investment. Demonstrates the financial ROI of the model.",
     "tip.cuped": "CUPED (Controlled-experiment Using Pre-Existing Data): Uses prior user activity to remove background variance and detect true treatment effects faster.",
     "tip.srm": "Sample Ratio Mismatch: Chi-square test (χ²) verifying that incoming traffic split evenly (e.g. 50/50) without silent engineering or routing bugs.",
     "tip.ztest": "Two-sample Z-test: Statistical hypothesis test determining whether the conversion rate difference between Control and Treatment is statistically significant.",
@@ -794,6 +799,11 @@ const translations = {
     "error.btn.projects": "Explore Featured Projects",
   },
   "es": {
+    "tip.cohort_size": "Tamaño de Cohorte (N): Total de suscriptores evaluados en este periodo.",
+    "tip.kpi_targeted": "Clientes Contactados: Total de cuentas con riesgo de abandono que recibirán la oferta de retención.",
+    "tip.kpi_cost": "Inversión de Campaña: Gasto total calculado como Clientes Contactados × Costo por Oferta.",
+    "tip.kpi_rev": "Ingresos Brutos Salvados: Valor de clientes recuperados (asumiendo 55% de efectividad de retención).",
+    "tip.kpi_profit": "Beneficio Neto en Dinero: Ingresos salvados menos el costo de la campaña. Demuestra el retorno de inversión real.",
     "tip.cuped": "CUPED: Utiliza la actividad previa del usuario para eliminar varianza de fondo y detectar efectos reales más rápido.",
     "tip.srm": "Sample Ratio Mismatch: Prueba Chi-cuadrado (χ²) que verifica que el tráfico se dividió de forma balanceada (ej. 50/50) sin errores de enrutamiento.",
     "tip.ztest": "Prueba Z de dos proporciones: Prueba estadística de hipótesis para determinar si la diferencia de conversión entre Control y Tratamiento es significativa.",

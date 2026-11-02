@@ -251,7 +251,7 @@
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem;">
                     <div>
                         <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
-                            <label for="churnThresh" class="tech-hint" style="color: var(--light); font-weight: 600;" data-i18n="churn.sim.lbl_thresh" data-i18n-tooltip="tip.theta" tabindex="0">Decision Cutoff (&theta;): <span class="hint-icon">ⓘ</span></label>
+                            <label for="churnThresh" style="color: var(--light); font-weight: 600;"><span data-i18n="churn.sim.lbl_thresh">Decision Cutoff (&theta;):</span><span class="help-pill" data-i18n-tooltip="tip.theta" tabindex="0">?</span></label>
                             <span id="churnThreshVal" style="font-family: var(--font-mono); color: #38bdf8; font-weight: 700;">0.35</span>
                         </div>
                         <input type="range" id="churnThresh" class="range-slider" min="0.10" max="0.85" step="0.05" value="0.35">
@@ -263,7 +263,7 @@
 
                     <div>
                         <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
-                            <label for="churnCost" class="tech-hint" style="color: var(--light); font-weight: 600;" data-i18n="churn.sim.lbl_cost" data-i18n-tooltip="tip.retention_cost" tabindex="0">Retention Offer / Customer ($): <span class="hint-icon">ⓘ</span></label>
+                            <label for="churnCost" style="color: var(--light); font-weight: 600;"><span data-i18n="churn.sim.lbl_cost">Retention Offer / Customer ($):</span><span class="help-pill" data-i18n-tooltip="tip.retention_cost" tabindex="0">?</span></label>
                             <span id="churnCostVal" style="font-family: var(--font-mono); color: #fbbf24; font-weight: 700;">$25</span>
                         </div>
                         <input type="range" id="churnCost" class="range-slider" min="10" max="60" step="5" value="25">
@@ -275,7 +275,7 @@
 
                     <div>
                         <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
-                            <label for="churnLTV" class="tech-hint" style="color: var(--light); font-weight: 600;" data-i18n="churn.sim.lbl_ltv" data-i18n-tooltip="tip.ltv" tabindex="0">Customer Lifetime Value / LTV ($): <span class="hint-icon">ⓘ</span></label>
+                            <label for="churnLTV" style="color: var(--light); font-weight: 600;"><span data-i18n="churn.sim.lbl_ltv">Customer Lifetime Value / LTV ($):</span><span class="help-pill" data-i18n-tooltip="tip.ltv" tabindex="0">?</span></label>
                             <span id="churnLTVVal" style="font-family: var(--font-mono); color: #34d399; font-weight: 700;">$250</span>
                         </div>
                         <input type="range" id="churnLTV" class="range-slider" min="100" max="500" step="25" value="250">
@@ -287,7 +287,7 @@
 
                     <div>
                         <div style="display: flex; justify-content: space-between; font-size: 0.88rem; margin-bottom: 0.4rem;">
-                            <label for="churnCohort" style="color: var(--light); font-weight: 600;">Cohort Size (N):</label>
+                            <label for="churnCohort" style="color: var(--light); font-weight: 600;"><span>Cohort Size (N):</span><span class="help-pill tooltip-right" data-i18n-tooltip="tip.cohort_size" tabindex="0">?</span></label>
                             <span id="churnCohortVal" style="font-family: var(--font-mono); color: #c084fc; font-weight: 700;">5,000</span>
                         </div>
                         <input type="range" id="churnCohort" class="range-slider" min="1000" max="20000" step="1000" value="5000">
@@ -301,25 +301,25 @@
                 <!-- Live Financial KPI Cards -->
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
                     <div style="background: rgba(2, 132, 199, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--secondary); text-align: center;">
-                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;" data-i18n="churn.sim.kpi_targeted">Customers Targeted</div>
+                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;"><span data-i18n="churn.sim.kpi_targeted">Customers Targeted</span><span class="help-pill" data-i18n-tooltip="tip.kpi_targeted" tabindex="0">?</span></div>
                         <div id="churnKpiTargeted" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #38bdf8; margin-top: 0.2rem;">1,840</div>
                         <div id="churnKpiTargetedPct" style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">36.8% of cohort</div>
                     </div>
 
                     <div style="background: rgba(245, 158, 11, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid #f59e0b; text-align: center;">
-                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;" data-i18n="churn.sim.kpi_cost">Campaign Investment</div>
+                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;"><span data-i18n="churn.sim.kpi_cost">Campaign Investment</span><span class="help-pill" data-i18n-tooltip="tip.kpi_cost" tabindex="0">?</span></div>
                         <div id="churnKpiCost" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #fbbf24; margin-top: 0.2rem;">$46,000</div>
                         <div style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">Cost of incentives</div>
                     </div>
 
                     <div style="background: rgba(52, 211, 153, 0.08); padding: 1rem; border-radius: 8px; border-left: 3px solid #10b981; text-align: center;">
-                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;" data-i18n="churn.sim.kpi_revenue">Gross Revenue Saved</div>
+                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;"><span data-i18n="churn.sim.kpi_revenue">Gross Revenue Saved</span><span class="help-pill" data-i18n-tooltip="tip.kpi_rev" tabindex="0">?</span></div>
                         <div id="churnKpiRev" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #34d399; margin-top: 0.2rem;">$141,625</div>
                         <div id="churnKpiSavedUsers" style="font-size: 0.72rem; color: var(--gray-muted); font-family: var(--font-mono);">566 saved (55% rate)</div>
                     </div>
 
                     <div style="background: rgba(16, 185, 129, 0.15); padding: 1rem; border-radius: 8px; border-left: 3px solid #059669; text-align: center;">
-                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;" data-i18n="churn.sim.kpi_profit">Net Business Profit</div>
+                        <div style="font-size: 0.78rem; color: var(--gray-muted); text-transform: uppercase;"><span data-i18n="churn.sim.kpi_profit">Net Business Profit</span><span class="help-pill tooltip-right" data-i18n-tooltip="tip.kpi_profit" tabindex="0">?</span></div>
                         <div id="churnKpiProfit" style="font-family: var(--font-mono); font-size: 1.45rem; font-weight: 800; color: #10b981; margin-top: 0.2rem;">+$95,625</div>
                         <div id="churnKpiROI" style="font-size: 0.72rem; color: #34d399; font-weight: 700; font-family: var(--font-mono);">207.9% Campaign ROI</div>
                     </div>
@@ -341,21 +341,21 @@
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; align-items: center;">
                         <div style="font-size: 0.8rem;">
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; text-align: center;">
-                                <div class="tech-hint" data-i18n-tooltip="tip.tp" tabindex="0" style="background: rgba(16, 185, 129, 0.15); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.3); display: block; border-bottom: 1px solid rgba(16, 185, 129, 0.3);">
+                                <div style="background: rgba(16, 185, 129, 0.15); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.3);">
                                     <div style="color: #34d399; font-weight: 700; font-size: 0.95rem;" id="matTP">1,030</div>
-                                    <div style="color: var(--gray-muted); font-size: 0.7rem;">True Positives (Targeted Churners) <span class="hint-icon">ⓘ</span></div>
+                                    <div style="color: var(--gray-muted); font-size: 0.7rem;"><span>True Positives (Targeted Churners)</span><span class="help-pill" data-i18n-tooltip="tip.tp" tabindex="0">?</span></div>
                                 </div>
-                                <div class="tech-hint tooltip-right" data-i18n-tooltip="tip.fp" tabindex="0" style="background: rgba(239, 68, 68, 0.12); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.3); display: block; border-bottom: 1px solid rgba(239, 68, 68, 0.3);">
+                                <div style="background: rgba(239, 68, 68, 0.12); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.3);">
                                     <div style="color: #f87171; font-weight: 700; font-size: 0.95rem;" id="matFP">810</div>
-                                    <div style="color: var(--gray-muted); font-size: 0.7rem;">False Positives (Wasted Promo) <span class="hint-icon">ⓘ</span></div>
+                                    <div style="color: var(--gray-muted); font-size: 0.7rem;"><span>False Positives (Wasted Promo)</span><span class="help-pill tooltip-right" data-i18n-tooltip="tip.fp" tabindex="0">?</span></div>
                                 </div>
-                                <div class="tech-hint" data-i18n-tooltip="tip.fn" tabindex="0" style="background: rgba(245, 158, 11, 0.12); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(245, 158, 11, 0.3); display: block; border-bottom: 1px solid rgba(245, 158, 11, 0.3);">
+                                <div style="background: rgba(245, 158, 11, 0.12); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(245, 158, 11, 0.3);">
                                     <div style="color: #fbbf24; font-weight: 700; font-size: 0.95rem;" id="matFN">295</div>
-                                    <div style="color: var(--gray-muted); font-size: 0.7rem;">False Negatives (Missed Churners) <span class="hint-icon">ⓘ</span></div>
+                                    <div style="color: var(--gray-muted); font-size: 0.7rem;"><span>False Negatives (Missed Churners)</span><span class="help-pill" data-i18n-tooltip="tip.fn" tabindex="0">?</span></div>
                                 </div>
-                                <div class="tech-hint tooltip-right" data-i18n-tooltip="tip.tn" tabindex="0" style="background: rgba(255, 255, 255, 0.04); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1); display: block; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                                <div style="background: rgba(255, 255, 255, 0.04); padding: 0.6rem; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.1);">
                                     <div style="color: var(--light); font-weight: 700; font-size: 0.95rem;" id="matTN">2,865</div>
-                                    <div style="color: var(--gray-muted); font-size: 0.7rem;">True Negatives (Correctly Untargeted) <span class="hint-icon">ⓘ</span></div>
+                                    <div style="color: var(--gray-muted); font-size: 0.7rem;"><span>True Negatives (Correctly Untargeted)</span><span class="help-pill tooltip-right" data-i18n-tooltip="tip.tn" tabindex="0">?</span></div>
                                 </div>
                             </div>
                         </div>

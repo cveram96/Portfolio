@@ -1552,55 +1552,54 @@ footer {
   display: none !important;
 }
 
-/* ===== TECHNICAL TOOLTIPS & HOVER HELPERS ===== */
-.tech-hint {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  border-bottom: 1px dashed rgba(56, 189, 248, 0.6);
-  cursor: help;
-  color: inherit;
-  transition: border-color 0.2s ease, color 0.2s ease;
-}
-
-.tech-hint:hover,
-.tech-hint:focus-visible {
-  color: #38bdf8;
-  border-bottom-color: #38bdf8;
-  outline: none;
-}
-
-.tech-hint .hint-icon {
+/* ===== QUESTION MARK TOOLTIP HELPER ===== */
+.help-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.72rem;
-  font-family: var(--font-mono);
-  width: 15px;
-  height: 15px;
+  width: 17px;
+  height: 17px;
   border-radius: 50%;
-  background: rgba(56, 189, 248, 0.15);
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.45);
   color: #38bdf8;
-  border: 1px solid rgba(56, 189, 248, 0.4);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
   line-height: 1;
-  pointer-events: none;
+  margin-left: 0.35rem;
+  cursor: help;
+  vertical-align: middle;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  user-select: none;
+  text-decoration: none !important;
 }
 
-/* Tooltip popup bubble */
-.tech-hint::after,
+.help-pill:hover,
+.help-pill:focus-visible {
+  background: rgba(56, 189, 248, 0.28);
+  border-color: #38bdf8;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+  transform: scale(1.15);
+  outline: none;
+}
+
+/* Tooltip popup bubble attached to .help-pill and [data-tooltip] */
+.help-pill::after,
 [data-tooltip]::after {
   content: attr(data-tooltip);
   position: absolute;
   bottom: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%) translateY(4px);
-  background: rgba(15, 23, 42, 0.97);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(10, 15, 29, 0.98);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: #f1f5f9;
   border: 1px solid rgba(56, 189, 248, 0.4);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 0 14px rgba(56, 189, 248, 0.2);
+  box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.8), 0 0 15px rgba(56, 189, 248, 0.2);
   padding: 0.6rem 0.85rem;
   border-radius: 8px;
   font-family: var(--font-sans);
@@ -1619,7 +1618,7 @@ footer {
 }
 
 /* Tooltip arrow */
-.tech-hint::before,
+.help-pill::before,
 [data-tooltip]::before {
   content: '';
   position: absolute;
@@ -1637,8 +1636,8 @@ footer {
 }
 
 /* Show on hover and keyboard/touch focus */
-.tech-hint:hover::after,
-.tech-hint:focus-visible::after,
+.help-pill:hover::after,
+.help-pill:focus-visible::after,
 [data-tooltip]:hover::after,
 [data-tooltip]:focus-visible::after {
   opacity: 1;
@@ -1646,8 +1645,8 @@ footer {
   transform: translateX(-50%) translateY(0);
 }
 
-.tech-hint:hover::before,
-.tech-hint:focus-visible::before,
+.help-pill:hover::before,
+.help-pill:focus-visible::before,
 [data-tooltip]:hover::before,
 [data-tooltip]:focus-visible::before {
   opacity: 1;
@@ -1655,20 +1654,20 @@ footer {
 }
 
 /* Right-aligned tooltips when near viewport edges */
-.tech-hint.tooltip-right::after,
+.help-pill.tooltip-right::after,
 [data-tooltip].tooltip-right::after {
   left: auto;
-  right: 0;
+  right: -10px;
   transform: translateY(4px);
 }
-.tech-hint.tooltip-right:hover::after,
-.tech-hint.tooltip-right:focus-visible::after,
+.help-pill.tooltip-right:hover::after,
+.help-pill.tooltip-right:focus-visible::after,
 [data-tooltip].tooltip-right:hover::after,
 [data-tooltip].tooltip-right:focus-visible::after {
   transform: translateY(0);
 }
-.tech-hint.tooltip-right::before,
+.help-pill.tooltip-right::before,
 [data-tooltip].tooltip-right::before {
   left: auto;
-  right: 15px;
+  right: 2px;
 }
