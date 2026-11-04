@@ -92,9 +92,8 @@
 
     toggleWrapper.innerHTML = `
       <div class="lang-toggle-inner">
-        <span class="lang-icon" aria-hidden="true">🌐</span>
+        <svg class="lang-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
         <button type="button" class="lang-pill-btn" data-lang="en" aria-label="Switch to English">EN</button>
-        <span class="lang-sep">/</span>
         <button type="button" class="lang-pill-btn" data-lang="es" aria-label="Cambiar a Español">ES</button>
       </div>
     `;
