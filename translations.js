@@ -1669,6 +1669,173 @@ const translations = {
   }
 };
 
+
+// ===== BILINGUAL CODE COMMENTS DICTIONARY =====
+const codeCommentTranslations = {
+  "-- Step 1: Identify customer acquisition cohort by earliest order month": {
+    "es": "-- Paso 1: Identificar cohorte de adquisición por el primer mes de compra",
+    "en": "-- Step 1: Identify customer acquisition cohort by earliest order month"
+  },
+  "-- Step 2: Calculate month offset (MonthDiff) between initial and repeat purchases": {
+    "es": "-- Paso 2: Calcular el desfase en meses (MonthDiff) entre la compra inicial y recompras",
+    "en": "-- Step 2: Calculate month offset (MonthDiff) between initial and repeat purchases"
+  },
+  "-- Step 3: Aggregate cohort sizes and calculate M1 and M2 retention percentages": {
+    "es": "-- Paso 3: Agregar tamaños de cohorte y calcular porcentajes de retención M1 y M2",
+    "en": "-- Step 3: Aggregate cohort sizes and calculate M1 and M2 retention percentages"
+  },
+  "-- Aggregate commercial revenue per employee, adjusting for line-item discounts": {
+    "es": "-- Agregar ingresos comerciales por empleado, descontando promociones por línea",
+    "en": "-- Aggregate commercial revenue per employee, adjusting for line-item discounts"
+  },
+  "-- Rank sales reps by revenue generation": {
+    "es": "-- Clasificar representantes de ventas según generación de ingresos",
+    "en": "-- Rank sales reps by revenue generation"
+  },
+  "-- Identify operational stock risks by comparing on-hand units against safety thresholds": {
+    "es": "-- Identificar riesgos de rotura comparando stock disponible vs umbrales de seguridad",
+    "en": "-- Identify operational stock risks by comparing on-hand units against safety thresholds"
+  },
+  "-- Classify replenishment urgency based on inventory vs reorder level": {
+    "es": "-- Clasificar urgencia de reposición según inventario vs nivel de reorden",
+    "en": "-- Classify replenishment urgency based on inventory vs reorder level"
+  },
+  "-- Step 1: Create B-Tree index on foreign key OrderId to replace full table scan with Index Seek": {
+    "es": "-- Paso 1: Crear índice B-Tree en OrderId para sustituir escaneo completo por Index Seek",
+    "en": "-- Step 1: Create B-Tree index on foreign key OrderId to replace full table scan with Index Seek"
+  },
+  "-- Step 2: Inspect execution plan to verify O(log N) index lookup and join efficiency": {
+    "es": "-- Paso 2: Inspeccionar el plan de ejecución para verificar búsqueda O(log N) y eficiencia de joins",
+    "en": "-- Step 2: Inspect execution plan to verify O(log N) index lookup and join efficiency"
+  },
+  "-- Calculate top-selling products by net revenue, deducting promotional discounts": {
+    "es": "-- Calcular productos líderes en facturación neta, deduciendo descuentos comerciales",
+    "en": "-- Calculate top-selling products by net revenue, deducting promotional discounts"
+  },
+  "-- Profile top customer accounts by lifetime spend and order volume": {
+    "es": "-- Perfilar cuentas de clientes líderes por volumen de pedidos y gasto acumulado (LTV)",
+    "en": "-- Profile top customer accounts by lifetime spend and order volume"
+  },
+  "-- Measure carrier fulfillment speed by calculating average shipping latency in days": {
+    "es": "-- Medir velocidad de entrega de transportistas calculando latencia promedio en días",
+    "en": "-- Measure carrier fulfillment speed by calculating average shipping latency in days"
+  },
+  "-- Detect inactive customer accounts with no purchases in the last 180 days": {
+    "es": "-- Detectar clientes inactivos sin compras registradas en los últimos 180 días",
+    "en": "-- Detect inactive customer accounts with no purchases in the last 180 days"
+  },
+  "-- Partition sales by category and rank top 3 revenue drivers using DENSE_RANK()": {
+    "es": "-- Particionar ventas por categoría y rankear el top 3 con DENSE_RANK()",
+    "en": "-- Partition sales by category and rank top 3 revenue drivers using DENSE_RANK()"
+  },
+  "-- Calculate Month-over-Month (MoM) revenue growth using the LAG() window function": {
+    "es": "-- Calcular crecimiento de facturación intermensual (MoM) con la función ventana LAG()",
+    "en": "-- Calculate Month-over-Month (MoM) revenue growth using the LAG() window function"
+  },
+  "-- Compute cumulative Year-to-Date (YTD) running revenue via partitioned SUM() OVER": {
+    "es": "-- Calcular ingresos acumulados del año (YTD) con suma móvil SUM() OVER particionada",
+    "en": "-- Compute cumulative Year-to-Date (YTD) running revenue via partitioned SUM() OVER"
+  },
+  "-- Measure purchase velocity by calculating elapsed days between sequential customer orders": {
+    "es": "-- Medir cadencia de compra calculando días transcurridos entre pedidos consecutivos",
+    "en": "-- Measure purchase velocity by calculating elapsed days between sequential customer orders"
+  },
+  "-- Implement pure-SQL RFM segmentation using NTILE(4) quartile distribution": {
+    "es": "-- Implementar segmentación RFM en SQL puro mediante distribución por cuartiles NTILE(4)",
+    "en": "-- Implement pure-SQL RFM segmentation using NTILE(4) quartile distribution"
+  },
+  "-- Assign quartile scores (1 to 4) for Recency, Frequency, and Monetary spend": {
+    "es": "-- Asignar puntajes en cuartiles (1 al 4) para Recencia, Frecuencia y Gasto Monetario",
+    "en": "-- Assign quartile scores (1 to 4) for Recency, Frequency, and Monetary spend"
+  },
+  "-- Classify behavioral customer tiers based on combined score": {
+    "es": "-- Clasificar segmentos de clientes según la puntuación combinada RFM",
+    "en": "-- Classify behavioral customer tiers based on combined score"
+  },
+  "-- Build longitudinal customer retention cohort matrix tracking repeat purchases": {
+    "es": "-- Construir matriz longitudinal de retención por cohortes siguiendo recompras periódicas",
+    "en": "-- Build longitudinal customer retention cohort matrix tracking repeat purchases"
+  },
+  "-- Map order timestamps to acquisition cohorts and calculate elapsed months": {
+    "es": "-- Mapear fechas de compra a cohortes de adquisición y calcular meses transcurridos",
+    "en": "-- Map order timestamps to acquisition cohorts and calculate elapsed months"
+  },
+  "-- Aggregate cohort retention counts per time window": {
+    "es": "-- Agregar conteos de retención por cohorte para cada ventana de tiempo",
+    "en": "-- Aggregate cohort retention counts per time window"
+  },
+  "-- Inspect SQLite query execution tree to verify index coverage and cost distribution": {
+    "es": "-- Inspeccionar árbol de ejecución en SQLite para verificar índices y distribución de costos",
+    "en": "-- Inspect SQLite query execution tree to verify index coverage and cost distribution"
+  },
+  "// Core Catalog Aggregations": {
+    "es": "// Agregaciones Principales del Catálogo",
+    "en": "// Core Catalog Aggregations"
+  },
+  "// Calculate distinct count of active catalog title IDs": {
+    "es": "// Calcular conteo de títulos únicos activos en el catálogo",
+    "en": "// Calculate distinct count of active catalog title IDs"
+  },
+  "// Compute unweighted arithmetic mean of IMDb user ratings": {
+    "es": "// Calcular la media aritmética simple de calificaciones IMDb",
+    "en": "// Compute unweighted arithmetic mean of IMDb user ratings"
+  },
+  "// Aggregate total audience votes across all titles": {
+    "es": "// Agregar votos totales de la audiencia a través de todos los títulos",
+    "en": "// Aggregate total audience votes across all titles"
+  },
+  "// Safe division handling zero-denominator scenarios to measure popularity density": {
+    "es": "// División segura ante denominadores cero para medir densidad de popularidad",
+    "en": "// Safe division handling zero-denominator scenarios to measure popularity density"
+  },
+  "// Format-Specific Context Segmentation": {
+    "es": "// Segmentación por Formato con Contexto de Filtro",
+    "en": "// Format-Specific Context Segmentation"
+  },
+  "// Override filter context to isolate standalone Movie titles": {
+    "es": "// Sobrescribir contexto de filtro para aislar películas individuales",
+    "en": "// Override filter context to isolate standalone Movie titles"
+  },
+  "// Override filter context to isolate episodic Television series": {
+    "es": "// Sobrescribir contexto de filtro para aislar series de televisión episódicas",
+    "en": "// Override filter context to isolate episodic Television series"
+  },
+  "// Compute IMDb rating baseline strictly within Movie filter context": {
+    "es": "// Calcular promedio IMDb estrictamente dentro del filtro de películas",
+    "en": "// Compute IMDb rating baseline strictly within Movie filter context"
+  },
+  "// Compute IMDb rating baseline strictly within Television series context": {
+    "es": "// Calcular promedio IMDb estrictamente dentro del filtro de series de TV",
+    "en": "// Compute IMDb rating baseline strictly within Television series context"
+  },
+  "// Dynamic KPI Labeling with Execution Variables": {
+    "es": "// Etiquetas Dinámicas de KPI mediante Variables de Ejecución",
+    "en": "// Dynamic KPI Labeling with Execution Variables"
+  },
+  "// Concatenate Movie vote percentage and formatted votes-per-title (VPT) ratio": {
+    "es": "// Concatenar porcentaje de votos de películas con ratio formateado de votos por título (VPT)",
+    "en": "// Concatenate Movie vote percentage and formatted votes-per-title (VPT) ratio"
+  },
+  "// Concatenate Television vote share percentage and formatted VPT ratio": {
+    "es": "// Concatenar cuota de votos de series con ratio formateado de votos por título (VPT)",
+    "en": "// Concatenate Television vote share percentage and formatted VPT ratio"
+  },
+  "// Dynamic Conditional Formatting (10-Tier Palette Ramp)": {
+    "es": "// Formato Condicional Dinámico (Gradiente de Paleta de 10 Niveles)",
+    "en": "// Dynamic Conditional Formatting (10-Tier Palette Ramp)"
+  },
+  "# Build & launch headless inference server with WebSocket streaming": {
+    "es": "# Compilar e iniciar servidor de inferencia headless con streaming WebSocket",
+    "en": "# Build & launch headless inference server with WebSocket streaming"
+  },
+  "# Run DirectML accelerated inference against networked RTSP CCTV stream": {
+    "es": "# Ejecutar inferencia acelerada DirectML sobre stream CCTV RTSP en red",
+    "en": "# Run DirectML accelerated inference against networked RTSP CCTV stream"
+  }
+};
+
+translations.codeComments = codeCommentTranslations;
+
 if (typeof window !== 'undefined') {
   window.translations = translations;
 }
