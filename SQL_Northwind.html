@@ -178,7 +178,7 @@
 
 
 
-    <link rel="stylesheet" href="styles.css?v=2.8">
+    <link rel="stylesheet" href="styles.css?v=2.9">
 
 
 
@@ -1262,19 +1262,20 @@
 
 
 
-                        <pre><code id="code-cohort">WITH Cohorts AS (
-
+                        <pre><code id="code-cohort">-- Step 1: Identify customer acquisition cohort by earliest order month
+WITH Cohorts AS (
     SELECT CustomerId, MIN(strftime('%Y-%m', OrderDate)) AS CohortMonth
     FROM 'Order' GROUP BY CustomerId
 ),
 
+-- Step 2: Calculate month offset (MonthDiff) between initial and repeat purchases
 Activity AS (
-
     SELECT o.CustomerId, c.CohortMonth,
            CAST((strftime('%m', o.OrderDate) - strftime('%m', c.CohortMonth || '-01')) AS INTEGER) AS MonthDiff
     FROM 'Order' o JOIN Cohorts c ON o.CustomerId = c.CustomerId
 )
 
+-- Step 3: Aggregate cohort sizes and calculate M1 and M2 retention percentages
 SELECT CohortMonth,
        COUNT(DISTINCT CustomerId) AS CohortSize,
        COUNT(DISTINCT CASE WHEN MonthDiff = 1 THEN CustomerId END) AS M1_Retained,
@@ -1548,17 +1549,19 @@ FROM Activity GROUP BY CohortMonth ORDER BY CohortMonth LIMIT 5;</code></pre>
 
 
 
-                        <pre><code id="code-employee">SELECT
+                        <pre><code id="code-employee">-- Aggregate commercial revenue per employee, adjusting for line-item discounts
+SELECT
     e.FirstName || ' ' || e.LastName AS SalesRep,
     e.Title,
     COUNT(DISTINCT o.Id) AS ClosedOrders,
     ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS NetSales,
-    ROUND(AVG(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS AvgDealSize
+    ROUND(AVG(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS AvgDealSize,
+    -- Rank sales reps by revenue generation
+    DENSE_RANK() OVER (ORDER BY SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) DESC) AS RevenueRank
 FROM Employee e
 JOIN 'Order' o ON e.Id = o.EmployeeId
 JOIN OrderDetail od ON o.Id = od.OrderId
-GROUP BY e.Id
-ORDER BY NetSales DESC LIMIT 5;</code></pre>
+GROUP BY e.Id ORDER BY NetSales DESC;</code></pre>
 
 
 
@@ -1826,22 +1829,23 @@ ORDER BY NetSales DESC LIMIT 5;</code></pre>
 
 
 
-                        <pre><code id="code-inventory">SELECT
+                        <pre><code id="code-inventory">-- Identify operational stock risks by comparing on-hand units against safety thresholds
+SELECT
     p.ProductName,
     c.CategoryName,
     p.UnitsInStock,
     p.UnitsOnOrder,
     p.ReorderLevel,
-    ROUND(p.UnitsInStock * 1.0 / NULLIF(p.ReorderLevel, 0), 2) AS SafetyStockRatio,
+    -- Classify replenishment urgency based on inventory vs reorder level
     CASE
         WHEN p.UnitsInStock = 0 THEN 'CRITICAL: Stockout'
         WHEN p.UnitsInStock &lt; p.ReorderLevel THEN 'WARNING: Below Reorder'
-        ELSE 'OPTIMAL'
+        ELSE 'OPTIMAL: Stocked'
     END AS StockStatus
 FROM Product p
 JOIN Category c ON p.CategoryId = c.Id
-WHERE p.Discontinued = 0 AND p.UnitsInStock &lt;= p.ReorderLevel
-ORDER BY p.UnitsInStock ASC LIMIT 5;</code></pre>
+WHERE p.Discontinued = 0
+ORDER BY p.UnitsInStock ASC, p.ReorderLevel DESC LIMIT 8;</code></pre>
 
 
 
@@ -2133,12 +2137,11 @@ ORDER BY p.UnitsInStock ASC LIMIT 5;</code></pre>
 
 
 
-                        <pre><code id="code-explain">-- High-Performance Composite Index
+                        <pre><code id="code-explain">-- Step 1: Create B-Tree index on foreign key OrderId to replace full table scan with Index Seek
 CREATE INDEX idx_orderdetail_orderid ON OrderDetail(OrderId);
 
--- Query Execution Plan Inspection
+-- Step 2: Inspect execution plan to verify O(log N) index lookup and join efficiency
 EXPLAIN QUERY PLAN
-
 SELECT o.Id, o.OrderDate, ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS Total
 FROM 'Order' o
 JOIN OrderDetail od ON o.Id = od.OrderId
@@ -2343,7 +2346,8 @@ GROUP BY o.Id;</code></pre>
 
 
 
-            <pre><code>SELECT
+            <pre><code>-- Calculate top-selling products by net revenue, deducting promotional discounts
+SELECT
     p.ProductName,
     c.CategoryName,
     ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS NetRevenue,
@@ -2373,7 +2377,8 @@ LIMIT 5;</code></pre>
 
 
 
-            <pre><code>SELECT
+            <pre><code>-- Profile top customer accounts by lifetime spend and order volume
+SELECT
     c.CompanyName,
     c.Country,
     COUNT(DISTINCT o.Id) AS TotalOrders,
@@ -2404,19 +2409,17 @@ LIMIT 5;</code></pre>
 
 
 
-            <pre><code>SELECT
-    s.CompanyName AS SupplierName,
-    s.Country,
-    COUNT(DISTINCT o.Id) AS OrdersFulfilled,
-    ROUND(AVG(julianday(o.ShippedDate) - julianday(o.OrderDate)), 1) AS AvgFulfillmentDays
+            <pre><code>-- Measure carrier fulfillment speed by calculating average shipping latency in days
+SELECT
+    s.CompanyName AS ShipperName,
+    COUNT(DISTINCT o.Id) AS OrdersShipped,
+    ROUND(AVG(julianday(o.ShippedDate) - julianday(o.OrderDate)), 1) AS AvgShippingDays,
+    ROUND(AVG(o.Freight), 2) AS AvgFreightCost
 FROM 'Order' o
-JOIN OrderDetail od ON o.Id = od.OrderId
-JOIN Product p ON od.ProductId = p.Id
-JOIN Supplier s ON p.SupplierId = s.Id
+JOIN Shipper s ON o.ShipVia = s.Id
 WHERE o.ShippedDate IS NOT NULL
 GROUP BY s.Id
-ORDER BY AvgFulfillmentDays DESC
-LIMIT 5;</code></pre>
+ORDER BY AvgShippingDays ASC;</code></pre>
 
 
 
@@ -2436,16 +2439,18 @@ LIMIT 5;</code></pre>
 
 
 
-            <pre><code>SELECT
+            <pre><code>-- Detect inactive customer accounts with no purchases in the last 180 days
+SELECT
     c.CompanyName,
     c.ContactTitle,
-    c.Country,
-    MAX(o.OrderDate) AS LastOrderDate
+    c.Phone,
+    MAX(o.OrderDate) AS LastOrderDate,
+    CAST(julianday('1998-05-06') - julianday(MAX(o.OrderDate)) AS INTEGER) AS DaysSinceLastOrder
 FROM Customer c
 LEFT JOIN 'Order' o ON c.Id = o.CustomerId
 GROUP BY c.Id
-HAVING LastOrderDate &lt; date('now', '-1 year') OR LastOrderDate IS NULL
-ORDER BY LastOrderDate ASC;</code></pre>
+HAVING DaysSinceLastOrder &gt; 180 OR LastOrderDate IS NULL
+ORDER BY DaysSinceLastOrder DESC;</code></pre>
 
 
 
@@ -2497,7 +2502,8 @@ ORDER BY LastOrderDate ASC;</code></pre>
 
 
 
-            <pre><code>WITH CategoryProductSales AS (
+            <pre><code>-- Partition sales by category and rank top 3 revenue drivers using DENSE_RANK()
+WITH CategoryProductSales AS (
     SELECT
         c.CategoryName,
         p.ProductName,
@@ -2511,7 +2517,6 @@ ORDER BY LastOrderDate ASC;</code></pre>
     JOIN Category c ON p.CategoryId = c.Id
     GROUP BY c.Id, p.Id
 )
-
 SELECT
     CategoryName,
     CategoryRank,
@@ -2539,7 +2544,8 @@ ORDER BY CategoryName, CategoryRank;</code></pre>
 
 
 
-            <pre><code>WITH MonthlyRevenue AS (
+            <pre><code>-- Calculate Month-over-Month (MoM) revenue growth using the LAG() window function
+WITH MonthlyRevenue AS (
     SELECT
         strftime('%Y-%m', o.OrderDate) AS OrderMonth,
         ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS CurrentMonthRevenue
@@ -2547,14 +2553,14 @@ ORDER BY CategoryName, CategoryRank;</code></pre>
     JOIN OrderDetail od ON o.Id = od.OrderId
     GROUP BY OrderMonth
 )
-
 SELECT
     OrderMonth,
     CurrentMonthRevenue,
-    LAG(CurrentMonthRevenue, 1) OVER (ORDER BY OrderMonth) AS PreviousMonthRevenue,
+    LAG(CurrentMonthRevenue) OVER (ORDER BY OrderMonth) AS PreviousMonthRevenue,
     ROUND(
-        (CurrentMonthRevenue - LAG(CurrentMonthRevenue, 1) OVER (ORDER BY OrderMonth))
-        / LAG(CurrentMonthRevenue, 1) OVER (ORDER BY OrderMonth) * 100, 2
+        (CurrentMonthRevenue - LAG(CurrentMonthRevenue) OVER (ORDER BY OrderMonth))
+        / LAG(CurrentMonthRevenue) OVER (ORDER BY OrderMonth) * 100,
+        1
     ) AS MoMGrowthPercent
 FROM MonthlyRevenue
 ORDER BY OrderMonth;</code></pre>
@@ -2577,16 +2583,16 @@ ORDER BY OrderMonth;</code></pre>
 
 
 
-            <pre><code>WITH MonthlyTotals AS (
+            <pre><code>-- Compute cumulative Year-to-Date (YTD) running revenue via partitioned SUM() OVER
+WITH MonthlyTotals AS (
     SELECT
         strftime('%Y', o.OrderDate) AS OrderYear,
         strftime('%Y-%m', o.OrderDate) AS OrderMonth,
         ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS MonthlySales
     FROM 'Order' o
     JOIN OrderDetail od ON o.Id = od.OrderId
-    GROUP BY OrderMonth
+    GROUP BY OrderYear, OrderMonth
 )
-
 SELECT
     OrderYear,
     OrderMonth,
@@ -2594,7 +2600,8 @@ SELECT
     ROUND(SUM(MonthlySales) OVER (
         PARTITION BY OrderYear
         ORDER BY OrderMonth
-    ), 2) AS YTD_RunningRevenue
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    ), 2) AS RunningTotalYearToDate
 FROM MonthlyTotals
 ORDER BY OrderMonth;</code></pre>
 
@@ -2616,7 +2623,8 @@ ORDER BY OrderMonth;</code></pre>
 
 
 
-            <pre><code>WITH OrderSequence AS (
+            <pre><code>-- Measure purchase velocity by calculating elapsed days between sequential customer orders
+WITH OrderSequence AS (
     SELECT
         CustomerId,
         OrderDate,
@@ -2625,26 +2633,17 @@ ORDER BY OrderMonth;</code></pre>
             ORDER BY OrderDate
         ) AS PreviousOrderDate
     FROM 'Order'
-),
-
-OrderIntervals AS (
-    SELECT
-        CustomerId,
-        ROUND(julianday(OrderDate) - julianday(PreviousOrderDate), 1) AS DaysBetweenOrders
-    FROM OrderSequence
-    WHERE PreviousOrderDate IS NOT NULL
 )
-
 SELECT
-    c.CompanyName,
-    COUNT(i.DaysBetweenOrders) AS RepeatOrdersCount,
-    ROUND(AVG(i.DaysBetweenOrders), 1) AS AvgDaysBetweenOrders
-FROM OrderIntervals i
-JOIN Customer c ON i.CustomerId = c.Id
-GROUP BY c.Id
-HAVING RepeatOrdersCount &gt;= 10
+    CustomerId,
+    ROUND(AVG(julianday(OrderDate) - julianday(PreviousOrderDate)), 1) AS AvgDaysBetweenOrders,
+    COUNT(*) AS RepeatOrders
+FROM OrderSequence
+WHERE PreviousOrderDate IS NOT NULL
+GROUP BY CustomerId
+HAVING RepeatOrders &gt;= 3
 ORDER BY AvgDaysBetweenOrders ASC
-LIMIT 5;</code></pre>
+LIMIT 10;</code></pre>
 
 
 
@@ -2696,7 +2695,8 @@ LIMIT 5;</code></pre>
 
 
 
-            <pre><code>WITH CustomerAggregates AS (
+            <pre><code>-- Implement pure-SQL RFM segmentation using NTILE(4) quartile distribution
+WITH CustomerAggregates AS (
     SELECT
         c.Id AS CustomerId,
         c.CompanyName,
@@ -2708,37 +2708,33 @@ LIMIT 5;</code></pre>
     JOIN OrderDetail od ON o.Id = od.OrderId
     GROUP BY c.Id
 ),
-
-RFM_Quartiles AS (
+-- Assign quartile scores (1 to 4) for Recency, Frequency, and Monetary spend
+RFM_Scores AS (
     SELECT
         CustomerId,
         CompanyName,
-        Frequency,
-        Monetary,
-        LastOrderDate,
         NTILE(4) OVER (ORDER BY LastOrderDate ASC) AS R_Score,
         NTILE(4) OVER (ORDER BY Frequency ASC) AS F_Score,
         NTILE(4) OVER (ORDER BY Monetary ASC) AS M_Score
     FROM CustomerAggregates
 )
-
+-- Classify behavioral customer tiers based on combined score
 SELECT
+    CustomerId,
     CompanyName,
-    R_Score, F_Score, M_Score,
-    Frequency AS TotalOrders,
-    Monetary AS LifetimeSpend,
+    R_Score,
+    F_Score,
+    M_Score,
+    (R_Score + F_Score + M_Score) AS CompositeRFM,
     CASE
-        WHEN R_Score &gt;= 3 AND F_Score &gt;= 3 AND M_Score &gt;= 3 THEN 'VIP Champion'
-        WHEN R_Score &gt;= 3 AND F_Score &gt;= 2 THEN 'Loyal Customer'
-
-        WHEN R_Score = 1 AND F_Score &gt;= 3 THEN 'High-Value At Risk'
-
-        WHEN R_Score = 1 AND F_Score = 1 THEN 'Dormant Account'
-        ELSE 'Regular Buyer'
-    END AS CustomerSegment
-FROM RFM_Quartiles
-ORDER BY Monetary DESC
-LIMIT 8;</code></pre>
+        WHEN (R_Score + F_Score + M_Score) &gt;= 10 THEN 'Tier 1: Champions'
+        WHEN (R_Score + F_Score + M_Score) &gt;= 7  THEN 'Tier 2: Loyal Regulars'
+        WHEN (R_Score + F_Score + M_Score) &gt;= 4  THEN 'Tier 3: At-Risk / Developing'
+        ELSE 'Tier 4: Hibernating'
+    END AS RFM_Segment
+FROM RFM_Scores
+ORDER BY CompositeRFM DESC, M_Score DESC
+LIMIT 10;</code></pre>
 
 
 
@@ -2758,7 +2754,8 @@ LIMIT 8;</code></pre>
 
 
 
-            <pre><code>WITH CustomerFirstOrder AS (
+            <pre><code>-- Build longitudinal customer retention cohort matrix tracking repeat purchases
+WITH CustomerFirstOrder AS (
     SELECT
         CustomerId,
         MIN(OrderDate) AS FirstOrderDate,
@@ -2766,28 +2763,27 @@ LIMIT 8;</code></pre>
     FROM 'Order'
     GROUP BY CustomerId
 ),
-
-UserMonthlyActivity AS (
+-- Map order timestamps to acquisition cohorts and calculate elapsed months
+CohortActivity AS (
     SELECT
+        cfo.CohortMonth,
         o.CustomerId,
-        c.CohortMonth,
-        (CAST(strftime('%Y', o.OrderDate) AS INTEGER) - CAST(strftime('%Y', c.FirstOrderDate) AS INTEGER)) * 12 +
-        (CAST(strftime('%m', o.OrderDate) AS INTEGER) - CAST(strftime('%m', c.FirstOrderDate) AS INTEGER)) AS MonthIndex
+        CAST((strftime('%m', o.OrderDate) - strftime('%m', cfo.FirstOrderDate)) AS INTEGER) AS MonthDiff
     FROM 'Order' o
-    JOIN CustomerFirstOrder c ON o.CustomerId = c.CustomerId
+    JOIN CustomerFirstOrder cfo ON o.CustomerId = cfo.CustomerId
 )
-
+-- Aggregate cohort retention counts per time window
 SELECT
     CohortMonth,
     COUNT(DISTINCT CustomerId) AS CohortSize,
-    COUNT(DISTINCT CASE WHEN MonthIndex = 1 THEN CustomerId END) AS M1_Repeat,
-    COUNT(DISTINCT CASE WHEN MonthIndex = 2 THEN CustomerId END) AS M2_Repeat,
-    COUNT(DISTINCT CASE WHEN MonthIndex = 3 THEN CustomerId END) AS M3_Repeat,
-    ROUND(COUNT(DISTINCT CASE WHEN MonthIndex = 1 THEN CustomerId END) * 100.0 / COUNT(DISTINCT CustomerId), 1) AS M1_RetentionRate
-FROM UserMonthlyActivity
+    COUNT(DISTINCT CASE WHEN MonthDiff = 0 THEN CustomerId END) AS M0,
+    COUNT(DISTINCT CASE WHEN MonthDiff = 1 THEN CustomerId END) AS M1,
+    COUNT(DISTINCT CASE WHEN MonthDiff = 2 THEN CustomerId END) AS M2,
+    COUNT(DISTINCT CASE WHEN MonthDiff = 3 THEN CustomerId END) AS M3
+FROM CohortActivity
 GROUP BY CohortMonth
 ORDER BY CohortMonth
-LIMIT 6;</code></pre>
+LIMIT 8;</code></pre>
 
 
 
@@ -2835,8 +2831,8 @@ LIMIT 6;</code></pre>
 
 
 
-            <pre><code>EXPLAIN QUERY PLAN
-
+            <pre><code>-- Inspect SQLite query execution tree to verify index coverage and cost distribution
+EXPLAIN QUERY PLAN
 SELECT c.CompanyName, COUNT(DISTINCT o.Id) AS Orders
 FROM Customer c
 JOIN 'Order' o ON c.Id = o.CustomerId
@@ -3062,11 +3058,11 @@ GROUP BY c.Id;</code></pre>
 
 
 
-    <script src="translations.js?v=2.8"></script>
+    <script src="translations.js?v=2.9"></script>
 
 
 
-    <script src="i18n.js?v=2.8"></script>
+    <script src="i18n.js?v=2.9"></script>
 
 
 
