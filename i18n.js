@@ -225,9 +225,59 @@
     }, { passive: true });
   }
 
+  // ===== AUTOMATIC HIGH-CONTRAST CODE SYNTAX HIGHLIGHTER =====
+  function initCodeHighlighting() {
+    const codeBlocks = document.querySelectorAll('pre code');
+    if (!codeBlocks.length) return;
+
+    function highlightText(codeText) {
+      let text = codeText;
+      const comments = [];
+      // Comments: -- or // or # followed by text (excluding DAX assignments like # Titles =)
+      text = text.replace(/((?:--|\/\/|(?:^|\s)#[ \t]+(?![A-Za-z0-9_#% ]+\s*=))[^\n]*)/gm, (m) => {
+        comments.push(m);
+        return '___COMMENT_' + (comments.length - 1) + '___';
+      });
+
+      const strings = [];
+      text = text.replace(/(['"])(?:(?!\1)[^\\]|\\.)*\1/g, (m) => {
+        strings.push(m);
+        return '___STRING_' + (strings.length - 1) + '___';
+      });
+
+      // DAX columns / brackets
+      text = text.replace(/(\[[A-Za-z0-9_#% ]+\])/g, '<span class="hl-col">$1</span>');
+
+      // Keywords
+      const kwRegex = /\b(SELECT|FROM|WHERE|JOIN|INNER JOIN|LEFT JOIN|RIGHT JOIN|FULL JOIN|CROSS JOIN|ON|GROUP BY|ORDER BY|LIMIT|WITH|AS|AND|OR|NOT|IN|BETWEEN|LIKE|IS|NULL|CASE|WHEN|THEN|ELSE|END|HAVING|UNION|ALL|EXISTS|DISTINCT|OVER|PARTITION BY|CREATE|INDEX|EXPLAIN|QUERY|PLAN|DESC|ASC|VAR|RETURN|TRUE|FALSE)\b/gi;
+      text = text.replace(kwRegex, (m) => '<span class="hl-kw">' + m.toUpperCase() + '</span>');
+
+      // Functions
+      const fnRegex = /\b(COUNT|SUM|AVG|MIN|MAX|ROUND|CAST|strftime|DENSE_RANK|LAG|LEAD|NTILE|ROW_NUMBER|COALESCE|IFNULL|CALCULATE|FILTER|ALL|ALLEXCEPT|DISTINCTCOUNT|DIVIDE|AVERAGE|FORMAT|SWITCH|RELATED|VALUES|USERELATIONSHIP|KEEPFILTERS)\b/gi;
+      text = text.replace(fnRegex, (m) => '<span class="hl-fn">' + m + '</span>');
+
+      // Numbers
+      text = text.replace(/\b(\d+(?:\.\d+)?%?)\b/g, '<span class="hl-num">$1</span>');
+
+      // Restore Strings & Comments
+      text = text.replace(/___STRING_(\d+)___/g, (_, idx) => '<span class="hl-str">' + strings[Number(idx)] + '</span>');
+      text = text.replace(/___COMMENT_(\d+)___/g, (_, idx) => '<span class="hl-cm">' + comments[Number(idx)] + '</span>');
+
+      return text;
+    }
+
+    codeBlocks.forEach((codeEl) => {
+      if (codeEl.getAttribute('data-highlighted') === 'true') return;
+      codeEl.setAttribute('data-highlighted', 'true');
+      const raw = codeEl.textContent;
+      codeEl.innerHTML = highlightText(raw);
+    });
+  }
+
   function init() {
     injectFloatingToggle();
     initTooltipPortal();
+    initCodeHighlighting();
     const currentLang = getCurrentLang();
     setLanguage(currentLang);
   }

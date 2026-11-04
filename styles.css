@@ -1078,19 +1078,32 @@ nav ul li a:active {
 
 /* ===== CODE BLOCKS & PRE ===== */
 pre {
-  background: #0d1117 !important;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  padding: 1.2rem;
+  background: #060911 !important;
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  border-radius: 8px;
+  padding: 0.95rem 1.15rem;
   overflow-x: auto;
-  margin: 1.2rem 0;
+  margin: 0.85rem 0;
+  line-height: 1.45;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
 }
 
 code {
-  font-family: 'Fira Code', Consolas, Monaco, monospace;
-  color: #38bdf8;
-  font-size: 0.92rem;
+  font-family: var(--font-mono);
+  color: #f1f5f9;
+  font-size: 0.84rem;
+  tab-size: 4;
 }
+
+/* Syntax Highlighting Tokens (High-Contrast Theme) */
+.hl-kw  { color: #38bdf8; font-weight: 600; } /* Keywords: Sky Cyan */
+.hl-fn  { color: #34d399; font-weight: 600; } /* Functions: Emerald Green */
+.hl-str { color: #fbbf24; }                  /* Strings: Amber Gold */
+.hl-cm  { color: #94a3b8; font-style: italic; } /* Comments: Slate Gray */
+.hl-num { color: #c084fc; }                  /* Numbers: Lilac */
+.hl-var { color: #818cf8; font-weight: 600; } /* Variables: Indigo */
+.hl-col { color: #7dd3fc; }                  /* Columns / Fields: Soft Cyan */
+.hl-op  { color: #e2e8f0; }                  /* Operators */
 
 
 /* ===== STANDARDIZED ACCESSIBLE FOOTER ===== */
