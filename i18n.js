@@ -58,18 +58,6 @@
     // Update html lang attribute
     document.documentElement.setAttribute('lang', lang);
 
-    // Update CV button link to match active language
-    const cvBtn = document.getElementById('heroCvBtn');
-    if (cvBtn) {
-      if (lang === 'es') {
-        cvBtn.setAttribute('href', 'Files/cv/CV_Christian_Vera_ES.pdf');
-        cvBtn.setAttribute('download', 'CV_Christian_Vera_ES.pdf');
-      } else {
-        cvBtn.setAttribute('href', 'Files/cv/CV_Christian_Vera_EN.pdf');
-        cvBtn.setAttribute('download', 'CV_Christian_Vera_EN.pdf');
-      }
-    }
-
     // Update code comments & syntax highlighting for active language
     updateCodeComments(lang);
 
