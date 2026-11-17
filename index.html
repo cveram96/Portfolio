@@ -117,10 +117,10 @@
                     <img src="Files/images/christian_vera.jpg" alt="Christian David Vera Mendivelso" class="hero-avatar-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" width="400" height="400">
                     <div class="hero-avatar-initials" style="display: none;">CV</div>
                 </div>
-                <span class="avatar-status-badge" title="Available for opportunities"></span>
+                <span class="avatar-status-badge" aria-label="Available for opportunities" role="status"></span>
             </div>
             <div class="availability-badge">
-                <span class="pulse-dot"></span>
+                <span class="pulse-dot" aria-hidden="true"></span>
                 <span data-i18n="hero.availability">Available for Data Science &amp; AI Opportunities</span>
             </div>
 
@@ -140,22 +140,26 @@
             <!-- Value Metric Counters -->
             <div class="hero-stats">
                 <div class="stat-box">
-                    <div class="stat-number" data-i18n="hero.stat1.num">Real-Time</div>
-                    <div class="stat-label"><span data-i18n="hero.stat1.label">Computer Vision (YOLO)</span><span class="help-pill" data-i18n-tooltip="tip.yolo" tabindex="0">?</span></div>
+                    <div class="stat-number" data-i18n="hero.stat1.num">30+ FPS</div>
+                    <div class="stat-label"><span data-i18n="hero.stat1.label">Real-Time Inference (YOLOv8)</span><span class="help-pill" data-i18n-tooltip="tip.yolo" tabindex="0">?</span></div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-number" data-i18n="hero.stat2.num">A/B Testing</div>
-                    <div class="stat-label"><span data-i18n="hero.stat2.label">Experimentation &amp; CUPED</span><span class="help-pill" data-i18n-tooltip="tip.cuped" tabindex="0">?</span></div>
+                    <div class="stat-number" data-i18n="hero.stat2.num">42%</div>
+                    <div class="stat-label"><span data-i18n="hero.stat2.label">Variance Reduction (CUPED)</span><span class="help-pill" data-i18n-tooltip="tip.cuped" tabindex="0">?</span></div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-number" data-i18n="hero.stat3.num">Full-Stack</div>
-                    <div class="stat-label"><span data-i18n="hero.stat3.label">BI &amp; Automated ETL</span><span class="help-pill" data-i18n-tooltip="tip.dax" tabindex="0">?</span></div>
+                    <div class="stat-number" data-i18n="hero.stat3.num">8+</div>
+                    <div class="stat-label"><span data-i18n="hero.stat3.label">End-to-End Data &amp; AI Systems</span><span class="help-pill" data-i18n-tooltip="tip.dax" tabindex="0">?</span></div>
                 </div>
             </div>
 
             <div class="hero-actions">
                 <a href="#featured" class="btn-hero btn-primary-gradient">
                     <span data-i18n="hero.btn.explore">Explore Featured Projects</span>
+                </a>
+                <a href="Files/cv/CV_Christian_Vera_EN.pdf" id="heroCvBtn" download="CV_Christian_Vera_EN.pdf" target="_blank" rel="noopener noreferrer" class="btn-hero btn-secondary-dark">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-right: 4px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span data-i18n="hero.btn.cv">Download CV</span>
                 </a>
                 <a href="https://www.linkedin.com/in/christianveram/" target="_blank" rel="noopener noreferrer" class="btn-hero btn-secondary-dark">
                     <span data-i18n="hero.btn.linkedin">LinkedIn</span>
