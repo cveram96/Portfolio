@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-type="software" data-radius="soft" data-buttons="solid" >
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0NCSQ1FW3J"></script>
@@ -19,6 +19,8 @@
     <meta name="author" content="Christian David Vera Mendivelso">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#0d1117">
+    <meta name="page-type" content="software">
+    <meta name="site-kind" content="software">
 
     <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
     <meta property="og:type" content="website">
@@ -43,7 +45,7 @@
     <meta name="twitter:image" content="https://raw.githubusercontent.com/cveram96/Portfolio/main/Files/images/portfolio_og_preview.png">
     <meta name="twitter:image:alt" content="Christian David Vera | Data Science & Machine Learning Portfolio">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="stylesheet" href="styles.css?v=3.0">
+    <link rel="stylesheet" href="styles.css?v=3.1">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Structured Data (Schema.org / JSON-LD) -->
@@ -75,7 +77,7 @@
       "sameAs": [
         "https://www.linkedin.com/in/christianveram/",
         "https://github.com/cveram96",
-        "https://wa.me/573213797876"
+        "https://cveram96.github.io/Portfolio/contacto.html"
       ],
       "knowsAbout": [
         "Machine Learning",
@@ -107,7 +109,7 @@
     <main id="main-content">
 
     <!-- Modern Hero Section -->
-    <header class="container">
+    <header class="container hero-container">
         <div class="hero-profile">
             <!-- Hero Avatar with Tech Halo -->
             <div class="hero-avatar-wrapper">
@@ -122,7 +124,7 @@
                 <span data-i18n="hero.availability">Available for Data Science &amp; AI Opportunities</span>
             </div>
 
-            <h1 data-i18n="hero.title">Christian David Vera Mendivelso</h1>
+            <h1 data-i18n-html="hero.title">Christian David Vera &bull; Data Science &amp; Machine Learning Engineer</h1>
             <div class="hero-subtitle" data-i18n="hero.subtitle">Data Scientist | Data Analytics | Business Intelligence</div>
             
             <p class="hero-bio" data-i18n-html="hero.bio">
@@ -130,8 +132,8 @@
             </p>
 
             <div class="hero-highlights">
-                <span class="hero-pill" data-i18n="hero.pill1">M.Sc. in Data Science &mdash; Pontificia Universidad Javeriana</span>
-                <span class="hero-pill" data-i18n="hero.pill2">Business Administration &mdash; Universidad Nacional de Colombia</span>
+                <span class="hero-pill" data-i18n="hero.pill1">M.Sc. in Data Science &bull; Pontificia Universidad Javeriana</span>
+                <span class="hero-pill" data-i18n="hero.pill2">Business Administration &bull; Universidad Nacional de Colombia</span>
                 <span class="hero-pill" data-i18n="hero.pill3">Bogot&aacute;, Colombia &bull; Remote Available</span>
             </div>
 
@@ -188,7 +190,7 @@
             <!-- ParkVision AI -->
             <div class="project featured" data-category="ml cv">
                 <div class="project-thumb"><img src="Files/images/parkvision/parkvision_live_monitor.png" alt="ParkVision AI Live Monitoring" loading="lazy" width="1920" height="1080"></div>
-                <h3 data-i18n="project.parkvision.title">ParkVision AI &mdash; Smart Parking Monitoring</h3>
+                <h3 data-i18n="project.parkvision.title">ParkVision AI: Smart Parking Monitoring</h3>
                 <p data-i18n="project.parkvision.desc">Computer vision application that monitors parking spaces in real time using video feeds, automatically detecting occupied bays and recording usage patterns.</p>
                 <div class="card-tags">
                     <span class="card-tag">Python 3.10+</span>
@@ -238,9 +240,9 @@
             <p class="category-subtitle" data-i18n="analytics.subtitle">Executive dashboards, SQL relational analytics, forecasting models, and customer intelligence.</p>
         </div>
 
-        <div class="projects">
+        <div class="projects projects-duo">
             <!-- Power BI Netflix -->
-            <div class="project" data-category="bi">
+            <div class="project featured" data-category="bi">
                 <div class="project-thumb"><img src="Files/images/netflix/netflix_preview.png" alt="Netflix Global Catalog Analytics Power BI Dashboard" loading="lazy" width="1280" height="720"></div>
                 <h3 data-i18n="project.netflix.title">Power BI &mdash; Netflix Global Catalog</h3>
                 <p data-i18n="project.netflix.desc">Business intelligence dashboard analyzing global catalog distribution, release year trends, and content maturity ratings across international markets.</p>
@@ -254,7 +256,7 @@
             </div>
 
             <!-- SQL Northwind -->
-            <div class="project" data-category="bi">
+            <div class="project featured" data-category="bi">
                 <div class="project-thumb"><img src="Files/images/sql/sql_preview.png" alt="Enterprise SQL Relational Schema and Performance Analysis" loading="lazy" width="880" height="450"></div>
                 <h3 data-i18n="project.sql.title">SQL &mdash; Northwind Business Insights</h3>
                 <p data-i18n="project.sql.desc">Relational database analysis in SQLite assessing operational sales, employee performance, customer cohort retention, and inventory risk using structured SQL queries.</p>
@@ -266,7 +268,9 @@
                 </div>
                 <a href="SQL_Northwind.html" data-i18n-html="project.sql.btn">Explore Queries &rarr;</a>
             </div>
+        </div>
 
+        <div class="projects projects-trio">
             <!-- Time Series ARIMA -->
             <div class="project" data-category="ml">
                 <div class="project-thumb"><img src="Files/images/ARIMA/sarima_vs_arima_comparison.png" alt="SARIMA vs ARIMA Time Series Forecasting" loading="lazy" width="2480" height="1729"></div>
@@ -316,7 +320,7 @@
     <!-- Standardized Accessible Footer -->
     <footer>
         <div class="footer-content">
-            <p class="footer-credit" data-i18n-html="footer.credit">Designed &amp; Developed by <strong style="color: #ffffff;">Christian David Vera Mendivelso</strong> &bull; 2025&ndash;2026</p>
+            <p class="footer-credit" data-i18n-html="footer.credit"><strong>Christian David Vera Mendivelso</strong> &bull; Applied Data Science &amp; Engineering Portfolio &bull; 2026</p>
             <p class="footer-status" data-i18n-html="footer.status">Bogot&aacute;, Colombia &bull; Open to Remote &amp; Hybrid roles</p>
             <div class="footer-actions">
                 <a href="https://www.linkedin.com/in/christianveram/" target="_blank" rel="noopener noreferrer" class="footer-btn footer-btn-linkedin">
@@ -333,8 +337,8 @@
     </footer>
 
     <!-- Multilingual i18n Scripts -->
-    <script src="translations.js?v=3.0"></script>
-    <script src="i18n.js?v=3.0"></script>
+    <script src="translations.js?v=3.1"></script>
+    <script src="i18n.js?v=3.1"></script>
 
     <!-- Interactive Category Filter Script -->
     <script>
